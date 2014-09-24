@@ -2,95 +2,36 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	
     <title>Kezdőlap</title>
+	
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
-    <script src="./jquery-2.1.1.js"></script>
-
-    <style>
-        body {
-            background-color: #f3f3f3;
-            margin-bottom: 100px;
-			padding-top: 90px;
-        }
-        .container {
-            width: 80%;
-            margin: 10px auto;
-            background-color: white;
-            border-radius: 10px;
-            border: 1px solid #aaa;
-
-            -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
-            -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
-            box-shadow:         5px 5px 11px 0px rgba(50, 50, 50, 0.75);
-        }
-		
-
-        h1 small {
-            margin-left: 10px;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        code {
-            box-sizing: border-box;
-            padding: 2px 5px;
-            white-space: pre-wrap;
-
-            background-color: #eee;
-            color: black;
-        }
-
-        span.todo {
-            font-style: italic;
-        }
-        span.todo:before { content: "["; }
-        span.todo:after { content: "]"; }
-
-    </style>
+    <link rel="stylesheet" href="stsheet.css">
+	
 </head>
 <body>
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="index.html">Android szakkör</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="index.html">Home</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Leckék <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">L0102</a></li>
+                <li><a href="#">L03</a></li>
+                <li><a href="#">L04</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="#">Stb</a></li>
               </ul>
             </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top</a></li>
+            <li><a href="contact.html">Kapcsolat</a></li>
           </ul>
         </div><!--/.nav-collapse -->
-      </div>
-    </div> 
-
+    </div>
 	
 	<div style="text-align: center;">
 		<img src="http://upload.wikimedia.org/wikipedia/commons/4/4e/Android_robot_skateboarding.svg"/>
@@ -99,8 +40,7 @@
 	<div class="container">
 
 
-		
-
+		<!--#include file="included.html" -->
         <p>
             Ide jön valami leírás, hogy mit is fogunk tanulni ebben a leckében.
             Ide jön valami leírás, hogy mit is fogunk <em>tanulni</em> ebben a leckében.
@@ -144,24 +84,15 @@ public void onButtonClicked(View v) {
 }
             </pre>
         </p>
-		
-		
-		<footer>
-			<div class="row">
-				<div class="col-lg-12">
-					<p>Copyright &copy; 2014 Dénes György és Pap Ákos </p>
-				</div>
-			</div>
-		</footer>
     </div>
 	
-    
-
-    <script type="text/javascript">
-        $(function () {
-            $('img').addClass('center-block');
-        });
-    </script>
+	<footer>
+		<p>Copyright &copy; 2014 Dénes György és Pap Ákos </p>
+	</footer>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>	
+	
 </body>
 </html>
 
