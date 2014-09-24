@@ -80,10 +80,10 @@ public void onButtonClicked(View v) {
 
     <script type="text/javascript">
         $(function () {
-            $.get('include/header.html', function (data) {
+            $.get('/include/header.html', function (data) {
                 $('header').html(data);
             });
-            $.get('include/footer.html', function (data) {
+            $.get('/include/footer.html', function (data) {
                 $('footer').html(data);
             });
 
