@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+Ôªø<!DOCTYPE html>
 <html>
 <head>
-    <title>L04-SensorIntro</title>
+	<meta charset="utf-8">
+    <title>Kezd≈ëlap</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
     <script src="./jquery-2.1.1.js"></script>
@@ -9,7 +10,8 @@
     <style>
         body {
             background-color: #f3f3f3;
-            margin-bottom: 300px;
+            margin-bottom: 100px;
+			padding-top: 90px;
         }
         .container {
             width: 80%;
@@ -22,6 +24,7 @@
             -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
             box-shadow:         5px 5px 11px 0px rgba(50, 50, 50, 0.75);
         }
+		
 
         h1 small {
             margin-left: 10px;
@@ -49,52 +52,110 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>4. lecke<small>KˆzelsÈgÈrzÈkelo szenzor haszn·lata</small></h1>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li><a href="../navbar-static-top/">Static top</a></li>
+            <li class="active"><a href="./">Fixed top</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div> 
+
+	
+	<div style="text-align: center;">
+		<img src="http://upload.wikimedia.org/wikipedia/commons/4/4e/Android_robot_skateboarding.svg"/>
+	</div>	
+	
+	<div class="container">
+
+
+		
 
         <p>
-            Ide jˆn valami leÌr·s, hogy mit is fogunk tanulni ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy mit is fogunk <em>tanulni</em> ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy mit is fogunk tanulni ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy <em>mit</em> is fogunk tanulni ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy mit is fogunk <strong>tanulni</strong> ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy mit is fogunk tanulni ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy mit is fogunk tanulni ebben a leckÈben.
-            Ide jˆn valami leÌr·s, hogy mit is fogunk tanulni ebben a leckÈben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk tanulni ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk <em>tanulni</em> ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk tanulni ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy <em>mit</em> is fogunk tanulni ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk <strong>tanulni</strong> ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk tanulni ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk tanulni ebben a leck√©ben.
+            Ide j√∂n valami le√≠r√°s, hogy mit is fogunk tanulni ebben a leck√©ben.
         </p>
         <img src="https://www.dropbox.com/s/arytmnnok3vdqmh/game.png?dl=1" />
 
-        <h2>Valami cÌm</h2>
+        <h2>Valami c√≠m</h2>
         <p>
-            Itt jˆn egy leÌr·s, hogy ez a rÈsz (<code>ami lehet komponens, technolÛgia, ak·rmi</code>) mire is jÛ,
-            hogy kell haszn·lni, mire kell figyelni...
-            Itt jˆn egy leÌr·s, hogy ez a rÈsz (ami lehet komponens, technolÛgia, ak·rmi) mire is jÛ,
-            hogy kell haszn·lni, <code>mire kell figyelni...</code>
-            Itt jˆn egy leÌr·s, hogy ez a rÈsz (ami lehet komponens, technolÛgia, ak·rmi) mire is jÛ,
-            hogy kell haszn·lni, mire kell figyelni...
-            Itt jˆn egy leÌr·s, hogy ez a rÈsz (ami lehet komponens, technolÛgia, ak·rmi) mire is jÛ,
-            hogy kell haszn·lni, mire kell figyelni...
+            Itt j√∂n egy le√≠r√°s, hogy ez a r√©sz (<code>ami lehet komponens, technol√≥gia, ak√°rmi</code>) mire is j√≥,
+            hogy kell haszn√°lni, mire kell figyelni...
+            Itt j√∂n egy le√≠r√°s, hogy ez a r√©sz (ami lehet komponens, technol√≥gia, ak√°rmi) mire is j√≥,
+            hogy kell haszn√°lni, <code>mire kell figyelni...</code>
+            Itt j√∂n egy le√≠r√°s, hogy ez a r√©sz (ami lehet komponens, technol√≥gia, ak√°rmi) mire is j√≥,
+            hogy kell haszn√°lni, mire kell figyelni...
+            Itt j√∂n egy le√≠r√°s, hogy ez a r√©sz (ami lehet komponens, technol√≥gia, ak√°rmi) mire is j√≥,
+            hogy kell haszn√°lni, mire kell figyelni...
         </p>
 
         <h3>1. feladat</h3>
         <p>
             <em>
-                Itt jˆn dolttel, hogy rˆviden mit is fogunk itt csin·lni.
-                Kb. egy, max kÈt sor. Ut·na esetleg egy kÈp.
+                Itt j√∂n dolttel, hogy r√∂viden mit is fogunk itt csin√°lni.
+                Kb. egy, max k√©t sor. Ut√°na esetleg egy k√©p.
             </em>
         </p>
         <img src="https://www.dropbox.com/s/3d4sxbsfczf3f2s/6star.png?dl=1" />
 
         <h4>1.1. feladat</h4>
         <p>
-            M·sold be az al·bbi kÛdot a <span class="todo">TODO 1.1</span> helyÈre!
+            M√°sold be az al√°bbi k√≥dot a <span class="todo">TODO 1.1</span> hely√©re!
+			
             <pre>
 public void onButtonClicked(View v) {
     Log.d("TAG", "Hello logging!");
 }
             </pre>
         </p>
+		
+		
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; 2014 D√©nes Gy√∂rgy √©s Pap √Åkos </p>
+				</div>
+			</div>
+		</footer>
     </div>
+	
+    
 
     <script type="text/javascript">
         $(function () {
@@ -103,3 +164,4 @@ public void onButtonClicked(View v) {
     </script>
 </body>
 </html>
+
