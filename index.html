@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>L04-SensorIntro</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="./jquery-2.1.1.js"></script>
+
+    <style>
+        body {
+            background-color: #f3f3f3;
+            margin-bottom: 300px;
+        }
+        .container {
+            width: 80%;
+            margin: 10px auto;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #aaa;
+
+            -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+            box-shadow:         5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+        }
+
+        h1 small {
+            margin-left: 10px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        code {
+            box-sizing: border-box;
+            padding: 2px 5px;
+            white-space: pre-wrap;
+
+            background-color: #eee;
+            color: black;
+        }
+
+        span.todo {
+            font-style: italic;
+        }
+        span.todo:before { content: "["; }
+        span.todo:after { content: "]"; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>4. lecke<small>Közelségérzékelo szenzor használata</small></h1>
+
+        <p>
+            Ide jön valami leírás, hogy mit is fogunk tanulni ebben a leckében.
+            Ide jön valami leírás, hogy mit is fogunk <em>tanulni</em> ebben a leckében.
+            Ide jön valami leírás, hogy mit is fogunk tanulni ebben a leckében.
+            Ide jön valami leírás, hogy <em>mit</em> is fogunk tanulni ebben a leckében.
+            Ide jön valami leírás, hogy mit is fogunk <strong>tanulni</strong> ebben a leckében.
+            Ide jön valami leírás, hogy mit is fogunk tanulni ebben a leckében.
+            Ide jön valami leírás, hogy mit is fogunk tanulni ebben a leckében.
+            Ide jön valami leírás, hogy mit is fogunk tanulni ebben a leckében.
+        </p>
+        <img src="https://www.dropbox.com/s/arytmnnok3vdqmh/game.png?dl=1" />
+
+        <h2>Valami cím</h2>
+        <p>
+            Itt jön egy leírás, hogy ez a rész (<code>ami lehet komponens, technológia, akármi</code>) mire is jó,
+            hogy kell használni, mire kell figyelni...
+            Itt jön egy leírás, hogy ez a rész (ami lehet komponens, technológia, akármi) mire is jó,
+            hogy kell használni, <code>mire kell figyelni...</code>
+            Itt jön egy leírás, hogy ez a rész (ami lehet komponens, technológia, akármi) mire is jó,
+            hogy kell használni, mire kell figyelni...
+            Itt jön egy leírás, hogy ez a rész (ami lehet komponens, technológia, akármi) mire is jó,
+            hogy kell használni, mire kell figyelni...
+        </p>
+
+        <h3>1. feladat</h3>
+        <p>
+            <em>
+                Itt jön dolttel, hogy röviden mit is fogunk itt csinálni.
+                Kb. egy, max két sor. Utána esetleg egy kép.
+            </em>
+        </p>
+        <img src="https://www.dropbox.com/s/3d4sxbsfczf3f2s/6star.png?dl=1" />
+
+        <h4>1.1. feladat</h4>
+        <p>
+            Másold be az alábbi kódot a <span class="todo">TODO 1.1</span> helyére!
+            <pre>
+public void onButtonClicked(View v) {
+    Log.d("TAG", "Hello logging!");
+}
+            </pre>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            $('img').addClass('center-block');
+        });
+    </script>
+</body>
+</html>
