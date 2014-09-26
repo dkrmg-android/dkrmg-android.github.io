@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>L02 - Hello World Android alkalmazás</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        function pageInit() {
+
+        }
+    </script>
+
+</head>
+<body>
+
+<header></header>
+
+<div class="container">
+
+    <h1>2. lecke
+        <small>Hello World Android alkalmazás</small>
+    </h1>
+
+    <p>A környezet telepítése után ellenőrizzük le, hogy mindent sikerült-e helyesen beállítani: készítsünk egy
+        nagyon egyszerű androidos alkalmazást, és próbáljuk meg futtatni (akár több eszközön is)!</p>
+
+    <h3>Új projekt létrehozása</h3>
+    <ol>
+        <li>Indítsuk el az Android Studio-t</li>
+        <li>Kattintsunk a "New Project…" menüpontra
+            <img src="/static/img/l02/01_createProject.png" class="center-block" />
+        </li>
+        <li>A megnyíló ablakban adjuk meg az app alap adatait:
+            <ul>
+                <li><em>Application name:</em> Az alkalmazás neve, ez jelenik meg a felhasználónak.
+                    Legyen <code>Hello world!</code></li>
+                <li><em>Company Domain:</em> Java-s körökben az a szokás, hogy minden cég/szervezet a saját weboldalának
+                    címével azonosítja az általa írt kódokat. Mi a DKRMG-n belül az Android csoport vagyunk,
+                    így a képzeletbeli weboldalunk címe <code>android.dkrmg.hu</code> legyen!</li>
+                <li><em>Project location:</em> Itt megadhatjuk, hogy hova, melyik könyvtárba hozza létre a projektet.
+                    Maradhat az eredeti, vagy átállíthatjuk valami másra. Itt fontos (de alul figyelmeztet is minket
+                    a program), hogy a projekt elérési útvonalán (azaz a projekt könyvtárában, és az ezt tartalmazó
+                    könyvtárakban sem) nem lehet space karakter és ékezet sem. Érdemes lehet valami „egyszerű”
+                    útvonalat kialakítani, pl.: <code>C:\DkrmgAndroid</code> és ezen belül elhelyezni a projekteket.
+                    Tehát a Hello World alkalmazásunk helye lehet <code>C:\DkrmgAndroid\HelloWorld</code>.</li>
+            </ul>
+            <img src="/static/img/l02/02_projectName.png" class="center-block" />
+        </li>
+        <li>A következő oldalon kiválaszthatjuk, hogy milyen eszközökön szeretnénk majd használni az
+            alkalmazásunkat. Egyelőre maradjunk a csak telefonra és tabletre szánt alkalmazásnál!
+            A Minimum SDK beállításról majd később lesz szó, most csak arra figyeljünk, hogy
+            <code>API 8: Android 2.2 (Froyo)</code> legyen kiválasztva.
+            <img src="/static/img/l02/03_minSDK.png" class="center-block" />
+        </li>
+        <li>A következő oldalon azt kell eldöntenünk, hogy milyen kiinduló nézetet generáljon nekünk a
+            fejlesztőkörnyezet. Ettől később természetesen el lehet térni, de egyszerűbb a fejlesztés,
+            ha már az elején ki tudjuk választani az alapot. Itt is maradhat az
+            alapbeállítás (<code>Blank Activity</code>).
+            <img src="/static/img/l02/04_addActivity.png" class="center-block" />
+        </li>
+        <li>Az utolsó oldalon megadhatjuk az alkalmazásunk nyitó nézetének adatait:
+            <ul>
+                <li><em>Activity Name:</em> A létrehozandó fájl (és osztály) neve. Legyen <code>MainActivity</code>.</li>
+                <li><em>Layout Name:</em> A nézet szerkezetét (hol milyen gomb, szöveg, stb. legyen)
+                    leíró fájl neve. Ha az Activity Name mezőt átírtuk, akkor ez is már a
+                    megfelelő értéket vette fel (<code>activity_main</code>).</li>
+                <li><em>Title:</em> Az ide írt szöveg jelenik meg a képernyő tetején. Maradhat <code>MainActivity</code>.</li>
+            </ul>
+            <img src="/static/img/l02/05_activityName.png" class="center-block" />
+        </li>
+        <li>Végeztünk a kezdeti beállításokkal, a Finish gombra kattintva elkészül a projekt!
+            (Eltarthat pár másodpercig…)</li>
+        <li>A fejlesztéshez használt segédkönyvtárak nagy részét az internetről tölti le az
+            Android Studio, ezért engedélyezni kell neki az internet-hozzáférést. Ha megjelenik
+            egy ehhez hasonló ablak, kattintsunk az „Elérés engedélyezése” vagy "Tiltás feloldása" gombra!
+            <img src="/static/img/l02/06_ASAllow.png" class="center-block" />
+            A folyamat során a Java is ki szeretne nézni a világhálóra, engedélyezzük neki is:
+            <img src="/static/img/l02/07_JavaAllow.png" class="center-block" />
+            Ha a Windows-os felhasználónevünkben ékezet van, akkor egy ilyen ablakkal is találkozhatunk:
+            <img src="/static/img/l02/08_SDKMismatch.png" class="center-block" />
+            Ez azért van, mert valahol a Windows bugyraiban elkallódott az ékezet az útvonalból.
+            Szerencsére okos programmal van dolgunk, és megtalálta, így az „OK” gomb megnyomásával
+            hagyjuk rá a döntést!
+        </li>
+        <li>Ha mindent jól csináltunk, hasonló kép fogad minket:
+            <img src="/static/img/l02/09_blankAS.png" class="center-block" />
+            <div class="possible-error">
+                <p>Az is előfordulhat, hogy nem egy ilyen üres ablak fogad, hanem megjelenik egy
+                    kisebb ablak mindenféle tippekkel. Ezt nyugodtan zárjuk be (ha érdekel, később
+                    elő lehet hozni újra). A bal alsó sarokban is megjelenhet egy kis szövegbuborék,
+                    ezt a „Got it!” gomb megnyomásával zárhatjuk be.</p>
+                <p>Ha esetleg az Android Studio előre megnyitott két fájlt, ne ijedjünk meg.
+                    egyelőre nem kell velük foglalkozni, de ha érdekel meg lehet őket nézni.
+                    A következő leckében megmagyarázzuk, hogy mi micsoda bennük.</p>
+            </div>
+        </li>
+    </ol>
+
+    <h3>Pár beállítás, futtatás</h3>
+    <p>Ez így nagyon üres, pedig egy csomó minden készen van már, csak elő kell csalogatni:</p>
+
+    <ol>
+        <li>Kapcsoljuk be a View menü -> Tool buttons beállítást
+            <img src="/static/img/l02/10_toolButtons.png" class="center-block" />
+        </li>
+        <li>Baloldalt nyissuk meg a „Project” panelt és ennek tetején állítsuk át a nézetet „Android”-ra
+            <img src="/static/img/l02/11_AndroidView.png" class="center-block" />
+            Baloldalt láthatjuk a projekt szerkezetét, a forrásfájlokat és egyéb kiegészítő fájlokat.
+            Ezeken duplán kattintva a középső nagy szürke területen nyílnak meg, ahol tudjuk szerkeszteni őket.
+        </li>
+        <li>Az Android Studio nagyon segítőkész, a projekt létrehozásakor rögtön egy kész alkalmazást
+            hozott létre. A kipróbáláshoz elég a fenti eszköztáron a zöld „Play” gombot
+            (<img src="/static/img/l02/12_inlineRun.png" />) megnyomni, és
+            már láthatjuk is az első androidos alkalmazásunkat működés közben&hellip;</li>
+        <li>&hellip;vagy mégsem? Mi egy androidos programot írtunk, amivel a Windows nem tud mit
+            kezdeni! Kéne hozzá egy telefon. <br/>
+            Az Android Studio miután elkészítette a futtatható fájlt, megkérdezi,
+            hogy milyen eszközön szeretnénk futtatni:
+            <img src="/static/img/l02/13_deviceChooser.png" class="center-block" />
+            Ha van valamilyen Androidot futtató okostelefonunk, a hozzá kapott USB kábellel
+            kössük össze a számítógéppel, és nézzük meg, hogy megjelenik-e a listában. Ha igen,
+            szerencsénk van, ugorhatunk a következő lépésre. Ha nem, próbálkozzunk tovább:
+            <ul>
+                <li>Miközben próbálkozunk, fél szemmel figyeljük a telefonunkat, mert előfordulhat,
+                    hogy egy hasonló ablak jelenik meg rajta:
+                    <img src="/static/img/l02/14_RSAFingerprint.jpg" class="center-block" />
+                    1. Ez azt jelenti, hogy a telefonunk egy „ismeretlen” számítógéppel találkozott,
+                    és az megpróbált neki parancsokat küldeni. Mivel ez a számítógép a te géped,
+                    engedélyezd nyugodtan. (Ha nem szeretnél többet ezzel az ablakkal találkozni,
+                    pipáld ki a checkboxot is előtte!)
+                </li>
+                <li>A telefonon a beállítások menüben keressünk egy „Fejlesztői lehetőségek” menüpontot.
+                    Ha nincs, akkor a beállítások legutolsó menüpontjában a „Build number” sort nyomjuk
+                    meg gyorsan egymás után 7-szer.
+                    <img src="/static/img/l02/15_tap7ToDev.png" class="center-block" />
+                    Ezzel engedélyeztük a telefonon a fejlesztői módot, így már látható lesz
+                    a „Fejlesztői lehetőségek” menüpont.
+                </li>
+                <li>A „Fejlesztői lehetőségek” menüponton belül kicsit lejjebb görgetve találunk egy
+                    „Android hibakeresés” sort, ezt pipáljuk ki. ezzel engedélyezzük a számítógépnek,
+                    hogy speciális parancsokat küldjön a telefonnak (pl. feltelepítse az
+                    általunk írt alkalmazást).</li>
+                <li>Ha még ez után sem jelenik meg a listában a telefonod (próbáld meg kihúzni és
+                    újra visszadugni a kábelt), és véletlenül Samsung márkájú, akkor kövesd ezt a
+                    leírást: <a href="http://goo.gl/krel0y" target="_blank">Samsung driver telepítése</a>
+                    Telepítés után lehet, hogy újra kell indítani a gépet.</li>
+                <li>Ha továbbra sem találod a telefonodat a listában, vagy nem Samsung márkájú,
+                    akkor sem kell elkeseredni, van még egy esély. Részleteket
+                    <a href="http://goo.gl/YMv4ND" target="_blank">ebben a leírásban</a> találsz.</li>
+                <li>Ha végképp nem sikerül dűlőre jutnod, írj egy emailt a
+                    <a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a> címre,
+                    írd le benne, hogy eddig mit próbáltál, és igyekszünk segíteni.</li>
+            </ul>
+        </li>
+        <li>Ha látjuk a telefont a listában, vagy létrehoztunk egy emulátort, akkor a megfelelő rádiógombot
+            kiválasztva az „OK” gombra kattintva tudjuk futtatni a kiválasztott eszközön a
+            Hello World alkalmazásunkat!</li>
+    </ol>
+
+    <p>Ez így kicsit bonyolultnak tűnhet, de ne ijedjetek meg, amint ezeken a kezdeti nehézségeken
+        túljutunk, egy csomó szuper dolgot fogunk majd tudni csinálni a telefonunkkal, és ezeket
+        csak egyszer kell beállítani! Ha bárhol elakadtok, írjatok a
+        <a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a> címre, és szívesen segítünk.</p>
+
+
+</div>
+
+<footer></footer>
+
+<script type="text/javascript">
+    $(function () {
+        $.get('/include/header.html', function (data) {
+            $('header').html(data);
+        });
+        $.get('/include/footer.html', function (data) {
+            $('footer').html(data);
+        });
+
+        pageInit();
+    });
+</script>
+
+</body>
+</html>
