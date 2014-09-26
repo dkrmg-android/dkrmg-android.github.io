@@ -1,39 +1,44 @@
-		body {
-            background-color: #f3f3f3;
-			padding-top: 80px;
-        }
-        .container {
-            width: 80%;
-            margin: 10px auto;
-            background-color: white;
-            border-radius: 10px;
-            border: 1px solid #aaa;
+body {
+    background-color: #f3f3f3;
+    padding-top: 80px;
+}
+.container {
+    width: 80%;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #aaa;
 
-            -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
-            -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
-            box-shadow:         5px 5px 11px 0px rgba(50, 50, 50, 0.75);
-        }
-		
+    -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+}
 
-        h1 small {
-            margin-left: 10px;
-        }
 
-        img {
-            max-width: 100%;
-        }
+h1 small {
+    margin-left: 10px;
+}
 
-        code {
-            box-sizing: border-box;
-            padding: 2px 5px;
-            white-space: pre-wrap;
+img {
+    max-height: 300px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+}
 
-            background-color: #eee;
-            color: black;
-        }
 
-        span.todo {
-            font-style: italic;
-        }
-        span.todo:before { content: "["; }
-        span.todo:after { content: "]"; }
+
+code {
+    box-sizing: border-box;
+    padding: 2px 5px;
+    white-space: pre-wrap;
+
+    background-color: #eee;
+    color: black;
+}
+
+span.todo {
+    font-style: italic;
+}
+span.todo:before { content: "["; }
+span.todo:after { content: "]"; }

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>L01 - Telepítés</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        function pageInit() {
+
+        }
+    </script>
+
+</head>
+<body>
+
+    <header></header>
+
+    <div class="container">
+
+        <h1>1. lecke<small>Telepítés (Windows XP/7/8)</small></h1>
+
+        <p>
+            Mielőtt látványos és hasznos Android programokat írhatnánk, első lépésként fel kell telepítenünk az
+            Android programozáshoz szükséges programokat a számítógépre. A feladat elég egyszerű, ennek
+            ellenére igyekeztünk kimerítően részletes leírást adni. Ha mindeközben mégis elakadnál, nyugodtan írj
+            egy emailt (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>), segítünk.
+        </p>
+        <p>
+            A következő programokra lesz szükségünk (ebben a sorrendben !!!):
+            <ul>
+                <li>Java JDK</li>
+                <li>Android Studio</li>
+            </ul>
+        </p>
+
+        <h3>Java JDK telepítése</h3>
+        <ol>
+            <li>Töltsd le ingyenesen a JDK legújabb verzióját a gyártó honlapjáról (160-170MB):
+                <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">
+                    http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+                </a>
+                <ul>
+                    <li>Ehhez el kell fogadnod a licensz feltételeket</li>
+                    <li>
+                        Ki kell választanod, hogy 32 (x86) bites vagy 64 bites (x64) Windows van a
+                        számítógépeden.
+                    </li>
+                </ul>
+                <img src="/static/img/l01/install/jdk1.png" class="center-block" />
+            </li>
+            <li>
+                <p>Indítsd el a letöltött .exe fájlt, majd a dialógus segítségével a "Next" végül a "Close" gomb
+                ismételt megnyomásával telepítsd a programot.</p>
+                <p>Ha a géped korábban nem találkozott volna a Java semmilyen változatával, akkor települni fog a
+                    JRE (Java Runtime Environment) is</p>
+                <p class="xpspec">
+                    A Windows XP panaszkodhat telepítés végén, hogy az operációs rendszer elavult a Java ezen
+                    verziójához. Ez esetünkben nem fog gondot okozni, nyugodtan kattinthatunk az OK gombra.
+                </p>
+            </li>
+        </ol>
+
+        <h3>Android studio telepítése</h3>
+        <ol>
+            <li>
+                Töltsd le ingyenesen a Google honlapjáról
+                <a href="http://developer.android.com/sdk/installing/studio.html">
+                    http://developer.android.com/sdk/installing/studio.html
+                </a> (362 MB)
+                <ul>
+                    <li>Ehhez kattints a "Download Android Studio..." gombra</li>
+                    <li>Fogadd el a felhasználói feltételeket</li>
+                    <li>Kattints a lap alján található letöltés gombra</li>
+                </ul>
+                <div class="center-block imgstore">
+                    <img src="/static/img/l01/install/andStud1.png" />
+                    <img src="/static/img/l01/install/andStud2.png" />
+                </div>
+            </li>
+            <li>
+                <p>Telepítés közben Ellenőrizzük, hogy a telepítés helye (Destination Folder) ne tartalmazzon szóközöket!</p>
+                <p>Ha az alapértelmezett hely mégis tartalmazna szóközt, telepíts inkább pl. a "C:\Android" mappába.</p>
+                <p class="xpspec">Windows XP-n az alapértelmezett útvonalban szerepel az "Application Data" mappa,
+                    amely sajnos tartalmaz egy szóközt! Ezért XP-n hozzunk létre pl a C: meghajtó gyökerében egy
+                    mappát (pl.: AndroidSzakkor), ezen belül egy <code>android-studio</code> nevűt, és ide telepítsünk!
+                </p>
+                <div class="imgstore">
+                    <img src="/static/img/l01/install/andStud3.png" />
+                    <img src="/static/img/l01/install/andStud4.png" />
+                    <img src="/static/img/l01/install/andStud5.png" />
+                </div>
+            </li>
+            <li>
+                <p>Telepítés után az Android Studio üdvözöl minket a következő képernyővel</p>
+                <img src="/static/img/l01/install/andStud_import.png" class="center-block" />
+                <ol>
+                    <li>Válaszd az alsó opciót (ez az első telepítésed, az Android Studio hiába szeretne, nem tud
+                        semmit importálni)</li>
+                    <li>Kattints az OK gombra</li>
+                </ol>
+                <div class="possible-error">
+                    <p>Ha ehelyett az alábbi hibaüzenettel találkoznál, a számítógépedet szemmel láthatóan ma morcos
+                        hangulatában találtad (érzékeny lények).</p>
+                    <img src="/static/img/l01/install/noJavaPath.png" class="center-block" />
+                    <p>Sajnos ez egy gyakori hiba, amire megoldást <a href="/lessons/l01-envvar.html">itt találsz</a>. Utána gyere ide vissza&nbsp;:)</p>
+                </div>
+            </li>
+            <li>
+                <p>Végre elindult az Android Studio, ahol a jövőben kiváló "app"-okat írhatunk okostelefonjainkra. Már
+                    csak néhány apró lépés, és tényleg készen állunk.</p>
+                <ol>
+                    <li>
+                       <p>Kattints a Configure -> SDK Manager menüpontra</p>
+                       <div class="imgstore">
+                           <img src="/static/img/l01/install/sdk_manager1.png" />
+                           <img src="/static/img/l01/install/sdk_manager2.png" />
+                       </div>
+                    </li>
+                    <li>
+                        <p>A listában győződj meg arról, hogy semmi nincs kipipálva, csak az alábbi dolgok:</p>
+                        <ul>
+                            <li>Android 4.4.2 (API 19)
+                                <ul>
+                                    <li>SDK Platform</li>
+                                    <li>Intelx86 Atom System Image</li>
+                                    <li>Sources for Android</li>
+                                </ul>
+                            </li>
+                            <li>Extras
+                                <ul>
+                                    <li>Android Support repository</li>
+                                    <li>Android Support Library</li>
+                                    <li>Google Repository</li>
+                                    <li>Google USB Driver</li>
+                                    <li>Intel x86 Emulator Accelerator</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>Kattints az "Install <em>X</em> packages..." gombra, és fogadd el a licensz feltételeket.
+                            Ezt a lista mindhárom fő pontján meg kell tenned (amíg az összes pipa zöld nem
+                            lesz, mint a képernyőn). Utána "Install"</p>
+                        <div class="imgstore">
+                            <img src="/static/img/l01/install/sdk_manager3.png" />
+                            <img src="/static/img/l01/install/sdk_manager4.png" />
+                        </div>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <p>Most már tényleg készen állunk az első programunk elkészítésére!</p>
+
+    </div>
+
+    <footer></footer>
+
+    <script type="text/javascript">
+        $(function () {
+            $.get('/include/header.html', function (data) {
+                $('header').html(data);
+            });
+            $.get('/include/footer.html', function (data) {
+                $('footer').html(data);
+            });
+
+            pageInit();
+        });
+    </script>
+
+</body>
+</html>
