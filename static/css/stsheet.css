@@ -26,8 +26,7 @@ h1 small {
 }
 
 img {
-    max-height: 25%;
-    max-width: 25%;
+    max-width: 50%;
     width: auto;
     height: auto;
 }
