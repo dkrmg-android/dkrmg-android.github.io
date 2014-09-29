@@ -19,23 +19,27 @@
     </script>
 	
 	<style>
-		img{ max-width:100%; }
+		img{
+            max-width:100%;
+        }
+
+        hr {
+            width: 90%;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
 	</style>
 	
 </head>
 <body id="page-top"  data-spy="scroll">
     <header></header>
 	
-	<div style="text-align: center;">
-		<img src="./static/img/BigHeader.svg" width=70%/>
-	</div>	
-	
+    <img src="/static/img/BigHeader.svg" style="width: 70%;" />
+
 	<div class="container">
 
 		<section id="intro" class="intro-section">
-			<h1>
-			Üdvözlünk az Android Szakkör honlapján!
-			</h1>
+			<h1>Üdvözlünk az Android Szakkör honlapján!</h1>
 			<p>
 				Ide jön valami leírás, hogy mi is ez az <em>egész szakkör</em>. Jelentkezőket várunk!
 				Ide jön valami leírás, hogy mi is ez az egész szakkör. Jelentkezőket várunk!
@@ -44,34 +48,37 @@
 				Ide jön valami leírás, hogy mi is ez az egész szakkör. Jelentkezőket várunk!
 				Ide jön valami leírás, hogy mi is ez az egész szakkör. Jelentkezőket várunk!
 			</p>
-			
-			<br><hr width="90%"><br>
+            <hr/>
 		</section>
 		
-        <h2>Leckék</h2>
-        <p>
+        <section>
+            <h2>Leckék</h2>
             <ul>
-				<li>L0102: stuff
-				<li>L03: stuff
-				<li>L04: és még több stuff
-			</ul>
-        </p>
-		
-		<br><hr width="90%"><br>
+                <li>L0102: stuff</li>
+                <li>L03: stuff</li>
+                <li>L04: és még több stuff</li>
+            </ul>
+
+            <hr/>
+        </section>
 		
 		<section id="contact" class="contact-section">
-        <h2>Kik vagyunk?</h2>
-		<img src="./static/img/contact.svg" width="28%" align="left">
-		<p>
-			A szakköröket ketten tartjuk; mindketten a Dunakeszi Radnóti Miklós Gimnázium véndiákjai vagyunk.
-			<ul>
-				<li>Dénes György
-				<li>Pap Ákos
-			</ul>
-		</p>
-		<p>
-			Ha kapcsolatba szeretnél lépni velünk, csak küldj egy emailt erre a címre: <a href="mailto:dkrmg.android@gmail.com" target="_blank">dkrmg.android@gmail.com</a>
-		</p>
+            <h2>Kik vagyunk?</h2>
+            <div class="clearfix">
+                <div style="float: left; width: 28%;">
+                    <img src="/static/img/contact.svg" />
+                </div>
+                <div style="float: left;">
+                    <p>A szakköröket ketten tartjuk; mindketten a Dunakeszi Radnóti Miklós Gimnázium véndiákjai vagyunk.</p>
+                    <ul>
+                        <li>Dénes György</li>
+                        <li>Pap Ákos</li>
+                    </ul>
+                    <p>Ha kapcsolatba szeretnél lépni velünk, csak küldj egy emailt erre a címre:
+                        <a href="mailto:dkrmg.android@gmail.com" target="_blank">dkrmg.android@gmail.com</a>!
+                    </p>
+                </div>
+            </div>
 		</section>
     </div>
 	<footer></footer>
