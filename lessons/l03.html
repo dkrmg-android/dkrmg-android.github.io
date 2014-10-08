@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>L03 - Számkitalálós játék írása</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        function pageInit() {
+
+        }
+    </script>
+
+</head>
+<body>
+
+<header></header>
+
+<div class="container">
+
+    <h1>3. lecke
+        <small>Számkitalálós játék írása</small>
+    </h1>
+
+    <section>
+        <h3 id="lesson-contents">A lecke tartalma</h3>
+        <p>Az első két lecke elvégzése után (telepítés és Hello World) végre belevághatunk az Android programozásba! A Hello
+            World alkalmazásunk az előző alkalommal ugyan fontos lépésnek számít, komoly applikációnak mégis csak
+            jóindulattal lehet nevezni.</p>
+        <p>Ma ehhez képest megírjuk az első androidos játékunkat!</p>
+        <p>Nem, repkedő mérges madarakat ma még nem fogtok látni a képernyőn. Ehhez képest kihívhatjuk a telefonunkat
+            egy olyan küzdelemre, ami próbára teszi az agyunkat és a kitartásunkat: következzen a <em>számkitalálós</em> játék.</p>
+    </section>
+
+    <section>
+        <h3 id="gameflow">A játék menete</h3>
+        <img src="/static/img/l03/01_gameOverview.png" class="center-block" />
+        <p>A számítógép/telefon gondol egy számra 1 és 100 között. A mi feladatunk kitalálni, hogy a gép melyik számra
+            gondolhatott! Ehhez:</p>
+        <ul>
+            <li>Mi tippelünk egyet</li>
+            <li>A telefon válaszol, hogy az általa gondolt szám kisebb vagy nagyobb a mi tippünknél. Ha a tippünk helyes,
+                nyertünk. A telefon nem csal!</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3 id="how-does-it-look-like">Hogyan néz ez ki a telefonunkon?</h3>
+        <img src="/static/img/l03/02_finalLayout.png" style="float: right; height: 400px;" class="center-block" />
+        <p>A programozás szépsége, hogy ezt az egyszerű játékot is rengeteg
+            különböző módon lehetne elkészíteni. Mivel ez az első komolyabb
+            programunk, mi most maradjunk a felhasználói felület legegyszerűbb
+            elemeinél:</p>
+        <ul>
+            <li>Feliratok (TextView)</li>
+            <li>Gombok (Button)</li>
+            <li>Beviteli mezők (EditText)</li>
+            <li>Felbukkanó üzenetek (Toast)</li>
+        </ul>
+        <p>A kész alkalmazás képe már látható is a szöveg mellett.</p>
+        <p>A lecke folyamán&hellip;</p>
+        <ul>
+            <li>&hellip;először is meg kell ismerkednünk a fent említett
+                komponensekkel, majd&hellip;</li>
+            <li>&hellip;le kell programoznunk, hogy az egyes eseményekre (pl.
+                gombnyomás) a program miként reagáljon.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3 id="import-project">A projekt importálása</h3>
+        <p>Az egyszerűség kedvéért előkészítettünk nektek egy projektet (GuessGame), ami nagyon hasonló a 2. leckében
+            létrehozott Hello World projekthez, csak pár szükségtelen dolgot kiszedtünk belőle, illetve a Java kódba
+            segítségként némi útmutatást helyeztünk el.</p>
+        <p>Ahhoz, hogy a projektet használni tudjuk, importálni kell az Android Studio-ba:</p>
+        <ol>
+            <li>Töltsük le a L03-GuessGame.zip fájlt (az emailben kapott linken elérhető), és csomagoljuk ki a Hello World
+                projekt mappája <strong>mellé</strong>. (Tehát a Hello World mappa mellett legyen egy L03-GuessGame mappa, amely
+                tartalmazza az app, gradle mappákat)</li>
+            <li>Nyissuk meg az Android Studio-t.</li>
+            <li>Egy idő után valószínűleg ugyanaz az ablak fogad minket, mint amivel bezártuk az előző lecke végén, azaz
+                újra megnyitotta a Hello World! projektet.</li>
+            <li>Nekünk másik projektre lesz szükségünk, ezért zárjuk be a projektet a <em>File -> Close</em> project menüponttal.
+                <img src="/static/img/l03/03_closeProject.png" class="center-block" />
+            </li>
+            <li>Az így megjelenő kis ablakban nyomjuk meg az <em>Import project</em> sort.
+                <img src="/static/img/l03/04_importProject.png" class="center-block" />
+            </li>
+            <li>A megjelenő dialógusablakban keressük meg, és válasszuk ki az 1. lépésben kicsomagolt L03-GuessGame
+                mappát, majd kattintsunk az OK gombra.
+                <img src="/static/img/l03/05_findProjectFolder.png" class="center-block" />
+            </li>
+            <li>Ha minden jól megy, rövid gondolkodás után megnyílik egy újabb Android Studio ablak, benne az új
+                projekttel. Az ablak megnyitása után az Android Studio még feldolgozza a projekt fájljait, ez eltarthat akár
+                pár percig is (Indexing...)
+                <img src="/static/img/l03/06_importInProgress.png" class="center-block" />
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h3 id="settings">Beállítások</h3>
+        <p>Mielőtt belekezdünk a fejlesztésbe, érdemes a File -> Settings menüben beállítani pár dolgot,
+            ami megkönnyíti majd a munkát.</p>
+        <ul>
+            <li>Az <em>Editor -> Appearance</em> oldalon a „Show line numbers” legyen kipipálva. Így sokkal könnyebb lesz hivatkozni
+                a kód egyes részeire.</li>
+            <li>Az <em>Editor -> Code completion</em> oldalon a „Case sensitive completion” értéke legyen None. Így kis- és
+                nagybetűvel is elkezdheted majd írni a metódus és objektumneveket, a fejlesztőkörnyezet mindenképp tud
+                majd segíteni.</li>
+            <li><strong>Az <em>Editor -> Auto</em> import oldalon az „Optimize imports on the fly” és az „Add unambigous imports on the
+                fly” is legyen kipipálva.</strong></li>
+            <li>A <em>Keymap</em> oldalon fent érdemes a Keymaps: Default helyett az Eclipse-t kiválasztani.</li>
+        </ul>
+        <p>A végén a beállításokat az OK gomb megnyomásával mentsd el!</p>
+        <img src="/static/img/l03/09_settings.png" class="center-block" />
+    </section>
+
+    <section>
+        <h3 id="layout-ui">Layout &ndash; felhasználói felület</h3>
+        <p>Első lépésként most megtanuljuk, hogy miként lehet könnyedén és gyorsan felhasználói felületet építeni. Ha
+            programozás szakkörön találkoztál már a Lazarus-szal, némi előnnyel indulhatsz neki ennek a fejezetnek. Ha nem,
+            akkor se csüggedj, ez az applikáció készítés egyik legegyszerűbb része!</p>
+        <ol>
+            <li>Győződjünk meg arról, hogy a "Tool Buttons" látszik (<em>View -> Tool</em> Buttons legyen pipálva)
+                <img src="/static/img/l03/10_showToolButtons.png" class="center-block" />
+            </li>
+            <li>Nézzük meg, hogy mi is van egész pontosan a projektünkben. Ehhez kattintsunk a „Project” gombra a bal
+                szélen megjelent sávon.
+                <img src="/static/img/l03/11_AndroidView.png" class="center-block" />
+            </li>
+            <li>Nyissuk meg az <em>app -> res -> layout -> activity_main.xml</em> fájlt
+                <img src="/static/img/l03/12_openLayoutEditor.png" class="center-block" />
+            </li>
+            <li>Győződjünk meg arról, hogy a „Design” fül van az ablak alján kiválasztva.</li>
+        </ol>
+        <p>A második és a harmadik lépés talán némi magyarázatra szorulhat. Miért van egy szinte üres projektben ennyi
+            mappa és fájl? Ezt a kérdést most nem is fogjuk megválaszolni, nem akarunk senkit oldalakon keresztül az Android
+            azon részével untatni, amit „mezei” programozóknak ismernie sem kell. A hasznos dolgokkal a szakkör folyamán meg
+            fogunk ismerkedni, egyelőre el kell fogadni, hogy ez így van!</p>
+        <p>Egy fontos dolgot azonban még most tisztáznunk kell. Amikor az alkalmazásunkat készítjük, két különböző ablakban,
+            két különböző felülettel fogunk találkozni:</p>
+        <ul>
+            <li>Layout editor, ami szépen kirajzolja a képernyőre, hogy az alkalmazásunk <em>hogyan fog kinézni</em>.</li>
+            <li>Java kód, ahol szövegesen kell megadnunk (egy Java program megírásával/kiegészítésével), hogy a
+                programunk <em>hogyan viselkedjen</em>.</li>
+        </ul>
+        <img src="/static/img/l03/13_JavaVsXML.png" class="center-block" />
+
+        <h4>Komponensek, tulajdonságok</h4>
+        <p>Ha eddig pontosan követtük az utasításokat, akkor megjelent a Design ablak egy okostelefon képével, ami
+            megmutatja nekünk: mi is fogadna bennünket, ha az alkalmazásunkat most egy igazi készüléken/emulátorban
+            elindítanánk.</p>
+        <div class="possible-error">
+            <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
+                verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
+                apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
+            <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
+        </div>
+        <p>Amikor a layout üres, a telefon képernyője is üres marad. Ebből bizonyára rájöttél, hogy máris van egy
+            komponensünk, egy úgynevezett TextView, amelyen az általunk begépelt szellemes szöveg látható.</p>
+        <p>A komponenseinknek vannak tulajdonságai is, mivel mégsem nézhet ki minden felirat ugyanúgy! Jobb oldalt a
+            „Properties” részen találjátok az épp kijelölt komponens összes tulajdonságát.</p>
+        <p>Próbaként kattints rá egyszer a <strong>TextView</strong> komponensünkre („Ez itt egy szöveg!”), és nézd meg a tulajdonságait.</p>
+        <ul>
+            <li>Elsőként nézd meg a <strong>text</strong> (szöveg) tulajdonságot, kattints a mezőre, amely a jelenlegi szöveget tartalmazza
+                és írd át valami másra! Az Enter leütése után a képernyőn is változik a felirat!
+                Próbálj meg ne a mező jobb szélén lévő [&hellip;] gombra kattintani. Ha a „Resources” ablak mégis véletlenül
+                felugrik, zárd nyugodtan be.
+                <img src="/static/img/l03/15_componentProperties.png" class="center-block" />
+            </li>
+            <li>Most következzen a <strong>textSize</strong> (szöveg méret). Itt megadhatod, hogy a felirat milyen méretben jelenjen meg a
+                kijelzőn. Próbának írd be az <code>50sp</code> értéket. Természetesen minél nagyobb számot adsz meg, a szöveg annál
+                nagyobb lesz, nyugodtan kísérletezhetsz kedvedre! Az <strong>sp</strong> utótagot (mértékegységet) azért kell beírnunk,
+                hogy különböző telefonokon is nagyjából hasonló látványt nyújtson az alkalmazásunk.
+                <img src="/static/img/l03/16_textSizeProperty.png" class="center-block" />
+            </li>
+            <li>Érdemes még megtekinteni a <strong>textColor</strong> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
+                meghatározni. A mezőbe beírhatjuk közvetlenül az általunk választott szín kódját (<code>#RRGGBB</code>) kettőskereszt
+                után tizenhatos számrendszerben (pl. <code>#ff0000</code> piros, <code>#00ff00</code> zöld, <code>#0000ff</code> kék, <code>#00ffff</code> türkiz stb.)
+                Nem igazodsz ki a színkódokon? Ne aggódj, az Android Studio nem is várja el ezt tőled. Ha a sor végén
+                található [...] gombra kattintasz <img src="/static/img/l03/17_textColor_inline.png" />, akkor felbukkan a
+                Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és keverj ki bármilyen tetszőleges színt.
+                <img src="/static/img/l03/18_colorChooser.png" class="center-block" />
+            </li>
+            <li>Végül fontos még megemlíteni az <strong>id</strong> tulajdonságot. Ez az érték segít a komponensünk megtalálásában, ez a
+                komponensünk neve, azonosítója. Ezt a feliratot „leiras”-nak neveztük el, ékezetek nélkül.
+                <img src="/static/img/l03/19_id_inline.png" class="center-block" />
+            </li>
+        </ul>
+        <p>Ezen kívül kipróbálhatod még óvatosan a <strong>background</strong>, <strong>textStyle</strong> tulajdonságokat is.</p>
+    </section>
+
+</div>
+
+<footer></footer>
+
+<script type="text/javascript">
+    $(function () {
+        $.get('/include/header.html', function (data) {
+            $('header').html(data);
+        });
+        $.get('/include/footer.html', function (data) {
+            $('footer').html(data);
+        });
+
+        pageInit();
+    });
+</script>
+
+</body>
+</html>
