@@ -44,29 +44,11 @@
     </section>
 
     <section>
-        <style>
-            .interactive {
-                width: 100%;
-                border: 2px solid #A4C739;
-            }
 
-            #panels-container .panel {
-                float: left;
-                width: 50%;
-            }
-
-            .panel .ih {
-                font-weight: bold;
-                border: 1px solid #A4C739;
-                display: inline-block;
-            }
-
-        </style>
-        
         <h3 id="wht-is-an-activity">Mi is az az Activity?</h3>
         <div id="interactive-activity" class="interactive">
             <div id="panels-container" class="clearfix">
-                <div class="panel">
+                <div class="interactive-panel">
                     <pre>
 package hu.dkrmg.android.<span class="ih" data-iid="app-name">&lt;app neve&gt;</span>;
 
@@ -74,12 +56,12 @@ import android.app.Activity;
 import android.os.Bundle;
 <span class="ih" data-iid="other-import">&lt;egyéb import utasítások&gt;</span>
 
+
 public class <span class="ih" data-iid="activity-name">&lt;activity neve&gt;</span> extends Activity {
 
     <span class="ih" data-iid="component-declarations">&lt;komponensek változóinak deklarációja&gt;</span>
 
     <span class="ih" data-iid="misc-declarations">&lt;egyéb változók deklarációja&gt;</span>
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +76,14 @@ setContentView(R.layout.activity_main);</span>
     }
 
     <span class="ih" data-iid="misc-methods">&lt;egyéb függvények, pl. gombnyomás kezelők&gt;</span>
+
+
 }
                     </pre>
                 </div>
-                <div class="panel">
+                <div class="interactive-panel">
                     <pre>
-package hu.dkrmg.android.<span class="ih" data-iid="app_name">teszt</span>;
+package hu.dkrmg.android.<span class="ih" data-iid="app-name">teszt</span>;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -117,6 +101,8 @@ public class <span class="ih" data-iid="activity-name">MainActivity</span> exten
         <span class="ih" data-iid="mandatory-rows">super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_main);</span>
 
+
+
         <span class="ih" data-iid="find-components">kijelzo = (TextView) findViewById(R.id.kijelzo);</span>
 
         <span class="ih" data-iid="misc-init">tipp = 50;</span>
@@ -129,7 +115,69 @@ setContentView(R.layout.activity_main);</span>
                     </pre>
                 </div>
             </div>
+            <div id="description">
+                <p class="selected" data-iid="default">Kattints rá fent a zöld keretes részekre, hogy megtudd, mire valók!</p>
+                <p data-iid="app-name">bla bla bla mire jó a package?</p>
+                <p data-iid="other-import">Az Android Studio ide sorolja fel, hogy hol találhatók a
+                    különböző osztályok, amiket használunk az alkalmazásunkban.
+                </p>
+                <p data-iid="activity-name">Ez az activity-nk neve. Meg kell, hogy egyezzen a fájl nevével.</p>
+            </div>
         </div>
+
+        <style type="text/css">
+            .interactive {
+                width: 100%;
+                border: 2px solid #A4C739;
+            }
+
+            #panels-container .interactive-panel {
+                float: left;
+                width: 50%;
+            }
+
+            .interactive-panel .ih {
+                font-weight: bold;
+                border: 1px solid #A4C739;
+                display: inline-block;
+            }
+
+            .interactive-panel .ih.selected {
+                -webkit-box-shadow: 0 0 20px 5px rgba(163,199,57,1);
+                -moz-box-shadow:    0 0 20px 5px rgba(163,199,57,1);
+                box-shadow:         0 0 20px 5px rgba(163,199,57,1);
+
+                padding: 3px;
+            }
+
+            .interactive #description {
+                /* mostly from bootstrap's 'pre' rule */
+                background-color: #f5f5f5;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+
+                padding: 10px;
+            }
+
+            .interactive #description p {
+                display: none;
+            }
+
+            .interactive #description p.selected {
+                display: block;
+            }
+        </style>
+
+        <script type="application/javascript">
+            $('span.ih').click(function () {
+                var iid = $(this).data('iid');
+                $('span.ih').removeClass('selected');
+                $('span.ih[data-iid="'+ iid + '"]').addClass('selected');
+
+                $('.interactive #description p').hide();
+                $('.interactive #description p[data-iid="' + iid + '"]').show();
+            });
+        </script>
     </section>
 
 </div>
