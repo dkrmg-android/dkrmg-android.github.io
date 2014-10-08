@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>L04 - Rezgő motor és az alkalmazás életciklusa</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        function pageInit() {
+
+        }
+    </script>
+
+</head>
+<body>
+
+<header></header>
+
+<div class="container">
+
+    <h1>4. lecke
+        <small>Rezgő motor és az alkalmazás életciklusa</small>
+    </h1>
+
+    <section>
+        <h3 id="lesson-contents">A lecke tartalma</h3>
+        <p>Ebben a leckében használni fogjuk a telefon rezgő motorját, illetve egy kicsit mélyebben
+            megismerkedünk az androidos alkalmazások működésével.</p>
+    </section>
+
+    <section>
+        <h3 id="import-project">Projekt importálása</h3>
+        <p>Ide jön, hogy mit és hogyan importáljanak</p>
+        <p>Utalva a korábbi leckékre + egy átfogó kép.</p>
+        <img src="/static/img/l03/04_importProject.png" class="center-block" />
+    </section>
+
+    <section>
+        <style>
+            .interactive {
+                width: 100%;
+                border: 2px solid #A4C739;
+            }
+
+            #panels-container .panel {
+                float: left;
+                width: 50%;
+            }
+
+            .panel .ih {
+                font-weight: bold;
+                border: 1px solid #A4C739;
+                display: inline-block;
+            }
+
+        </style>
+        
+        <h3 id="wht-is-an-activity">Mi is az az Activity?</h3>
+        <div id="interactive-activity" class="interactive">
+            <div id="panels-container" class="clearfix">
+                <div class="panel">
+                    <pre>
+package hu.dkrmg.android.<span class="ih" data-iid="app-name">&lt;app neve&gt;</span>;
+
+import android.app.Activity;
+import android.os.Bundle;
+<span class="ih" data-iid="other-import">&lt;egyéb import utasítások&gt;</span>
+
+public class <span class="ih" data-iid="activity-name">&lt;activity neve&gt;</span> extends Activity {
+
+    <span class="ih" data-iid="component-declarations">&lt;komponensek változóinak deklarációja&gt;</span>
+
+    <span class="ih" data-iid="misc-declarations">&lt;egyéb változók deklarációja&gt;</span>
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        <span class="ih" data-iid="mandatory-rows">// kötelező sor
+super.onCreate(savedInstanceState);
+// hogy az jelenjen meg, amit megterveztünk
+setContentView(R.layout.activity_main);</span>
+
+        <span class="ih" data-iid="find-components">&lt;komponensek megkeresése, változóba mentése&gt;</span>
+
+        <span class="ih" data-iid="misc-init">&lt;egyéb változók értékadása&gt;</span>
+    }
+
+    <span class="ih" data-iid="misc-methods">&lt;egyéb függvények, pl. gombnyomás kezelők&gt;</span>
+}
+                    </pre>
+                </div>
+                <div class="panel">
+                    <pre>
+package hu.dkrmg.android.<span class="ih" data-iid="app_name">teszt</span>;
+
+import android.app.Activity;
+import android.os.Bundle;
+<span class="ih" data-iid="other-import">import android.view.View;
+import android.widget.TextView;</span>
+
+public class <span class="ih" data-iid="activity-name">MainActivity</span> extends Activity {
+
+    <span class="ih" data-iid="component-declarations">TextView kijelzo;</span>
+
+    <span class="ih" data-iid="misc-declarations">int tipp;</span>
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        <span class="ih" data-iid="mandatory-rows">super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);</span>
+
+        <span class="ih" data-iid="find-components">kijelzo = (TextView) findViewById(R.id.kijelzo);</span>
+
+        <span class="ih" data-iid="misc-init">tipp = 50;</span>
+    }
+
+    <span class="ih" data-iid="misc-methods">public void gomb1Clicked(View v) {
+    kijelzo.setText("Megnyomtad a gombot!");
+}</span>
+}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer></footer>
+
+<script type="text/javascript">
+    $(function () {
+        $.get('/include/header.html', function (data) {
+            $('header').html(data);
+        });
+        $.get('/include/footer.html', function (data) {
+            $('footer').html(data);
+        });
+
+        pageInit();
+    });
+</script>
+
+</body>
+</html>
