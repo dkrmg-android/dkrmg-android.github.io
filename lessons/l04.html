@@ -251,7 +251,7 @@ public void rezegjOnClick(View v) {
                 Például egy ember életciklusa: megszületik, oviba megy, suliba megy,
                 leérettségizik, elkezd dolgozni, gyereke születik, nyugdíjba megy, meghal.
                 Az alkalmazásunknak (illetve az Activityknek, lásd később) is van egy hasonló életciklusuk.
-				TODO tudunk valamit írni, ami kevésbé <em>lineáris</em>?</p>
+				****TODO**** tudunk valamit írni, ami kevésbé <em>lineáris</em>?</p>
         </div>
         <ul>
             <li>Állítsd a rezgés idejét jó hosszúra. Pl. maradhatunk 5 percnél</li>
@@ -361,14 +361,72 @@ public void rezegjOnClick(View v) {
                 $('.interactive #description p[data-iid="' + iid + '"]').show();
             });
         </script>
-
-        <h3 id="lifecycle-methods">Életciklus függvények</h3>
-        <p>Az eredeti Activity osztálynak van pár érdekes függvénye, amit eddig nem is láttunk.
+        <h3 id="lifecycle-methods" class="task">3. feladat: Életciklus függvények</h3>
+        <p>Az eredeti Activity osztálynak van pár érdekes függvénye, amivel eddig nem is találkoztunk, vagy csak nagyon
+            érintőlegesen használtunk.
             Ezek olyan függvények, amit az Android rendszer automatikusan indít el adott
             pillanatban, ezzel jelezve az alkalmazásunknak (vagy épp az Activity-nknek),
-            hogy bekövetkezett az adott életciklus eseménye. Például nézzük meg az onCreate
-            függvényt, ami a program indulásakor kerül futtatásra:</p>
-        <pre data-include="/include/l04/sample_onCreate.java"></pre>
+            hogy bekövetkezett az adott életciklus eseménye ( &#8594; ezért <em>életciklus függvények</em>).</p>
+        <p>Például nézzük meg a fenti interaktív példán az <code>onCreate</code> függvényt.</p>
+        <p>Az Activitynk onCreate függvényét akkor futtatja a rendszer, amikor frissen elindítjuk az alkalmazást.
+            Ez a legkorábbi pont, ahol bármittudunk csinálni az alkalmazás futása során. Érdemes ide rakni a
+            változóink értékadását (pl.: layout komponensek: gombok, TextView-k, stb. illetve egyéb rendszerkomponensek:
+            rezgő motor).</p>
+        <p>Az elindulás (születés) nagyon fontos esemény, de koránt sem az egyetlen az Activitynk futása (élete) során.
+            Nézzünk meg még kettőt, és rögtön használjuk is fel őket!</p>
+
+        <h4 class="task">3.1 onPause</h4>
+        <p>Az <code>onPause</code> függvényt akkor hívja a rendszer, amikor az alkalmazásunk futása valamiért felfüggesztésre
+            kerül. Ez történik például a programunk bezárásakor (vissza gombbal, vagy a home gombbal).</p>
+        <pre>
+protected void onPause() {
+    super.onPause();
+    // ide írhatjuk a saját kódunkat...
+}</pre>
+        <p>Például írjuk be saját kódként azt a parancsot, ami leállítja a telefon rezgését!</p>
+        <p>Ha most elindítjuk a programot, mit tapasztalunk a program bezárásakor? Abbamarad a rezgés?</p>
+
+        <h4 class="task">3.2 onResume</h4>
+        <p>Az <code>onResume</code> függvényt többnyire akkor hívja a rendszer, amikor az alkalmazás visszatér a
+            felfüggesztett állapotból, de például lefut az első indulásnál is, az <code>onCreate</code> után (ld. később).</p>
+        <pre>
+protected void onResume() {
+    super.onResume();
+    // ide írhatjuk a saját kódunkat...
+}</pre>
+        <p>Például írjuk be saját kódként azt a parancsot, ami elindítja a rezgést 5 percig!</p>
+        <p>Ha most elindítjuk a programot, mit tapasztalunk? Mi történik az első indításkor?
+            És a program menüből történő újraindításánál?</p>
+
+        <h4 class="task">3.3 feladat</h4>
+        <p>Mi történik / melyik függvény hívódik meg ha a program futása közben&hellip;</p>
+        <ol>
+            <li>&hellip;lezárod a képernyőt (odalsó gombbal)?</li>
+            <li>&hellip;újra kinyitod a képernyőt (felső/oldalsó gombbal)?</li>
+            <li>&hellip;bezárod a programot a vissza gombbal?</li>
+            <li>&hellip;bezárod a programot a home gombbal?</li>
+            <li>&hellip;újraindítod a programot a menüből?</li>
+            <li>&hellip;elforgatod a képernyőt?</li>
+            <li>&hellip;érkezik egy bejövő hívás (Ne vedd fel, és ne kísérletezz ezzel,
+                ha nem vagy benne biztos, hogy nem fog pénzbe kerülni ;) )?</li>
+        </ol>
+        <p>Töröld ki az <code>onPause</code> eljárásból a <code>rezgoMotor.cancel();</code> parancsot.
+            Ha ezt követően újraindítod és bezárod a programot, akkor mennyi idő után marad abba a rezgés?</p>
+        <p>A válaszokat küldd el nekünk emailben
+            (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
+
+        <h3>A teljes modell</h3>
+        <p>Az alábbi leegyszerűsített ábra szemlélteti, hogy mi minden történik az alkalmazásunkkal élete folyamán.
+            A színes buborékok az Activity lehetséges állapotai, a nyilak pedig a
+            változásokkor futó függvényeket mutatják.</p>
+        <img src="/static/img/l04/lifecycleSimplified.png" class="center-block" />
+        <p>Egyes események következtében az alkalmazás állapotot válthat,
+            ilyenkor pedig a megfelelő nyílon lévő függvény(ek) elindul(nak).</p>
+        <p>Például nézzük meg a képernyő lezárását. Ilyenkor a <strong>Fut</strong> állapotból átlépünk a
+            <strong>Felfüggesztve</strong> állapotba, és futtatásra kerül az <code>onPause</code> eljárás.</p>
+        <p>Vegyük észre azt is, hogy a <strong>Felfüggesztve</strong> állapottól még több lépés vezet az
+            alkalmazásunk végső haláláig. Az appunk több percig is sokszor a háttérben fut
+            még mielőtt végleg elpusztul, ezért is folytatódott a remegés a vissza gomb megnyomása után.</p>
 		<p>Az első sor: <code>super.<függvény neve>(<esetleges paraméterek>)</code> biztosítja, 
 			hogy az a függvény is lefut, amit a Google-nél írak meg. Ez szükséges ahhoz, 
 			hogy egyáltalán működni tudjon az alkalmazásunk.</p>
@@ -376,6 +434,88 @@ public void rezegjOnClick(View v) {
 			(pl gombok, rezgőmotor) értékadását. Így a program indulásakor már meg is találta a rezgoMotor 
 			változó a telefonunk rezgő motorját.</p>
 
+    </section>
+
+    <section id="logging">
+        <h3>Log, avagy naplózás</h3>
+        <p>A fentiek alapján nagyjából rá lehet érezni, hogy mikor melyik életciklus-függvény fut le,
+            de azért ez egy kicsit bizonytalan. Jó lenne pontosan látni, hogy melyik, mikor és
+            milyen sorrendben fut le, nem? A rezgés elindulása és megállítása sok mindent elárult nekünk,
+            de az Android rendszer ennél egy sokkal jobb eszközt is tartalmaz: A <em>LogCat</em> elnevezésű "rendszert",
+            amivel rövid szöveges üzeneteket, értesítéseket tudunk kiíratni úgy, hogy azokat a gépen is láthassuk.</p>
+        <img src="/static/img/l04/logcat_usage.png" class="center-block" />
+        <p>Az ilyen log-üzenetek kiíratása pofon egyszerű, a kérdéses helyekre elég a következőt beírni:</p>
+        <pre>Log.e("MainActivity", "...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni...");</pre>
+        <p>A fenti utasítás a következőképp épül fel: <br/>
+            A <code>Log</code> osztálynak meghívjuk az <code>e</code> nevű belső függvényét, két szöveges paraméterrel:
+            az első egy azonosító, hogy könnyebben megtaláljuk, hogy mi írta ki az üzenetet,
+            a második pedig maga az üzenet.</p>
+        <p>Próbáljuk is ki!</p>
+
+        <h3 class="task">4. feladat: Jelenlegi működés logolása</h3>
+        <p><em>A már meglévő életciklus-függvényekbe helyezzünk el egy-egy logoló utasítást,
+            és ellenőrizzük, hogy mikor futnak!</em></p>
+
+        <h4 class="task">4.1 feladat</h4>
+        <ol>
+            <li>Keressük meg az onCreate függvényünk záró kapcsos zárójelét, és elé szúrjunk be egy új sort.</li>
+            <li>Ebbe a sorba írjuk be a következőt:
+                <pre>Log.e("MainActivity", "onCreate fut");</pre></li>
+            <li>Ugyan ezt végezzük el az onPause és az onResume függvényeinkben is, de figyeljünk
+                oda, hogy mindegyikben a megfelelő üzenetet írassuk ki!</li>
+        </ol>
+        <p>Elvileg most már szépen naplózza az alkalmazásunk a saját működését.
+            De hol tudjuk mi ezt a naplót megnézni?</p>
+
+        <h4 class="task">4.2 feladat</h4>
+        <ol>
+            <li>Ha még nem tettük volna meg, futtassuk az alkalmazásunkat!</li>
+            <li>Figyeljük meg, hogy miután elindult a telefonon az app, az Android Studio
+                ablakában alul megjelenik egy kisebb ablak (panelnek is hívhatnánk), amiben
+                eleinte semmi nincsen, majd egy idő után megjelenik benne pár sor (TODO kép).
+                <br/>
+                Ez az ablak a fentebb már említett LogCat rendszer megjelenítője, itt tudjuk
+                visszanézni, hogy milyen üzeneteket naplózott az alkalmazásunk.</li>
+            <li>Figyeljünk rá, hogy a kis ablak jobb felső sarkában ez szerepeljen:
+                <code>app: hu.dkrmg.android.&lt;TODO packagename&gt;</code>! Ha nem ez van ott,
+                akkor próbáljuk meg lenyitni a legördülő listát, és onnan válasszuk ki ezt a sort,
+                vagy futtassuk újra az alkalmazást!</li>
+        </ol>
+        <p>Értelmezzük, hogy mit is látunk!
+            (TODO a képre megjegyzések, valahogy így)</p>
+        <img src="/static/img/l04/logcat_details.png" class="center-block" />
+        <p>Ha megnézzük, hogy milyen sorrendben jelennek meg az üzenetek, láthatjuk, hogy milyen
+            sorrendben futnak le a különböző életciklus-függvények.</p>
+
+
+        <h3 class="task">5. feladat: Maradék életciklus függvények naplózása</h3>
+        <p><em>Írjuk meg a maradék életciklus-függvényeket, és mindegyikben logoljuk,
+            hogy éppen melyik fut, majd ellenőrizzük le a futásuk sorrendjét!</em></p>
+
+        <h4 class="task">5.1 feladat</h4>
+        <p>A MainActivity fájlban már létezik néhány életciklus függvény:
+            <code>onCreate</code>, <code>onResume</code>, <code>onPause</code>.
+            Ezek mellé írjuk meg még a következőket:
+            <code>onStart</code>, <code>onStop</code>, <code>onDestroy</code>.
+            Vigyázzunk, ezek csak a függvények nevei! Honnan tudhatjuk meg, hogy pontosan hogyan
+            kell kinézniük (azaz mit kell írni a függvény neve elé, és utána, még a nyitó kapcsos zárójel előtt)?</p>
+        <p>Erre több lehetőségünk is van, most nézzük meg a legkényelmesebbet.</p>
+
+        <ol>
+            <li>A már meglévő onResume függvényünk záró kapcsos zárójele után hagyjunk ki egy sort, majd
+                kezdjük el beírni a következő megírandó függvényünk nevét: <code>onStart</code>.</li>
+            <li>Ha az első 3-4 karakter leütáése után felnézünk a képernyőre, láthatjuk, hogy megjelent
+                egy kis ablak, benne egy csomó olyan függvénnyel, aminek a nevében szerepel valahol
+                az <code>onSt</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
+                nekünk szükségest, de ez nem okozhat gondot, hiszen csak egy olyan van, aminek
+                a neve <code>onStart</code>.  TODO KÉPEK</li>
+            <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), mad
+                nyomjunk ENTER-t! Ekkor az Android Studio megírja helyettünk, és még arra is figyel,
+                hogy a kötelező <code>super.onRestart();</code> sor is szerepeljen benne.</li>
+            <li>A fenti módszerrel írjuk meg a maradék két függvényt is: <code>onStop</code> és <code>onDestroy</code>!</li>
+            <li>Az előző feladat alapján helyezzünk el ezekbe is egy-egy Log-sort, a megfelelő üzenettel</li>
+            <li>Futtassuk a programot, és figyeljük a LogCat ablakot!</li>
+        </ol>
     </section>
 
 </div>
