@@ -68,19 +68,10 @@ span.todo {
 span.todo:before { content: "["; }
 span.todo:after { content: "]"; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-weight: bold;
-	letter-spacing: 3px;
-}
 
 h1 {
 	font-weight: bold;
-	letter-spacing: 2px;
+	letter-spacing: 3px;
 }
 
 h2 {
