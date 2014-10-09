@@ -1,6 +1,6 @@
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);   // a super sor minden örökölt függvénynél kell!
+ï»¿protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);   // a super sor minden Ã¶rÃ¶kÃ¶lt fÃ¼ggvÃ©nynÃ©l kell!
     
-    // kiegészítés 
-    // ide jön a saját kódunk
+    // kiegÃ©szÃ­tÃ©s 
+    // ide jÃ¶n a sajÃ¡t kÃ³dunk
 }
