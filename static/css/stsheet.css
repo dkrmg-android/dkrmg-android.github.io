@@ -24,6 +24,7 @@ div.imgstore {
 
 h1 small {
     margin-left: 10px;
+	font-weight: bold;
 }
 
 img {
@@ -65,6 +66,39 @@ span.todo {
 span.todo:before { content: "["; }
 span.todo:after { content: "]"; }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	letter-spacing: 3px;
+}
+
+h1 {
+	padding-top: 50px;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+h2 {
+	padding-top: 40px;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+h3 {
+	padding-top: 30px;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+h4 {
+	padding-top: 20px;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
 
 h3.task {
 	color: #4040E6;
