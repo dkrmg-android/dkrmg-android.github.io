@@ -34,6 +34,15 @@ img {
 }
 
 .possible-error {
+    /*border: 1px solid #aaaaaa;*/
+    border: 1px solid red;
+    font-style: italic;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.misc-info {
     border: 1px solid #aaaaaa;
     font-style: italic;
     padding: 10px 20px;

@@ -1,0 +1,29 @@
+package hu.dkrmg.android.<span class="ih" data-iid="app-name">teszt</span>;
+
+import android.app.Activity;
+import android.os.Bundle;
+<span class="ih" data-iid="other-import">import android.view.View;
+import android.widget.TextView;</span>
+
+public class <span class="ih" data-iid="activity-name">MainActivity</span> extends Activity {
+
+<span class="ih" data-iid="component-declarations">TextView kijelzo;</span>
+
+<span class="ih" data-iid="misc-declarations">int tipp;</span>
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+<span class="ih" data-iid="mandatory-rows">super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);</span>
+
+
+
+<span class="ih" data-iid="find-components">kijelzo = (TextView) findViewById(R.id.kijelzo);</span>
+
+<span class="ih" data-iid="misc-init">tipp = 50;</span>
+}
+
+<span class="ih" data-iid="misc-methods">public void gomb1Clicked(View v) {
+    kijelzo.setText("Megnyomtad a gombot!");
+}</span>
+}

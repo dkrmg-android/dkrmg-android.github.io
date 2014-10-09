@@ -6,23 +6,83 @@
     <title>L04 - Rezgő motor és az alkalmazás életciklusa</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <style>
+        /* Original src: https://gist.github.com/grevory/5369438 */
+        .thumbnail.with-caption {
+            background: #f5f5f5;
+            width: 75%;
+            margin: 20px auto;
+        }
+        .thumbnail.with-caption p {
+            margin: 0;
+            padding-top: 0.5em;
+            text-align: center;
+        }
+    </style>
 
     <!-- bootstrap stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 
 
     <script type="text/javascript">
         function pageInit() {
+            $('div.help-container').each(function () {
+                var $dialog = $(this);
+                var id = $dialog.attr('id');
+                var $source = $('button.help-link[data-target="' + id + '"]');
 
+                $source.click(function () {
+                    $dialog.dialog('open');
+                });
+
+                $dialog.dialog({
+                    autoOpen: false,
+                    height: 'auto',
+                    minHeight: 0,
+                    maxHeight: 600,
+                    width: 'auto',
+//                    maxWidth: 600, // doesn't work if width: 'auto' is also set :(
+                    show: 'slideDown',
+                    hide: 'slideUp',
+//                    modal: true,
+                    position: {my: "center top", at: "center bottom", of: $source},
+                    open: function (event, ui) {
+                        //hide titlebar. src: http://stackoverflow.com/a/25629837/
+                        $(this).parent().children('.ui-dialog-titlebar').hide();
+
+                        // src: http://stackoverflow.com/a/7924361/
+                        $(document).mouseup(function(e) {
+                            var clicked = $(e.target); // get the element clicked
+                            if (clicked.is($dialog)
+                                    || clicked.parents().is($dialog)
+                                    || clicked.is('.ui.dialog-titlebar')) {
+                                return; // click happened within the dialog, do nothing here
+                            } else { // click was outside the dialog, so close it
+                                $dialog.dialog("close");
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('button.help-link[data-target]').click(function (event) {
+                event.preventDefault();
+                var targetId = $(this).data('target');
+                var $target = $('#' + targetId);
+                $target.dialog('open');
+            });
         }
     </script>
 
 </head>
 <body>
 
-<header></header>
+<header data-include="/include/header.html"></header>
 
 <div class="container">
 
@@ -30,89 +90,202 @@
         <small>Rezgő motor és az alkalmazás életciklusa</small>
     </h1>
 
-    <section>
-        <h3 id="lesson-contents">A lecke tartalma</h3>
+    <section id="lesson-contents">
+        <h2>A lecke tartalma</h2>
         <p>Ebben a leckében használni fogjuk a telefon rezgő motorját, illetve egy kicsit mélyebben
             megismerkedünk az androidos alkalmazások működésével.</p>
     </section>
 
-    <section>
-        <h3 id="import-project">Projekt importálása</h3>
-        <p>Ide jön, hogy mit és hogyan importáljanak</p>
-        <p>Utalva a korábbi leckékre + egy átfogó kép.</p>
-        <img src="/static/img/l03/04_importProject.png" class="center-block" />
+    <section id="import-project">
+        <h2>Projekt importálása</h2>
+        <p>Az előzőekhez hasonlóan ebben a leckében is egy előkészített projektben fogunk dolgozni.
+            Ezen a linken (TODO) megtaláljátok az L04-Rezeg.zip fájlt,
+            ezt töltsétek le, csomagoljátok ki az eddigi projektek mellé.</p>
+        <p>Végezetül importáljátok a projektet az Android Studioba
+            (<em>File -> Close Project</em>, majd <em>Import Project</em>).
+            Ha véletlenül elakadnátok, akkor követhetitek az előző lecke (L03)
+            projekt importálásáról szóló részét.</p>
+        <div class="imgstore">
+            <img src="/static/img/l03/03_closeProject.png" class="center-block" />
+            <img src="/static/img/l03/04_importProject.png" class="center-block" />
+            <img src="/static/img/l03/05_findProjectFolder.png" class="center-block" />
+        </div>
+        <p>Ha mindent jól csináltál, akkor a programot le is tudod futtatni
+            (<img src="/static/img/l03/07_inlineRun.png" style="display: inline-block; margin: 0;" />).
+            Az alkalmazásunk layout-ja azonban egyelőre üres.</p>
     </section>
 
-    <section>
+    <section id="task_1">
+        <h3 class="task">1. feladat: rezgés bekapcsolása</h3>
+        <p>Első lépésként készítünk egy egyszerű alkalmazást, ami egy gomb lenyomásakor
+            bekapcsolja a telefon rezgő motorját (avagy Vibrator angolul).</p>
+        <p>Ehhez:</p>
+        <ol>
+            <li>Létre kell hoznunk egy gombot a layout szerkesztőben</li>
+            <li>Meg kell írnunk egy onClick függvény vázát (legyen a neve: rezegOnClick),
+                ami a gomb lenyomására fog lefutni</li>
+            <li>Be kell állítanunk a gombunk onClick tulajdonságát, hogy az új függvényünket hívja meg</li>
+            <li>Létre kell hozunk egy Vibrator típusú változót (legyen a neve: rezgoMotor)</li>
+            <li>Hozzá kell rendelnünk a rezgoMotor változót a telefonunk rezgő motorjához</li>
+            <li>Be kell fejeznünk a rezegjOnClick függvényt, hogy aktiválja a rezgést</li>
+        </ol>
 
-        <h3 id="wht-is-an-activity">Mi is az az Activity?</h3>
+        <h4 class="task">1.1 Gomb lerakása</h4>
+        <p>Mint bizonyára emlékezhettek az előző leckéből, az alkalmazásunk kinézetét a
+            Layout szerkesztőben tudjuk megszabni. A layout szerkesztőt az
+            <em>app -> res -> layout -> activity_main.xml</em>
+            megnyitásával éritek el. Az új gombot húzzátok mondjuk a
+            képernyő közepére. A felirata legyen: <code>rezegj!</code>.
+            Nyugodtan átállíthatjátok a szöveg méretét/színét stb.</p>
+
+        <h4 class="task">1.2 rezegjOnClick váza</h4>
+        <p>Remélhetőleg ismerős az alábbi <strong>függvény</strong>, amely <code>rezegjOnClick</code> névre hallgat.
+            A függvény törzse a komment lesz, ahol perjelek mögött a komment
+            emlékeztet minket: a függvényünk egyelőre üres.</p>
+        <pre>
+public void rezegjOnClick(View v) {
+	//TODO Ezt itt még be kell fejezni
+}</pre>
+        <p>A függvényt a <span class="todo">TODO 1.2</span> helyére írd be! Figyeld meg, hogy egy szintre került a többi,
+            már meglévő függvénnyel (azaz ugyan annyival kezdődik beljebb).
+            (TODO mit jelent az egy szint)</p>
+
+        <h4 class="task">1.3 Gomb onClick tulajdonsága</h4>
+        <p>Ahhoz, hogy a gomb lenyomásakor a függvényünk lefusson (meghívásra kerüljön),
+            át kell állítanunk a gomb “onClick” tulajdonságát a layout
+            editorban az új függvényünkre (TODO kép).</p>
+
+        <h4 class="task">1.4 Változó létrehozása, rezgő motor hozzárendelése</h4>
+        <p>Előfordulhat, hogy csodálkoztok: Miért is van szükség egy változó létrehozására,
+            amikor mi csak meg szeretnénk kérni a telefonunkat, hogy rezegjen egy picit?
+            Gondoljatok így a helyzetre: <br/>
+            A telefon rezgő motorja egy picit olyan, mint egy gomb, amit elhelyeztünk a
+            layout szerkesztővel, csak ezt a telefon gyártója rakta bele a telefonba.
+            Mi tudjuk, hogy létezik, de a Java kódunknak ennél több kell: Létre kell hozunk
+            egy <code>Vibrator</code> típusú változót, majd hozzá kell rendelnünk a
+            telefonunkban elhelyezkedő hardverhez. (Emlékezz, a <code>Button</code> típusú változónkhoz
+            is hozzárendeltünk egy-egy gombot, megadott <code>id</code> azonosítóval).</p>
+        <p>Tehát hozzunk létre egy Vibrator típusú változót <span class="todo">TODO 1.4a</span></p>
+        <pre>Vibrator rezgoMotor;</pre>
+        <p>A hozzárendelést az <code>onCreate</code> függvény utolsó sorában <span class="todo">TODO 1.4b</span>
+            az alábbi paranccsal tehetjük meg:</p>
+        <pre>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</pre>
+
+        <h4 class="task">1.5 Rezgés aktiválása</h4>
+        <p>Ezen a ponton rendelkezünk egy <code>Vibrator</code> <strong>osztályú</strong> változóval.
+            A <code>Vibrator</code> osztályú változóknak pedig több hasznos <em>belső függvény</em>ük is van.</p>
+
+        <div class="misc-info">
+            <p>A jövőben az olyan összetett típusokat, amik saját belső függvényekkel
+                rendelkeznek, sokszor osztályoknak fogjuk hívni. Így különböztetjük meg a
+                primitív típusokat (egész számok: <code>int</code>, karakterek: <code>char</code>,
+                bool változók: <code>boolean</code>, lebegőpontos számok: <code>float</code> vagy <code>double</code>)
+                az olyan típusoktól, mint pl. <code>Button</code>, <code>TextView</code>, <code>Vibrator</code>.</p>
+            <p>Emlékeztetőül: a gombjaink belső függvényeit (mint pl. a <code>setText</code>)
+                a következő módon hívhatjuk meg:</p>
+                <pre>&lt;változó&gt;.&lt;függvényNeve&gt;(&lt;paraméterek&gt;);</pre>
+                <p>pl.:</p>
+                <pre>gomb1.setText(“új szöveg”);</pre>
+        </div>
+
+        <p>A Vibrator osztály rendelkezik egy igen hasznos függvénnyel:</p>
+        <pre>vibrate(milliszekundum)</pre>
+        <p>A zárójelben lévő <strong>paraméter</strong> szabja meg, hogy hány ezred másodpercig rezegjen a telefonunk.</p>
+        <p>Ezek alapján tudnál írni egy parancsot, ami meghívja/elindítja a <code>rezgoMotor</code> <code>vibrate</code>
+            eljárását 1 másodperces paraméterrel (1000ms)?
+            Írd a parancsot a rezegOnClick függvényünk törzsébe, hogy a gomb megnyomásakor
+            induljon el <span class="todo">TODO 1.5</span>!
+            <button data-target="help_1.5" class="help-link">Katt a megoldáshoz!</button></p>
+        <div class="help-container" id="help_1.5">
+            <pre data-include="/include/l04/help_1.5.java"></pre>
+        </div>
+        <p>Ha minden jól sikerült, akkor most elindíthatod az alkalmazást!
+            A telefonodon ha megnyomod a gombot, a készülék egy másodpercig rezegni fog.</p>
+    </section>
+
+    <section id="task_2">
+        <h3 class="task">2. feladat: rezgés megszakítása</h3>
+        <p>Próbáljuk megnövelni a rezgés idejét! Írd át a kódot, hogy 1000 ms helyett a
+            készülék mondjuk 10000 ms-ig rezegjen!</p>
+        <p>Itt érdemes egy kicsit elgondolkoznunk. Tíz másodperc sok idő, így előfordulhat,
+            hogy a rezgést időnként még az idő lejárta előtt le akarjuk állítani? Gondolj például
+            arra, amikor a telefonod csörgés közben szokott rezegni. A hívás fogadásakor a rezgés
+            mindig azonnal leáll.</p>
+        <p>Szerencsére a Vibrator osztály rendelkezik egy hasznos belső függvénnyel a jelenlegi rezgés
+            leállítására is. Ez pedig a <code>cancel()</code> függvény. Figyeld meg, hogy itt nincs a függvénynek
+            paramétere, egyszerűen csak leállítja a rezégst.</p>
+        <p>Az előző feladatok alapján hozz létre egy új gombot az előző alá, és érd el,
+            hogy a megnyomásakor lefusson a <code>rezgoMotor</code> változó <code>cancel()</code> függvénye!</p>
+        <p>Ehhez:</p>
+        <ol>
+            <li>Létre kell hoznunk egy gombot a layout szerkesztőben (mondjuk <code>állj!</code> felirattal)</li>
+            <li>Meg kell írnunk egy onClick függvény vázát (legyen a neve: <code>alljOnClick</code>)</li>
+            <li>Be kell állítanunk az új gombunk onClick tulajdonságát, hogy az <code>alljOnClick</code>
+                függvényünket hívja meg</li>
+            <li>Be kell fejeznünk az <code>alljOnClick</code> függvényt, hogy állítsa le a rezgést
+                <button data-target="help_2.4" class="help-link">Katt a megoldáshoz!</button></li>
+        </ol>
+        <div class="help-container" id="help_2.4">
+            <pre data-include="/include/l04/help_2.4.java"></pre>
+        </div>
+        <p>Ha mindent jól csináltál, akkor a programod futtatásakor most egy gombnyomásra
+            elindíthatod vagy megállíthatod a telefonod rezgését. Ha a 10 másodperces időt
+            túl rövidnek találod, nyugodtan átállíthatod mondjuk 5 percre (hány ezredmásodperc
+            van 5 percben?). Végtelenített rezgést a lecke végén fogunk csinálni.</p>
+    </section>
+
+    <section id="activity-lifecycle">
+        <h2>Az Activity életciklusa</h2>
+
+        <h3 id="intro">Bevezetés</h3>
+        <p>Ezen a ponton kénytelenek vagyunk kicsit jobban belemászni az alkalmazásunk és az activity-nk életciklusába.
+            <button data-target="help_lifecycle" class="help-link">Mi is az az <em>életciklus</em>?</button>
+            Miért? Erre láthatsz egy egyszerű demonstrációt:
+        </p>
+        <div class="help-container" id="help_lifecycle">
+            <p>Valaminek az életciklusa a létezése során történő események sora.
+                Például egy ember életciklusa: megszületik, elkezd beszélni, oviba megy, suliba megy,
+                leérettségizik, elkezd dolgozni, gyereke születik, nyugdíjba megy, meghal.
+                Az alkalmazásunknak (illetve az Activityknek, lásd később) is van egy hasonló életciklusuk.</p>
+        </div>
+        <ul>
+            <li>Állítsd a rezgés idejét jó hosszúra. Pl. maradhatunk 5 percnél</li>
+            <li>Indítsd el az alkalmazást, és nyomd meg a “rezegj!” gombot. A telefonod elkezd rezegni</li>
+            <li>Lépj ki az alkalmazásból (vissza gomb vagy home gomb)</li>
+            <li>Mi történik?! A programot bezártuk, és a telefon még mindig rezeg! Mégis miért?
+                És miért áll meg egy idő után?!</li>
+        </ul>
+        <p>A fenti probléma megértéséhez meg kell néznünk, hogy mi történik a programunk
+            indításakor, bezárásakor stb.</p>
+
+
+        <h3 id="what-is-an-activity">Mi is az az Activity?</h3>
+        <p>Az Androidos alkalmazásaink alapvető építőköve az <strong>Activity</strong>. Az Activity biztosítja a
+            kapcsolatot az Android rendszer és a felhasználók között. Kicsit olyan, mint egy
+            Windows ablak, vagy egy Lazarus Form.</p>
+        <p>Mi is dolgoztunk már Activitykkel, amikor az alkalmazásunk képernyőjének
+            kinézetét szerkesztettük a Layout szerkesztővel, illetve amikor a mögötte rejlő Java kódot írtuk
+            (pl. az onClick függvények). Az activity-nk neve <em>Main</em> volt, ezért is hívták a Java
+            fájlunkat <code>MainActivity.java</code>-nak, a layoutot pedig <code>activity_main.xml</code>-nek.
+            Fontos megérteni, hogy ez a kettő szorosan összefügg: layout nélkül nincs mi
+            <em>megjelenjen</em>, és a Java kód nélkül nem <em>csinál</em> semmit az alkalmazásunk.</p>
+        <div class="thumbnail with-caption" style="border: 2px double red;">
+            <img src="/static/img/l03/13_JavaVsXML.png" class="center-block" />
+            <p>Ez a kettő <strong>együtt</strong> alkotja az Activityt!</p>
+        </div>
+        <p>Fontos tudnunk, hogy egy Activity megfelelő működéséhez több ezer sorra van szükség!
+            Szerencsére ezt nem nekünk kell megírnunk, a Google lelkes dolgozói megtették ezt
+            helyettünk és megírtak egy általános Activity osztályt, amit mi csak
+            kiegészítünk a saját pár sorunkkal.</p>
+        <p>Vessünk most egy pillantást a Java kódra (MainActivity.java).</p>
+
         <div id="interactive-activity" class="interactive">
             <div id="panels-container" class="clearfix">
                 <div class="interactive-panel">
-                    <pre>
-package hu.dkrmg.android.<span class="ih" data-iid="app-name">&lt;app neve&gt;</span>;
-
-import android.app.Activity;
-import android.os.Bundle;
-<span class="ih" data-iid="other-import">&lt;egyéb import utasítások&gt;</span>
-
-
-public class <span class="ih" data-iid="activity-name">&lt;activity neve&gt;</span> extends Activity {
-
-    <span class="ih" data-iid="component-declarations">&lt;komponensek változóinak deklarációja&gt;</span>
-
-    <span class="ih" data-iid="misc-declarations">&lt;egyéb változók deklarációja&gt;</span>
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        <span class="ih" data-iid="mandatory-rows">// kötelező sor
-super.onCreate(savedInstanceState);
-// hogy az jelenjen meg, amit megterveztünk
-setContentView(R.layout.activity_main);</span>
-
-        <span class="ih" data-iid="find-components">&lt;komponensek megkeresése, változóba mentése&gt;</span>
-
-        <span class="ih" data-iid="misc-init">&lt;egyéb változók értékadása&gt;</span>
-    }
-
-    <span class="ih" data-iid="misc-methods">&lt;egyéb függvények, pl. gombnyomás kezelők&gt;</span>
-
-
-}
-                    </pre>
+                    <pre data-include="/include/l04/meta_activity.html"></pre>
                 </div>
                 <div class="interactive-panel">
-                    <pre>
-package hu.dkrmg.android.<span class="ih" data-iid="app-name">teszt</span>;
-
-import android.app.Activity;
-import android.os.Bundle;
-<span class="ih" data-iid="other-import">import android.view.View;
-import android.widget.TextView;</span>
-
-public class <span class="ih" data-iid="activity-name">MainActivity</span> extends Activity {
-
-    <span class="ih" data-iid="component-declarations">TextView kijelzo;</span>
-
-    <span class="ih" data-iid="misc-declarations">int tipp;</span>
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        <span class="ih" data-iid="mandatory-rows">super.onCreate(savedInstanceState);
-setContentView(R.layout.activity_main);</span>
-
-
-
-        <span class="ih" data-iid="find-components">kijelzo = (TextView) findViewById(R.id.kijelzo);</span>
-
-        <span class="ih" data-iid="misc-init">tipp = 50;</span>
-    }
-
-    <span class="ih" data-iid="misc-methods">public void gomb1Clicked(View v) {
-    kijelzo.setText("Megnyomtad a gombot!");
-}</span>
-}
-                    </pre>
+                    <pre data-include="/include/l04/sample_activity.html"></pre>
                 </div>
             </div>
             <div id="description">
@@ -129,6 +302,7 @@ setContentView(R.layout.activity_main);</span>
             .interactive {
                 width: 100%;
                 border: 2px solid #A4C739;
+                padding: 5px;
             }
 
             #panels-container .interactive-panel {
@@ -142,7 +316,8 @@ setContentView(R.layout.activity_main);</span>
                 display: inline-block;
             }
 
-            .interactive-panel .ih.selected {
+            .interactive-panel .ih.selected,
+            div#description {
                 -webkit-box-shadow: 0 0 20px 5px rgba(163,199,57,1);
                 -moz-box-shadow:    0 0 20px 5px rgba(163,199,57,1);
                 box-shadow:         0 0 20px 5px rgba(163,199,57,1);
@@ -169,7 +344,7 @@ setContentView(R.layout.activity_main);</span>
         </style>
 
         <script type="application/javascript">
-            $('span.ih').click(function () {
+            $('#panels-container').on('click', 'span.ih', function () {
                 var iid = $(this).data('iid');
                 $('span.ih').removeClass('selected');
                 $('span.ih[data-iid="'+ iid + '"]').addClass('selected');
@@ -178,23 +353,37 @@ setContentView(R.layout.activity_main);</span>
                 $('.interactive #description p[data-iid="' + iid + '"]').show();
             });
         </script>
+
+        <h3 id="lifecycle-methods">Életciklus függvények</h3>
+        <p>Az eredeti Activity osztálynak van pár érdekes függvénye, amit eddig nem is láttunk.
+            Ezek olyan függvények, amit az Android rendszer automatikusan indít el adott
+            pillanatban, ezzel jelezve az alkalmazásunknak (vagy épp az Activity-nknek),
+            hogy bekövetkezett az adott életciklus eseménye. Például nézzük meg az onCreate
+            függvényt, ami a program indulásakor kerül futtatásra:</p>
+        <pre data-include="/include/l04/sample_onCreate.java"></pre>
     </section>
 
 </div>
 
-<footer></footer>
+<footer data-include="/include/footer.html"></footer>
 
 <script type="text/javascript">
     $(function () {
-        $.get('/include/header.html', function (data) {
-            $('header').html(data);
-        });
-        $.get('/include/footer.html', function (data) {
-            $('footer').html(data);
-        });
+        loadIncludes();
 
         pageInit();
     });
+
+    function loadIncludes() {
+        $('[data-include]').each(function () {
+            var $container = $(this);
+            var path = $container.data('include');
+
+            $.get(path, function (data) {
+                $container.html(data);
+            });
+        });
+    }
 </script>
 
 </body>
