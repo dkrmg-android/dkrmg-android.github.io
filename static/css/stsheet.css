@@ -64,3 +64,12 @@ span.todo {
 }
 span.todo:before { content: "["; }
 span.todo:after { content: "]"; }
+
+
+h3.task {
+
+}
+
+h4.task {
+
+}
