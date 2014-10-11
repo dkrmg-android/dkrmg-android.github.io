@@ -91,9 +91,9 @@
     </h1>
 	<hr/>
     <section id="lesson-contents">
-        <h2>A lecke tartalma</h2>
         <p>Ebben a leckében használni fogjuk a telefon rezgő motorját, illetve egy kicsit mélyebben
             megismerkedünk az androidos alkalmazások működésével.</p>
+        <img src="/static/img/l04/vibrate.svg" class="center-block"/>
     </section>
 
     <section id="import-project">
@@ -129,15 +129,19 @@
             <li>Hozzá kell rendelnünk a rezgoMotor változót a telefonunk rezgő motorjához</li>
             <li>Be kell fejeznünk a rezegjOnClick függvényt, hogy aktiválja a rezgést</li>
         </ol>
-
         <h4 class="task">1.1 Gomb lerakása</h4>
         <p>Mint bizonyára emlékezhettek az előző leckéből, az alkalmazásunk kinézetét a
             Layout szerkesztőben tudjuk megszabni. A layout szerkesztőt az
             <em>app -> res -> layout -> activity_main.xml</em>
             megnyitásával éritek el. Az új gombot húzzátok mondjuk a
-            képernyő közepére. A felirata legyen: <code>rezegj!</code>.
+            képernyő közepére, a kép alá. A felirata legyen: <code>rezegj!</code>.
+            A <code>layout:width</code> tulajdonságát pedig <code>fill_parent</code>, hogy a képernyő teljes szélességét
+            kihasználja.
             Nyugodtan átállíthatjátok a szöveg méretét/színét stb.</p>
-
+        <div class="imgstore">
+            <img src="/static/img/l04/01_layoutDir.png" class="center-block" />
+            <img src="/static/img/l04/02_designer.png" class="center-block" />
+        </div>
         <h4 class="task">1.2 rezegjOnClick váza</h4>
         <p>Remélhetőleg ismerős az alábbi <strong>függvény</strong>, amely <code>rezegjOnClick</code> névre hallgat.
             A függvény törzse a komment lesz, ahol perjelek mögött a komment
@@ -170,8 +174,11 @@ public void rezegjOnClick(View v) {
         <p>A hozzárendelést az <code>onCreate</code> függvény utolsó sorában <span class="todo">TODO 1.4b</span>
             az alábbi paranccsal tehetjük meg:</p>
         <pre>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</pre>
-		<p>Ugye hogy ez mennyire hasonlít ahhoz, amit a gomboknál csináltunk az előző lecke alkalmával?</p>
+		
+        <p>Ugye hogy ez mennyire hasonlít ahhoz, amit a gomboknál csináltunk az előző lecke alkalmával?</p>
 		<pre>gomb = (Button) findViewById(R.id.gomb1); // ez a sor csak minta, ne írd be</pre>
+         <img src="/static/img/l04/03_vibButAnalogy.png" class="center-block" />
+        
 
         <h4 class="task">1.5 Rezgés aktiválása</h4>
         <p>Ezen a ponton rendelkezünk egy <code>Vibrator</code> <strong>osztályú</strong> változóval.
@@ -218,6 +225,10 @@ public void rezegjOnClick(View v) {
         <p>Szerencsére a Vibrator osztály rendelkezik egy hasznos belső függvénnyel a jelenlegi rezgés
             leállítására is. Ez pedig a <code>cancel()</code> függvény. Figyeld meg, hogy itt nincs a függvénynek
             paramétere. A rezgés leállításához nincs szükség több információra.</p>
+        <div class="imgstore">
+            <img src="/static/img/l04/04_cancel.png" class="center-block" />
+            <img src="/static/img/l04/05_uml.png" class="center-block" />
+        </div>
         <p>Az előző feladatok alapján hozz létre egy új gombot az előző alá, és érd el,
             hogy a megnyomásakor lefusson a <code>rezgoMotor</code> változó <code>cancel()</code> függvénye!</p>
         <p>Ehhez:</p>
@@ -244,18 +255,18 @@ public void rezegjOnClick(View v) {
         <h3 id="intro">Bevezetés</h3>
         <p>Ezen a ponton kénytelenek vagyunk kicsit jobban belemászni az alkalmazásunk és az activity-nk életciklusába.
             <button data-target="help_lifecycle" class="help-link">Mi is az az <em>életciklus</em>?</button>
-            Miért? Erre láthatsz egy egyszerű demonstrációt:
         </p>
+        <p>
+            Miért van erre sy-ks;g-nk? Erre láthatsz egy egyszerű demonstrációt:
+        </p>
+            
         <div class="help-container" id="help_lifecycle">
-            <p>Valaminek az életciklusa a létezése során történő események sora.
-                Például egy ember életciklusa: megszületik, oviba megy, suliba megy,
-                leérettségizik, elkezd dolgozni, gyereke születik, nyugdíjba megy, meghal.
-                Az alkalmazásunknak (illetve az Activityknek, lásd később) is van egy hasonló életciklusuk.
-				****TODO**** tudunk valamit írni, ami kevésbé <em>lineáris</em>?</p>
+            <p>Mindennek, ami változik, van életciklusa. Például nézzünk meg egy tanévet: Szeptemberben elkezdődik a tanítás, hétvégente egy picit pihenhetünk, 
+            a nagyobb szünetekben (ősz, tél, tavasz) még a tankönyveket is bavágjuk a sarokba, június végén pedig végleg és visszavonhatatlanul lezárjuk a tanévet.</p>
         </div>
         <ul>
             <li>Állítsd a rezgés idejét jó hosszúra. Pl. maradhatunk 5 percnél</li>
-            <li>Indítsd el az alkalmazást, és nyomd meg a “rezegj!” gombot. A telefonod elkezd rezegni</li>
+            <li>Indítsd le az alkalmazást, és nyomd meg a “rezegj!” gombot. A telefonod ekkor elkezd rezegni</li>
             <li>Lépj ki az alkalmazásból (vissza gomb vagy home gomb)</li>
             <li>Mi történik?! A programot bezártuk, és a telefon még mindig rezeg! Mégis miért?
                 És miért áll meg egy idő után?!</li>
@@ -303,6 +314,15 @@ public void rezegjOnClick(View v) {
                 <p data-iid="activity-name">Ez az activity-nk neve. Meg kell, hogy egyezzen a fájl nevével.</p>
 				<p data-iid="activity-name">Az "extends Activity" rész garantálja, hogy megörököljük a Google által megírt
 				általános Activity osztály összes kódját</p>
+                <p data-iid="component-declarations">A komponenseinket (Button - gombok, TextView - feliratok, stb) érdemes rögön (az osztály elején) deklarálni, bemutatni. 
+                Így később könnyebben találjuk meg őket. Ne feledd, ezt Lazarusban nem kellett megtenned.</p>
+                <p data-iid="misc-declarations">Az összes többi változó jöhet ide. Például az előző leckében a gondolt számot, vagy épp a véletlen számot készítő generátort
+                mutattuk itt be.</p>
+                <p data-iid="mandatory-rows">Ezek a sorok elengedhetetlenek a programunk megfelelő működéséhez. Az első parancsról (super) nemsokára beszélünk majd. 
+                A második parancs (setCOntentView) teljesen lényegtelen, ha véletlenül mégis érdekelne: ez a sor társítja a MainActivity osztályunkat az activity_main layouthoz.</p>
+                <p data-iid="find-components">Érdemes a változóinkat még az OnCreate függvényben társítani, mert így a program indulásátától kezdve nem kell miattuk többé aggódnunk.</p>
+                <p data-iid="misc-init">Ha van olyan változónk, aminek a program elején még értéket kell adnunk, azt itt tehetjük meg.</p>
+                <p data-iid="misc-methods">Itt sorakozhatnak egymás alatt a különböző függvényeink.</p>
             </div>
         </div>
 
@@ -379,10 +399,13 @@ public void rezegjOnClick(View v) {
         <p>Az <code>onPause</code> függvényt akkor hívja a rendszer, amikor az alkalmazásunk futása valamiért felfüggesztésre
             kerül. Ez történik például a programunk bezárásakor (vissza gombbal, vagy a home gombbal).</p>
         <pre>
+@Override
 protected void onPause() {
     super.onPause();
     // ide írhatjuk a saját kódunkat...
 }</pre>
+        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity egyik függvényét készüéünk bővíteni.
+        Ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél.</p>
         <p>Például írjuk be saját kódként azt a parancsot, ami leállítja a telefon rezgését!</p>
         <p>Ha most elindítjuk a programot, mit tapasztalunk a program bezárásakor? Abbamarad a rezgés?</p>
 
@@ -390,6 +413,7 @@ protected void onPause() {
         <p>Az <code>onResume</code> függvényt többnyire akkor hívja a rendszer, amikor az alkalmazás visszatér a
             felfüggesztett állapotból, de például lefut az első indulásnál is, az <code>onCreate</code> után (ld. később).</p>
         <pre>
+@Override
 protected void onResume() {
     super.onResume();
     // ide írhatjuk a saját kódunkat...
