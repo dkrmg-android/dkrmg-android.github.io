@@ -148,7 +148,7 @@
             emlékeztet minket: a függvényünk egyelőre üres.</p>
         <pre>
 public void rezegjOnClick(View v) {
-	//TODO Ezt itt még be kell fejezni
+	// TODO 1.5 Ezt itt még be kell fejezni
 }</pre>
         <p>A függvényt a <span class="todo">TODO 1.2</span> helyére írd be! Figyeld meg, hogy egy szintre került a többi,
             már meglévő függvénnyel (azaz a sor ugyan annyival kezdődik beljebb, mint a függvények). Ezt nyugodtan meg is jegyezhetjük: a Java 
@@ -224,11 +224,13 @@ public void rezegjOnClick(View v) {
             mindig azonnal leáll.</p>
         <p>Szerencsére a Vibrator osztály rendelkezik egy hasznos belső függvénnyel a jelenlegi rezgés
             leállítására is. Ez pedig a <code>cancel()</code> függvény. Figyeld meg, hogy itt nincs a függvénynek
-            paramétere. A rezgés leállításához nincs szükség több információra.</p>
+            paramétere, hiszen rezgés leállításához nincs szükség több információra.</p>
         <div class="imgstore">
             <img src="/static/img/l04/04_cancel.png" class="center-block" />
             <img src="/static/img/l04/05_uml.png" class="center-block" />
         </div>
+
+        <h4 class="task">2.1 rezgés leállítása</h4>
         <p>Az előző feladatok alapján hozz létre egy új gombot az előző alá, és érd el,
             hogy a megnyomásakor lefusson a <code>rezgoMotor</code> változó <code>cancel()</code> függvénye!</p>
         <p>Ehhez:</p>
@@ -237,7 +239,7 @@ public void rezegjOnClick(View v) {
             <li>Meg kell írnunk egy onClick függvény vázát (legyen a neve: <code>alljOnClick</code>)</li>
             <li>Be kell állítanunk az új gombunk onClick tulajdonságát, hogy az <code>alljOnClick</code>
                 függvényünket hívja meg</li>
-            <li>Be kell fejeznünk az <code>alljOnClick</code> függvényt, hogy állítsa le a rezgést
+            <li>Be kell fejeznünk az <code>alljOnClick</code> függvényt, hogy állítsa le a rezgést.
                 <button data-target="help_2.4" class="help-link">Katt a megoldáshoz!</button></li>
         </ol>
         <div class="help-container" id="help_2.4">
@@ -261,8 +263,9 @@ public void rezegjOnClick(View v) {
         </p>
             
         <div class="help-container" id="help_lifecycle">
-            <p>Mindennek, ami változik, van életciklusa. Például nézzünk meg egy tanévet: Szeptemberben elkezdődik a tanítás, hétvégente egy picit pihenhetünk, 
-            a nagyobb szünetekben (ősz, tél, tavasz) még a tankönyveket is bavágjuk a sarokba, június végén pedig végleg és visszavonhatatlanul lezárjuk a tanévet.</p>
+            <p>Mindennek, ami változik, van életciklusa. Például nézzünk meg egy tanévet: Szeptemberben elkezdődik a
+                tanítás, hétvégente egy picit pihenhetünk, a nagyobb szünetekben (ősz, tél, tavasz) még a tankönyveket
+                is bavágjuk a sarokba, június végén pedig végleg és visszavonhatatlanul lezárjuk a tanévet.</p>
         </div>
         <ul>
             <li>Állítsd a rezgés idejét jó hosszúra. Pl. maradhatunk 5 percnél</li>
@@ -416,14 +419,18 @@ protected void onCreate(Bundle savedInstanceState) {
         <h4 class="task">3.1 onPause</h4>
         <p>Az <code>onPause</code> függvényt akkor hívja a rendszer, amikor az alkalmazásunk futása valamiért felfüggesztésre
             kerül. Ez történik például a programunk bezárásakor (vissza gombbal, vagy a home gombbal).</p>
+        <p>A <span class="todo">TODO 3.1</span> helyre írd be az alábbi pár sort!</p>
         <pre>
 @Override
 protected void onPause() {
     super.onPause();
     // ide írhatjuk a saját kódunkat...
 }</pre>
-        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity egyik függvényét készülünk bővíteni;
-        ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél.</p>
+        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity
+            egyik függvényét készülünk bővíteni;
+            ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél, hiszen azok a
+            Google által írt "ős-Activityben" nem szerepelnek.
+        </p>
         <p>Például írjuk be saját kódként azt a parancsot, ami leállítja a telefon rezgését!</p>
         <p>Ha most elindítjuk a programot, mit tapasztalunk a program bezárásakor? Abbamarad a rezgés?</p>
 
@@ -440,7 +447,7 @@ protected void onResume() {
         <p>Ha most elindítjuk a programot, mit tapasztalunk? Mi történik az első indításkor?
             És a program menüből történő újraindításánál?</p>
 
-        <h4 class="task">3.3 feladat</h4>
+        <h4 class="task" id="task_3.3">3.3 feladat</h4>
         <p>Mi történik / melyik függvény hívódik meg ha a program futása közben&hellip;</p>
         <ol>
             <li>&hellip;lezárod a képernyőt (oldalsó gombbal)?</li>
@@ -487,8 +494,9 @@ protected void onResume() {
         <p>Az ilyen log-üzenetek kiíratása pofon egyszerű. Annyi a dolgunk, hogy a kérdéses helyekre a java kódban beírjuk a következő parancsot:</p>
         <pre>Log.e("MainActivity", "...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni...");</pre>
         <p>A fenti utasítás a következőképp épül fel: <br/>
-            Meghívjuk a <code>Log</code> osztálynak <code>e</code> nevű belső függvényét. Az első paraméter egy azonosító, hogy könnyebben megtaláljuk, hogy mi írta ki az üzenetet,
-            a második pedig maga az üzenet.</p>
+            Meghívjuk a <code>Log</code> osztálynak <code>e</code> nevű belső függvényét.
+            Az első paraméter (<code>"MainActivity"</code>) egy azonosító, hogy könnyebben megtaláljuk, hogy mi írta ki az üzenetet,
+            a második pedig maga az üzenet (<code>"...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni..."</code>).</p>
         <p>Próbáljuk is ki!</p>
 
         <h3 class="task">4. feladat: Jelenlegi működés logolása, naplózása</h3>
@@ -497,7 +505,8 @@ protected void onResume() {
 
         <h4 class="task">4.1 feladat</h4>
         <ol>
-            <li>Keressük meg az onCreate függvényünk záró kapcsos zárójelét, és elé szúrjunk be egy új sort.</li>
+            <li>Keressük meg az onCreate függvényünk záró kapcsos zárójelét, és elé szúrjunk be egy új sort
+                <span class="todo">TODO 4.1</span>.</li>
             <li>Ebbe a sorba írjuk be a következőt:
                 <pre>Log.e("MainActivity", "onCreate fut");</pre></li>
             <li>Ugyan ezt végezzük el az onPause és az onResume függvényeinkben is, de figyeljünk
@@ -510,13 +519,13 @@ protected void onResume() {
             <li>Ha még nem tettük volna meg, futtassuk az alkalmazásunkat!</li>
             <li>Figyeljük meg, hogy miután elindult a telefonon az app, az Android Studio
                 ablakában alul megjelenik egy kisebb ablak (panelnek is hívhatnánk), amiben
-                eleinte semmi nincsen, majd egy idő után megjelenik benne pár sor (TODO kép).
+                eleinte semmi nincsen, majd egy idő után megjelenik benne pár sor.
                 <br/>
                 Ez az ablak a fentebb már említett LogCat rendszer megjelenítője, itt tudjuk
                 visszanézni, hogy milyen üzeneteket naplózott az alkalmazásunk.</li>
                 <img src="/static/img/l04/09_logPos.png" class="center-block" /> 
             <li>Figyeljünk rá, hogy a kis ablak jobb felső sarkában ez szerepeljen:
-                <code>app: hu.dkrmg.android.&lt;TODO packagename&gt;</code>! Ha nem ez van ott,
+                <code>app: hu.dkrmg.android.razor</code>! Ha nem ez van ott,
                 akkor próbáljuk meg lenyitni a legördülő listát, és onnan válasszuk ki ezt a sort,
                 vagy futtassuk újra az alkalmazást!</li>
         </ol>
@@ -557,8 +566,8 @@ protected void onResume() {
             <li>A fenti módszerrel írjuk meg a maradék két függvényt is: <code>onStop</code> és <code>onDestroy</code>!</li>
             <li>Az előző feladat alapján helyezzünk el ezekbe is egy-egy Log-sort, a megfelelő üzenettel</li>
             <li>Futtassuk a programot, és figyeljük a LogCat ablakot!</li>
-            <li>Most ellenőrizd a válaszaidat a 3.3 Feladatra adott válaszaidat, és küldd el a válaszokat/változtatásokat 
-            egy screenshottal együtt emailben (<a href="dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)</li>
+            <li>Most ellenőrizd a <a href="#task_3.3">3.3 feladatra</a> adott válaszaidat, és küldd el a
+                válaszokat/változtatásokat egy screenshottal együtt emailben (<a href="dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)</li>
         </ol>
     </section>
 
@@ -578,22 +587,21 @@ protected void onResume() {
             </li>
             <li>
                 A beírt szöveg morze jellé alakítása nem egyszerű feladat, de mindezt szerencsére elvégzi helyetted a
-                <code>MorzeDekoder</code> osztály <code>encode</code> függvénye. Az eredmény típusa <code>long[]</code>,
+                <code>MorseCode</code> osztály <code>encode</code> függvénye. Az eredmény típusa <code>long[]</code>,
                 ami a Java nyelvben egy tömb. A tartalma miatt nem kell aggódnod, azt a rezgoMotor változód meg fogja érteni.
             </li>
             <li>
-               <stong>Most akár megpróbálhatod magadtól befejezni a feladatot. További segítségekért olvass tovább!</stong>
+               <strong>Most akár megpróbálhatod magadtól befejezni a feladatot. További segítségekért olvass tovább!</strong>
             </li>
             <li>
                 Példaként nézd meg ezt a kódot:
                 <pre>
-                    long[] minta = MorzeDekoder.encode("hello");  //hello szó morze kóddá alakítása
-                    rezgoMotor.vibtrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát
-                </pre>
+long[] minta = MorzeDekoder.encode("hello");  //hello szó morze kóddá alakítása
+rezgoMotor.vibtrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát</pre>
             </li>
             <li>
                 Ha nem sikerül kinyerned az EditText szövegét, akkor nézd meg az L03 azon részét, ahol a tippet kiolvastuk.
-                Az encode függvénynek egy String paraméterre van szüksége
+                Az encode függvénynek egy String paraméterre van szüksége.
             </li>
         </ul>
         </p>
