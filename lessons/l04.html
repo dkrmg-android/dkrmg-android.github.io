@@ -122,7 +122,7 @@
         <p>Ehhez:</p>
         <ol>
             <li>Létre kell hoznunk egy gombot a layout szerkesztőben</li>
-            <li>Meg kell írnunk egy onClick függvény vázát (legyen a neve: rezegOnClick),
+            <li>Meg kell írnunk egy onClick függvény vázát (legyen a neve: rezegjOnClick),
                 ami a gomb lenyomására fog lefutni</li>
             <li>Be kell állítanunk a gombunk onClick tulajdonságát, hogy az új függvényünket hívja meg</li>
             <li>Létre kell hozunk egy Vibrator típusú változót (legyen a neve: rezgoMotor)</li>
@@ -135,7 +135,7 @@
             <em>app -> res -> layout -> activity_main.xml</em>
             megnyitásával éritek el. Az új gombot húzzátok mondjuk a
             képernyő közepére, a kép alá. A felirata legyen: <code>rezegj!</code>.
-            A <code>layout:width</code> tulajdonságát pedig <code>fill_parent</code>, hogy a képernyő teljes szélességét
+            A <code>layout:width</code> tulajdonságát pedig <code>match_parent</code>, hogy a képernyő teljes szélességét
             kihasználja.
             Nyugodtan átállíthatjátok a szöveg méretét/színét stb.</p>
         <div class="imgstore">
@@ -200,11 +200,11 @@ public void rezegjOnClick(View v) {
 
         <p>A Vibrator osztály rendelkezik egy igen hasznos függvénnyel:</p>
         <pre>vibrate(milliszekundum)</pre>
-        <p>A zárójelben lévő <strong>paraméter</strong> szabja meg, hogy hány ezred másodpercig rezegjen a telefonunk.</p>
+        <p>A zárójelben lévő <strong>paraméter</strong> szabja meg, hogy hány ezredmásodpercig rezegjen a telefonunk.</p>
         <p>Ezek alapján tudnál írni egy parancsot, ami meghívja/elindítja a <code>rezgoMotor</code> <code>vibrate</code>
             eljárását 1 másodperces paraméterrel (1000ms)?
-            Írd a parancsot a rezegOnClick függvényünk törzsébe, hogy a gomb megnyomásakor
-            induljon el <span class="todo">TODO 1.5</span>! Ha nagyon nincs ötlteted, akkor kattints a sor végén lévő gombra.
+            Írd a parancsot a rezegjOnClick függvényünk törzsébe, hogy a gomb megnyomásakor
+            induljon el <span class="todo">TODO 1.5</span>! Ha nagyon nincs ötleted, akkor kattints a sor végén lévő gombra.
             <button data-target="help_1.5" class="help-link">Katt a megoldáshoz!</button></p>
         <div class="help-container" id="help_1.5">
 			<p>Ugye <em> nem </em> csak lustaságból nézed meg a megoldást?!</p>
@@ -279,7 +279,7 @@ public void rezegjOnClick(View v) {
         <p>Az Androidos alkalmazásaink alapvető építőköve az <strong>Activity</strong>. Az Activity biztosítja a
             kapcsolatot az Android rendszer és a felhasználók között. Kicsit olyan, mint egy
             Windows ablak, vagy egy Lazarus Form.</p>
-        <p>Mi is dolgoztunk már Activitykkel, amikor az alkalmazásunk képernyőjének
+        <p>Mi is dolgoztunk már Activity-kkel, amikor az alkalmazásunk képernyőjének
             kinézetét szerkesztettük a Layout szerkesztővel, illetve amikor a mögötte rejlő Java kódot írtuk
             (pl. az onClick függvények). Az activity-nk neve <em>Main</em> volt, ezért is hívták a Java
             fájlunkat <code>MainActivity.java</code>-nak, a layoutot pedig <code>activity_main.xml</code>-nek.
@@ -301,7 +301,7 @@ public void rezegjOnClick(View v) {
         ezekkel fogunk nemsokára megismerkedni</p>
 
         <p>Vessünk most egy pillantást a Java kódra (MainActivity.java), és ismerkedjünk meg a kód különböző részeivel.</p>
-        <p>Kattits a zölddel bekeretezett részekre, hogy megtudd: melyik sor mire való. Baloldalt egy áltaános magyarázatot talász, jobboldalon pedig egy program kezdeményt láthatsz
+        <p>Kattints a zölddel bekeretezett részekre, hogy megtudd: melyik sor mire való. Baloldalt egy általános magyarázatot találsz, jobboldalon pedig egy program kezdeményt láthatsz
         az előző leckéből</p>
 
         <div id="interactive-activity" class="interactive">
@@ -404,10 +404,10 @@ protected void onCreate(Bundle savedInstanceState) {
     // ide jön a saját kódunk
 }</pre>
         <p>Az első sor: <code>super.&ltfüggvény neve&gt(&ltesetleges paraméterek&gt)</code> biztosítja, 
-			hogy az a függvény is lefut, amit a Google-nél írak meg. Ez szükséges ahhoz, 
+			hogy az a függvény is lefut, amit a Google-nél írtak meg. Ez szükséges ahhoz, 
 			hogy egyáltalán működni tudjon az alkalmazásunk.</p>
         <p>Az Activity-nk onCreate függvényét akkor futtatja a rendszer, amikor frissen elindítjuk az alkalmazást.
-            Ez a legkorábbi pont, ahol bármittudunk csinálni az alkalmazás futása során. Érdemes ide rakni a
+            Ez a legkorábbi pont, ahol bármit tudunk csinálni az alkalmazás futása során. Érdemes ide rakni a
             változóink értékadását (pl.: layout komponensek: gombok, TextView-k, stb. illetve egyéb rendszerkomponensek:
             rezgő motor).</p>
         <p>Az elindulás (születés) nagyon fontos esemény, de koránt sem az egyetlen az Activity-nk futása (élete) során.
@@ -422,7 +422,7 @@ protected void onPause() {
     super.onPause();
     // ide írhatjuk a saját kódunkat...
 }</pre>
-        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity egyik függvényét készüéünk bővíteni;
+        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity egyik függvényét készülünk bővíteni;
         ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél.</p>
         <p>Például írjuk be saját kódként azt a parancsot, ami leállítja a telefon rezgését!</p>
         <p>Ha most elindítjuk a programot, mit tapasztalunk a program bezárásakor? Abbamarad a rezgés?</p>
@@ -443,7 +443,7 @@ protected void onResume() {
         <h4 class="task">3.3 feladat</h4>
         <p>Mi történik / melyik függvény hívódik meg ha a program futása közben&hellip;</p>
         <ol>
-            <li>&hellip;lezárod a képernyőt (odalsó gombbal)?</li>
+            <li>&hellip;lezárod a képernyőt (oldalsó gombbal)?</li>
             <li>&hellip;újra kinyitod a képernyőt (felső/oldalsó gombbal)?</li>
             <li>&hellip;bezárod a programot a vissza gombbal?</li>
             <li>&hellip;bezárod a programot a home gombbal?</li>
@@ -466,7 +466,7 @@ protected void onResume() {
             ilyenkor pedig a megfelelő nyílon lévő függvény(ek) elindul(nak).</p>
         <p>Például nézzünk egy egyszerű esetet
         <ul>
-            <li>Elindítjuk ay Appunkat, ilyenkor lefut 3 függvény is, majd végül a <strong>Fut</strong> állapotban találjuk magunkat</li>
+            <li>Elindítjuk az Appunkat, ilyenkor lefut 3 függvény is, majd végül a <strong>Fut</strong> állapotban találjuk magunkat</li>
             <li>Ha most lezárjuk a képernyőt, akkor át fogunk lépi a <strong>Felfüggesztett</strong> állapotba. A nyílon lévő "onPause"
             függvény  pedig lefut.</li>
         </ul>
@@ -491,7 +491,7 @@ protected void onResume() {
             a második pedig maga az üzenet.</p>
         <p>Próbáljuk is ki!</p>
 
-        <h3 class="task">4. feladat: Jelenlegi működés logolása</h3>
+        <h3 class="task">4. feladat: Jelenlegi működés logolása, naplózása</h3>
         <p><em>A már meglévő életciklus-függvényekbe helyezzünk el egy-egy logoló utasítást,
             és ellenőrizzük, hogy mikor futnak!</em></p>
 
@@ -549,7 +549,7 @@ protected void onResume() {
                 a neve <code>onStart</code>.
                 <img src="/static/img/l04/11_codeComp.png" class="center-block" />
                 </li>
-            <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), mad
+            <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), majd
                 nyomjunk ENTER-t! Ekkor az Android Studio megírja helyettünk, és még arra is figyel,
                 hogy a kötelező <code>super.onRestart();</code> sor is szerepeljen benne.
                 <img src="/static/img/l04/12_codeComp.png" class="center-block" />
@@ -566,7 +566,7 @@ protected void onResume() {
         <h2>Szorgalmi feladat</h2>
         <h3>Középhaladó</h3>
         <p><em>Ezen a héten a szorgalmi feladat során egy rezgő Morze készüléket készíthettek a telefonotokból.</em></p>
-        <p>Egészen pontosan: egy EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátszuk 
+        <p>Egészen pontosan: egy EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátsszuk 
         a telefon rezgő motorjával</p>
         <p>
         Ehhez:
@@ -574,10 +574,10 @@ protected void onResume() {
             <li>
                 Adjunk hozzá a programunkhoz egy EditText mezőt és egy új gombot!
                 <img src="/static/img/l04/13_szorgLayout.png" class="center-block" />
-                Ne felejsd el megírni és beállítani a gomb onClick függvényét!
+                Ne felejtsd el megírni és beállítani a gomb onClick függvényét!
             </li>
             <li>
-                A beírt szöveg morze jellé alakítása nem egyszerű feladat, de mindezt szerencsére elvégzi helyeztted a
+                A beírt szöveg morze jellé alakítása nem egyszerű feladat, de mindezt szerencsére elvégzi helyetted a
                 <code>MorzeDekoder</code> osztály <code>encode</code> függvénye. Az eredmény típusa <code>long[]</code>,
                 ami a Java nyelvben egy tömb. A tartalma miatt nem kell aggódnod, azt a rezgoMotor változód meg fogja érteni.
             </li>
