@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Oldal nem található</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        function pageInit() {
+
+        }
+    </script>
+
+</head>
+<body>
+
+    <header></header>
+
+
+
+    <div class="container" style="font-size : xx-large; text-align: center">
+        <img src="/static/img/android.jpg" />
+        <p>
+            Error 404: a keresett oldal nem található.
+        </p>
+        <p>
+            Használd a képernyő tetején található Navbar menüt, vagy térj vissza a <a href="index.html">kezdőlapra.</a>
+        </p>                     
+    </div>
+
+    <footer></footer>
+
+    <script type="text/javascript">
+        $(function () {
+            $.get('/include/header.html', function (data) {
+                $('header').html(data);
+            });
+            $.get('/include/footer.html', function (data) {
+                $('footer').html(data);
+            });
+
+            pageInit();
+        });
+    </script>
+
+</body>
+</html>
