@@ -36,6 +36,13 @@ img {
     height: auto;
 }
 
+img.featherlight-image 
+{
+    max-width: 100% ;
+    margin: 15px;
+}
+
+
 .possible-error {
     /*border: 1px solid #aaaaaa;*/
     border: 1px solid red;
