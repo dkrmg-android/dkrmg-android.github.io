@@ -91,7 +91,6 @@
     </h1>
 	<hr/>
     <section id="lesson-contents">
-    <section id="lesson-contents">
         <p>Ebben a leckében használni fogjuk a telefon rezgő motorját, illetve egy kicsit mélyebben
             megismerkedünk az androidos alkalmazások működésével.</p>
         <img src="/static/img/l04/vibrate.svg" class="center-block"/>
@@ -288,14 +287,22 @@ public void rezegjOnClick(View v) {
             <em>megjelenjen</em>, és a Java kód nélkül nem <em>csinál</em> semmit az alkalmazásunk.</p>
         <div class="thumbnail with-caption" style="border: 2px double red;">
             <img src="/static/img/l03/13_JavaVsXML.png" class="center-block" />
-            <p style="font-size: x-large;">Ez a kettő <strong>együtt</strong> alkotja az Activityt!</p>
+            <p style="font-size: x-large;">Ez a kettő <strong>együtt</strong> alkotja a mi MainActivity-nket!</p>
         </div>
-        <p>Fontos tudnunk, hogy egy Activity megfelelő működéséhez több ezer sorra van szükség!
-            Szerencsére ezt nem nekünk kell megírnunk, a Google lelkes dolgozói megtették ezt
-            helyettünk és megírtak egy általános Activity osztályt, amit mi csak
-            kiegészítünk a saját pár sorunkkal.</p>
-        <p>Vessünk most egy pillantást a Java kódra (MainActivity.java). Kattits a zölddel bekeretezett részekre,
-		hogy megtudd: melyik sor mire való.</p>
+        <p>Azt is fontos tudnunk, hogy a mi MainActivity ablakunk nem működne rendesen, ha nem venne kölcsön néhány
+        sornyi programot a Google által írt általános, unalmas, üres Activity-től. Egészen pontosan a projektünk
+        létrehozásakor a MainActivity épp úgy viselkedik, mint egy áltagos Activity, de nekünk lehetőségünk van
+        a működését (java) és kinézetét (layout) egy kicsit kibővíteni. </p>
+        <p>Erre szép példa az onCreate függvényünk, ami eddig mágikus módon minden projektünkben benne volt.</p>
+        <img src="/static/img/l04/06_bovites.png" class="center-block" />
+
+        <p>Tehát a lényeg: van pár nagyon fontos függvényünk, amit felhasználhatunk az Android programozás folyamán. 
+        Az onCreate az egyik ezek közül, ami mindig a program indításakor fut le. Van azonban néhány hasonló függvény is, 
+        ezekkel fogunk nemsokára megismerkedni</p>
+
+        <p>Vessünk most egy pillantást a Java kódra (MainActivity.java), és ismerkedjünk meg a kód különböző részeivel.</p>
+        <p>Kattits a zölddel bekeretezett részekre, hogy megtudd: melyik sor mire való. Baloldalt egy áltaános magyarázatot talász, jobboldalon pedig egy program kezdeményt láthatsz
+        az előző leckéből</p>
 
         <div id="interactive-activity" class="interactive">
             <div id="panels-container" class="clearfix">
@@ -389,11 +396,21 @@ public void rezegjOnClick(View v) {
             pillanatban, ezzel jelezve az alkalmazásunknak (vagy épp az Activity-nknek),
             hogy bekövetkezett az adott életciklus eseménye ( &#8594; ezért <em>életciklus függvények</em>).</p>
         <p>Például nézzük meg a fenti interaktív példán az <code>onCreate</code> függvényt.</p>
-        <p>Az Activitynk onCreate függvényét akkor futtatja a rendszer, amikor frissen elindítjuk az alkalmazást.
+        <pre>
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);   // a super sor minden örökölt függvénynél kell!
+
+    // kiegészítés 
+    // ide jön a saját kódunk
+}</pre>
+        <p>Az első sor: <code>super.&ltfüggvény neve&gt(&ltesetleges paraméterek&gt)</code> biztosítja, 
+			hogy az a függvény is lefut, amit a Google-nél írak meg. Ez szükséges ahhoz, 
+			hogy egyáltalán működni tudjon az alkalmazásunk.</p>
+        <p>Az Activity-nk onCreate függvényét akkor futtatja a rendszer, amikor frissen elindítjuk az alkalmazást.
             Ez a legkorábbi pont, ahol bármittudunk csinálni az alkalmazás futása során. Érdemes ide rakni a
             változóink értékadását (pl.: layout komponensek: gombok, TextView-k, stb. illetve egyéb rendszerkomponensek:
             rezgő motor).</p>
-        <p>Az elindulás (születés) nagyon fontos esemény, de koránt sem az egyetlen az Activitynk futása (élete) során.
+        <p>Az elindulás (születés) nagyon fontos esemény, de koránt sem az egyetlen az Activity-nk futása (élete) során.
             Nézzünk meg még kettőt, és rögtön használjuk is fel őket!</p>
 
         <h4 class="task">3.1 onPause</h4>
@@ -405,8 +422,8 @@ protected void onPause() {
     super.onPause();
     // ide írhatjuk a saját kódunkat...
 }</pre>
-        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity egyik függvényét készüéünk bővíteni.
-        Ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél.</p>
+        <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity egyik függvényét készüéünk bővíteni;
+        ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél.</p>
         <p>Például írjuk be saját kódként azt a parancsot, ami leállítja a telefon rezgését!</p>
         <p>Ha most elindítjuk a programot, mit tapasztalunk a program bezárásakor? Abbamarad a rezgés?</p>
 
@@ -441,24 +458,22 @@ protected void onResume() {
             (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
 
         <h3>A teljes modell</h3>
-        <p>Az alábbi leegyszerűsített ábra szemlélteti, hogy mi minden történik az alkalmazásunkkal élete folyamán.
+        <p>Az alábbi ábra mutatja meg, hogy mi minden történik az alkalmazásunkkal élete folyamán.
             A színes buborékok az Activity lehetséges állapotai, a nyilak pedig a
             változásokkor futó függvényeket mutatják.</p>
         <img src="/static/img/l04/lifecycleSimplified.png" class="center-block" />
-        <p>Egyes események következtében az alkalmazás állapotot válthat,
+        <p>Egyes események következtében (pl. képernyő lezárása) az alkalmazás állapotot válthat,
             ilyenkor pedig a megfelelő nyílon lévő függvény(ek) elindul(nak).</p>
-        <p>Például nézzük meg a képernyő lezárását. Ilyenkor a <strong>Fut</strong> állapotból átlépünk a
-            <strong>Felfüggesztve</strong> állapotba, és futtatásra kerül az <code>onPause</code> eljárás.</p>
+        <p>Például nézzünk egy egyszerű esetet
+        <ul>
+            <li>Elindítjuk ay Appunkat, ilyenkor lefut 3 függvény is, majd végül a <strong>Fut</strong> állapotban találjuk magunkat</li>
+            <li>Ha most lezárjuk a képernyőt, akkor át fogunk lépi a <strong>Felfüggesztett</strong> állapotba. A nyílon lévő "onPause"
+            függvény  pedig lefut.</li>
+        </ul>
         <p>Vegyük észre azt is, hogy a <strong>Felfüggesztve</strong> állapottól még több lépés vezet az
             alkalmazásunk végső haláláig. Az appunk több percig is sokszor a háttérben fut
             még mielőtt végleg elpusztul, ezért is folytatódott a remegés a vissza gomb megnyomása után.</p>
-		<p>Az első sor: <code>super.<függvény neve>(<esetleges paraméterek>)</code> biztosítja, 
-			hogy az a függvény is lefut, amit a Google-nél írak meg. Ez szükséges ahhoz, 
-			hogy egyáltalán működni tudjon az alkalmazásunk.</p>
-		<p>Az onCreate függvény az alkalmazás indításakor fut le, ezért is ide tettük a változóink 
-			(pl gombok, rezgőmotor) értékadását. Így a program indulásakor már meg is találta a rezgoMotor 
-			változó a telefonunk rezgő motorját.</p>
-
+         <img src="/static/img/l04/07_pelda.png" class="center-block" />
     </section>
 
     <section id="logging">
@@ -468,12 +483,11 @@ protected void onResume() {
             milyen sorrendben fut le, nem? A rezgés elindulása és megállítása sok mindent elárult nekünk,
             de az Android rendszer ennél egy sokkal jobb eszközt is tartalmaz: A <em>LogCat</em> elnevezésű "rendszert",
             amivel rövid szöveges üzeneteket, értesítéseket tudunk kiíratni úgy, hogy azokat a gépen is láthassuk.</p>
-        <img src="/static/img/l04/logcat_usage.png" class="center-block" />
-        <p>Az ilyen log-üzenetek kiíratása pofon egyszerű, a kérdéses helyekre elég a következőt beírni:</p>
+        <img src="/static/img/l04/08_log.png" class="center-block" />
+        <p>Az ilyen log-üzenetek kiíratása pofon egyszerű. Annyi a dolgunk, hogy a kérdéses helyekre a java kódban beírjuk a következő parancsot:</p>
         <pre>Log.e("MainActivity", "...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni...");</pre>
         <p>A fenti utasítás a következőképp épül fel: <br/>
-            A <code>Log</code> osztálynak meghívjuk az <code>e</code> nevű belső függvényét, két szöveges paraméterrel:
-            az első egy azonosító, hogy könnyebben megtaláljuk, hogy mi írta ki az üzenetet,
+            Meghívjuk a <code>Log</code> osztálynak <code>e</code> nevű belső függvényét. Az első paraméter egy azonosító, hogy könnyebben megtaláljuk, hogy mi írta ki az üzenetet,
             a második pedig maga az üzenet.</p>
         <p>Próbáljuk is ki!</p>
 
@@ -491,7 +505,6 @@ protected void onResume() {
         </ol>
         <p>Elvileg most már szépen naplózza az alkalmazásunk a saját működését.
             De hol tudjuk mi ezt a naplót megnézni?</p>
-
         <h4 class="task">4.2 feladat</h4>
         <ol>
             <li>Ha még nem tettük volna meg, futtassuk az alkalmazásunkat!</li>
@@ -501,21 +514,21 @@ protected void onResume() {
                 <br/>
                 Ez az ablak a fentebb már említett LogCat rendszer megjelenítője, itt tudjuk
                 visszanézni, hogy milyen üzeneteket naplózott az alkalmazásunk.</li>
+                <img src="/static/img/l04/09_logPos.png" class="center-block" /> 
             <li>Figyeljünk rá, hogy a kis ablak jobb felső sarkában ez szerepeljen:
                 <code>app: hu.dkrmg.android.&lt;TODO packagename&gt;</code>! Ha nem ez van ott,
                 akkor próbáljuk meg lenyitni a legördülő listát, és onnan válasszuk ki ezt a sort,
                 vagy futtassuk újra az alkalmazást!</li>
         </ol>
-        <p>Értelmezzük, hogy mit is látunk!
-            (TODO a képre megjegyzések, valahogy így)</p>
-        <img src="/static/img/l04/logcat_details.png" class="center-block" />
+        <p>Értelmezzük, hogy mit is látunk!</p>
+        <img src="/static/img/l04/10_logDetails.png" class="center-block" />
         <p>Ha megnézzük, hogy milyen sorrendben jelennek meg az üzenetek, láthatjuk, hogy milyen
             sorrendben futnak le a különböző életciklus-függvények.</p>
 
 
         <h3 class="task">5. feladat: Maradék életciklus függvények naplózása</h3>
         <p><em>Írjuk meg a maradék életciklus-függvényeket, és mindegyikben logoljuk,
-            hogy éppen melyik fut, majd ellenőrizzük le a futásuk sorrendjét!</em></p>
+            hogy éppen melyik fut. Ellenőrizd ennek segítségével a válaszaidat a 3.3 Feladatra!</em></p>
 
         <h4 class="task">5.1 feladat</h4>
         <p>A MainActivity fájlban már létezik néhány életciklus függvény:
@@ -529,19 +542,68 @@ protected void onResume() {
         <ol>
             <li>A már meglévő onResume függvényünk záró kapcsos zárójele után hagyjunk ki egy sort, majd
                 kezdjük el beírni a következő megírandó függvényünk nevét: <code>onStart</code>.</li>
-            <li>Ha az első 3-4 karakter leütáése után felnézünk a képernyőre, láthatjuk, hogy megjelent
+            <li>Ha az első 3-4 karakter leütése után felnézünk a képernyőre, láthatjuk, hogy megjelent
                 egy kis ablak, benne egy csomó olyan függvénnyel, aminek a nevében szerepel valahol
                 az <code>onSt</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
                 nekünk szükségest, de ez nem okozhat gondot, hiszen csak egy olyan van, aminek
-                a neve <code>onStart</code>.  TODO KÉPEK</li>
+                a neve <code>onStart</code>.
+                <img src="/static/img/l04/11_codeComp.png" class="center-block" />
+                </li>
             <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), mad
                 nyomjunk ENTER-t! Ekkor az Android Studio megírja helyettünk, és még arra is figyel,
-                hogy a kötelező <code>super.onRestart();</code> sor is szerepeljen benne.</li>
+                hogy a kötelező <code>super.onRestart();</code> sor is szerepeljen benne.
+                <img src="/static/img/l04/12_codeComp.png" class="center-block" />
+                </li>
             <li>A fenti módszerrel írjuk meg a maradék két függvényt is: <code>onStop</code> és <code>onDestroy</code>!</li>
             <li>Az előző feladat alapján helyezzünk el ezekbe is egy-egy Log-sort, a megfelelő üzenettel</li>
             <li>Futtassuk a programot, és figyeljük a LogCat ablakot!</li>
+            <li>Most ellenőrizd a válaszaidat a 3.3 Feladatra adott válaszaidat, és küldd el a válaszokat/változtatásokat 
+            egy screenshottal együtt emailben (<a href="dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)</li>
         </ol>
     </section>
+
+    <section id="szorgalmi">
+        <h2>Szorgalmi feladat</h2>
+        <h3>Középhaladó</h3>
+        <p><em>Ezen a héten a szorgalmi feladat során egy rezgő Morze készüléket készíthettek a telefonotokból.</em></p>
+        <p>Egészen pontosan: egy EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátszuk 
+        a telefon rezgő motorjával</p>
+        <p>
+        Ehhez:
+        <ul>
+            <li>
+                Adjunk hozzá a programunkhoz egy EditText mezőt és egy új gombot!
+                <img src="/static/img/l04/13_szorgLayout.png" class="center-block" />
+                Ne felejsd el megírni és beállítani a gomb onClick függvényét!
+            </li>
+            <li>
+                A beírt szöveg morze jellé alakítása nem egyszerű feladat, de mindezt szerencsére elvégzi helyeztted a
+                <code>MorzeDekoder</code> osztály <code>encode</code> függvénye. Az eredmény típusa <code>long[]</code>,
+                ami a Java nyelvben egy tömb. A tartalma miatt nem kell aggódnod, azt a rezgoMotor változód meg fogja érteni.
+            </li>
+            <li>
+               <stong>Most akár megpróbálhatod magadtól befejezni a feladatot. További segítségekért olvass tovább!</stong>
+            </li>
+            <li>
+                Példaként nézd meg ezt a kódot:
+                <pre>
+                    long[] minta = MorzeDekoder.encode("hello");  //hello szó morze kóddá alakítása
+                    rezgoMotor.vibtrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát
+                </pre>
+            </li>
+            <li>
+                Ha nem sikerül kinyerned az EditText szövegét, akkor nézd meg az L03 azon részét, ahol a tippet kiolvastuk.
+                Az encode függvénynek egy String paraméterre van szüksége
+            </li>
+        </ul>
+        </p>
+        <h3>Haladó</h3>
+        <p>
+            A <code>MorzeDekoder</code> osztály kódját megtalálod a MainActivity.java mellett. Nyisd meg a fájlt, tanulmányozd egy kicsit, 
+            majd próbáld elmagyarázni, hogy miként is működik a MorzeDekoder osztály.
+        </p>
+    </section> 
+
 
 </div>
 
