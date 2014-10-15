@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="/static/css/stsheet.css">
-
+    
     <style>
         /* Original src: https://gist.github.com/grevory/5369438 */
         .thumbnail.with-caption {
@@ -110,11 +110,11 @@
         <div class="imgstore">
             <img src="/static/img/l03/03_closeProject.png" class="center-block" />
             <img src="/static/img/l03/04_importProject.png" class="center-block" />
-            <img src="/static/img/l03/05_findProjectFolder.png" class="center-block" />
+            
         </div>
         <p>Ha mindent jól csináltál, akkor a programot le is tudod futtatni
             (<img src="/static/img/l03/07_inlineRun.png" style="display: inline-block; margin: 0;" />).
-            Az alkalmazásunk layout-ja azonban egyelőre üres.</p>
+            Az alkalmazásunk layout-ja azonban egyelőre csak egy általunk odacsempészett képet tartalmaz.</p>
     </section>
 
     <section id="task_1">
@@ -165,7 +165,8 @@ public void rezegjOnClick(View v) {
         <h4 class="task">1.3 Gomb onClick tulajdonsága</h4>
         <p>Ahhoz, hogy a gomb lenyomásakor a függvényünk lefusson (meghívásra kerüljön),
             át kell állítanunk a gomb “onClick” tulajdonságát a layout
-            editorban az új függvényünkre (TODO kép).</p>
+            editorban az új függvényünkre.</p>
+        <img src="/static/img/l04/14_onClickProp.png" class="center-block">
 
         <h4 class="task">1.4 Változó létrehozása, rezgő motor hozzárendelése</h4>
         <p>A vibrátor motor eléréséhez létre kell hoznunk egy változót. Előfordulhat, hogy csodálkoztok: Miért is van szükség egy változó létrehozására,
@@ -316,15 +317,7 @@ public void rezegjOnClick(View v) {
         az előző leckéből</p>
 
         <div id="interactive-activity" class="interactive">
-            <div id="panels-container" class="clearfix">
-                <div class="interactive-panel">
-                    <pre data-include="/include/l04/meta_activity.html"></pre>
-                </div>
-                <div class="interactive-panel">
-                    <pre data-include="/include/l04/sample_activity.html"></pre>
-                </div>
-            </div>
-            <div id="description">
+            <div id="description" style="margin-bottom:10px; min-height:100px">
                 <p class="selected" data-iid="default">Kattints rá fent a zöld keretes részekre, hogy megtudd, mire valók!</p>
                 <p data-iid="app-name">A package segít a programunk fájljaina rendszerezésében. Ez főként akkor segít, ha nagyobb programokat írunk, egyelőre nem kell vele foglalkozni.</p>
                 <p data-iid="other-import">Az Android Studio ide sorolja fel, hogy hol találhatók a
@@ -343,6 +336,14 @@ public void rezegjOnClick(View v) {
                 <p data-iid="misc-init">Ha van olyan változónk, aminek a program elején még értéket kell adnunk, azt itt tehetjük meg.</p>
                 <p data-iid="misc-methods">Itt sorakozhatnak egymás alatt a különböző függvényeink.</p>
             </div>
+            <div id="panels-container" class="clearfix">
+                <div class="interactive-panel">
+                    <pre data-include="/include/l04/meta_activity.html"></pre>
+                </div>
+                <div class="interactive-panel">
+                    <pre data-include="/include/l04/sample_activity.html"></pre>
+                </div>
+            </div> 
         </div>
 
         <style type="text/css">
@@ -456,8 +457,16 @@ protected void onResume() {
             És a program menüből történő újraindításánál?</p>
 
         <h4 class="task" id="task_3.3">3.3 feladat</h4>
-        <p>Mi történik / melyik függvény hívódik meg ha a program futása közben&hellip;</p>
+        <p>Az alábbi ábra azt mutatja meg, hogy mi minden történik az alkalmazásunkkal élete folyamán.
+            A színes buborékok az Activity lehetséges állapotait (Fut, Felfüggesztve), a nyilak pedig a
+            változásokkor futó függvényeket mutatják.</p>
+        <p>Egyes események következtében (pl. képernyő lezárása) az alkalmazás állapotot válthat,
+            ilyenkor pedig a megfelelő nyílon lévő függvény(ek) elindul(nak). (Az OnDestroy függvénnyel egyelőre nem kell foglalkoznod,
+            de találkozol vele, ha/amikor megcsinálod az első szorgalmi feladatot. )</p>
+        <img src="/static/img/l04/lifecycleSimplified.png" class="center-block" />
+        <p>Próbáld ki, hogy mi történik / melyik függvény hívódik meg, ha &hellip;</p>
         <ol>
+            <li>&hellip;elindítod a programot?</li>
             <li>&hellip;lezárod a képernyőt (oldalsó gombbal)?</li>
             <li>&hellip;újra kinyitod a képernyőt (felső/oldalsó gombbal)?</li>
             <li>&hellip;bezárod a programot a vissza gombbal?</li>
@@ -467,30 +476,13 @@ protected void onResume() {
             <li>&hellip;érkezik egy bejövő hívás (Ne vedd fel, és ne kísérletezz ezzel,
                 ha nem vagy benne biztos, hogy nem fog pénzbe kerülni ;) )?</li>
         </ol>
-        <p>Töröld ki az <code>onPause</code> eljárásból a <code>rezgoMotor.cancel();</code> parancsot.
-            Ha ezt követően újraindítod és bezárod a programot, akkor mennyi idő után marad abba a rezgés?</p>
-        <p>A válaszokat küldd el nekünk emailben
+        <p>A fenti kérdésekre a válaszokat küldd el nekünk emailben
             (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
-
-        <h3>A teljes modell</h3>
-        <p>Az alábbi ábra mutatja meg, hogy mi minden történik az alkalmazásunkkal élete folyamán.
-            A színes buborékok az Activity lehetséges állapotai, a nyilak pedig a
-            változásokkor futó függvényeket mutatják.</p>
-        <img src="/static/img/l04/lifecycleSimplified.png" class="center-block" />
-        <p>Egyes események következtében (pl. képernyő lezárása) az alkalmazás állapotot válthat,
-            ilyenkor pedig a megfelelő nyílon lévő függvény(ek) elindul(nak).</p>
-        <p>Például nézzünk egy egyszerű esetet
-        <ul>
-            <li>Elindítjuk az Appunkat, ilyenkor lefut 3 függvény is, majd végül a <strong>Fut</strong> állapotban találjuk magunkat</li>
-            <li>Ha most lezárjuk a képernyőt, akkor át fogunk lépi a <strong>Felfüggesztett</strong> állapotba. A nyílon lévő "onPause"
-            függvény  pedig lefut.</li>
-        </ul>
-        <p>Vegyük észre azt is, hogy a <strong>Felfüggesztve</strong> állapottól még több lépés vezet az
-            alkalmazásunk végső haláláig. Az appunk több percig is sokszor a háttérben fut
-            még mielőtt végleg elpusztul, ezért is folytatódott a remegés a vissza gomb megnyomása után.</p>
-         <img src="/static/img/l04/07_pelda.png" class="center-block" />
     </section>
 
+
+    <section id="szorgalmi">
+        <h2>Szorgalmi feladat</h2>
     <section id="logging">
         <h3>Log, avagy naplózás</h3>
         <p>A fentiek alapján nagyjából rá lehet érezni, hogy mikor melyik életciklus-függvény fut le,
@@ -507,11 +499,11 @@ protected void onResume() {
             a második pedig maga az üzenet (<code>"...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni..."</code>).</p>
         <p>Próbáljuk is ki!</p>
 
-        <h3 class="task">4. feladat: Jelenlegi működés logolása, naplózása</h3>
+        <h3>4. feladat: Jelenlegi működés logolása, naplózása</h3>
         <p><em>A már meglévő életciklus-függvényekbe helyezzünk el egy-egy logoló utasítást,
             és ellenőrizzük, hogy mikor futnak!</em></p>
 
-        <h4 class="task">4.1 feladat</h4>
+        <h4>4.1 feladat</h4>
         <ol>
             <li>Keressük meg az onCreate függvényünk záró kapcsos zárójelét, és elé szúrjunk be egy új sort
                 <span class="todo">TODO 4.1</span>.</li>
@@ -522,7 +514,7 @@ protected void onResume() {
         </ol>
         <p>Elvileg most már szépen naplózza az alkalmazásunk a saját működését.
             De hol tudjuk mi ezt a naplót megnézni?</p>
-        <h4 class="task">4.2 feladat</h4>
+        <h4>4.2 feladat</h4>
         <ol>
             <li>Ha még nem tettük volna meg, futtassuk az alkalmazásunkat!</li>
             <li>Figyeljük meg, hogy miután elindult a telefonon az app, az Android Studio
@@ -541,49 +533,43 @@ protected void onResume() {
         <img src="/static/img/l04/10_logDetails.png" class="center-block" />
         <p>Ha megnézzük, hogy milyen sorrendben jelennek meg az üzenetek, láthatjuk, hogy milyen
             sorrendben futnak le a különböző életciklus-függvények.</p>
+        <p>A Logcat ablak emlékszik a korábbi futtatásokra is, ezeket az üzeneteket futtatás előtt érdemes az üzenetek mellett oldalt található kis kuka gombbal törölni.</p>
 
 
-        <h3 class="task">5. feladat: Maradék életciklus függvények naplózása</h3>
-        <p><em>Írjuk meg a maradék életciklus-függvényeket, és mindegyikben logoljuk,
-            hogy éppen melyik fut. Ellenőrizd ennek segítségével a válaszaidat a 3.3 Feladatra!</em></p>
+        <h4 >4.3 onDestroy naplózása</h3>
 
-        <h4 class="task">5.1 feladat</h4>
         <p>A MainActivity fájlban már létezik néhány életciklus függvény:
             <code>onCreate</code>, <code>onResume</code>, <code>onPause</code>.
-            Ezek mellé írjuk meg még a következőket:
-            <code>onStart</code>, <code>onStop</code>, <code>onDestroy</code>.
-            Vigyázzunk, ezek csak a függvények nevei! Honnan tudhatjuk meg, hogy pontosan hogyan
-            kell kinézniük (azaz mit kell írni a függvény neve elé, és utána, még a nyitó kapcsos zárójel előtt)?</p>
+            Az ábránkon volt még ezen kívül egy <code>onDestroy</code> nevű függvény is, ami a kilépéskor fut le.</p>
+            
+            <p>Honnan tudhatjuk meg, hogy pontosan hogyan kell kinézne (azaz mit kell írni a függvény neve elé, és utána, még a nyitó kapcsos zárójel előtt)?</p>
         <p>Erre több lehetőségünk is van, most nézzük meg a legkényelmesebbet.</p>
 
         <ol>
             <li>A már meglévő onResume függvényünk záró kapcsos zárójele után hagyjunk ki egy sort, majd
-                kezdjük el beírni a következő megírandó függvényünk nevét: <code>onStart</code>.</li>
+                kezdjük el beírni a következő megírandó függvényünk nevét: <code>onDestroy</code>.</li>
             <li>Ha az első 3-4 karakter leütése után felnézünk a képernyőre, láthatjuk, hogy megjelent
                 egy kis ablak, benne egy csomó olyan függvénnyel, aminek a nevében szerepel valahol
-                az <code>onSt</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
+                az <code>onDe</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
                 nekünk szükségest, de ez nem okozhat gondot, hiszen csak egy olyan van, aminek
-                a neve <code>onStart</code>.
+                a neve <code>onDestroy</code>.
                 <img src="/static/img/l04/11_codeComp.png" class="center-block" />
                 </li>
             <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), majd
                 nyomjunk ENTER-t! Ekkor az Android Studio megírja helyettünk, és még arra is figyel,
-                hogy a kötelező <code>super.onRestart();</code> sor is szerepeljen benne.
+                hogy a kötelező <code>super.onDestroy();</code> sor is szerepeljen benne.
                 <img src="/static/img/l04/12_codeComp.png" class="center-block" />
-                </li>
-            <li>A fenti módszerrel írjuk meg a maradék két függvényt is: <code>onStop</code> és <code>onDestroy</code>!</li>
-            <li>Az előző feladat alapján helyezzünk el ezekbe is egy-egy Log-sort, a megfelelő üzenettel</li>
+                </li> 
+            <li>Az előző feladat alapján helyezzünk el ebbe a függvénybe is egy Log-sort, a megfelelő üzenettel</li>
             <li>Futtassuk a programot, és figyeljük a LogCat ablakot!</li>
             <li>Most ellenőrizd a <a href="#task_3.3">3.3 feladatra</a> adott válaszaidat, és küldd el a
                 válaszokat/változtatásokat egy screenshottal együtt emailben (<a href="dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)</li>
         </ol>
     </section>
-
-    <section id="szorgalmi">
-        <h2>Szorgalmi feladat</h2>
-        <h3>Középhaladó</h3>
+        <h3>Morzekód Program</h3>
         <p><em>Ezen a héten a szorgalmi feladat során egy rezgő Morze készüléket készíthettek a telefonotokból.</em></p>
-        <p>Egészen pontosan: egy EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátsszuk 
+        <p>A Morzekódban a betűket rövid és hosszú jelekké alakítjuk. Ha nem hallottál még a Morzekódról, akkor érdemes elolvasni a <a href=http://hu.wikipedia.org/wiki/Morzek%C3%B3d target="_blank"> Wikipédia cikket</a>. </p>
+        <p>A feladat: EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátsszuk 
         a telefon rezgő motorjával</p>
         <p>
         Ehhez:
