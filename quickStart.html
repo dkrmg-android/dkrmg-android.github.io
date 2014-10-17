@@ -46,6 +46,10 @@
         }
       }
 
+        function uploadComplete(fileData) {
+            document.writeln("Feltöltés kész!");
+        }
+
       /**
        * Start the file upload.
        *
@@ -106,10 +110,6 @@
             };
           }
           request.execute(callback);
-        }
-
-        function uploadComplete(fileData) {
-            document.writeln("Feltöltés kész!");
         }
       }
     </script>
