@@ -16,6 +16,7 @@
        * Check if the current user has authorized the application.
        */
       function checkAuth() {
+        document.getElementById("divA").textContent = "Google Drive azonosítás";
         gapi.auth.authorize(
             {'client_id': CLIENT_ID, 'scope': SCOPES, 'immediate': true},
             handleAuthResult);
@@ -47,7 +48,8 @@
       }
 
         function uploadComplete(fileData) {
-            document.writeln("Feltöltés kész!");
+            document.getElementById("divA").textContent = "Kész a feltöltés";
+            
         }
 
       /**
@@ -82,7 +84,7 @@
             'mimeType': contentType
           };
 
-          document.writeln("Feltöltés folyamatban... Ne zárd be ezt az ablakot!");
+          document.getElementById("divA").textContent = "Feltöltés folyamatban... Ne zárd be ezt az ablakot!";
 
           var base64Data = btoa(reader.result);
           var multipartRequestBody =
@@ -119,6 +121,6 @@
     <!--Add a file picker for the user to start the upload process -->
     <input type="file" id="filePicker" style="display: none" />
     <input type="button" id="authorizeButton" style="display: none" value="Authorize" />
-    
+    <div id="divA">Várjál...</div>
   </body>
 </html>
