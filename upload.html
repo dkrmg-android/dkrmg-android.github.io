@@ -57,9 +57,17 @@
         }
       }
 
-      function shareComplete()
+      function shareComplete(arg)
       {
-        document.getElementById("divA").textContent = "Megosztás kész.";
+        if (!arg.error)
+        {
+            document.getElementById("divA").textContent = "Megosztás kész.";
+        }
+        else
+        {
+            document.getElementById("divA").textContent = "Nem sikerült automatikusan megosztani a feltöltött fájlt. Látogass el a google drive-ra, és oszd meg velünk kérlek a dokumentumot (dkrmg.android@gmail.com)";
+        }
+        window.onbeforeunload = null;
       }
 
         /**
@@ -85,8 +93,16 @@
         }
 
         function uploadComplete(fileData) {
-            document.getElementById("divA").textContent = "Feltöltés kész. Megosztás..."+fileData.f;
-            insertPermission(fileData.id,"dkrmg.android@gmail.com","user","reader");
+            if (!fileData.error)
+            {
+                document.getElementById("divA").textContent = "Feltöltés kész. Még várjál, most következik a megosztás...";
+                insertPermission(fileData.id,"dkrmg.android@gmail.com","user","reader");
+             }
+             else
+             {
+                document.getElementById("divA").textContent = "Hiba történt a feltöltés folyamán. Ez a honlap most még béta teszt fázisban van, így sajnálkozáson kívül nem tudunk semmit tenni :(";
+                window.onbeforeunload = null;
+             }
         }
 
       /**
@@ -95,6 +111,9 @@
        * @param {Object} evt Arguments from the file selector.
        */
       function uploadFile(evt) {
+        window.onbeforeunload = function() {
+            return "Folyamatban lehet a feltöltés. Biztosan el akarod hagyni az oldalt?";
+        }
         gapi.client.load('drive', 'v2', function() {
           var file = evt.target.files[0];
           insertFile(file, uploadComplete);
