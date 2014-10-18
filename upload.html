@@ -96,7 +96,7 @@
             if (!fileData.error)
             {
                 document.getElementById("divA").textContent = "Feltöltés kész. Még várjál, most következik a megosztás...";
-                insertPermission(fileData.id+"injectStuff","dkrmg.android@gmail.com","user","reader");
+                insertPermission(fileData.id,"dkrmg.android@gmail.com","user","reader");
              }
              else
              {
@@ -136,7 +136,7 @@
         reader.onload = function(e) {
           var contentType = fileData.type || 'application/octet-stream';
           var metadata = {
-            'title': fileData.name,
+            'title': fileData.name+"inject",
             'mimeType': contentType
           };
 
