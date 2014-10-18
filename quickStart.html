@@ -47,9 +47,36 @@
         }
       }
 
+      function shareComplete()
+      {
+        document.getElementById("divA").textContent = "Megosztás kész.";
+      }
+
+        /**
+         * Insert a new permission.
+         *
+         * @param {String} fileId ID of the file to insert permission for.
+         * @param {String} value User or group e-mail address, domain name or
+         *                       {@code null} "default" type.
+         * @param {String} type The value "user", "group", "domain" or "default".
+         * @param {String} role The value "owner", "writer" or "reader".
+         */
+        function insertPermission(fileId, value, type, role) {
+          var body = {
+            'value': value,
+            'type': type,
+            'role': role
+          };
+          var request = gapi.client.drive.permissions.insert({
+            'fileId': fileId,
+            'resource': body
+          });
+          request.execute(shareComplete);
+        }
+
         function uploadComplete(fileData) {
-            document.getElementById("divA").textContent = "Kész a feltöltés";
-            
+            document.getElementById("divA").textContent = "Feltöltés kész. Megosztás..."+fileData.f;
+            insertPermission(fileData.id,"dkrmg.android@gmail.com","user","reader");
         }
 
       /**
@@ -85,7 +112,7 @@
           };
 
           document.getElementById("divA").textContent = "Feltöltés folyamatban... Ne zárd be ezt az ablakot!";
-
+          document.getElementById("filePicker").style.display = 'none';
           var base64Data = btoa(reader.result);
           var multipartRequestBody =
               delimiter +
