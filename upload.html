@@ -1,6 +1,14 @@
 ﻿<html>
   <head>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     <script type="text/javascript">
       var CLIENT_ID = '969327262934-es5uljgo5gea18s2mprp8b636ds9b5f4.apps.googleusercontent.com';
       var SCOPES = 'https://www.googleapis.com/auth/drive';
@@ -36,8 +44,10 @@
           // Access token has been successfully retrieved, requests can be sent to the API.
           filePicker.style.display = 'block';
           filePicker.onchange = uploadFile;
+          document.getElementById("divA").textContent = "Google Drive azonosítás sikeres. Válaszd ki a fájlt!";
         } else {
           // No access token could be retrieved, show the button to start the authorization flow.
+          document.getElementById("divA").textContent = "Nem sikerült azonosítani a Google fiókodat :(!";
           authButton.style.display = 'block';
           authButton.onclick = function() {
               gapi.auth.authorize(
@@ -145,9 +155,26 @@
     <script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
   </head>
   <body>
-    <!--Add a file picker for the user to start the upload process -->
-    <input type="file" id="filePicker" style="display: none" />
-    <input type="button" id="authorizeButton" style="display: none" value="Authorize" />
-    <div id="divA">Várjál...</div>
+    <div class="container">
+        <!--Add a file picker for the user to start the upload process -->
+        <input type="file" id="filePicker" style="display: none" />
+        <input type="button" id="authorizeButton" style="display: none" value="Belépés a Google fiókommal" />
+        <div id="divA">Várjál...</div>
+    </div>
+
+    <footer></footer>
+
+    <script type="text/javascript">
+        $(function () {
+            $.get('/include/header.html', function (data) {
+                $('header').html(data);
+            });
+            $.get('/include/footer.html', function (data) {
+                $('footer').html(data);
+            });
+
+            pageInit();
+        });
+    </script>
   </body>
 </html>
