@@ -567,7 +567,8 @@ protected void onResume() {
                 válaszokat/változtatásokat egy screenshottal együtt emailben (<a href="dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)</li>
         </ol>
     </section>
-        <h3>Morzekód Program</h3>
+        <h3dekod
+        >Morzekód Program</h3>
         <p><em>Ezen a héten a szorgalmi feladat során egy rezgő Morze készüléket készíthettek a telefonotokból.</em></p>
         <p>A Morzekódban a betűket rövid és hosszú jelekké alakítjuk. Ha nem hallottál még a Morzekódról, akkor érdemes elolvasni a <a href=http://hu.wikipedia.org/wiki/Morzek%C3%B3d target="_blank"> Wikipédia cikket</a>. </p>
         <p>A feladat: EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátsszuk 
@@ -591,8 +592,8 @@ protected void onResume() {
             <li>
                 Példaként nézd meg ezt a kódot:
                 <pre>
-long[] minta = MorzeDekoder.encode("hello");  //hello szó morze kóddá alakítása
-rezgoMotor.vibtrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát</pre>
+long[] minta = MorseCode.encode("hello");  //hello szó morze kóddá alakítása
+rezgoMotor.vibrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát</pre>
             </li>
             <li>
                 Ha nem sikerül kinyerned az EditText szövegét, akkor nézd meg az L03 azon részét, ahol a tippet kiolvastuk.
@@ -602,8 +603,8 @@ rezgoMotor.vibtrate(minta,-1);                // -1 jelzi, hogy ne ismételjük 
         </p>
         <h3>Haladó</h3>
         <p>
-            A <code>MorzeDekoder</code> osztály kódját megtalálod a MainActivity.java mellett. Nyisd meg a fájlt, tanulmányozd egy kicsit, 
-            majd próbáld elmagyarázni, hogy miként is működik a MorzeDekoder osztály.
+            A <code>MorseCode</code> osztály kódját megtalálod a MainActivity.java mellett. Nyisd meg a fájlt, tanulmányozd egy kicsit, 
+            majd próbáld elmagyarázni, hogy miként is működik a MorseCode osztály.
         </p>
     </section> 
 
