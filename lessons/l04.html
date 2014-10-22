@@ -2,102 +2,44 @@
 <html>
 <head>
     <meta charset="utf-8">
-
     <title>L04 - Rezgő motor és az alkalmazás életciklusa</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="/static/css/stsheet.css">
-    
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+        type="text/css" rel="stylesheet" title="Featherlight Styles" />
     <style>
         /* Original src: https://gist.github.com/grevory/5369438 */
-        .thumbnail.with-caption {
+        .thumbnail.with-caption
+        {
             background: #f5f5f5;
             width: 75%;
             margin: 20px auto;
         }
-        .thumbnail.with-caption p {
+        .thumbnail.with-caption p
+        {
             margin: 0;
             padding-top: 0.5em;
             text-align: center;
         }
     </style>
-
-    <!-- bootstrap stuff -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-
-
-    <script type="text/javascript">
-        function pageInit() {
-            $('div.help-container').each(function () {
-                var $dialog = $(this);
-                var id = $dialog.attr('id');
-                var $source = $('button.help-link[data-target="' + id + '"]');
-
-                $source.click(function () {
-                    $dialog.dialog('open');
-                });
-
-                $dialog.dialog({
-                    autoOpen: false,
-                    height: 'auto',
-                    minHeight: 0,
-                    maxHeight: 600,
-                    width: 'auto',
-//                    maxWidth: 600, // doesn't work if width: 'auto' is also set :(
-                    show: 'slideDown',
-                    hide: 'slideUp',
-//                    modal: true,
-                    position: {my: "center top", at: "center bottom", of: $source},
-                    open: function (event, ui) {
-                        //hide titlebar. src: http://stackoverflow.com/a/25629837/
-                        $(this).parent().children('.ui-dialog-titlebar').hide();
-
-                        // src: http://stackoverflow.com/a/7924361/
-                        $(document).mouseup(function(e) {
-                            var clicked = $(e.target); // get the element clicked
-                            if (clicked.is($dialog)
-                                    || clicked.parents().is($dialog)
-                                    || clicked.is('.ui.dialog-titlebar')) {
-                                return; // click happened within the dialog, do nothing here
-                            } else { // click was outside the dialog, so close it
-                                $dialog.dialog("close");
-                            }
-                        });
-                    }
-                });
-            });
-
-            $('button.help-link[data-target]').click(function (event) {
-                event.preventDefault();
-                var targetId = $(this).data('target');
-                var $target = $('#' + targetId);
-                $target.dialog('open');
-            });
-        }
-    </script>
-
-
-    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css" type="text/css" rel="stylesheet" title="Featherlight Styles" />
 </head>
 <body>
-
-<header data-include="/include/header.html"></header>
-
-<div class="container">
-
-    <h1>4. lecke
-        <small>Rezgő motor és az alkalmazás életciklusa</small>
-    </h1>
-	<hr/>
+    <header data-include="/include/header.html"></header>
+    <div class="container">
+        <h1>
+            4. lecke <small>Rezgő motor és az alkalmazás életciklusa</small>
+        </h1>
+        <hr />
     <section id="lesson-contents">
         <p>Ebben a leckében használni fogjuk a telefon rezgő motorját, illetve egy kicsit mélyebben
             megismerkedünk az androidos alkalmazások működésével.</p>
         <img src="/static/img/l04/vibrate.svg" class="center-block noZoom"/>
     </section>
-
     <section id="import-project">
         <h2>Projekt importálása</h2>
         <p>Az előzőekhez hasonlóan ebben a leckében is egy előkészített projektben fogunk dolgozni.
@@ -116,8 +58,7 @@
             (<img src="/static/img/l03/07_inlineRun.png" style="display: inline-block; margin: 0;" />).
             Az alkalmazásunk layout-ja azonban egyelőre csak egy általunk odacsempészett képet tartalmaz.</p>
     </section>
-
-    <section id="task_1">
+        <section id="task_1">
         <h3 class="task">1. feladat: rezgés bekapcsolása</h3>
         <p>Első lépésként készítünk egy egyszerű alkalmazást, ami egy gomb lenyomásakor
             bekapcsolja a telefon rezgő motorját (avagy Vibrator angolul).</p>
@@ -222,8 +163,7 @@ public void rezegjOnClick(View v) {
         <p>Ha minden jól sikerült, akkor most elindíthatod az alkalmazást!
             A telefonodon ha megnyomod a gombot, a készülék egy másodpercig rezegni fog.</p>
     </section>
-
-    <section id="task_2">
+        <section id="task_2">
         <h3 class="task">2. feladat: rezgés megszakítása</h3>
         <p>Próbáljuk megnövelni a rezgés idejét! Írd át a kódot, hogy 1000 ms helyett a
             készülék mondjuk 10000 ms-ig rezegjen!</p>
@@ -260,8 +200,7 @@ public void rezegjOnClick(View v) {
             van 5 percben?). Végtelenített rezgést is lehet csinálni, de az egy picit bonyolultabb,
             ezért most nem foglalkozunk vele.</p>
     </section>
-
-    <section id="activity-lifecycle">
+        <section id="activity-lifecycle">
         <h2>Az Activity életciklusa</h2>
 
         <h3 id="intro">Bevezetés</h3>
@@ -348,46 +287,50 @@ public void rezegjOnClick(View v) {
         </div>
 
         <style type="text/css">
-            .interactive {
+            .interactive
+            {
                 width: 100%;
                 border: 2px solid #A4C739;
                 padding: 5px;
             }
-
-            #panels-container .interactive-panel {
+            
+            #panels-container .interactive-panel
+            {
                 float: left;
                 width: 50%;
             }
-
-            .interactive-panel .ih {
+            
+            .interactive-panel .ih
+            {
                 font-weight: bold;
                 border: 1px solid #A4C739;
                 display: inline-block;
             }
-
-            .interactive-panel .ih.selected,
-            div#description {
+            
+            .interactive-panel .ih.selected, div#description
+            {
                 -webkit-box-shadow: 0 0 20px 5px rgba(163,199,57,1);
-                -moz-box-shadow:    0 0 20px 5px rgba(163,199,57,1);
-                box-shadow:         0 0 20px 5px rgba(163,199,57,1);
-
+                -moz-box-shadow: 0 0 20px 5px rgba(163,199,57,1);
+                box-shadow: 0 0 20px 5px rgba(163,199,57,1);
                 padding: 3px;
             }
-
-            .interactive #description {
+            
+            .interactive #description
+            {
                 /* mostly from bootstrap's 'pre' rule */
                 background-color: #f5f5f5;
                 border: 1px solid #ccc;
                 border-radius: 4px;
-
                 padding: 10px;
             }
-
-            .interactive #description p {
+            
+            .interactive #description p
+            {
                 display: none;
             }
-
-            .interactive #description p.selected {
+            
+            .interactive #description p.selected
+            {
                 display: block;
             }
         </style>
@@ -396,7 +339,7 @@ public void rezegjOnClick(View v) {
             $('#panels-container').on('click', 'span.ih', function () {
                 var iid = $(this).data('iid');
                 $('span.ih').removeClass('selected');
-                $('span.ih[data-iid="'+ iid + '"]').addClass('selected');
+                $('span.ih[data-iid="' + iid + '"]').addClass('selected');
 
                 $('.interactive #description p').hide();
                 $('.interactive #description p[data-iid="' + iid + '"]').show();
@@ -480,9 +423,7 @@ protected void onResume() {
         <p>A fenti kérdésekre a válaszokat küldd el nekünk emailben
             (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
     </section>
-
-
-    <section id="szorgalmi">
+        <section id="szorgalmi">
         <h2>Szorgalmi feladat</h2>
     <section id="logging">
         <h3>Log, avagy naplózás</h3>
@@ -606,51 +547,11 @@ rezgoMotor.vibrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a
             A <code>MorseCode</code> osztály kódját megtalálod a MainActivity.java mellett. Nyisd meg a fájlt, tanulmányozd egy kicsit, 
             majd próbáld elmagyarázni, hogy miként is működik a MorseCode osztály.
         </p>
-    </section> 
-
-
-</div>
-
-<footer data-include="/include/footer.html"></footer>
-
-<script type="text/javascript">
-    $(function () {
-        loadIncludes();
-
-        pageInit();
-    });
-
-    function loadIncludes() {
-        $('[data-include]').each(function () {
-            var $container = $(this);
-            var path = $container.data('include');
-
-            $.get(path, function (data) {
-                $container.html(data);
-            });
-        });
-    }
-</script>
-
-<script src="//code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-    $(function ($) {
-        var addToAll = true;
-        $('img').each(function () {
-
-            var $this = $(this);
-
-            var isZoomable = ! $this.hasClass('noZoom');
-            if (isZoomable) {
-                var src = $this.attr('src');
-                $this.attr('data-featherlight', src);
-            }
-            
-        });
-    });
-    $.noConflict();
-</script>
-<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
+    </section>
+    </div>
+    <footer data-include="/include/footer.html"></footer>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 </body>
 </html>

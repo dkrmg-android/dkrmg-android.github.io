@@ -2,63 +2,340 @@
 <html>
 <head>
     <meta charset="utf-8">
-
-    <title>L05 - Közelségérzékelő szenzor használata</title>
-
+    <title>---------------------TITLE------------------------</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="/static/css/stsheet.css">
-
     <!-- bootstrap stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-    <script type="text/javascript">
-        function pageInit() {
-
-        }
-    </script>
-
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+        type="text/css" rel="stylesheet" title="Featherlight Styles" />
 </head>
 <body>
+    <header data-include="/include/header.html"></header>
+    <div class="container">
+        <h1>
+            5. lecke <small>Közelségérzékelő szenzor használata</small>
+        </h1>
+        <hr />
+        <section id="lesson-contents">
+            <p>Az okostelefonok már a kezdetek óta tele vannak mindenféle érzékelővel (szenzorral). 
+               Figyelik a fényviszonyokat, mérik a gyorsulást, érzékelik a Föld mágneses terét, valamint érzékelik, 
+               ha  valami közel kerül hozzájuk. Ez utóbbi felelős például azért, hogy amikor telefonálás közben 
+               a füledhez teszed a telefont, kikapcsoljon a képernyő és ne tudd elnyomkodni a füleddel.</p>
+            <p>Ebben a leckében ezt a szenzort fogjuk mi is felhasználni, és a segítségével készítünk 
+               egy egyszerű távolságmérőt.</p>
+            <p>A kész alkalmazás valami ilyesmi lesz:</p>
+            <img src="/static/img/l05/01_nearFar.png" class="center-block"/>
+        </section>
+        <section id="proximity-desc">
+            <h2>Közelségérzékelő</h2>
+            <p>A közelségérzékelő (angolul PROXIMITY Sensor) egy egyszerű kis szenzor, ami többnyire a telefonunk 
+            tetején található. Az érzékelő működése egyáltalán nem bonyolult. Ha a legközelebb lévő tárgy 
+            (pl. az ujjunk vagy a fülünk)&hellip;</p>
+            <ul>
+                <li>&hellip;közelebb van néhány centiméternél, akkor a 0-s értéket küldi nekünk</li>
+                <li>&hellip;távolabb van néhány centiméternél, akkor <em>nem 0</em> (általában 5-ös) értéket kapunk vissza.</li>
+            </ul>
+            <p>Ezt a viselkedést küszöbölésnek is hívják. A képen is láthatod, 
+            hogy a közeli mérések mind 0 értéket mutatnak, a távoli mérések pedig mind 5-öt mutatnak.</p>
+            <div class="imgstore">
+                <img src="/static/img/l05/02_proxSensor.png" />
+                <img src="/static/img/l05/03_proxThresh.png" />
+            </div>
+            <p>Tehát azt sosem fogjuk pontosan tudni, hogy milyen messze van a legközelebbi tárgy, 
+            csak azt, hogy <strong>közel</strong> van, vagy <strong>távol</strong>.</p>
+        </section>
+        <section id="import-project">
+            <h2>Projekt importálása</h2>
+            <p>
+                Az előzőekhez hasonlóan ebben a leckében is egy előkészített projektben fogunk dolgozni, 
+                hogy a még nem szükséges dolgok ne zavarjanak, ellenben a már jó ismert TODO sorok segítsenek 
+                minket a lecke során.
+            </p>
+            <p>
+                Ezen a linken találjátok <a href="https://github.com/dkrmg-android/L05-SensorIntro/releases/download/v1.0-skeleton/L05-SensorIntro.zip">
+                    L05-SensorIntro.zip</a>. Ezt töltsétek le, csomagoljátok ki az eddigi projektek mellé, 
+                    majd importáljátok be ezt a projektet az Android Studioba.
+                    <em>(Ha elakadtok, kövessétek a 3. leckében leírt <a href="/lessons/l03.html#import-project" target="_blank">útmutatót</a>).</em>
+            </p>
+        </section>
+        <section id="layout">
+            <h2>Layout – felhasználói felület</h2>
+            <p><em>Készítsük el az alkalmazásunk kinézetét!</em></p>
+            <p>Emlékeztek még mennyi komponenst kellett az előző leckékben felpakolni a képernyőre? Nos, 
+               itt sokkal egyszerűbb dolgunk lesz, hiszen egyetlen feliratra (TextView-ra) van szükségünk: </p>
+            <ol>
+                <li>Nyissuk meg az <em>app -> res -> layout -> activity_kozelseg.xml</em> fájlt, 
+                   figyeljünk rá, hogy alul a “Design” fül legyen kiválasztva.</li>
+                <li>A baloldali palettáról húzzunk be a képernyőre egy TextView komponenst (a Widget kategóriából), 
+                    és igazítsuk pontosan közére (függőlegesen, és vízszintesen is)</li>
+                <li>Írjuk át <strong>text</strong> tulajdonságát valami értelmesre (pl.: "TÁVOLSÁG"). 
+                    (Ez csak addig fog látszani, amíg az első adat meg nem érkezik az érzékelőtől.)</li>
+                <li>A <strong>textSize</strong> tulajdonsággal állítsuk át a szöveg méretét valami jól láthatóra (pl.: 40sp).</li>
+                <li>Az <strong>id</strong> tulajdonsága legyen <code>kijelzo</code> 
+                    (Ékezetek nélkül. Emélkszel, hogy mire is jó ez a tulajdonság? <button data-target="help_id" class="help-link">Nem?</button>).
+                     <div class="help-container" id="help_id">
+                        <p>Az <strong>id</strong> azonosító alapján tudunk a java kódból később a komponenseinkre hivatkozni. Pl. <code>R.id.ezEgyId</code></p>
+                    </div></li>
+                <li>Ezen kívül tetszőlegesen lehet módosítgatni a már ismert tulajdonságokat! :)</li>
+            </ol>
+            <p>Ezzel a felhasználói felülettel készen is vagyunk! Azért a biztonság kedvéért nézzük meg, 
+            hogy tényleg úgy néz-e ki, ahogy szeretnénk: futtassuk az alkalmazást!</p>
+            ***TODO KÉP***
+            <div class="possible-error">
+                <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
+                    verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
+                    apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
+                <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
+            </div>
+        </section>
+        <section id="sensorIntro">
+            <div class="misc-inf">
+                <h2>Kitérő – Szenzorok használata</h2>
+                <p>A telefonunkban rengeteg érzékelő (szenzor) van. Ezeknek az eszközöknek nagyon különböző működésük van. 
+                    Gondoljunk például a GPS-re, ami körülbelül 5 másodpercenként meg tudja mérni a helyzetünket elég pontosan, 
+                    ezzel szemben a hőmérő egy elég pontatlan eszköz, és elég ritkán méregetjük, viszont a telefon forgatását 
+                    mérő giroszkóp állapotára a másodperc töredéke alatt szeretnénk reagálni. És persze itt van a 
+                    közelségérzékelő is, amit ebben a leckében fogunk használni: egy elég pontatlan szerkezet, de 
+                    viszonylag gyorsan kell reagálnia.</p>
+                <p>Szükség van egy egységes rendszerre, ez a rendszer pedig a feliratkozásos rendszer. 
+                    A programunk feliratkozik egy tetszőleges érzékelő üzeneteire/méréseire</p>
+                <p>Hasonlatként nézzük meg, hogy miként működik a feliratkozás a való életben. Tegyük fel például, 
+                    hogy szeretnénk feliratkozni a nagyon menő <em>Zöld Droid</em> magazinra, amit a helyi postahivatalnál érhető el.
+                    Mi történne?</p>
+                <ul>
+                    <li>Kezdésként nem árt, ha van egy címünk/postaládánk, ahová az újságot kézbesíteni lehet</li>
+                    <li>Meg kell keresnünk a postahivatalt.</li>
+                    <li>Ha ez megvan, akkor elmehetünk a postahivatalra, és feliratkozhatunk az áhított <em>Zöld Droid</em> magazinra.</li>
+                    <li>Kész is vagyunk, csak győzzük olvasni a sok magazin példányunkat!</li>
+                    <li>Még azt érdemes megemlíteni, hogy le is illik iratkozni a postahivatalnál, ha már nem vagyunk kíváncsiak a magazinra.</li>
+                </ul>
+                <img src="/static/img/l05/04_post.png" class="center-block">
+                <p>Szóval az Android rendszer érzékelői is ehhez hasonlóan működnek.</p>
+                <ul>
+                    <li>El kell érnünk, hogy a <code>KozelsegActivity</code>-nk olyan legyen, mint egy postaláda, 
+                        és fogadhasson érzékeléseket/üzeneteket.</li>
+                    <li>Meg kell keresnünk és el kell tárolnunk egy változóban a rendszer <code>SensorManager</code>-ét. 
+                        Ez a Manager osztály itt a postahivatal, akinél fel- és le lehet iratkozni a mérésekre.</li>
+                    <li>Jeleznünk kell a <code>SensorManager</code>-nél, hogy innentől kezdve szeretnénk értesülni minden olyan adatról, 
+                        amit a közelségérzékelő rögzített.</li>
+                    <li>Ha a programunk végzett, akkor iratkozzunk le az összes üzenetről.</li>
+                </ul>
+                <img src="/static/img/l05/05_postSensor.png" class="center-block">
+            </div>
+        </section>
+        <h2>
+            Java program megírása</h2>
+        <section id="task_1">
+                <h3 class="task">1. feladat - Felkészülés az értékek fogadására</h3>
+                <p>Az érzékelő által közölt értékeket a KozelsegActivity-nk fogja fogadni. 
+                Ehhez azonban néhány apróbb átalakítást kell rajta elvégeznünk. 
+                Egészen pontosan azt kell elérnünk, hogy úgy kívülről úgy nézzünk ki, mint egy postaláda, 
+                azaz egy <code>SensorEventListener</code>. Ehhez módosítanunk kell az osztályunk nevének sorát, 
+                illetve meg kell írnunk a <code>SensorEventListener</code> két függvényét is.</p>
+                <img src="/static/img/l05/06_letterbox.png" class="center-block">
+                <ul>
+                    <li><p>Azt szeretnénk, hogy a KozelsegActivity osztályunk már ne csak egy átlagos Activity legyen, 
+                    hanem úgy is viselkedjen, mint egy <code>SensorEventListener</code>. SensorEvent-eket akarunk fogadni! 
+                    A fájl teteje felé keressük meg azt a sort, ami a <code>public class KozelsegActivity</code> szavakkal kezdődik, 
+                    és a megfelelő helyre írd be a következőt: <code>implements&nbsp;SensorEventListener</code></p></li>
+                    *****TODO KEPEK******
+                    <li><p>Nem elég azt mondanunk, hogy mostantól olyanok vagyunk, mint egy <code>SensorEventListener</code>.
+                        Ilyenkor <strong>kötelező</strong> megírnunk a <code>SensorEventListener</code> osztály két nagyon fontos függvényét is:</p>
+                        <ol>
+                            <li>Az üzenetek/értékek fogadására:<p><code>public void onSensorChanged(SensorEvent event)</code></p></li>
+                            <li>Illetve van még egy másik függvényünk is, amivel egyelőre nem foglalkozunk:<p>
+                            <code>public void onAccuracyChanged(Sensor sensor, int accuracy)</code></p></li>
+                        </ol>
+                    </li>
+                </ul>
+                <p>Hogyan tudod a lehető legegyszerűben létrehozni ezeket a függvényeket? Ha megírtad az előző lecke <em>logging</em> szorgalmiját, 
+                akkor remélhetőleg már tudod is a választ! Ha nem, akkor kövesd az alábbiakat:</p>
+                <ol>
+                    <li>A már meglévő függvényeink záró kapcsos zárójele után hagyjunk ki egy sort, majd
+                        kezdjük el beírni ay új függvényünk nevét (mondjuk először legyen <code>onSensorChanged</code>).</li>
+                    <li>Ha az első 4-5 karakter leütése után felnézünk a képernyőre, láthatjuk, hogy megjelent
+                        egy kis ablak, benne egy csomó olyan függvénnyel, aminek a nevében szerepel valahol
+                        az <code>onSen</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
+                        nekünk szükségest, de ez nem okozhat gondot, hiszen csak egy olyan van, aminek
+                        a neve <code>onSensorChanged</code>.
+                        ******TODO KEP*********</li>
+                     <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), majd
+                        nyomjunk ENTER-t! Ekkor az Android Studio megírja helyettünk! (<code>super</code> sor nincsen, és nem is
+                        kell, hogy legyen!)</li>
+                </ol>
+                <p>Ne felejtsd el ehhez hasonlóan megírni az <code>onAccuracyChanged</code> függvényt is.</p>
+                <p>Próbáljuk meg futtatni a programunkat. Ha valahol valami nem működik, vagy hibát ír ki, 
+                    akkor nézzük meg újra, hogy pontosan követtük-e a leírást! 
+                    Ha még ezután sem sikerül futtatni, akkor küldd el a java fájlodat emailben, 
+                    vagy tömörítsd be a projektedet egy zip fájlba, és használd a honlapunk 
+                    <a href="http://goo.gl/UMyfuL" target="_blank">új feltöltő oldalát</a>!</p>
+                <p>Hurrá! A programunk mostantól jogosult a szenzor adatainak fogadására!</p>
+         </section>
+        <section id="task_2">
+                <h3 class="task">2. feladat - Feliratkozás az adatokra</h3>
+                <p><em>Az 2. feladatban megteremtettük a lehetőséget, hogy az alkalmazásunk megkapja a szenzor által mért adatokat. 
+                    Most következik a SensorManager megkeresése és feliratkozás az üzenetekre.</em></p>
+                <h4 class="task">2.1. feladat</h4>
+                <p><em>SensorManager megkeresése és eltárolása egy változóban</em></p>
+                <p>A feladatunk szerencsére nagyon hasonlít az előző leckéhez! 
+                A <code>SensorManager</code>-t ugyanúgy kereshetjük meg, mint az előző leckében a <code>Vibrator</code>-t!</p>
+                <ol>
+                    <li><p>Hozz létre egy SensorManager típusú változót (program elején, függvényeken kívül). 
+                        Legyen a neve mondjuk <code>sensorManager</code> (kisbetűvel).</p></li>
+                    <li><p>Emlékszel még az előző leckéből, hogy melyik az az életciklus függvény, ami legelőször lefut? 
+                        Itt kerestük meg a rezgő motort is!
+                        <button data-target="entry-fun-help" class="help-link">Nem emlékszel?</button></p>
+                         <div class="help-container" id="entry-fun-help">
+                            <p>A program futásakor a legelső életciklus függvényünk az <code>onCreate</code></p>
+                            <p>Talán nézz <a href="/lessons/l04.html#lifecycle-methods" target="_blank">ide vissza</a></p>
+                        </div></li>
+                    <li><p>Ebben a függvényben rendeld hozzá a <code>sensorManager</code> változóhoz a <code>SENSOR_SERVICE</code> szolgáltatást.</p>
+                        <pre>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</pre></li>
+                </ol>
 
-<header></header>
+                <h4 class="task">2.2. feladat</h4>
+                <em>Iratkozzunk fel a szenzortól érkező adatokra, hogy valóban meg is kapjuk azokat!</em>
+                <p>Az előző leckében megismerkedtünk az alkalmazásunk életciklusával. 
+                    Az egyik feladatban elértük, hogy amíg az alkalmazásunk fut, addig rezegjen a telefon. 
+                    Most ehhez nagyon hasonló lesz a feladatunk: amíg az alkalmazás fut, addig kell "fülelnie" a szenzor adataira, 
+                    és ha leáll, akkor abba kell hagyni a figyelést.<em>(Ismétlés: melyik két függvényt kell ehhez megírnunk? Ha nem jut eszedbe, 
+                    olvasd el megint a <a href="/lessons/l04.html#lifecycle-methods" target="_blank"> 4. lecke megfelelő részeit</a>!)</em></p>
+                <ol>
+                    <li>Hozzuk létre az alkalmazásunk onResume függvényét.  Ezt a legegyszerűbben úgy tudod megtenni, 
+                    ahogy az <code>onSensorChanged</code> függvényt is létrehoztuk: kihasználva az AndroidStudio segítségét!</li>
+                    <ul>
+                        <li>Kezd el begépelni az <code>onResume</code> szó első néhány betűjét (oda, ahol a függvényt szeretnéd, hogy létrejöjjön)!</li>
+                        <li>Válaszd ki a felugró listából az <code>onResume</code> függvényt</li>
+                        <li>Enter</li>
+                        ******TODO KEP????******
+                    </ul></li>
+                    <li>
+                        A függvény törzsébe a már meglévő <code>super</code>super sor után írjuk be a következő sort, 
+                        amivel megkeressük, hogy konkrétan melyik szenzorra szeretnénk feliratkozni:
+                        <pre>Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);</pre>
+                        <p>Ez talán némi magyarázatra szorulhat:</p>
+                        <p>A sensorManager változónk a rendszer azon központi részére mutat, ami az összes szenzorral kapcsolatos dolgot kezeli. 
+                            A fenti sorral lehet kérni a managertől egy adott funkciójú (<code>Sensor.TYPE_PROXIMITY</code>) változót, 
+                            és azt elmenteni egy Sensor típusú, proximity nevű változóba. 
+                            A <code>Sensor.TYPE_PROXIMITY</code> a közelségérzékelő szenzorra utal.</p>
+                        <p>Ez nagyon hasonlít arra, ahogy a felhasználói felület komponenseit lehet megkeresni:</p>
+                        ********TODO TÁBLÁZAT**********
+                    </li>
+                    <li>
+                        Ez alá írjuk meg a feliratkozást elvégző kódot:
+                        <pre>sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_UI);</pre>
+                        <p>Mazarázat: A sensorManager megfelelő függvényét meghívva tudunk feliratkozni (regisztrálni) a szenzor által küldött adatokra. A függvények három paramétere van:</p>
+                        <ul>
+                            <li>ki szeretne feliratkozni (<code>this</code> – azaz ez az alkalmazás)</li>
+                            <li>melyik szenzorra (<code>proximity</code> – amit az imént kerestünk meg)</li>
+                            <li>milyen sűrűn kérjük az adatokat.</li>
+                        </ul>
+                    </li>
 
-<div class="container">
+                </ol>
 
-    <h1>5. lecke
-        <small>Közelségérzékelő szenzor használata</small>
-    </h1>
-	<hr/>
-    <p>...</p>
+        </section>
+        <section id="task-3">
+            <h3 class="task">3. feladat - Az adatok feldolgozása</h3>
+            <p><em>Írjuk meg a szenzorból érkező adatot kiolvasó, feldolgozó és megjelenítő kódot!</em></p>
+            <p>Most, hogy már megfelelően felkészítettük az alkalmazásunkat arra, hogy fogadja a szenzorból érkező adatokat, 
+                és a rendszert is értesítettük arról, hogy szeretnénk megkapni azokat, már csak egy dolog van hátra: <em>
+                valamit kezdeni kéne az adatokkal</em>!</p>
+            <p>Emlékezzünk vissza, hogy hol érkeznek az adatok? A kapcsolódási ponton keresztül, 
+                ami jelen esetben az <code>onSensorChanged</code> nevű függvény. Ez a függvény akkor fut le, amikor a szenzor 
+                jelzi a rendszernek, hogy változást érzékelt, és új adatokkal tud szolgálni. 
+                A friss adatok a függvény paraméterében (ami egy <code>SensorEvent</code> típusú, <code>event</code> nevű változó) 
+                találhatók.</p>
+            <p>Nekünk csak annyi a dolgunk, hogy kiolvassuk az event változóból a szenzor által mért értéket, és megírjuk, 
+                hogy ez alapján mit csináljon a program (pl. különböző értékekre más-más szöveget írjon ki.)</p>
+            <h4 class="task">3.1 feladat</h4>
+            <ol>
+                <li>Keressük meg az <code>onSensorChanged</code> függvényünket.</li>
+                <li>A törzsében deklaráljunk egy új változót, aminek a típusa <float>float</float>, a neve pedig <code>ertek</code>.
+                    A <code>float</code> típusú változók <em>nem egész</em> számokat tudnak tárolni (pl.: <code>0.5</code> <code>3.14</code> <code>4.4567</code>,  
+                    Pascal <code>real</code> típusához hasonlóan). Erre azért van szükség, mert a szenzorok minden esetben ilyen, 
+                    nem egész szám formában adják meg a mért értéket.</li>
+                <li>A változónak adjuk értékül a mért adatot! Ezt az <code>event.values[0]</code> kifejezéssel tudjuk kiolvasni a függvényünk paraméteréből.</li>
+            </ol>
+            Nem sikerült követni a fentieket? <button data-target="help_3.1" class="help-link">Katt a teljes függvényhez!</button></p>
+            <div class="help-container" id="help_3.1">
+                <pre data-include="/include/l05/help_3.1.java"></pre>
+            </div>
 
-    <h3 id="project-import">Projekt importálása</h3>
-    <p>Az előzőekhez hasonlóan ebben a leckében is egy előkészített projektben fogunk dolgozni,
-        hogy a még nem szükséges dolgok ne zavarjanak, ellenben a már jó ismert TODO sorok
-        segítsenek minket a lecke során.
-    </p>
-    <p><a href="https://github.com/dkrmg-android/L05-SensorIntro/releases/download/v1.0-skeleton/L05-SensorIntro.zip">Erről a linkről</a>
-        töltsük le az előkészített projektet, csomagoljuk ki az eddigi projektek mellé, majd importáljuk be az
-        Android Studioba! <br/>
-        <em>(Ha elakadtok, kövessétek a 3. leckében leírt útmutatót!)</em>
-    </p>
+            <div class="misc-info">
+                <p>Az event.value egyébként egy <code>float</code> típusú számokat tároló <strong>tömb</strong>, 
+                    és annak a nulladik elemét olvassuk ki (Igen, a programozók előszeretettel indítják nullától a számozást egy helyett). 
+                    Azért egy tömbben érkeznek az adatok, hogy azok a szenzorok, 
+                    is használhatóak legyenek, amik egyszerre több mindent mérnek (pl.: GPS ko-ordináták).</p>
+            </div>
 
-</div>
+            <p>Ezzel elértük, hogy a szenzor által mért érték az <code>ertek</code> változóban van, már csak fel kell dolgoznunk.</p>
 
-<footer></footer>
+            <h4 class="task">3.2. feladat</h4>
+            <p>A szenzorból megszerzett adat feldolgozása nagyon hasonló a 3. leckében megtanult módszerhez, 
+                amivel a játékos által beírt tippet dolgoztuk fel. 
+                (Ha nem emlékszel az elágazásokra (<code>if(feltetel) { }</code>), akkor lapozz gyorsan vissza, mielőtt tovább olvasnál!</p>
+            <p>A közelségérzékelő szenzor két féle értéket adhat vissza:</p>
+            <ul>
+                <li>0 - a szenzor KÖZEL állapotot érzékel</li>
+                <li>>0 - a szenzor TÁVOL állapotot érzékel</li>
+            </ul>
+            <p>A Java kódunkban ezt könyedén kifejezhetjük:</p>
+            <pre data-include="/include/l05/ifelse.java"></pre>
 
-<script type="text/javascript">
-    $(function () {
-        $.get('/include/header.html', function (data) {
-            $('header').html(data);
-        });
-        $.get('/include/footer.html', function (data) {
-            $('footer').html(data);
-        });
+            <p>Ennek megfelelően írj egy if-then-else elágazást a 4.1. feladatban is használt onSensorChanged nevű függvénybe, a 4.1. feladatot folytatva. </p>
+            <p><strong>HA</strong> a szenzor közel állapotot érzékelt,<br />
+                <strong>AKKOR</strong> írd ki az 1. feladatban létrehozott TextView komponensre, hogy “Közel van!”,<br />
+                <strong>KÜLÖNBEN</strong> írd ki az 1. feladatban létrehozott TextView komponensre, hogy “Távol van!”!</p>
+            <p><em>ne feledd: A kijelzo azonosítójú TextView komponenshez még nincs változó létrehozva a kódban</em></p>
 
-        pageInit();
-    });
-</script>
+            <p>Kell egy kis segítség? <button data-target="help_3.2" class="help-link">Katt!</button></p>
+            <div class="help-container" id="help_3.2">
+                <ul>
+                    <li>Ahhoz, hogy ellenőrizd, két érték egyenlő-e, használd a <code>==</code> műveletet (pl. <code>kiskutya.neve == "Bodri"</code>)</li>
+                    <li>A kijelzo azonosítójú TextView komponenshez még nincs változó létrehozva a kódban. Ezt a TODO 4.2a és 4.2b sorok helyén pótold 
+                    az előző leckék alapján! Tudod: változó deklarálása, majd findViewById-vel hozzárendelés</li>
+                </ul>
+            </div>
+        </section>
+        <section id="task-4">
+            <h3 class="task">4. feladat - leiratkozás</h3>
+            <p><em>Az alkalmazásból kilépéskor/felfüggesztésekor iratkozzunk le a szenzor adatairól!</em></p>
+            <p>A 3.1. feladatban az alkalmazás indulásakor feliratkozunk a szenzor adataira. 
+                Viszont a leiratkozást még nem írtuk meg, így most ugyan az történik, 
+                mint az előző leckében a rezgéssel (csak kevésbé látványos): folyamatosan kéri az alkalmazás a szenzor adatokat, 
+                ami nem jó, mert ehhez áram kell, és gyorsabban meríti az akksit.</p>
+            <p>Az előző leckében már megismert <code>onPause</code> függvény használatával iratkozzunk le a szenzor adatairól!</p>
+            <ol>
+                <li>Hozzuk létre az alkalmazás <code>onPause</code> függvényét. Ezt ugyanúgy tehetjük meg, mint ahogyan az onResume 
+                    függvényt is megírtuk: az Android Studio segítőkészségét kihasználva. 
+                    Tudod, elég ha elkezded beírni a függvényed nevét a megfelelő helyre, 
+                    és az Android Studio rögtön felajánlja, hogy befejezi helyetted a kiválasztott függvényt.</li>
+                <li>A függvény törzsébe a <code>super</code> sor után hívjuk meg a <code>sensorManager</code> változónk 
+                    <code>unregisterListener</code> függvényét. A függvény egyetlen paramétere az, aki le akar iratkozni: <code>this</code>, 
+                    tehát ez az Activity.
+                    <p>Kell egy kis segítség? <button data-target="help_4" class="help-link">Katt!</button></p>
+                    <div class="help-container" id="help_4">
+                        <pre>sensorManager.unregisterListener(this);</pre>
+                    </div>
+                    </li>
+            </ol>
+        </section>
+        <p><em>Futtasd a programot!</em></p>
+        <p>Ha végeztél, akkor küldd el nekünk a KozelsegActivity.java fájl tartalmát egy emailben, vagy töltsd fel a java fájlt 
+        (esetleg az egész projektet tömörítve) a <a href="http://goo.gl/UMyfuL" target="_blank">szakkör feltöltő oldalán keresztül</a>!</p></p>
+        <section id="szorgalmi">
+        <h2>Szorgalmi feladat</h2>
+        ***** TODO *****
+    </div>
 
+    <footer data-include="/include/footer.html"></footer>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 </body>
 </html>

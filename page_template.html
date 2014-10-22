@@ -1,49 +1,38 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-
-    <title>---------- TITLE ---------------</title>
-
+    <title>---------------------TITLE------------------------</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
     <link rel="stylesheet" href="/static/css/stsheet.css">
-
     <!-- bootstrap stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-    <script type="text/javascript">
-        function pageInit() {
-
-        }
-    </script>
-
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+        type="text/css" rel="stylesheet" title="Featherlight Styles" />
 </head>
 <body>
-
-    <header></header>
-
+    <header data-include="/include/header.html"></header>
     <div class="container">
-
         -------------------------- PAGE CONTENT ---------------------------
-
+        <p>
+            <button data-target="help_1.1" class="help-link">
+                WHAT IS THE MEANING OF THE UNIVERSE?</button></p>
+        <div class="help-container" id="help_1.1">
+            <p>
+                This is easy</p>
+            <pre>return 42;</pre>
+        </div>
+        </p>
+        <p>
+            <img src="/static/img/android.jpg">
+        </p>
     </div>
-
-    <footer></footer>
-
-    <script type="text/javascript">
-        $(function () {
-            $.get('/include/header.html', function (data) {
-                $('header').html(data);
-            });
-            $.get('/include/footer.html', function (data) {
-                $('footer').html(data);
-            });
-
-            pageInit();
-        });
-    </script>
-
+    <footer data-include="/include/footer.html"></footer>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 </body>
 </html>
