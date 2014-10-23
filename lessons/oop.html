@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OOP</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+        type="text/css" rel="stylesheet" title="Featherlight Styles" />
+</head>
+<body>
+    <header data-include="/include/header.html"></header>
+    <div class="container">
+        <h1>
+            A Programunk Szerkezete <small>OOP</small>
+        </h1>
+        <p>
+            <em>Ezen az oldalon megpróbáljuk segíteni a Java program szerkezetének megértésében</em>
+        </p>
+        <p>
+            <strong>Tehát: az egész lecke a Java kódról szól. Ennek semmi köze a program felhasználó felületéhez (layout)!</strong>
+        </p>
+        <p>Először is csukd be az Android Studio-t, ha véletlenül nyitva lenne! A lecke elején nincsen szükséged semmire, csak az agyadra, illetve papír/ceruzára!</p>
+        <h2>Mik is azok osztályok, objektumok?</h2>
+        <p><em>Kicsit messziről indulunk, de megígérhetjük: ha megérted az objektumok működését, akkor semmilyen Jva program nem fog nagy nehézséget okozni</em></p>
+        <p>Az ember természeténél fogva szeret kategorizálni. Ha találkozunk egy bonyolult tárggyal, szeretjük besorolni valamilyen ismert rendszerbe, 
+            akár színénél, formájánál, akár működésénél fogva</p>
+        <p>Mondok egy példát: ha meglátsz az utcán egy kutyát, akkor rámutatsz és mit mondasz? <em>Az ott egy <strong>kutya</strong></em>!</p>
+        <p>És ezzel a rövid kis mondattal rengeteget mondtál, hiszen mindenki tudja, hogy mi a az <strong>kutya</strong>.</p>
+        <p>Miért van ez? Mert mindenki tudja, hogy a kutyáknak vannak bizonyos <strong>tulajdonságai</strong> és <strong>cselekvései</strong>.
+            Ezt általában egy rajzon szoktuk ábrázolni (amikor a programunk bonyolultnak tűnik, mindig rajzolunk!)</p>
+        <p>A rajzunk gyakorlatilag egy kis doboz, aminek 3 része van:</p>
+        <ul>
+            <li>Felül annak a neve, amit le akarunk írni. Ezt hívhatjuk osztálynak, vagy típusnak is. Pl. Kutya</li>
+            <li>Középen vannak a tulajdonságok.</li>
+            <li>Alul pedig a cselekvések, amit egy kutya végre tud hajtani</li>
+        </ul>
+        <img src="/static/img/oop/01_kutya.png" class="center-block"/>
+        <p>A fenti rajz valamiképpen leírja a kutya fogalmát. A leírás nem túl részletes, de a célnak megfelel.</p>
+        <p><em>Figyeld meg, hogy a cselekvések után oda szoktuk írni a zárójeleket! ()</em></p>
+        <h3>Mi köze a kutyának a programozáshoz?</h3>
+        <p>Közvetlenül természetesen semennyi. De a fentihez hasonló ábrákkal a programozás során gyakran találkozhatsz.</p>
+        <p>Például beszélhetnénk a képernyőre kirajzolható gombról (Button). A gomboknak is vannak tulajdonságai, illetve vannak cselekvései!</p>
+        <p></p>
+        <img src="/static/img/oop/02_button.png" class="center-block"/> 
+        <p>Ezzel le is tudjuk írni általánosságban a gombok működését. A részletekkel, hogy pl. a kirajzoláskor mi történjen, itt nem is foglalkozunk!</p>
+
+        <h3 class="task">1. feladat</h3>
+        <p>Vegyél elő egy szép kis fehér papír lapot (vagy használhatod a Paint programot, mint mi). És rajzolj néhány, a fentiekhez hasonló ábrát</p>
+        <ul>
+            <li>Különösen szeretnénk tudni, hogy szerinted hogyan néz ki egy általános <strong>Macska</strong> (tulajdonságok és cselekvések)</li>
+            <li>Rajzolj egy ábrát a <strong>Számítógép</strong> osztályhoz (tehát milyen egy általános számítógép. Milyen tulajdonságai és cselekvései vannak. kijelző méret stb. | bekapcsol, kikapcsol, stb.)</li>
+            <li>Rajzolj egy ábrát az <strong>Ember</strong> osztályhoz. Milyen tulajdonságokat tudnál írni az emberekhez (magasság, stb). Milyen cselekvések vannak (gondolkozz, stb)?</li>
+        </ul>
+        <p>Küldd el egy emailben a rajzaidat! Figyelj, hogy meglegyen a három része (kategória/osztály neve nagybetűvel, tulajdonságok, cselekvések)</p>
+        
+        <h3>Egy kis pontosítás</h3>
+            
+            <p>A fentiekben megtanultuk, hogy miként lehet kategóriákról (pl. egy átlag kutya), azaz osztályokról beszélni. Tehát ha egy osztályról beszélünk,
+                annak semmi köze az iskolai osztályokhoz. Az osztály egy általános fogalmat jelent. Mint például a macskák osztályával leírtad, hogy milyen tulajdonságai
+                és cselekvései vannak az átlag macskának)</p>
+            <p>Most pedig nézzük meg, hogy miként segít ez nekünk a mindennapi életben. <strong>Ha tudod, hogy egy átlag macska hogyan viselkedik, akkor abból arra is rá
+                tudsz jönni, hogy egy adott macska (mondjuk Kandúr Alfréd) hogyan viselkedhet.</strong></p>
+            <p>Példának okáért tudod, hogy <em>Kandúr Alfrédot</em> elviheted a játszótérre, nem fogja megenni a többi gyereket. De a pincében lévő egerek már nincsenek ilyen biztonságban!</p>
+            <p>Ugyanez a programozásban is nagy segítséget jelent (és nem csak akkor, ha egy olyan játékot írsz, aminek egy macska a főszereplője).
+                Például: elég egyszer kitalálnod és megírnod, hogy a képernyőn egy gomb hogyan néz ki, milyen tulajdonságai vannak és mit lehet vele csinálni. Később pedig elég egy új <em>példányt</em>
+                létrehoznod a gombodból. Teszem azt, ha új macskára van szükséged, akkor "létre hozhatod" a macska osztályú <em>Kandúr Bandit</em> is. Hasonlóan, ha kell egy gomb, ami a képernyő közepén
+                tartózkodik, és azt a szerepet szolgálja, hogy elindítsa a telefonod rezgését, akkor csak létrehozol egy új <em>gomb</em> változót.</p>
+            <h3 class="task">2. feladat</h3>
+            <p><strong>Tehát: az <em>osztály</em> egy kategóriát, egy általános leírást jelent. Ezzel szemben a <em>példány</em> egy olyan valami, amit az osztály mintájára hoztunk létre </strong></p>.
+            <p>Ezek alapján találj ki néhány <em>példányt</em> a fent említett osztályokhoz (kettőt mindegyikhez)</p>
+            <ul>
+                <li><strong>Kutya</strong> osztály példányai: </li>
+                <li><strong>Macska</strong> osztály példányai: </li>
+                <li><strong>Számítógép</strong> osztály példányai: </li>
+                <li><strong>Ember</strong> osztály példányai: </li>
+                <li><strong>Button (avagy Gomb)</strong> osztály példányai: </li>
+            </ul>
+            <p>Válaszokat emailben várjuk :)</p>
+        
+            <h2>Mi köze ennek a Java programokhoz?</h2>
+            <p>Eddig sikerült követned a leírtakat? Tudod, hogy mit jelent az <strong>osztály</strong> és a <strong>példány</strong>? Tudod mi a kettő között a különbség?</p>
+            <p>Akkor van egz hihetetlenül jó hírünk: mindent tudsz, amit egy Java program szerkezetének megértéséhez szükséges. Már csak azt kell megértened, hogy 
+            miként lesz a gyönyörű dobozos ábránkból Java kód. De ez sem nehéz!</p>
+            <p>Ne feledd, HÁROM fontos dolog van az osztály ábráinkon:</p>
+            <ul>
+                <li>Osztály neve (pl. Button)</li>
+                <li>tulajdonságok (pl. méret)</li>
+                <li>cselekvések (pl. kirajzol)</li>
+            </ul>
+            <h4>Üres osztály</h4>
+            <p>Kezdésként nézzük meg, hogy miként fest egy olyan Java osztály, aminek nincs se tulajdonsága, se cselekvése</p>
+            <pre>
+public class Kutya {
+
+}            
+            </pre>
+            <p>Az egész Java fájlodban nincs más, csak ez a néhány sor!
+            Nem hiszed, hogy létezik ilyen egyszerű program? Nézd meg, működik ez Android Studioval is:</p>
+            <img src="/static/img/oop/03_kutya.png" class="center-block"/>
+            <p>Az igazság kedvéért hozzá kell tenni, hogy a rendes működéshez az Android Studio szokott még néhány sort a fájl tetejére írni, de az minket nem érdekel
+            <strong>Csak az számít, ami az osztályon belül van!</strong></p>
+            <h4>Táglalap osztály</h4>
+            <p>Például nézzünk meg egy egyszerű geometriai osztályt: a Téglalap osztályt:</p>
+            <p>Mire gondolok pontosan téglalap alatt? Egy téglalapnak van két oldala (a,b). Illetve cselekvésként a két oldalból kiszámolhatja nekem a saját területét!
+                (ezt bezzeg matek órán nem csinálja...)</p>
+            <img src="/static/img/oop/05_teglalap.png" class="center-block" />
+            <p>De mi ezt ki tudjuk rajzolni a korábbi osztály ábránkon is!</p>
+            <img src="/static/img/oop/04_teglalap.png" class="center-block" />
+            <p>A Teglalap osztály a tulajdonságok és cselekvések nélkül így néz ki:</p>
+            <pre>
+public class Teglalap {
+
+}             
+            </pre>
+            <h4>Tulajdonságok és cselekvések</h4>
+            <p>Most töltsük ki a hiányzó dolgokat! A szabály nagyon egyszerű:</p>
+            <ul>
+                <li>Minden tulajdonságból egy változó lesz</li>
+                <li>Minden cselekvésből egy függvény lesz</li>
+                <li>Bármit is írjunk be, az osztály első (<code>public class.... {</code>) és utolsó sorát (<code>}</code>) ne bántsd! <strong>Közöttük</strong> hozhatsz létre új sorokat!</li>
+            </ul>
+            <p><strong>Változók</strong></p>
+            <p>Ugyebár a változó egy olyan <em>valami, aminek neve és típusa van</em>. Pont mint egy tulajdonság!</p>
+            <p>Mik voltak a Teglalap osztály tulajdonságai? A két oldal hossza (a,b). Ha feltételezzük, hogy ezek mindig egész számok (mondjuk milliméterben), akkor a programunk alig változik</p>
+            <pre>
+public class Teglalap {
+    
+    int a;
+    int b;
+
+}              
+            </pre>
+            <p>A tulajdonságainknak (változóknak) ott van a típusa és a neve. Ilyen egyszerű!</p>
+            <p>Figyeld meg, hogy az osztály első és utolsó sora tényleg nem változott! Gondolhatsz erre úgy, mint egy képkeretre, ami körbe foglalja a munkádat, és igény szerint nő.</p>
+            <p><strong>Cselekvések</strong></p>
+            <p>Talán egy téglalapnak megbocsátanánk, ha nem tudj a saját területét kiszámolni, de a bonyolultabb osztályoknál láthattuk, hogy tényleg szükségünk van cselekvésekre. Például
+                igen szomorúan lennénk, ha olyan kutyánk lenne, ami nem tud ugatni!</p>
+            <p>A cselekvéseket tehát Java függvényekbe írjuk át. Ezekkel futólag találkozhattál a 3. leckében, de itt most kicsit jobban szemügyre vesszük őket.</p>
+            <p>A Java függvények hasonlítanak a változókhoz, de van két fontos különbség is:</p>
+            <ul>
+                <li>A nevük mögött mindig találsz egy zárójel párt. pl. <code>()</code></li>
+                <li>A függvénynek van egy törzse is, ami megmondja: mit csináljon a függvény. Ez egy rövid kis Java program kód, ami esetünkben többnyire kevesebb mint 15 sor.</li>
+            </ul>
+            <p>Utóbbira azért van szükség, mert itt mondhatjuk el végre, hogy az adott cselekvés mit is jelent pontosan. Például ha tudjuk, hogy miként lehet kiszámolni a téglalap területét, akkor
+            semmi nem tart vissza minket a Teglalap osztály befejezésétől: </p>
+            <pre>
+ public class Teglalap {
+    
+    int a;
+    int b;
+
+    int terulet() {
+        //itt kiszámoljuk a területet. A pontos parancs mindegy is, a szerkezetre figyelj!
+        return a*b;
+    }
+
+}            
+            </pre>
+            <p>
+                Látod, hogy mi történt? A függvény első sora megmutatja, hogy mi a függvény neve (stb.), a kapcsos zárójelek között peidg beírtuk azt a programot, amit az adott cselekvéskor szeretnénk lefuttatni.
+                Tehát ha valaki megkérdezi mostantól bármely téglalp területét, akkor ez a pár sor fog lefutni a programunkból. Se több, se kevesebb.
+            </p>
+            <strong>
+                <p>A függvényünk belsejében bármi lehet, az nem változtat az osztályunk szerkezetén! Tehát a függvényne belül nem írhatunk újabb függvényeket!</p>
+                <p>A függvényen belül készíthetünk változókat, de azt az osztályunk nem látja</p>
+                <p>Amikor a program szerkezetét vizsgálod, ne is olvasd el, hogy mi van a függvényben! Csak keresd meg a függvény elejét és a végét. Kész :)</p>
+            </strong>
+
+
+            <h4>Figyeljünk a kapcsos zárójelekre. Életet mentenek!</h4>
+            <p>Láthatod, eddig ez nem túl nagy turpisság. Annyit kell csak értened, hogy a tulajdonságokból változók, a cselekvésekből pedig függvények lesznek. A szakkör során a függvény fejlécét mi adjuk neked,
+            így csak egy nagyon fontos dolgot kell észben tartanod:</p>
+            <p><strong>NE PISZKÁLD A KAPCSOS ZÁRÓJELEKET</strong>. </p>
+            <p>Ők mutatják meg az osztályod és a függvényeid határait. Mindig csak közöttük dolgozz!</p>
+            <p>Mint már mondtam, erre én úgy szeretek gondolni, mint egy képkeret. Tehetek én akárhány tulajdonságot vagy cselekvést az osztályomba, az osztály első és utolsó sora mindig ugyanaz marad!</p>.
+            <p>Hasonlóan, írhatok akármilyen bonyolult cselekvéseket, függvényeket. A függvény nyitó és záró kapcsos zárójeleit akkor sem piszkálhatom.</p>
+            <p>Tehát például az alábbi is egy szerkezetileg helyes (kissé befejezetlen) program:</p>
+            <pre>
+package hu.dkrmg.android.razor;
+
+public class MorseCode {
+    
+    private static final long EGYSEG = 100;
+
+    private static final long S = EGYSEG;
+
+    private static final long L = EGYSEG * 3;
+
+    private static final long LEUTESEK_KOZOTTI_SZUNET = EGYSEG;
+
+    private static final long BETUK_KOZOTTI_SZUNET = EGYSEG * 3;
+
+    private static final long SZAVAK_KOZOTTI_SZUNET = EGYSEG * 7;
+
+    public static long[] encode(String message) {
+        message = message.toLowerCase();
+
+        ArrayList<Long> encoded = new ArrayList<Long>();
+        encoded.add(0L); // first value is the initial delay.
+
+        for (int i = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+
+            if (c >= 'a' && c <= 'z') {
+                long[] code = morseABC[c - 'a'];
+                for (long element  : code) {
+                    encoded.add(element);
+                    encoded.add(LEUTESEK_KOZOTTI_SZUNET);
+                }
+                encoded.set(encoded.size() - 1, BETUK_KOZOTTI_SZUNET);
+            } else if (c == ' ') {
+                encoded.set(encoded.size() - 1, SZAVAK_KOZOTTI_SZUNET);
+            } else {
+                Log.w("MorseEncoder", "Can't encode character: " + c);
+            }
+        }
+    }
+}          
+            </pre>
+            <h4 class="task">3. feladat</h4>
+            <p>Vedd az előbb mutatott nagyon bonyolult kódot, és keresd meg benne az ismert részeket.</p>
+            <p>Küldd vissza nekünk emailben, bejelölve az alábbiakat: </p>
+            <ul>
+                <li>Hol kezdődik az osztály, és meddig tart? Mi a neve?</li>
+                <li>Mik a változók (azaz tulajdonságok)? Mik a neveik?</li>
+                <li>Mik a függvények (azaz cselekvések)? Hol kezdődnek és hol a végük?</li>
+            </ul>
+
+            <p>A kódban rengeteg felesleges sallang van, ezekkel ne foglalkozz! És ne feledd, az osztály tulajdonságait és függvényeit keressük. <strong>A függvényeken belül lévő
+            kód nem érdekel minket</strong>!  Függvényeken belül nincsenek már se tulajdonságok se függvények!</p>
+            <em>Javasoljuk, hogy print screennel fényképezd le az oldalt és jelöld be painttel a megoldásokat. Vagy tedd ét a szöveget Word-be, és ott színezd ki. pl a betűszín átállításával! :)</em>
+
+            <h4 class="task">4. feladat</h4>
+            <p>Sikerült megtalálni a változókat és a függvényeket az előző bonyolult kódban? Akkor talán most már láthatod, hogy milyen fontos ez a rendszer. Most mutatunk egy ismerős, hibátlan, 
+            ámde rendszerezetlen kódot a negyedik leckéből.</p>
+            <p>Hol van az osztály kezdete és vége? Hol vannak a változók (tulajdonságok)? Hol vannak a cselekvések (függvények)? Számold a kapcsos zárójeleket, és ennek alapján válaszolj (emailben)</p>
+            <pre>
+package hu.dkrmg.android.razor;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Vibrator;
+import android.view.View;
+
+
+public class MainActivity extends Activity {
+
+    Vibrator rezgoMotor;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+    }
+
+    public void rezegjOnClick(View v) {
+        rezgoMotor.vibrate(300000);
+    }
+    // eddig jó
+
+         @Override  
+    protected void onPause() {
+             super.onPause();}                  
+
+             @Override
+             protected void onResume() {
+                 super.onResume();}
+             }
+
+            </pre>
+            <p>A gond az, hogy a szép kis kapcsos zárójeles képkeretünk kicsit megrongálódott. Az osztályt lezáró zárójel </p>
+            <p>Igazítsd meg úgy a kódot, hogy átláthatóbb legyen! Ne feledd, a függvények és a tulajdonságok függőlegesen mindig egy sorban kezdődnek!</p>
+            <p>Egy kis segítség:</p>
+            <pre>
+public class Kutya {
+
+    int kor;
+
+    // szépen formázott függvény
+    void ugass()
+    {
+        // itt mmegírjuk azt a programocskát, ami az ugatáskor fut le
+    }
+
+                    // rossz helyre rakott tualjdonság
+                    int LabakSzama;
+
+                        // csúnya függvény
+                            void aludj() { }
+
+    // Mert egy szép függvény ilyen
+    void fekudj()
+    {
+        // itt mmegírjuk azt a programocskát, ami a fekvéskor fut le
+    }
+
+}   // az osztály vége
+            </pre>
+        <p>
+        <h2>És hogy ezt az egészet miért is olvastad el?</h2>
+        <p>Remélhetőleg most már érted: az Activity, ami a programunk szíve és lelke. Amiben az eddigi Java kódunkat is írtuk, nem más, mint egy osztály.</p>
+        <p><strong>A mi Activity-nk egy osztály</strong></p>
+        <p>Pl. az L04 MainActivity-je egy osztály. Ennek alapján gondoljuk újra a programunkat!</p>
+        <ul>
+            <li><p>Ha a MainActivity egy osztály (nézd meg a kódot, ha nem hiszed), akkor bizony tudjuk, hogy milyen változói/tulajdonságai vannak: a gombok, feliratok, rezgő motor</p>
+                <p>Gondolj bele. Egy kutyánál lehet, hogy a kora érdekel minket, de egy programnál az számít, hogy milyen gombjai és feliratai vannak, illetve hogy van egy rezgő motorja, amivel
+                bármikor remegtetheti a telefonunkat</p>
+            </li>
+            <li>
+                <p>Vannak függvényeink is, bár ezek többnyire eseményekről értesítenek minket. Például az <code>onPause</code>, ami gyakorlatilag ezt mondja <code>Megállítom a programodat, most még csinálhatsz valamit gyorsan!</code></p>
+            </li>
+            <li>
+                <p>ha a MainActivity az osztály, akkor láthatjuk: a MainActivity egy-egy példánya a programunk egy-egy működő példánya. Pl. futtathatod a programot két telefonon is, mind a kettő a MainActivity mintájára jön létre.
+                </p>
+            </li>
+        </ul>
+
+        <h4 class="task">5. feladat</h4>
+        <p>Rajzold meg a negyedik lecke MainActivity osztályának a dobozos osztály ábráját. Ne feledd: kell az osztály neve, a változók és a függvények.</p>
+        <p>Amit látni szeretnénk</p>
+        <ul>
+            <li>Legyen meg a lecke elejéről az 1 darab változód</li>
+            <li>Legyen 3 életciklus függvényed, illetve két függvényed/cselekvésed, ami a gombnyomásokra reagálnak</li>
+            <li>Ne írj egy sor kódot sem, csak az ábrát rajzol le a nevekkel!</li>  
+        </ul>
+        <p>A rajzodat küldd el emailben!</p>
+        <img src="/static/img/oop/06_temp.png" class="center-block" />
+
+        <p>
+            <img src="/static/img/android.jpg" class="noZoom">
+        </p>
+    </div>
+    <footer data-include="/include/footer.html"></footer>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+</body>
+</html>
