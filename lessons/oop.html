@@ -27,7 +27,7 @@
         </p>
         <p>Először is csukd be az Android Studio-t, ha véletlenül nyitva lenne! A lecke elején nincsen szükséged semmire, csak az agyadra, illetve papír/ceruzára!</p>
         <h2>Mik is azok osztályok, objektumok?</h2>
-        <p><em>Kicsit messziről indulunk, de megígérhetjük: ha megérted az objektumok működését, akkor semmilyen Jva program nem fog nagy nehézséget okozni</em></p>
+        <p><em>Kicsit messziről indulunk, de megígérhetjük: ha megérted az objektumok működését, akkor semmilyen Java program nem fog nagy nehézséget okozni</em></p>
         <p>Az ember természeténél fogva szeret kategorizálni. Ha találkozunk egy bonyolult tárggyal, szeretjük besorolni valamilyen ismert rendszerbe, 
             akár színénél, formájánál, akár működésénél fogva</p>
         <p>Mondok egy példát: ha meglátsz az utcán egy kutyát, akkor rámutatsz és mit mondasz? <em>Az ott egy <strong>kutya</strong></em>!</p>
@@ -85,7 +85,7 @@
         
             <h2>Mi köze ennek a Java programokhoz?</h2>
             <p>Eddig sikerült követned a leírtakat? Tudod, hogy mit jelent az <strong>osztály</strong> és a <strong>példány</strong>? Tudod mi a kettő között a különbség?</p>
-            <p>Akkor van egz hihetetlenül jó hírünk: mindent tudsz, amit egy Java program szerkezetének megértéséhez szükséges. Már csak azt kell megértened, hogy 
+            <p>Akkor van egy hihetetlenül jó hírünk: mindent tudsz, amit egy Java program szerkezetének megértéséhez szükséges. Már csak azt kell megértened, hogy
             miként lesz a gyönyörű dobozos ábránkból Java kód. De ez sem nehéz!</p>
             <p>Ne feledd, HÁROM fontos dolog van az osztály ábráinkon:</p>
             <ul>
@@ -110,7 +110,7 @@ public class Kutya {
             <p>Mire gondolok pontosan téglalap alatt? Egy téglalapnak van két oldala (a,b). Illetve cselekvésként a két oldalból kiszámolhatja nekem a saját területét!
                 (ezt bezzeg matek órán nem csinálja...)</p>
             <img src="/static/img/oop/05_teglalap.png" class="center-block" />
-            <p>De mi ezt ki tudjuk rajzolni a korábbi osztály ábránkon is!</p>
+            <p>De mi ezt le tudjuk írni a már ismert osztály ábrával is!</p>
             <img src="/static/img/oop/04_teglalap.png" class="center-block" />
             <p>A Teglalap osztály a tulajdonságok és cselekvések nélkül így néz ki:</p>
             <pre>
@@ -127,7 +127,7 @@ public class Teglalap {
             </ul>
             <p><strong>Változók</strong></p>
             <p>Ugyebár a változó egy olyan <em>valami, aminek neve és típusa van</em>. Pont mint egy tulajdonság!</p>
-            <p>Mik voltak a Teglalap osztály tulajdonságai? A két oldal hossza (a,b). Ha feltételezzük, hogy ezek mindig egész számok (mondjuk milliméterben), akkor a programunk alig változik</p>
+            <p>Mik voltak a Teglalap osztály tulajdonságai? A két oldal hossza (a, b). Ha feltételezzük, hogy ezek mindig egész számok (mondjuk milliméterben), akkor a programunk alig változik</p>
             <pre>
 public class Teglalap {
     
@@ -175,8 +175,10 @@ public class Teglalap {
             <h4 class="task">3. feladat</h4>
             <p>Írd meg az általad tervezett Macska osztály Java kódját. Amit szeretnénk:</p>
             <ul>
-                <li>Változók. A pítusa mindegy, lehet mondjuk <code>Szin szemSzin;</code> vagy <code>Szoveg nev;</code> Nem az a lényeg, hogy leforduljon a program, csak a szerkezet és a zárójelek legyenek a helyükön!</li>
-                <li>Függvények. Csak írd be a függvény nevét, és legyenek zárójelek</li>
+                <li><strong>Változók.</strong> A pítusa mindegy, lehet mondjuk <code>Szin szemSzin;</code> vagy <code>Szoveg nev;</code>
+                    Nem az a lényeg, hogy leforduljon a program, csak a szerkezet és a zárójelek legyenek a helyükön!
+                    Talán az lenne a legjobb, ha papíron, vagy a Jegyzettömb-ben írnád, hogy ne zavarjanak az Android Studio hibaüzenetei.</li>
+                <li><strong>Függvények.</strong> Csak írd be a függvény nevét, és legyenek zárójelek</li>
             </ul>
             <p>Pl.</p>
             <pre>
@@ -200,7 +202,8 @@ public class Teglalap {
             így csak egy nagyon fontos dolgot kell észben tartanod:</p>
             <p><strong>NE PISZKÁLD A KAPCSOS ZÁRÓJELEKET</strong>. </p>
             <p>Ők mutatják meg az osztályod és a függvényeid határait. Mindig csak közöttük dolgozz!</p>
-            <p>Mint már mondtam, erre én úgy szeretek gondolni, mint egy képkeret. Tehetek én akárhány tulajdonságot vagy cselekvést az osztályomba, az osztály első és utolsó sora mindig ugyanaz marad!</p>.
+            <p>Mint már mondtam, erre én úgy szeretek gondolni, mint egy képkeret. Tehetek én akárhány tulajdonságot vagy
+                cselekvést az osztályomba, az osztály első és utolsó sora mindig ugyanaz marad!</p>
             <p>Hasonlóan, írhatok akármilyen bonyolult cselekvéseket, függvényeket. A függvény nyitó és záró kapcsos zárójeleit akkor sem piszkálhatom.</p>
             <p>Tehát például az alábbi is egy szerkezetileg helyes (kissé befejezetlen) program:</p>
             <pre>
@@ -223,7 +226,7 @@ public class MorseCode {
     public static long[] encode(String message) {
         message = message.toLowerCase();
 
-        ArrayList<Long> encoded = new ArrayList<Long>();
+        ArrayList&lt;Long&gt; encoded = new ArrayList&lt;Long&gt;();
         encoded.add(0L); // first value is the initial delay.
 
         for (int i = 0; i < message.length(); i++) {
@@ -247,6 +250,7 @@ public class MorseCode {
             </pre>
             <h4 class="task">4. feladat</h4>
             <p>Vedd az előbb mutatott nagyon bonyolult kódot, és keresd meg benne az ismert részeket.</p>
+            <em>Javasoljuk, hogy print screennel fényképezd le az oldalt és jelöld be painttel a megoldásokat. Vagy tedd ét a szöveget Word-be, és ott színezd ki. pl a betűszín átállításával! :)</em>
             <p>Küldd vissza nekünk emailben, bejelölve az alábbiakat: </p>
             <ul>
                 <li>Hol kezdődik az osztály, és meddig tart? Mi a neve?</li>
@@ -254,11 +258,10 @@ public class MorseCode {
                 <li>Mik a függvények (azaz cselekvések)? Hol kezdődnek és hol a végük?</li>
             </ul>
 
-            <p>A kódban rengeteg felesleges sallang van, ezekkel ne foglalkozz! És ne feledd, az osztály tulajdonságait és függvényeit keressük. <strong>A függvényeken belül lévő
+            <p>A kódban rengeteg (jelenleg) felesleges sallang van, ezekkel ne foglalkozz! És ne feledd, az osztály tulajdonságait és függvényeit keressük. <strong>A függvényeken belül lévő
             kód nem érdekel minket</strong>!  Függvényeken belül nincsenek már se tulajdonságok se függvények!</p>
-            <em>Javasoljuk, hogy print screennel fényképezd le az oldalt és jelöld be painttel a megoldásokat. Vagy tedd ét a szöveget Word-be, és ott színezd ki. pl a betűszín átállításával! :)</em>
 
-            <h4 class="task">5. feladat</h4>
+            <h4 id="task_5" class="task">5. feladat</h4>
             <p>Sikerült megtalálni a változókat és a függvényeket az előző bonyolult kódban? Akkor talán most már láthatod, hogy milyen fontos ez a rendszer. Most mutatunk egy ismerős, hibátlan, 
             ámde rendszerezetlen kódot a negyedik leckéből.</p>
             <p>Hol van az osztály kezdete és vége? Hol vannak a változók (tulajdonságok)? Hol vannak a cselekvések (függvények)? Számold a kapcsos zárójeleket, és ennek alapján válaszolj (emailben)</p>
@@ -307,20 +310,18 @@ public class Kutya {
     int kor;
 
     // szépen formázott függvény
-    void ugass()
-    {
+    void ugass() {
         // itt mmegírjuk azt a programocskát, ami az ugatáskor fut le
     }
 
-                    // rossz helyre rakott tualjdonság
+                    // rossz helyre rakott tulajdonság
                     int LabakSzama;
 
                         // csúnya függvény
                             void aludj() { }
 
     // Mert egy szép függvény ilyen
-    void fekudj()
-    {
+    void fekudj() {
         // itt mmegírjuk azt a programocskát, ami a fekvéskor fut le
     }
 
@@ -329,7 +330,7 @@ public class Kutya {
         <p>
         <h2>És hogy ezt az egészet miért is olvastad el?</h2>
         <p>Remélhetőleg most már érted: az Activity, ami a programunk szíve és lelke. Amiben az eddigi Java kódunkat is írtuk, nem más, mint egy osztály.</p>
-        <p><strong>A mi Activity-nk egy osztály</strong></p>
+        <p><strong>A mi Activity-nk egy osztály.</strong></p>
         <p>Pl. az L04 MainActivity-je egy osztály. Ennek alapján gondoljuk újra a programunkat!</p>
         <ul>
             <li><p>Ha a MainActivity egy osztály (nézd meg a kódot, ha nem hiszed), akkor bizony tudjuk, hogy milyen változói/tulajdonságai vannak: a gombok, feliratok, rezgő motor</p>
