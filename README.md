@@ -1,4 +1,5 @@
-dkrmg-android.github.io
-=======================
+DKRMG Android Szakkör
+====================
 
-honlap ======  This is the repository that will store our public website for the time. future actions tbd  To visit our website, please go to dkrmg-android.github.io/honlap
+Kérjük látogass el a honlapunkra:
+http://dkrmg-android.github.io
