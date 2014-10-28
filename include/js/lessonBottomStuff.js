@@ -31,7 +31,7 @@ $(function ($) {
 
     });
 });
-$.noConflict();
+//$.noConflict();
 
 // init page and init the helper buttons
 function pageInit() {
