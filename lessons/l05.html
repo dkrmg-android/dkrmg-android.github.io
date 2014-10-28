@@ -145,7 +145,7 @@
                     <li>Azt szeretnénk, hogy a KozelsegActivity osztályunk már ne csak egy átlagos Activity legyen,
                         hanem úgy is viselkedjen, mint egy <code>SensorEventListener</code>. SensorEvent-eket akarunk fogadni!
                         A fájl teteje felé keressük meg azt a sort, ami a <code>public class KozelsegActivity</code> szavakkal kezdődik,
-                        és a megfelelő helyre írd be a következőt: <code>implements&nbsp;SensorEventListener</code>
+                        és a megfelelő helyre írd be a következőt: <code>implements&nbsp;SensorEventListener</code> <span class="todo">TODO 1.1</span>
                         <img src="/static/img/l05/implements1.png" class="center-block" />
                     </li>
                     <li><p>Nem elég azt mondanunk, hogy mostantól olyanok vagyunk, mint egy <code>SensorEventListener</code>.
@@ -161,7 +161,7 @@
                 akkor remélhetőleg már tudod is a választ! Ha nem, akkor kövesd az alábbiakat:</p>
                 <ol>
                     <li>A már meglévő függvényeink záró kapcsos zárójele után hagyjunk ki egy sort, majd
-                        kezdjük el beírni ay új függvényünk nevét (mondjuk először legyen <code>onSensorChanged</code>).</li>
+                        kezdjük el beírni az új függvényünk nevét <span class="todo">TODO 1.2</span> (mondjuk először legyen <code>onSensorChanged</code>).</li>
                     <li>Ha az első 4-5 karakter leütése után felnézünk a képernyőre, láthatjuk, hogy megjelent
                         egy kis ablak, benne egy csomó olyan függvénnyel, aminek a nevében szerepel valahol
                         az <code>onSen</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
@@ -353,7 +353,7 @@
         <section id="task-4">
             <h3 class="task">4. feladat - leiratkozás</h3>
             <p><em>Az alkalmazásból kilépéskor/felfüggesztésekor iratkozzunk le a szenzor adatairól!</em></p>
-            <p>A 3.1. feladatban az alkalmazás indulásakor feliratkozunk a szenzor adataira. 
+            <p>A 2.2. feladatban az alkalmazás indulásakor feliratkozunk a szenzor adataira.
                 Viszont a leiratkozást még nem írtuk meg, így most ugyan az történik, 
                 mint az előző leckében a rezgéssel (csak kevésbé látványos): folyamatosan kéri az alkalmazás a szenzor adatokat, 
                 ami nem jó, mert ehhez áram kell, és gyorsabban meríti az akksit.</p>
