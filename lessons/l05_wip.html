@@ -79,12 +79,16 @@
                     (Ékezetek nélkül. Emélkszel, hogy mire is jó ez a tulajdonság? <button data-target="help_id" class="help-link">Nem?</button>).
                      <div class="help-container" id="help_id">
                         <p>Az <strong>id</strong> azonosító alapján tudunk a java kódból később a komponenseinkre hivatkozni. Pl. <code>R.id.ezEgyId</code></p>
-                    </div></li>
+                    </div>
+                    <div class="imgstore">
+                        <img src="/static/img/l05/layout1.png" class="center-block" />
+                        <img src="/static/img/l05/layout2.png" class="center-block" />
+                    </div>
+                </li>
                 <li>Ezen kívül tetszőlegesen lehet módosítgatni a már ismert tulajdonságokat! :)</li>
             </ol>
             <p>Ezzel a felhasználói felülettel készen is vagyunk! Azért a biztonság kedvéért nézzük meg, 
             hogy tényleg úgy néz-e ki, ahogy szeretnénk: futtassuk az alkalmazást!</p>
-            ***TODO KÉP***
             <div class="possible-error">
                 <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
                     verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
@@ -138,11 +142,12 @@
                 illetve meg kell írnunk a <code>SensorEventListener</code> két függvényét is.</p>
                 <img src="/static/img/l05/06_letterbox.png" class="center-block">
                 <ul>
-                    <li><p>Azt szeretnénk, hogy a KozelsegActivity osztályunk már ne csak egy átlagos Activity legyen, 
-                    hanem úgy is viselkedjen, mint egy <code>SensorEventListener</code>. SensorEvent-eket akarunk fogadni! 
-                    A fájl teteje felé keressük meg azt a sort, ami a <code>public class KozelsegActivity</code> szavakkal kezdődik, 
-                    és a megfelelő helyre írd be a következőt: <code>implements&nbsp;SensorEventListener</code></p></li>
-                    *****TODO KEPEK******
+                    <li>Azt szeretnénk, hogy a KozelsegActivity osztályunk már ne csak egy átlagos Activity legyen,
+                        hanem úgy is viselkedjen, mint egy <code>SensorEventListener</code>. SensorEvent-eket akarunk fogadni!
+                        A fájl teteje felé keressük meg azt a sort, ami a <code>public class KozelsegActivity</code> szavakkal kezdődik,
+                        és a megfelelő helyre írd be a következőt: <code>implements&nbsp;SensorEventListener</code>
+                        <img src="/static/img/l05/implements1.png" class="center-block" />
+                    </li>
                     <li><p>Nem elég azt mondanunk, hogy mostantól olyanok vagyunk, mint egy <code>SensorEventListener</code>.
                         Ilyenkor <strong>kötelező</strong> megírnunk a <code>SensorEventListener</code> osztály két nagyon fontos függvényét is:</p>
                         <ol>
@@ -162,7 +167,13 @@
                         az <code>onSen</code> karaktersorozat. Ezek közül már a mi feladatunk kiválasztani a
                         nekünk szükségest, de ez nem okozhat gondot, hiszen csak egy olyan van, aminek
                         a neve <code>onSensorChanged</code>.
-                        ******TODO KEP*********</li>
+                        <div class="imgstore">
+                            <img src="/static/img/l05/autoComplete1.png" class="center-block" />
+                            <img src="/static/img/l05/autoComplete2.png" class="center-block" />
+                            <img src="/static/img/l05/autoComplete3.png" class="center-block" />
+                            <img src="/static/img/l05/autoComplete4.png" class="center-block" />
+                        </div>
+                        </li>
                      <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), majd
                         nyomjunk ENTER-t! Ekkor az Android Studio megírja helyettünk! (<code>super</code> sor nincsen, és nem is
                         kell, hogy legyen!)</li>
@@ -210,8 +221,12 @@
                     <ul>
                         <li>Kezd el begépelni az <code>onResume</code> szó első néhány betűjét (oda, ahol a függvényt szeretnéd, hogy létrejöjjön)!</li>
                         <li>Válaszd ki a felugró listából az <code>onResume</code> függvényt</li>
-                        <li>Enter</li>
-                        ******TODO KEP????******
+                        <li>Enter
+                            <div class="imgstore">
+                                <img src="/static/img/l05/onResume1.png" class="center-block" />
+                                <img src="/static/img/l05/onResume2.png" class="center-block" />
+                            </div>
+                        </li>
                     </ul></li>
                     <li>
                         A függvény törzsébe a már meglévő <code>super</code>super sor után írjuk be a következő sort, 
@@ -303,7 +318,7 @@
                 <p>Az event.value egyébként egy <code>float</code> típusú számokat tároló <strong>tömb</strong>, 
                     és annak a nulladik elemét olvassuk ki (Igen, a programozók előszeretettel indítják nullától a számozást egy helyett). 
                     Azért egy tömbben érkeznek az adatok, hogy azok a szenzorok, 
-                    is használhatóak legyenek, amik egyszerre több mindent mérnek (pl.: GPS ko-ordináták).</p>
+                    is használhatóak legyenek, amik egyszerre több mindent mérnek (pl.: GPS koordináták).</p>
             </div>
 
             <p>Ezzel elértük, hogy a szenzor által mért érték az <code>ertek</code> változóban van, már csak fel kell dolgoznunk.</p>
@@ -393,7 +408,8 @@
             <ol>
                 <li>Az egész felhasználó felületnek van egy <em>összefogó (gyökér)</em> komponense, ez a layout
                     nevű komponens, amely <code>RelativeLayout</code> típusú. Nézd meg a <em>ComponentTree</em>-t
-                    (*** TODO KÉP ***)!</li>
+                    <img src="/static/img/l05/szorg1.png" class="center-block" />
+                </li>
                 <li>Ennek a <code>RelativeLayout</code>-nak szeretnénk a színét átállítani. Ehhez azonban szükségünk lesz az
                     <strong>id</strong> tulajdonságára.</li>
                 <li>A java kódban hozz létre egy változót a layoutnak, és az <code>onSensorChanged</code>
