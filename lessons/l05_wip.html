@@ -223,7 +223,40 @@
                             és azt elmenteni egy Sensor típusú, proximity nevű változóba. 
                             A <code>Sensor.TYPE_PROXIMITY</code> a közelségérzékelő szenzorra utal.</p>
                         <p>Ez nagyon hasonlít arra, ahogy a felhasználói felület komponenseit lehet megkeresni:</p>
-                        ********TODO TÁBLÁZAT**********
+
+                        <table id="component-sensor" class="comparison table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Változó típusa</th>
+                                    <th>Változó neve</th>
+                                    <th><!-- = --></th>
+                                    <th>Változó típusa</th>
+                                    <th>Keresést elvégző függvény</th>
+                                    <th>Azonosító (mit keresünk)</th>
+                                    <th>Sor vége :)</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                <tr>
+                                    <td>Button</td>
+                                    <td>gomb1</td>
+                                    <td>=</td>
+                                    <td>(Button)</td>
+                                    <td>findViewById(</td>
+                                    <td>R.id.button</td>
+                                    <td>);</td>
+                                </tr>
+                                <tr>
+                                    <td>Sensor</td>
+                                    <td>proximity</td>
+                                    <td>=</td>
+                                    <td></td>
+                                    <td>sensorManager.getDefaultSensor(</td>
+                                    <td>Sensor.TYPE_PROXIMITY</td>
+                                    <td>);</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </li>
                     <li>
                         Ez alá írjuk meg a feliratkozást elvégző kódot:
@@ -324,13 +357,99 @@
                     </div>
                     </li>
             </ol>
+            <p><em>Futtasd a programot!</em></p>
+            <p>Ha végeztél, akkor küldd el nekünk a KozelsegActivity.java fájl tartalmát egy emailben, vagy töltsd fel a java fájlt
+            (esetleg az egész projektet tömörítve) a <a href="http://goo.gl/UMyfuL" target="_blank">szakkör feltöltő oldalán</a> keresztül!</p>
         </section>
-        <p><em>Futtasd a programot!</em></p>
-        <p>Ha végeztél, akkor küldd el nekünk a KozelsegActivity.java fájl tartalmát egy emailben, vagy töltsd fel a java fájlt 
-        (esetleg az egész projektet tömörítve) a <a href="http://goo.gl/UMyfuL" target="_blank">szakkör feltöltő oldalán keresztül</a>!</p></p>
+
         <section id="szorgalmi">
-        <h2>Szorgalmi feladat</h2>
-        ***** TODO *****
+            <h2>Szorgalmi feladatok</h2>
+            <p>Most már tudjuk, hogy hogyan iratkozhatunk fel a közelségérzékelő adataira, így rengeteg lehetőségünk van
+                az értékek visszajelzésére.</p>
+
+            <h3 class="task">1* Képek</h3>
+            <p><em>Ha a közelségérzékelő <code>0</code> értéket közöl, akkor a képernyőn jelenjen meg a matek/fizika puskánk. <br/>
+                Egyébként csak egy ártatlannak látszó kép látszódjon!</em></p>
+            <p>A projekthez hozzáadtunk két képet is. Ezek között váltogathatsz</p>
+            <ol>
+                <li>Helyezz el egy ImageView komponenst a layout szerkesztővel.</li>
+                <li>Állítsd be a <code>layout:width</code> és <code>layout:height</code> tulajdonságait úgy,
+                    hogy a teljes képernyőt betöltse!</li>
+                <li>Állítsd be az <strong>id</strong> tulajdonságát mondjuk erre: <em>kep</em></li>
+                <li>A Java kódban hozz létre egy változót az ImageView-nak</li>
+                <li>Az <code>onSensorChanged</code> függvény megfelelő helyén változtasd meg a megjelenített képet!
+                    Ehhez használd az <code>ImageView</code> típusú változód <strong>setImageResource</strong> belső függvényét. <br/>
+                    A függvény paramétere a megjeleníthető kép resource. Ezek azonosítói hasonlítanak a layout komponensekére:
+                    <ul>
+                        <li><code>R.drawable.szorgKepletek</code></li>
+                        <li><code>R.drawable.szorgSemmi</code></li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3 class="task">2* Háttér színének állítása</h3>
+            <p><em>Ha a közelségérzékelő 0 értéket közöl, akkor állítsuk a képernyő hátterének színét pirosra,
+                egyébként legyen zöld!</em></p>
+            <ol>
+                <li>Az egész felhasználó felületnek van egy <em>összefogó (gyökér)</em> komponense, ez a layout
+                    nevű komponens, amely <code>RelativeLayout</code> típusú. Nézd meg a <em>ComponentTree</em>-t
+                    (*** TODO KÉP ***)!</li>
+                <li>Ennek a <code>RelativeLayout</code>-nak szeretnénk a színét átállítani. Ehhez azonban szükségünk lesz az
+                    <strong>id</strong> tulajdonságára.</li>
+                <li>A java kódban hozz létre egy változót a layoutnak, és az <code>onSensorChanged</code>
+                    függvényünk megfelelő helyén állítsd át a színét a <code>setBackgroundColor</code>
+                    belső függvény segítségével.
+                    <ul>
+                        <li><code>Color.RED</code> a piros szín.</li>
+                        <li>Mi lehet a zöld?</li>
+                    </ul>
+                </li>
+                <li>Futtasd a programot!</li>
+            </ol>
+
+            <h3 class="task">3* Rezgés</h3>
+            <p><em>Módosítsd a programot úgy, hogy ha közel kerül hozzá valami, kezdjen el rezegni,
+                amikor pedig eltávolítod, akkor hagyja abba!</em></p>
+            <p>Ez a feladat talán ijesztően hangzik, de egyáltalán nem bonyolult! Olvass vissza az előző
+                leckébe (elég a cancel függvényig), és próbáld meg a rezgőmotort beépíteni a jelenlegi programba!
+                (Segítség: Közelség érzkelése esetén egy nagyon hosszú (pl. 5 perc) rezgést indíts el, és ne felejtsd el leállítani!</p>
+        </section>
+
+        <section id="halado-szorgalmi">
+            <h2>Haladó szorgalmi feladatok</h2>
+
+            <h3 class="task">4* Adatelemzés</h3>
+            <p><em>Ennek a feladatnak az elvégzéséhez ismerned kell a tömböket, ciklusokat, illetve a maximum
+                kiválasztás algoritmust. <br/>
+                Javasoljuk, hogy ha tudod hogyan kell új osztályokat létrehozni, akkor dolgozz a saját osztályodban! <br/>
+                Nem gond, ha még nem látod magad előtt a teljes megoldást, ha van bármi elképzelésed, próbálkozz, kezdd el,
+                és írj nekünk, ha elakadtál, vagy kérdésed van. Ez már egy igazi program, igazi kihívásokkal, sokat tanulhatsz belőle!
+            </em></p>
+            <p>Okostelefonos alkalmazásoknál sokszor az a célunk, hogy rögzítsük és elemezzük a felhasználó
+                viselkedését. Most itt ezt fogjuk tenni!</p>
+            <p>Indulásként:</p>
+            <ul>
+                <li>Rögzítsük, hogy <strong>mikor</strong>, <strong>milyen</strong> értéket kaptunk (tömbök, esetleg osztályok) <br/>
+                    Ehhez felhasználhatod a <code>System.currentTimeMillis()</code> függvény visszatérési értékét, ami egy long típusú
+                    egész szám, és a <a href="http://hu.wikipedia.org/wiki/Unix-id%C5%91" target="_blank">UNIX Epoch</a>,
+                    azaz 1970. jan. 01. óta eltelt milliszekundumok számát tartalmazza. Ehhez tudsz viszonyítani,
+                    pl. megadhatod, hogy az első érzékelés után 2 perccel kezdődik az adott időszak, és 1,5 percig tart.</li>
+            </ul>
+            <p>Ezek után egy gombnyomásra analizáljuk az adatot:</p>
+            <ul>
+                <li>Feltételezhetjük, hogy ha sokáig nem mérünk “közel” állapotot, akkor a felhasználó inaktív. <br/>
+                    <strong>Keressük meg a leghosszabb inaktív időszakot!</strong></li>
+                <li>A közel állapot többnyire hívás közben fordul elő. <br/>
+                    <strong>Keressük meg a leghosszabb hívást!</strong></li>
+                <li>A felhasználónkra akkor mondjuk, hogy hiperaktív, ha egy percen belül több mint
+                    öt új adatot produkál. <br/>
+                    <strong>Keressük meg a felhasználó összes hiperaktív időszakát!</strong></li>
+            </ul>
+            <p>Ne feledd, az alkalmazásod futása megáll, ha bezárod, elforgatod a képernyőt.
+                Az adataid minden leállásnál törlődnek. Így nincs nagyon lehetőséged valódi felhasználó
+                aktivitást elemezni. A feladatok viszont így is érdekesek lehetnek, illetve a jövőben
+                készítünk majd olyan szolgáltatásokat, amik képesek a háttérben is futni.</p>
+        </section>
     </div>
 
     <footer data-include="/include/footer.html"></footer>

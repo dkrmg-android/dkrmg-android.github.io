@@ -106,3 +106,20 @@ h3.task {
 h4.task {
 	color: #738c28;
 }
+
+/* Comparison table, eg. component vs. sensor */
+table.comparison {
+}
+
+table.comparison th,
+table.comparison td {
+    text-align: center;
+}
+
+table.comparison td:nth-child(5) {
+    text-align: right;
+}
+
+table.comparison td:nth-child(7) {
+    text-align: left;
+}
