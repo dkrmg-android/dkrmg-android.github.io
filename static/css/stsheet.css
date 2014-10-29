@@ -123,3 +123,9 @@ table.comparison td:nth-child(5) {
 table.comparison td:nth-child(7) {
     text-align: left;
 }
+
+/* Fix jQuery-UI Dialog link */
+.ui-widget-content a {
+    /*color: #222222;*/ /* jQuery-UI style */
+    color: #428bca;     /* Bootstrap-style */
+}

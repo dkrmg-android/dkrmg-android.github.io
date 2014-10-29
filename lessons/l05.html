@@ -120,8 +120,8 @@
                 <img src="/static/img/l05/04_post.png" class="center-block">
                 <p>Szóval az Android rendszer érzékelői is ehhez hasonlóan működnek.</p>
                 <ul>
-                    <li>El kell érnünk, hogy a <code>KozelsegActivity</code>-nk olyan legyen, mint egy postaláda, 
-                        és fogadhasson érzékeléseket/üzeneteket.</li>
+                    <li>El kell érnünk, hogy a <code>KozelsegActivity</code>-nk úgy <em>is</em> tudjon viselkedni/kinézni,
+                        mint egy postaláda, avagy <em>rendelkezzen</em> egy postaládával, és így fogadhasson érzékeléseket/üzeneteket.</li>
                     <li>Meg kell keresnünk és el kell tárolnunk egy változóban a rendszer <code>SensorManager</code>-ét. 
                         Ez a Manager osztály itt a postahivatal, akinél fel- és le lehet iratkozni a mérésekre.</li>
                     <li>Jeleznünk kell a <code>SensorManager</code>-nél, hogy innentől kezdve szeretnénk értesülni minden olyan adatról, 
@@ -137,7 +137,7 @@
                 <h3 class="task">1. feladat - Felkészülés az értékek fogadására</h3>
                 <p>Az érzékelő által közölt értékeket a KozelsegActivity-nk fogja fogadni. 
                 Ehhez azonban néhány apróbb átalakítást kell rajta elvégeznünk. 
-                Egészen pontosan azt kell elérnünk, hogy úgy kívülről úgy nézzünk ki, mint egy postaláda, 
+                Egészen pontosan azt kell elérnünk, hogy kívülről úgy nézzünk ki, mint egy postaláda,
                 azaz egy <code>SensorEventListener</code>. Ehhez módosítanunk kell az osztályunk nevének sorát, 
                 illetve meg kell írnunk a <code>SensorEventListener</code> két függvényét is.</p>
                 <img src="/static/img/l05/06_letterbox.png" class="center-block">
@@ -157,8 +157,9 @@
                         </ol>
                     </li>
                 </ul>
-                <p>Hogyan tudod a lehető legegyszerűben létrehozni ezeket a függvényeket? Ha megírtad az előző lecke <em>logging</em> szorgalmiját, 
-                akkor remélhetőleg már tudod is a választ! Ha nem, akkor kövesd az alábbiakat:</p>
+                <p>Hogyan tudod a lehető legegyszerűben létrehozni ezeket a függvényeket? Ha megírtad az
+                    <a href="/lessons/l04.html#logging">előző lecke <em>logging</em> szorgalmiját</a>,
+                    akkor remélhetőleg már tudod is a választ! Ha nem, akkor kövesd az alábbiakat:</p>
                 <ol>
                     <li>A már meglévő függvényeink záró kapcsos zárójele után hagyjunk ki egy sort, majd
                         kezdjük el beírni az új függvényünk nevét <span class="todo">TODO 1.2</span> (mondjuk először legyen <code>onSensorChanged</code>).</li>
@@ -280,7 +281,8 @@
                         <ul>
                             <li>ki szeretne feliratkozni (<code>this</code> – azaz ez az alkalmazás)</li>
                             <li>melyik szenzorra (<code>proximity</code> – amit az imént kerestünk meg)</li>
-                            <li>milyen sűrűn kérjük az adatokat.</li>
+                            <li>milyen sűrűn kérjük az adatokat. (<code>SensorManager.SENSOR_DELAY_UI</code> - átlgos sebesség,
+                                a felhasználói felület frissítéséhez elegendő, de pl. játék vezérléséhez a gyorsabb jobb)</li>
                         </ul>
                     </li>
 
@@ -315,10 +317,10 @@
             </div>
 
             <div class="misc-info">
-                <p>Az event.value egyébként egy <code>float</code> típusú számokat tároló <strong>tömb</strong>, 
+                <p>Az event.values egyébként egy <code>float</code> típusú számokat tároló <strong>tömb</strong>,
                     és annak a nulladik elemét olvassuk ki (Igen, a programozók előszeretettel indítják nullától a számozást egy helyett). 
                     Azért egy tömbben érkeznek az adatok, hogy azok a szenzorok, 
-                    is használhatóak legyenek, amik egyszerre több mindent mérnek (pl.: GPS koordináták).</p>
+                    is használhatóak legyenek, amik egyszerre több mindent mérnek (pl.: giroszkóp, gyorsulásmérő).</p>
             </div>
 
             <p>Ezzel elértük, hogy a szenzor által mért érték az <code>ertek</code> változóban van, már csak fel kell dolgoznunk.</p>
@@ -326,7 +328,9 @@
             <h4 class="task">3.2. feladat</h4>
             <p>A szenzorból megszerzett adat feldolgozása nagyon hasonló a 3. leckében megtanult módszerhez, 
                 amivel a játékos által beírt tippet dolgoztuk fel. 
-                (Ha nem emlékszel az elágazásokra (<code>if(feltetel) { }</code>), akkor lapozz gyorsan vissza, mielőtt tovább olvasnál!</p>
+                (Ha nem emlékszel az elágazásokra (<code>if(feltetel) { }</code>), akkor
+                <a href="https://drive.google.com/open?id=0B5AMR1h-7fo9QVRmMk9TamNRVG8&authuser=0" target="_blank">lapozz gyorsan vissza (3. oldal)</a>,
+                mielőtt tovább olvasnál!</p>
             <p>A közelségérzékelő szenzor két féle értéket adhat vissza:</p>
             <ul>
                 <li>0 - a szenzor KÖZEL állapotot érzékel</li>
@@ -335,7 +339,7 @@
             <p>A Java kódunkban ezt könyedén kifejezhetjük:</p>
             <pre data-include="/include/l05/ifelse.java"></pre>
 
-            <p>Ennek megfelelően írj egy if-then-else elágazást a 4.1. feladatban is használt onSensorChanged nevű függvénybe, a 4.1. feladatot folytatva. </p>
+            <p>Ennek megfelelően írj egy if-then-else elágazást a 3.1. feladatban is használt onSensorChanged nevű függvénybe, a 3.1. feladatot folytatva. </p>
             <p><strong>HA</strong> a szenzor közel állapotot érzékelt,<br />
                 <strong>AKKOR</strong> írd ki az 1. feladatban létrehozott TextView komponensre, hogy “Közel van!”,<br />
                 <strong>KÜLÖNBEN</strong> írd ki az 1. feladatban létrehozott TextView komponensre, hogy “Távol van!”!</p>
@@ -345,7 +349,7 @@
             <div class="help-container" id="help_3.2">
                 <ul>
                     <li>Ahhoz, hogy ellenőrizd, két érték egyenlő-e, használd a <code>==</code> műveletet (pl. <code>dolgozatJegy == 5</code>)</li>
-                    <li>A kijelzo azonosítójú TextView komponenshez még nincs változó létrehozva a kódban. Ezt a TODO 4.2a és 4.2b sorok helyén pótold 
+                    <li>A kijelzo azonosítójú TextView komponenshez még nincs változó létrehozva a kódban. Ezt a TODO 3.2a és 3.2b sorok helyén pótold
                     az előző leckék alapján! Tudod: változó deklarálása, majd findViewById-vel hozzárendelés</li>
                 </ul>
             </div>
