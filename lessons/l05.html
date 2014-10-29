@@ -171,8 +171,6 @@
                         <div class="imgstore">
                             <img src="/static/img/l05/autoComplete1.png" class="center-block" />
                             <img src="/static/img/l05/autoComplete2.png" class="center-block" />
-                            <img src="/static/img/l05/autoComplete3.png" class="center-block" />
-                            <img src="/static/img/l05/autoComplete4.png" class="center-block" />
                         </div>
                         </li>
                      <li>Győződjünk meg róla, hogy az van kijelölve (ha nem, a fel-le nyilakkal jelöljük ki!), majd
@@ -180,6 +178,10 @@
                         kell, hogy legyen!)</li>
                 </ol>
                 <p>Ne felejtsd el ehhez hasonlóan megírni az <code>onAccuracyChanged</code> függvényt is.</p>
+                <div class="imgstore">
+                    <img src="/static/img/l05/autoComplete3.png" class="center-block" />
+                    <img src="/static/img/l05/autoComplete4.png" class="center-block" />
+                </div>
                 <p>Próbáljuk meg futtatni a programunkat. Ha valahol valami nem működik, vagy hibát ír ki, 
                     akkor nézzük meg újra, hogy pontosan követtük-e a leírást! 
                     Ha még ezután sem sikerül futtatni, akkor küldd el a java fájlodat emailben, 
@@ -305,11 +307,14 @@
             <h4 class="task">3.1 feladat</h4>
             <ol>
                 <li>Keressük meg az <code>onSensorChanged</code> függvényünket.</li>
-                <li>A törzsében deklaráljunk egy új változót, aminek a típusa <float>float</float>, a neve pedig <code>ertek</code>.
+                <li>A törzsében deklaráljunk egy új változót, aminek a típusa <code>float</code>, a neve pedig <code>ertek</code>.
                     A <code>float</code> típusú változók <em>nem egész</em> számokat tudnak tárolni (pl.: <code>0.5</code> <code>3.14</code> <code>4.4567</code>,  
                     Pascal <code>real</code> típusához hasonlóan). Erre azért van szükség, mert a szenzorok minden esetben ilyen, 
                     nem egész szám formában adják meg a mért értéket.</li>
-                <li>A változónak adjuk értékül a mért adatot! Ezt az <code>event.values[0]</code> kifejezéssel tudjuk kiolvasni a függvényünk paraméteréből.</li>
+                <li>A változónak adjuk értékül a mért adatot! Ezt az <code>event</code> változónk values tulajdonságából érjük el.
+                    Honnan van az <code>event</code> változónk? Ez a függvény paramétere volt, és az összetett
+                    <code>SensorEvent</code> osztályba tartozik. A <code>values</code> tulajdonsága pedig egy tömb,
+                    amelynek számunkra az első eleme érdekes. Összességében: <code><strong>event.values[0]</strong></code></li>
             </ol>
             Nem sikerült követni a fentieket? <button data-target="help_3.1" class="help-link">Katt a teljes függvényhez!</button></p>
             <div class="help-container" id="help_3.1">
