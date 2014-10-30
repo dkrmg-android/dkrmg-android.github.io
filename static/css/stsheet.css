@@ -33,14 +33,22 @@ img {
     max-width: 45%;
 	margin: 15px;
 	height: auto;
-	width: auto;
 }
 
-img.featherlight-image 
+
+img.featherlight-image.featherlight-inner
 {
-    max-width: 100% ;
-    margin: 15px;
+    max-height: 80% ;
+    max-width: 90% ;
+    width: auto ;  
 }
+
+.featherlight .featherlight-content
+{
+    margin-top: 50px ;
+    overflow:auto ;
+}
+
 
 
 .possible-error {
