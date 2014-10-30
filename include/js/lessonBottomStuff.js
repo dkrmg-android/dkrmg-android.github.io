@@ -22,7 +22,7 @@ function loadFeatherLight() {
     $('img').each(function () {
 
         var $element = $(this);
-        $element.attr('width', $element.width()).attr('height', $element.height());
+        //$element.attr('width', $element.width()).attr('height', $element.height());
 
         var isZoomable = !$element.hasClass('noZoom');
         if (isZoomable) {
