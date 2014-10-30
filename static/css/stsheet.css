@@ -41,6 +41,8 @@ img.featherlight-image.featherlight-inner
     max-height: 80% ;
     max-width: 90% ;
     width: auto ;  
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .featherlight .featherlight-content
