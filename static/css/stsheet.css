@@ -32,8 +32,7 @@ h1 small {
 img {
     max-width: 45%;
 	margin: 15px;
-    width: auto;
-    height: auto;
+	height: auto;
 }
 
 img.featherlight-image 
