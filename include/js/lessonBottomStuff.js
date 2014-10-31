@@ -1,6 +1,6 @@
 $(function () {
     loadIncludes();
-
+    loadFeatherLight();
     pageInit();
 });
 
@@ -17,21 +17,21 @@ function loadIncludes() {
 }
 
 // add featherlight to images
-$(function ($) {
+function loadFeatherLight() {
     var addToAll = true;
     $('img').each(function () {
 
-        var $this = $(this);
+        var $element = $(this);
+        //$element.attr('width', $element.width()).attr('height', $element.height());
 
-        var isZoomable = !$this.hasClass('noZoom');
+        var isZoomable = !$element.hasClass('noZoom');
         if (isZoomable) {
-            var src = $this.attr('src');
-            $this.attr('data-featherlight', src);
+            var src = $element.attr('src');
+            $element.attr('data-featherlight', src);
         }
 
     });
-});
-//$.noConflict();
+}
 
 // init page and init the helper buttons
 function pageInit() {
