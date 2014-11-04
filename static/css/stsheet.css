@@ -1,6 +1,7 @@
 body {
     background-color: #f3f3f3;
     padding-top: 80px;
+    text-align: justify;
 }
 .container {
     width: 88%;
@@ -8,8 +9,9 @@ body {
     background-color: white;
     border-radius: 15px;
     border: 1px solid #aaa;
-	padding-left: 3%;
+	padding-left: 4%;
 	padding-top: 20px;
+	padding-right: 5%;
 
     -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
@@ -89,6 +91,7 @@ span.todo:after { content: "]"; }
 h1 {
 	font-weight: bold;
 	letter-spacing: 3px;
+        text-align: left;
 }
 
 h2 {
