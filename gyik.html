@@ -39,10 +39,12 @@
             }
 
             .gyik-inner {
-                border: 1px solid #738c28;
+                /*border: 1px solid #99cc00;*/
+                border: 1px solid #a4c639;
                 border-radius: 10px;
 
-                background-color: #738c28;
+                /*background-color: #99cc00;*/
+                background-color: #a4c639;
             }
 
             .gyik-cards {
@@ -64,6 +66,8 @@
 
                 border-top-left-radius: 20px;
                 border-top-right-radius: 20px;
+
+                border: 5px solid white;
             }
 
             .imgcap .caption {
@@ -79,6 +83,10 @@
                 border-radius: 20px;
                 padding: 10px;
                 margin: 10px;
+            }
+
+            .description:empty {
+                display: none;
             }
         </style>
 
@@ -119,6 +127,40 @@
                             található [...] gombra kattintasz <img src="/static/img/l03/17_textColor_inline.png" />, akkor felbukkan a
                             Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és keverj ki bármilyen tetszőleges színt.</p>
                     </div><!-- .div.description -->
+                </div><!-- .div.gyik.inner -->
+            </div><!-- .div.gyik-outer -->
+        </section>
+
+        <section class="gyik" id="add-button">
+            <div class="gyik-outer">
+                <h3>Gomb hozzáadása</h3>
+                <img src="/static/img/kukucs.png" class="noZoom" />
+                <div class="clearfix"></div>
+                <div class="gyik-inner">
+                    <div class="gyik-cards">
+                        <div class="imgcap">
+                            <img src="/static/img/l03/20_addButton.png" />
+                            <div class="caption">
+                                Valami szöveg
+                                <p>Akár paragrafusban is.</p>
+                            </div>
+                        </div><!-- .div.imgcap -->
+                        <div class="imgcap">
+                            <img src="/static/img/l03/20_addButton.png" />
+                            <div class="caption">
+                                Valami szöveg
+                                <p>Akár paragrafusban is.</p>
+                            </div>
+                        </div><!-- .div.imgcap -->
+                        <div class="imgcap">
+                            <img src="/static/img/l03/20_addButton.png" />
+                            <div class="caption">
+                                Valami szöveg
+                                <p>Akár paragrafusban is.</p>
+                            </div>
+                        </div><!-- .div.imgcap -->
+                    </div>
+                    <div class="description"></div><!-- .div.description -->
                 </div><!-- .div.gyik.inner -->
             </div><!-- .div.gyik-outer -->
         </section>

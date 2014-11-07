@@ -9,9 +9,7 @@ body {
     background-color: white;
     border-radius: 15px;
     border: 1px solid #aaa;
-	padding-left: 4%;
-	padding-top: 20px;
-	padding-right: 5%;
+    padding: 20px 5%;
 
     -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
