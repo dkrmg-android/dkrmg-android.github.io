@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Gyakran ismételt kérdések - (DKRMG Android szakkör)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/ui-lightness/jquery-ui.css" />
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles" />
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+</head>
+<body>
+    <header data-include="/include/header.html"></header>
+    <div class="container">
+        <h1>Gyakran ismételt kérdések
+            <small>Online Android szakkör (DKRMG)</small>
+        </h1>
+
+        <style type="text/css">
+            .gyik-outer {
+                /*background-color: #738c28;*/
+            }
+
+            .gyik-outer > img {
+                float: right;
+
+                margin-bottom: 0;
+                margin-right: 0;
+                width: 150px;
+            }
+
+            .gyik-outer > h3 {
+                float: left;
+            }
+
+            .gyik-inner {
+                border: 1px solid #738c28;
+                border-radius: 10px;
+
+                background-color: #738c28;
+            }
+
+            .gyik-cards {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .imgcap {
+                width: 33%;
+                padding: 10px;
+            }
+
+            .imgcap img {
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+            }
+
+            .imgcap .caption {
+                margin-top: 2px;
+                padding: 10px;
+                background-color: white;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+
+            .description {
+                background-color: white;
+                border-radius: 20px;
+                padding: 10px;
+                margin: 10px;
+            }
+        </style>
+
+        <section class="gyik" id="add-button">
+            <div class="gyik-outer">
+                <h3>Gomb hozzáadása</h3>
+                <img src="/static/img/kukucs.png" class="noZoom" />
+                <div class="clearfix"></div>
+                <div class="gyik-inner">
+                    <div class="gyik-cards">
+                        <div class="imgcap">
+                            <img src="/static/img/l03/20_addButton.png" />
+                            <div class="caption">
+                                Valami szöveg
+                                <p>Akár paragrafusban is.</p>
+                            </div>
+                        </div><!-- .div.imgcap -->
+                        <div class="imgcap">
+                            <img src="/static/img/l03/20_addButton.png" />
+                            <div class="caption">
+                                Valami szöveg
+                                <p>Akár paragrafusban is.</p>
+                            </div>
+                        </div><!-- .div.imgcap -->
+                        <div class="imgcap">
+                        <img src="/static/img/l03/20_addButton.png" />
+                        <div class="caption">
+                            Valami szöveg
+                            <p>Akár paragrafusban is.</p>
+                        </div>
+                    </div><!-- .div.imgcap -->
+                    </div>
+                    <div class="description">
+                        <p>Érdemes még megtekinteni a <strong>textColor</strong> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
+                            meghatározni. A mezőbe beírhatjuk közvetlenül az általunk választott szín kódját (<code>#RRGGBB</code>) kettőskereszt
+                            után tizenhatos számrendszerben (pl. <code>#ff0000</code> piros, <code>#00ff00</code> zöld, <code>#0000ff</code> kék, <code>#00ffff</code> türkiz stb.)
+                            Nem igazodsz ki a színkódokon? Ne aggódj, az Android Studio nem is várja el ezt tőled. Ha a sor végén
+                            található [...] gombra kattintasz <img src="/static/img/l03/17_textColor_inline.png" />, akkor felbukkan a
+                            Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és keverj ki bármilyen tetszőleges színt.</p>
+                    </div><!-- .div.description -->
+                </div><!-- .div.gyik.inner -->
+            </div><!-- .div.gyik-outer -->
+        </section>
+
+    </div>
+    <footer data-include="/include/footer.html"></footer>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <!-- Featherlight needs to be loadad here to automatically discover images. -->
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+</body>
+</html>
