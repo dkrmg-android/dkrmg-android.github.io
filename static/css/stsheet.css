@@ -181,7 +181,7 @@ table.comparison td:nth-child(7) {
 }
 
 .card {
-    width: 33%;
+    width: auto;
     padding: 10px;
 }
 
