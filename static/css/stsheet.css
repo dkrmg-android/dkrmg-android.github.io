@@ -176,6 +176,7 @@ table.comparison td:nth-child(7) {
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding: 3%;
 }
 
 .card {
