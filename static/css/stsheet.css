@@ -4,7 +4,7 @@ body {
     text-align: justify;
 }
 .container {
-    width: 88%;
+    width: 1650;
     margin: 10px auto;
     background-color: white;
     border-radius: 15px;
@@ -148,6 +148,7 @@ table.comparison td:nth-child(7) {
 /* ############################################################################################### */
 .gyik-outer {
     /*background-color: #738c28;*/
+    margin-bottom: 100px;
 }
 
 .gyik-outer > img {
@@ -176,7 +177,7 @@ table.comparison td:nth-child(7) {
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 3%;
+    padding: 12px;
 }
 
 .card {

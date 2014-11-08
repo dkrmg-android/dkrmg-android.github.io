@@ -32,47 +32,252 @@
             </div><!-- .div.gyik-outer -->
         </section>
 
-        <section class="gyik" id="add-button">
-            <h3>Gomb hozzáadása</h3>
-            <img src="/static/img/l03/20_addButton.png" />
+        <section class="gyik" id="buttonNClick">
+            <h3>Gomb és kattintás kezelése</h3>
+            <img src="/static/img/gyik/Button1.png"/>
             <div class="caption">
-                Valami szöveg
-                <p>Akár paragrafusban is.</p>
+                Layout szerkesztővel helyezd el a gombot a kívánt helyre
             </div>
-            <img src="/static/img/l03/20_addButton.png" />
+            <img/>
             <div class="caption">
-                Vagy akár includolva:
-                <pre data-include="/include/l05/help_3.1.java"></pre>
+                Java kódban készíts egy új függvényt a kattintás kezelésére  
+                <pre data-include="/include/gyik/onClick.java"></pre>
             </div>
-            <img src="/static/img/l03/20_addButton.png" />
+            <img src="/static/img/gyik/Button3.png"/>
             <div class="caption">
-                Valami szöveg
-                <p>Akár paragrafusban is.</p>
+                Layout szerkesztőben a gombot kijelölve állítsd be a gombod onClick tulajdonságát az új függvényre.
             </div>
+		</section>
+
+        <section class="gyik" id="CompRef">
+            <h3>Hivatkozás egy komponensre  Java kódból</h3>
+            <img />
+            <div class="caption">
+                Hozzál létre egy változót az Activity elején. Például ha egy gombra akarsz hivatkozni:
+                <pre>Button gomb1;</pre>
+            </div>
+            <img />
+            <div class="caption">
+                Keresd meg a komponensedet az <strong>id</strong> tulajdonsága alapján, majd rendeld hozzá a változódhoz.
+                Például ha a gombunk <strong>id</strong> tulajdonsága <em>button1</em>:
+                <pre>gomb1 = findViewByID(R.id.<strong>button1</strong>);</pre>
+            </div>
+            <img />
+            <div class="caption">
+                Innentől nyugodtan használhatod a változód összes belső függvényét. Például megváltoztathatod a szövegét:
+                <pre>gomb1.setText("Az új szöveg");</pre>
+            </div>
+		</section>
+
+        <section class="gyik" id="sensorList">
+            <h3>Érzékelők az Android rendszerben <br />(Teljesség igénye nélkül)</h3>
             <div class="description">
-                <p>Érdemes még megtekinteni a <strong>textColor</strong> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
-                    meghatározni. A mezőbe beírhatjuk közvetlenül az általunk választott szín kódját (<code>#RRGGBB</code>) kettőskereszt
-                    után tizenhatos számrendszerben (pl. <code>#ff0000</code> piros, <code>#00ff00</code> zöld, <code>#0000ff</code> kék, <code>#00ffff</code> türkiz stb.)
-                    Nem igazodsz ki a színkódokon? Ne aggódj, az Android Studio nem is várja el ezt tőled. Ha a sor végén
-                    található [...] gombra kattintasz <img src="/static/img/l03/17_textColor_inline.png" />, akkor felbukkan a
-                    Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és keverj ki bármilyen tetszőleges színt.</p>
-            </div><!-- .div.description -->
-        </section>
+                <table  class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Érzékelő</th>
+                                    <th>Sensor.<em>KONSTANS</em></th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                <tr>
+                                    <td>Közelségérzékelő (5. lecke)</td>
+                                    <td>TYPE_PROXIMITY</td>
+                                </tr>   
+                                <tr>
+                                    <td>Telefon helyzetének érzékelése (6. lecke)</td>
+                                    <td>TYPE_ORIENTATION</td>
+                                </tr>   
+                                <tr>
+                                    <td>Gyorsulásmérő</td>
+                                    <td>TYPE_ACCELEROMETER</td>
+                                </tr>
+                                <tr>
+                                    <td>Hőmérséklet</td>
+                                    <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
+                                </tr> 
+                                <tr>
+                                    <td>Gravitációs erő</td>
+                                    <td>TYPE_GRAVITY</td>
+                                </tr> 
+                                <tr>
+                                    <td>Giroszkóp</td>
+                                    <td>TYPE_GYROSCOPE</td>
+                                </tr>   
+                                <tr>
+                                    <td>Mágneses erőtér </td>
+                                    <td>TYPE_MAGNETIC_FIELD</td>
+                                </tr>  
+                                <tr>
+                                    <td>Mágneses erőtér </td>
+                                    <td>TYPE_MAGNETIC_FIELD</td>
+                                </tr> 
+                                <tr>
+                                    <td>Légnyomás (hPa)</td>
+                                    <td>TYPE_PRESSURE</td>
+                                </tr>           
+                                <tr>
+                                    <td>Relatív páratartalom</td>
+                                    <td>TYPE_RELATIVE_HUMIDITY</td>
+                                </tr>                   
+                             </tbody>
+                        </table>
+                        Nem biztos, hogy a te telefonodban ezek az érzékelők valóban rlérhetőek!
+                       Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
+                    </div><!-- .div.description -->
+		</section>
 
-        <section class="gyik" id="add-button">
-            <h3>Gomb hozzáadása</h3>
-            <img src="/static/img/l03/20_addButton.png" />
-            <div class="caption">
-                Valami szöveg
-                <p>Akár paragrafusban is.</p>
-            </div>
-            <img src="/static/img/l03/20_addButton.png" />
-            <div class="caption">
-                Valami szöveg
-                <p>Akár paragrafusban is.</p>
-            </div>
-        </section>
+        <section class="gyik" id="javaTypes">
+            <h3>Java "egyszerű" változó típusai</h3>
+            <div class="description">
+                <table  class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>típus</th>
+                                    <th>mi is ez...</th>
+                                    <th>érték pl.</th>
+                                    <th>megjegyzés</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                <tr>
+                                    <td>int</td>
+                                    <td>leggyakoribb egész szám</td>
+                                    <td>-42</td>
+                                    <td>minimum -2147483648, maximum 2147483647 </td>
+                                </tr>   
+                                <tr>
+                                    <td>byte</td>
+                                    <td>kicsi egész szám</td>
+                                    <td>36</td>
+                                    <td>minimum -128, maximum 127</td>
+                                </tr>   
+                                <tr>
+                                    <td>long</td>
+                                    <td>nagyon nagy egész szám</td>
+                                    <td>3000000000L</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>float</td>
+                                    <td>tört/lebegőpontos szám</td>
+                                    <td>0.12345f</td>
+                                    <td>Például az érzékelők float tömbökat használnak</td>
+                                </tr>
+                                <tr>
+                                    <td>double</td>
+                                    <td>tört/lebegőpontos számok, pontosabb</td>
+                                    <td>0.111222333444</td>
+                                </tr>
 
+                                <tr>
+                                    <td>char</td>
+                                    <td>egy karakter</td>
+                                    <td>'G'</td>
+                                </tr>
+                                <tr>
+                                    <td>boolean</td>
+                                    <td>igaz/hamis változók</td>
+                                    <td>true <em>vagy</em> false</td>
+                                    <td>Például a feltételek is ilyen típusúak</td>
+                                </tr>         
+                             </tbody>
+                        </table>
+                        Ez a lista nem teljes. Körülnézhetsz  <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">itt is</a>  egy kicsit:
+                    </div><!-- .div.description -->
+		</section>
+
+        <section class="gyik" id="LifeCycle">
+            <h3>Activity életciklus</h3>
+            <img src="/static/img/l04/lifecycleSimplified.png">
+            <div class="caption"> </div>
+
+            <div class="description">
+                <pre data-include="/include/gyik/lifeCycle.java"></pre>
+            </div>
+		</section>
+
+        <section class="gyik" id="ifConditional">
+            <h3>Elágazások (if)</h3>
+            <img/>
+            <div class="caption">
+                <pre>
+if (<em>feltétel</em>) {
+
+  // csinálj valamit ha igaz
+
+}
+                </pre>
+            </div>
+            <img/>
+            <div class="caption">
+                <pre>
+if (<em>feltétel</em>) {
+
+  // csinálj valamit ha igaz
+
+} else {
+
+  // egyébként csináld ezt
+
+}
+                </pre>
+            </div>
+
+
+        <section class="gyik" id="listener">
+            <h3>Feliratkozás egy érzékelőre</h3>
+            <img src="/static/img/gyik/listener1.png"/>
+            <div class="caption"> 
+                Felkészülés az üzenetek fogadására az Activity kódban:
+                <pre>implements SensorEventListener</pre>
+                új függvények:
+                <pre>
+@Override
+public void onSensorChanged(SensorEvent sensorEvent) {
+   
+}
+
+@Override
+public void onAccuracyChanged(Sensor sensor, int i) {
+
+}
+                </pre>
+            </div>
+            
+            <img/>
+            <div class="caption"> 
+                Szenzor manager változó deklarálása az osztály elején
+                <pre>SensorManager sensorManager;</pre>
+            </div>
+            <img/>
+            <div class="caption"> 
+                Szenzor manager megkeresése és hozzárendelése a változóhoz (onCreate függvényben)
+                <pre>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</pre>
+            </div>
+
+            <img/>
+            <div class="caption"> 
+                Fel- és leiratkozás. Pl. közelségérzékelő
+                <pre>
+@Override
+protected void onResume() {
+  super.onResume();
+  Sensor kozelseg = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+  sensorManager.registerListener(this, or, SensorManager.SENSOR_DELAY_UI);
+}
+                </pre>
+                <pre>
+@Override
+protected void onPause() {
+  super.onPause();
+  manager.unregisterListener(this);
+}
+                </pre>
+            </div>
+		</section>
+
+		</section>
     </div>
     <footer data-include="/include/footer.html"></footer>
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
