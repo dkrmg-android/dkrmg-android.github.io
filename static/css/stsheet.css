@@ -148,6 +148,7 @@ table.comparison td:nth-child(7) {
 /* ############################################################################################### */
 .gyik-outer {
     /*background-color: #738c28;*/
+    margin-bottom: 100px;
 }
 
 .gyik-outer > img {
@@ -194,12 +195,21 @@ table.comparison td:nth-child(7) {
     border: 5px solid white;
 }
 
+.card img:not([src]) {
+    display: none;
+}
+
 .card .caption {
     margin-top: 2px;
     padding: 10px;
     background-color: white;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+.card img:not([src]) + .caption {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .description {
