@@ -227,24 +227,6 @@ if (<em>feltétel</em>) {
 
         <section class="gyik" id="listener">
             <h3>Feliratkozás egy érzékelőre</h3>
-            <img src="/static/img/gyik/listener1.png"/>
-            <div class="caption"> 
-                Felkészülés az üzenetek fogadására az Activity kódban:
-                <pre>implements SensorEventListener</pre>
-                új függvények:
-                <pre>
-@Override
-public void onSensorChanged(SensorEvent sensorEvent) {
-   
-}
-
-@Override
-public void onAccuracyChanged(Sensor sensor, int i) {
-
-}
-                </pre>
-            </div>
-            
             <img/>
             <div class="caption"> 
                 Szenzor manager változó deklarálása az osztály elején
@@ -254,6 +236,24 @@ public void onAccuracyChanged(Sensor sensor, int i) {
             <div class="caption"> 
                 Szenzor manager megkeresése és hozzárendelése a változóhoz (onCreate függvényben)
                 <pre>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</pre>
+            </div>
+
+            <img src="/static/img/gyik/listener1.png"/>
+            <div class="caption">
+                Felkészülés az üzenetek fogadására az Activity kódban:
+                <pre>implements SensorEventListener</pre>
+                új függvények:
+                <pre>
+@Override
+public void onSensorChanged(SensorEvent sensorEvent) {
+
+}
+
+@Override
+public void onAccuracyChanged(Sensor sensor, int i) {
+
+}
+                </pre>
             </div>
 
             <img/>
