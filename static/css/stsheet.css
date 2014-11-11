@@ -4,7 +4,6 @@ body {
     text-align: justify;
 }
 .container {
-    width: 1650;
     margin: 10px auto;
     background-color: white;
     border-radius: 15px;
@@ -14,6 +13,18 @@ body {
     -webkit-box-shadow: 5px 5px 11px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    5px 5px 11px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         5px 5px 11px 0px rgba(50, 50, 50, 0.75);
+}
+
+@media (min-width: 1600px) {
+    .container {
+        width: 1560px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .container {
+        width: 1750px;
+    }
 }
 
 div.imgstore {
@@ -181,8 +192,12 @@ table.comparison td:nth-child(7) {
 }
 
 .card {
-    width: auto;
+    width: 33%;
     padding: 10px;
+}
+
+.card.hascode {
+    width: auto;
 }
 
 .card img {
@@ -196,12 +211,21 @@ table.comparison td:nth-child(7) {
     border: 5px solid white;
 }
 
+.card img:not([src]) {
+    display: none;
+}
+
 .card .caption {
     margin-top: 2px;
     padding: 10px;
     background-color: white;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+}
+
+.card img:not([src]) + .caption {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .description {
