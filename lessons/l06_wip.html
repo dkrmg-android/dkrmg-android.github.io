@@ -23,14 +23,14 @@
         <hr />
         <section id="lesson-contents">
             <p>Az Android programozás egyik szépsége, hogy egy egyszerű ötlet is több millió 
-            felhasználó érdeklősdésére tehet szert. Nagyszerű példa erre az iránytű alkalmazások családja, 
+            felhasználó érdeklődésére tehet szert. Nagyszerű példa erre az iránytű alkalmazások családja, 
             melyek közül a legnépszerűbbet a Google Play áruházban több mint ötmillió ember töltötte már le.</p>
             <p>A mai leckében mi is elkészítünk egy ilyen iránytű alkalmazást!</p>
             <h4>A cél</h4>
             <p>EA képernyő közepén szeretnénk látni egy iránytű képet, aminek a megfelelő pontja (É) mindig Észak felé mutat.</p>
             <img src="/static/img/l06/01_target.png" class="center-block"/>
             <p>Az áruházban található iránytű alkalmazások természetesen különböző cselekkel 
-            (mint például GPS ko-ordináták megjelenítése) próbálnak kívánatosabbá válni a letöltők szemében. 
+            (mint például GPS koordináták megjelenítése) próbálnak kívánatosabbá válni a letöltők szemében. 
             Mi most csak az alap ötletre fogunk koncentrálni: forgó kép a képernyő </p>
         </section>
         <section id="intro">
@@ -57,21 +57,21 @@
             </ol>
             <h3>Figyelmeztetések és egy pár rövid megjegyzés</h3>
             <ul>
-                <li>A lecke folamán az <em>Orientation</em> szenzorral fogunk dolgozni. 
+                <li>A lecke folyamán az <em>Orientation</em> szenzorral fogunk dolgozni. 
                    Az Android fejlesztői úgy határoztak sajnos, hogy ez az érzékelő kissé elavult, és azt szeretnék, 
                   hogy egy általánosabb ám bonyolultabb megoldással tudjuk meg a telefonunk helyzetét. 
                   Az Orientation érzékelő ennek ellenére része maradt az Android rendszernek, 
-                  így az egysezerűség kedvéért ma ezt fogjuk használni. 
+                  így az egyszerűség kedvéért ma ezt fogjuk használni. 
                   Az Android Studio viszont lehet, hogy jelzésként áthúzza majd a <code>TYPE_ORIENTATION</code> szavakat. 
                   Ez nem hiba!</li>
                 <li>A telefonokba rejtett iránytű bizony nem mindig jó minőségű. 
                     Főként ha régebbi készüléked van, akkor előfordulhat, hogy a telefon enyhén téves adatokat közöl, 
-                    vagy kicsit ugrál. Viszont általánosságban szokott ilyenkor segíteni, ha kicsit mágrázod és 
+                    vagy kicsit ugrál. Viszont általánosságban szokott ilyenkor segíteni, ha kicsit megrázod és 
                     megpörgeted a telefont összes tengelye körül (ne dobáld, kár lenne összetörni).</li>
                 <li>Az <code>ImageView</code> képeket az Android 3.0  (API 11) óta lehet egyszerűen elforgatni. 
                     A többségnek elég új készüléke is van ehhez. Ha esetleg neked véletlenül egy öregebb okostelefonod van, 
                     akkor sem kell aggódni. Viszont figyelj, hogy a megfelelő projektet töltsd le a lecke elején. 
-                    Ezen kívül csak a kép elforgatásánál kell majd óvatsonak lenned, de ott ismét felhívjuk a 
+                    Ezen kívül csak a kép elforgatásánál kell majd óvatosnak lenned, de ott ismét felhívjuk a 
                     figyelmedet a különbségekre.</li>
             </ul>
             <h3>Javaslat</h3>
@@ -100,7 +100,7 @@
                     A következőket kell tenned (ha bizonytalan vagy, ott a <a href="/gyik.html#buttonNClick" target="_blank"">gyorssegély</a>, 
                     vagy vissza is olvashatsz egy kicsit a <a href="/lessons/l03.html" target="_blank"">harmadik</a>,
                     <a href="/lessons/l04.html" target="_blank"">negyedik</a> vagy 
-                    <a href="/lessons/l05.html" target="_blank"">ötödik</a> leckére.</p>
+                    <a href="/lessons/l05.html" target="_blank"">ötödik</a> leckére).</p>
                 <ol>
                     <li>Nyissuk meg a Layout szerkesztőt. A Design fül legyen kiválasztva.</li>
                     <li>Helyezzünk el egy <code>ImageView</code> komponenst a telefon kijelzőjére. Az <code>ImageView</code> legyen pontosan középen.
@@ -136,7 +136,7 @@
         <section id="variables">
             <h3>Komponensekhez tartozó változók</h3>
             <em>Java kód</em>
-            <p>Érdemes most még az elejénlétrehozni a TextView és ImageView típusú változóinkat, 
+            <p>Érdemes most még az elején létrehozni a TextView és ImageView típusú változóinkat, 
                 illetve hozzárendelni őket a valódi felirathoz és képhez. 
                 Ezt javasolnánk, hogy az onCreate függvényben tedd meg a findViewById segítségével. 
                 Így a program indulásakor már túl is essünk a munka ezen részén.</p>
@@ -224,10 +224,10 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <p>Most azonban mindjárt kiderül, hogy minden működik-e. Ugyanis megpróbáljuk kiírni az érzékelő által beolvasott 
              értéket a <code>fokFelirat</code> feliratunkba (<code>TextView</code>). Ha te más nevet adtál a változódnak, akkor most nézd meg gyorsan, 
                 hogy mi volt az!</p>
-            <p>Az előző leckével azonos módon fogjuk megkaprintani az érzékelő által küldött adatot. Mivel minket ismét csak egy szám érdekel 
-                (hány fokot fordultunk el Észak felől), hasznáhatjuk az előző lecke kódját is.</p>
+            <p>Az előző leckével azonos módon fogjuk megkaparintani az érzékelő által küldött adatot. Mivel minket ismét csak egy szám érdekel 
+                (hány fokot fordultunk el Észak felől), használhatjuk az előző lecke kódját is.</p>
             <pre data-include="/include/l06/value.java"></pre>
-            <p>Ez létrehoz a függvényünkön belül egy <code>float</code> típusú változót (ertek névvel). A <code>float</code> típus egyebár egy olyan típus volt, 
+            <p>Ez létrehoz a függvényünkön belül egy <code>float</code> típusú változót (ertek névvel). A <code>float</code> típus ugyebár egy olyan típus volt, 
                 ami képes nem-egész számok tárolására is (pl <code>0.2357</code>).</p>
             <p>Az <code>ertek</code> változóhoz pedig rögtön hozzá is rendeljük az érzékelő által küldött értékek közül az elsőt. 
                 Az <code>event.values</code>, mint a múltkor is említettük, egy <em>tömb</em>, melynek az <code>event.values[0]</code> az első eleme. 
@@ -264,7 +264,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <p>Futtasd le a programot, és ellenőrizd, hogy működik-e az iránytűd! 
                 Forog a kép a telefon kijelzőjéhez képest? És az északi irányhoz képest?</p>
             <div class="misc-info">
-                <p>Egy gyakori hiba: túl gyorsan forog az iránytű, amikor forgatom a felefont.</p>
+                <p>Egy gyakori hiba: túl gyorsan forog az iránytű, amikor forgatom a telefont.</p>
                 <p>Na ez vajon miért lehet? Ha elfordulsz tíz fokot Északhoz képest és a képet további tíz fokkal forgatod, akkor a kép nem fog Észak felé mutatni! 
                     Itt mit lehetne inkább csinálni?</p>
                 <img src="/static/img/l06/07_err.png" class="center-block" />
@@ -323,7 +323,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                     <img src="/static/img/l06/act3.png" class="center-block" />
                 </li>
             </ol>
-            <p>Ne is féljün az új Activity-től, nyissuk meg a layout szerkesztőjét, 
+            <p>Ne is féljünk az új Activity-től (nem harap), nyissuk meg a layout szerkesztőjét, 
                 és írjuk át a hello world szöveget valami tartalmasabbra. 
                 Például hogy ki mikor és miért készítette ezt az alkalmazást.</p>
             <img src="/static/img/l06/act4.png" class="center-block" />
@@ -363,7 +363,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
 
         <section id="szorgalmi">
         <h1>Szorgalmi feladatok</h1>
-        <em>Ezt a részt a készítők még nem fejeték be. Kérjük látogass vissza később!</em>
+        <em>Ezt a részt a készítők még nem fejezték be. Kérjük látogass vissza később!</em>
         </section>
     </div>
     <footer data-include="/include/footer.html"></footer>
