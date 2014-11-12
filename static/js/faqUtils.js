@@ -41,3 +41,5 @@ function createGyikItem($content) {
 $('.gyik').each(function (index, element) {
     createGyikItem($(element));
 });
+
+$('.card pre').closest('.card').addClass('hascode');
