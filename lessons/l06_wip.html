@@ -27,11 +27,11 @@
             melyek közül a legnépszerűbbet a Google Play áruházban több mint ötmillió ember töltötte már le.</p>
             <p>A mai leckében mi is elkészítünk egy ilyen iránytű alkalmazást!</p>
             <h4>A cél</h4>
-            <p>EA képernyő közepén szeretnénk látni egy iránytű képet, aminek a megfelelő pontja (É) mindig Észak felé mutat.</p>
+            <p>A képernyő közepén szeretnénk látni egy iránytű képet, aminek a megfelelő pontja (É) mindig Észak felé mutat.</p>
             <img src="/static/img/l06/01_target.png" class="center-block"/>
             <p>Az áruházban található iránytű alkalmazások természetesen különböző cselekkel 
             (mint például GPS koordináták megjelenítése) próbálnak kívánatosabbá válni a letöltők szemében. 
-            Mi most csak az alap ötletre fogunk koncentrálni: forgó kép a képernyő </p>
+            Mi most csak az alap ötletre fogunk koncentrálni: forgó kép a képernyő közepén. </p>
         </section>
         <section id="intro">
             <h3>Hogyan állunk ennek neki&hellip;</h3>
@@ -54,15 +54,16 @@
                     </ul>
                 </li>
                 <li>Befejezni az onSensorChanged függvényt, hogy elforgassa a képet a kapott érték alapján az ImageView setRotation függvényével.</li>
+                <li>Egy "about" ablak létrehozása.</li>
             </ol>
             <h3>Figyelmeztetések és egy pár rövid megjegyzés</h3>
             <ul>
                 <li>A lecke folyamán az <em>Orientation</em> szenzorral fogunk dolgozni. 
-                   Az Android fejlesztői úgy határoztak sajnos, hogy ez az érzékelő kissé elavult, és azt szeretnék, 
-                  hogy egy általánosabb ám bonyolultabb megoldással tudjuk meg a telefonunk helyzetét. 
+                   Az Android fejlesztői úgy határoztak sajnos, hogy ez az érzékelő kissé elavult. Azt szeretnék, 
+                  hogy egy általánosabb, ám bonyolultabb megoldással tudjuk meg a telefonunk helyzetét. 
                   Az Orientation érzékelő ennek ellenére része maradt az Android rendszernek, 
                   így az egyszerűség kedvéért ma ezt fogjuk használni. 
-                  Az Android Studio viszont lehet, hogy jelzésként áthúzza majd a <code>TYPE_ORIENTATION</code> szavakat. 
+                  Az Android Studio lehet, hogy jelzésként áthúzza majd a <code>TYPE_ORIENTATION</code> szavakat. 
                   Ez nem hiba!</li>
                 <li>A telefonokba rejtett iránytű bizony nem mindig jó minőségű. 
                     Főként ha régebbi készüléked van, akkor előfordulhat, hogy a telefon enyhén téves adatokat közöl, 
@@ -70,7 +71,7 @@
                     megpörgeted a telefont összes tengelye körül (ne dobáld, kár lenne összetörni).</li>
                 <li>Az <code>ImageView</code> képeket az Android 3.0  (API 11) óta lehet egyszerűen elforgatni. 
                     A többségnek elég új készüléke is van ehhez. Ha esetleg neked véletlenül egy öregebb okostelefonod van, 
-                    akkor sem kell aggódni. Viszont figyelj, hogy a megfelelő projektet töltsd le a lecke elején. 
+                    akkor sem kell aggódni; viszont figyelj, hogy a megfelelő projektet töltsd le a lecke elején. 
                     Ezen kívül csak a kép elforgatásánál kell majd óvatosnak lenned, de ott ismét felhívjuk a 
                     figyelmedet a különbségekre.</li>
             </ul>
@@ -145,7 +146,7 @@
             a <code>TextView</code> változónkat pedig kereszteljük egyszerűen <code>fokFelirat</code>-nak, mivel ez egy felirat, 
             ahová az elfordulást fogjuk kiírni fokokban. 
             Természetesen névnek bármit választhatsz (kerülve az ékezetes betűket, betartva a teve szabályt 
-            - minden betű kicsi, kivéve az egymás utána szavak első betűi. pl. ezEgyValtozo).
+            - minden betű kicsi, kivéve az egymás utáni szavak első betűi. pl. ezEgyValtozo).
 
                 <button data-target="find-help" class="help-link">Segítség?</button></p>
                 <div class="help-container" id="find-help">
@@ -200,7 +201,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 </li>
                 <li>
                     <p>Ne felejts el leiratkozni sem az üzenetekről az <code>onPause</code> függvényben! Ehhez először meg kell
-                        írnod az <code>onPause függvényt (Android Studio segít).</code></p>
+                        írnod az <code>onPause</code> függvényt (Android Studio segít).</p>
                     <pre>sensorManager.unregisterListener(this);</pre>
                 </li>
             </ol>
@@ -208,10 +209,10 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 akkor hasonlítsd össze az előző lecke megoldásával. Ne feledd, ezen a ponton az
                  <code>onSensorChanged</code> függvényed még üres (a két kapcsos zárójel között nincs semmi).</p>
             <p>
-                Futtasd le a programodat. De honnan tudod, hogy működik-e?
+                Futtasd le a programodat! De honnan tudod, hogy működik-e?
             </p>
             <p><em>Akik megcsinálták a negyedik lecke Logging szorgalmiját, 
-                azok remélhetőleg itt felhasználják a tudásukat. Ha nem, akkor olvass tovább!</em></p>
+                azok remélhetőleg itt felhasználják a tudásukat. Ha te nem vagy ennek a <em>szorgalmas</em> társaságnak a tagja, akkor olvass tovább!</em></p>
         </section>
 
         <section id="display">
@@ -240,7 +241,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <p><em>Tehát most az ertek változóban van, hogy hány fokra vagyunk az északi saroktól. 
                 Írjuk ezt ki a <code>TextView</code> változónk <code>setText</code> belső függvényével!</em></p>
             <p>Ehhez használd az alábbi parancsot</p>
-            <pre>változó.setText(value+"°");</pre>
+            <pre>változó.setText(ertek+"°");</pre>
             <p>A változó nevét, aminek a feliratát megváltoztatjuk, neked kell beírnod. 
                 Az új felirat pedig nem más, mint az érték egy csinos kis fok jellel.</p>
         </section>
@@ -248,8 +249,8 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
         <section id="rotImage">
             <h3>Kép elforgatása a helyes irányba</h3>
             <p>Most már tényleg minden készen áll ahhoz, hogy megírjuk az iránytű alkalmazásunk azon egy sorát, 
-                ami felhasználók millióit tudta lázba hozni: az iránytű képének elforgatása.</p>
-            <p>Az Androdi 3.0 (API 11) nagyon egyszerűen elforgathatjuk az <code>ImageView</code> komponenseinket. 
+                ami felhasználók millióit tudta lázba hozni: ez az iránytű képének elforgatása.</p>
+            <p>Ha a telefonunk  Android 3.0 (API 11), vagy annál újabb rendszert futtat, akkor nagyon egyszerűen elforgathatjuk az <code>ImageView</code> komponenseinket. 
                 Annyit kell csak tennünk, hogy meghívjuk az <code>ImageView</code> <code>setRotation</code> függvényét, 
                 amivel megmondhatjuk, hogy a kép hány fokkal legyen elforgatva eredeti állapotából.</p>
             <p>Például ha van egy <code>kepecske</code> nevű ImageView változóm, akkor a <code>kepecske.setRotation(60)</code> 
@@ -281,7 +282,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <p>Egészen idáig az alkalmazásaink mindig egyetlen Activity-t használtak. 
                 Egyetlen képernyőt tölthettek meg tartalommal. Sokszor előfordul azonban, 
                 hogy ez a megkötés egyszerűen túl szigorú. Például a programunk beállításait, 
-                vagy további tartalmakat érdemes lehet külön ablakokba helyezni.</p>
+                vagy további tartalmat érdemes lehet külön ablakokba helyezni.</p>
             <p>Gondolhatsz erre úgy, mint az asztali számítógépednél az ablakokra. 
                 Amikor elindítod például az Android Studio-t, megjelenik egy ablak. 
                 Ha rámész az importálásra, akkor felugrik egy újabb ablak.</p>
@@ -289,7 +290,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 (például a szakkör kezdőlapja), ahonnan aztán újabb tartalmas oldalakra ugrálhatunk 
                 (például az első vagy a második lecke).</p>
             <img src="/static/img/l06/09_www.png" class="center-block" />
-            <p>A programok gyakran rendelkeznek úgynevezett about ablakkal. 
+            <p>A programok gyakran rendelkeznek egy úgynevezett about ablakkal. 
                 Az applikációnk ezen ablakának egyetlen szerepe van: tájékoztatni a kedves felhasználót, 
                 hogy ki is készítette a programot!</p>
             <img src="/static/img/l06/08_aboutAct.png" class="center-block" />
@@ -297,7 +298,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 az ablakoknak vagy oldalaknak az Activity-k felelnek meg; így hát nincs mit tenni, 
                 létre kell hoznunk egy újabb Activity-t, ami gombnyomásra nyílik meg az iránytűs ablakból.</p>
             <p>Eddig ugyebár egy darab Activity-vel dolgoztunk, amit ebben a leckében IranytuActivity-nek hívnak.  
-                terv az, hogy létrehozunk egy új activityt, amit az <code>IranytuActivity</code>-ből érünk el egy gombnyomással.</p>
+               A terv most az, hogy létrehozunk egy új activityt, amit az <code>IranytuActivity</code>-ből érünk el egy gombnyomással.</p>
             <img src="/static/img/l06/10_actFSM.png" class="center-block" />
         </section>
         
@@ -314,7 +315,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                     <img src="/static/img/l06/act1.png" class="center-block" />
                 </li>
                 <li>
-                    Az Activity dialógusban adjukmeg az Activity nevét. Ez legyen mondjuk <code>AboutActivity</code>.
+                    Az Activity dialógusban adjuk meg az Activity nevét. Ez legyen mondjuk <code>AboutActivity</code>.
                     <img src="/static/img/l06/act2.png" class="center-block" />
                 </li>
                 <li>Láthatjuk, hogy a projektünkben született egy új layout fájl (<code>activity_about</code>) 
@@ -333,7 +334,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <h3>AboutActivity megnyitása</h3>
             <p>Ha most elindítod a programodat, akkor láthatod, hogy látszólag semmi nem változott. 
                 Ugyanúgy az <code>IranytuActivity</code> indul el. 
-                Kész szerencse, hiszen nem is akarnánk mást.A célunk viszont az lenne, 
+                Kész szerencse, hiszen nem is akarnánk mást. Mi most viszont azt szeretnénk, 
                 hogy egy gombnyomásra hirtelen megjelenjen az új <code>AboutActivity</code>!</p>
             <ol>
                 <li>
