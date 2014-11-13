@@ -96,19 +96,25 @@
         <section id="layout">
                 <h3>Felhasználói felület (layout)</h3>
                 <p><em>layout szerkesztő</em></p>
+                <div class="possible-error">
+                    <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
+                        verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
+                        apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
+                    <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
+                </div>
                 <p>A felhasználói felületünk igen egyszerű, és nagyban hasonlít az előző leckében használtakhoz. 
-                    A következőket kell tenned (ha bizonytalan vagy, ott a <a href="/gyik.html#buttonNClick" target="_blank"">gyorssegély</a>, 
-                    vagy vissza is olvashatsz egy kicsit a <a href="/lessons/l03.html" target="_blank"">harmadik</a>,
-                    <a href="/lessons/l04.html" target="_blank"">negyedik</a> vagy 
-                    <a href="/lessons/l05.html" target="_blank"">ötödik</a> leckére).</p>
+                    A következőket kell tenned (ha bizonytalan vagy, ott a <a href="/gyik.html#buttonNClick" target="_blank">gyorssegély</a>, 
+                    vagy vissza is olvashatsz egy kicsit a <a href="/lessons/l03.html" target="_blank">harmadik</a>,
+                    <a href="/lessons/l04.html" target="_blank">negyedik</a> vagy 
+                    <a href="/lessons/l05.html" target="_blank">ötödik</a> leckére).</p>
                 <ol>
                     <li>Nyissuk meg a Layout szerkesztőt. A Design fül legyen kiválasztva.</li>
                     <li>Helyezzünk el egy <code>ImageView</code> komponenst a telefon kijelzőjére. Az <code>ImageView</code> legyen pontosan középen.
                         <img src="/static/img/l06/02_imageView.png" class="center-block"/>
                         <ul>
-                            <li>Állítsuk be az ImageView méretét (layout:width és layout:height). 
-                                Mondjuk legyen 100sp magas és 100sp széles.</li>
                             <li>Adjunk az <code>ImageView</code>-nak egy <strong>id</strong> tulajdonságot is. Mondjuk <code>kep</code></li>
+                            <li>Állítsuk be az ImageView méretét (layout:width és layout:height). 
+                                Mondjuk legyen 100dp magas és 100dp széles. Vagy bármilyen más értéket is választhatsz, ami jól néz ki.</li>
                             <li>Válasszuk ki, hogy az <code>ImageView</code> az iránytű képét mutassa. Ehhez kattints az <strong>src</strong> (source) 
                                 tulajdonságnál kattints a [&hellip;] gombra, és válaszd ki a compass képet.
                                 <div class="imgstore">
@@ -126,12 +132,6 @@
                         </ul>
                     </li>
                 </ol>
-                <div class="possible-error">
-                    <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
-                        verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
-                        apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
-                    <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
-                </div>
             </section>
         <section id="variables">
             <h3>Komponensekhez tartozó változók</h3>
@@ -348,7 +348,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 </li>
                 <li>
                     Ha ez megvan, akkor nincs más dolgunk, mint befejezni az aboutOnClick függvényünket.
-                    <pre data-include="/include/l06/value.java"></pre>
+                    <pre data-include="/include/l06/launch.java"></pre>
                 </li>
             </ol>
             <p>A kódrészlet pontos működése most nem érdekes számunkra. Az viszont remélhetőleg egyértelműen látszik, 
