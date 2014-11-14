@@ -37,11 +37,11 @@
             <h3>Hogyan állunk ennek neki&hellip;</h3>
             <p>Ez a lecke gyakorlatilag a korábban tanultakra épül. Csupán egy-két helyen találkozunk majd újdonságokkal. 
             Ez alól kivételt képez a lecke utolsó szakasza, amely egy “About” ablak megjelenítését mutatja majd be.</p>
-            <p>Tehát a terv (nagy vonalaiban):</p>
+            <p>Tehát a terv (nagy vonalakban):</p>
             <ol>
                 <li>Felhasználói felület kialakítása
                     <ul>
-                        <li>Layout szerkesztőben egy <code>ImageView</code> elhelyezése, középre igazítása, méretezése.</li>
+                        <li>layout szerkesztőben egy <code>ImageView</code> elhelyezése, középre igazítása, méretezése.</li>
                         <li>kép kiválasztása az <strong>src</strong> tulajdonságnál.</li>
                     </ul>
                 </li>
@@ -59,7 +59,7 @@
             <h3>Figyelmeztetések és egy pár rövid megjegyzés</h3>
             <ul>
                 <li>A lecke folyamán az <em>Orientation</em> szenzorral fogunk dolgozni. 
-                   Az Android fejlesztői úgy határoztak sajnos, hogy ez az érzékelő kissé elavult. Azt szeretnék, 
+                   Az Android fejlesztői sajnos úgy határoztak, hogy ez az érzékelő kissé elavult. Azt szeretnék,
                   hogy egy általánosabb, ám bonyolultabb megoldással tudjuk meg a telefonunk helyzetét. 
                   Az Orientation érzékelő ennek ellenére része maradt az Android rendszernek, 
                   így az egyszerűség kedvéért ma ezt fogjuk használni. 
@@ -87,11 +87,12 @@
             Iránytű App Elkészítése</h2>
         <section id="import">
                 <h3>Importálás</h3>
-                <p>Ebben a leckében is a megszokott módon importálni fogjuk az előkészített projekteket.</p>
+                <p>Ebben a leckében is a megszokott módon importálni fogjuk az előkészített projektet.</p>
                 <ul>
                     <li>Ha Android 3.0  (API 11+) vagy annál újabb rendszert futtat a telefonod, 
                         akkor használd ezt a projektet: <a href="/static/files/L06-iranytu.zip">L06-iranytu.zip</a></li>
-                    <li>Ha öregebb telefonod van (API9-10) , akkor használd inkább ezt: <a href="/static/files/L06-iranytu9.zip">L06-iranytu9.zip</a></li>
+                    <li>Ha öregebb telefonod van Android 2.3 &ndash; Gingerbread (API9-10), akkor használd inkább ezt:
+                        <a href="/static/files/L06-iranytu9.zip">L06-iranytu9.zip</a></li>
                 </ul>
             </section>
         <section id="layout">
@@ -116,7 +117,7 @@
                             <li>Adjunk az <code>ImageView</code>-nak egy <strong>id</strong> tulajdonságot is. Mondjuk <code>kep</code></li>
                             <li>Állítsuk be az ImageView méretét (layout:width és layout:height). 
                                 Mondjuk legyen 100dp magas és 100dp széles. Vagy bármilyen más értéket is választhatsz, ami jól néz ki.</li>
-                            <li>Válasszuk ki, hogy az <code>ImageView</code> az iránytű képét mutassa. Ehhez kattints az <strong>src</strong> (source) 
+                            <li>Válasszuk ki, hogy az <code>ImageView</code> az iránytű képét mutassa. Ehhez az <strong>src</strong> (source)
                                 tulajdonságnál kattints a [&hellip;] gombra, és válaszd ki a compass képet.
                                 <div class="imgstore">
                                     <img src="/static/img/l06/03_src.png" class="center-block" />
@@ -168,7 +169,7 @@
                     <span><img src="/static/img/l06/05_implements.png" /></span></li>
                 <li>Írd meg az onSensorChanged és az onAccuracyChanged függvények vázát.
                     <ul>
-                        <li>Kezdd el beírni az egyik függvény nevét, majd az első 4-5 betű után válaszd ki a megfelelő függvényt a felbukkanó listából. Ezek után Enter</li>
+                        <li>Kezdd el beírni az egyik függvény nevét, majd az első 4-5 betű után válaszd ki a megfelelő függvényt a felbukkanó listából. Ezek után Enter.</li>
                         <li>Ne felejtsd el ugyanezt megtenni a másik függvénnyel is!</li>
                     </ul>
                 </li>
@@ -183,7 +184,7 @@
                 <li>
                     Iratkozz fel az orientation szenzor üzeneteire / érzékeléseire.
                     <ul>
-                        <li>Készítsd ez az <code>onResume</code> függvényt (Android Studio segít, ha elkezded beírni)</li>
+                        <li>Készítsd ez az <code>onResume</code> függvényt (az Android Studio segít, ha elkezded beírni)</li>
                         <li>Nézd meg, hogy az <a href="/lessons/l05.html#task_2" target="_blank">előző leckében</a> 
                             hogyan használtuk a <code>getDefaultSensor</code> és a <code>regesiterListener</code> függvényeket. 
                             Csak annyi a dolgod, hogy átírod a <code>TYPE_PROXIMITY</code>-t <code>TYPE_ORIENTATION</code>-re. 
@@ -201,7 +202,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 </li>
                 <li>
                     <p>Ne felejts el leiratkozni sem az üzenetekről az <code>onPause</code> függvényben! Ehhez először meg kell
-                        írnod az <code>onPause</code> függvényt (Android Studio segít).</p>
+                        írnod az <code>onPause</code> függvényt (az Android Studio segít).</p>
                     <pre>sensorManager.unregisterListener(this);</pre>
                 </li>
             </ol>
@@ -218,7 +219,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
         <section id="display">
             <h3>Érték kiírása</h3>
             <em>ez az onSensorChanged függvényben történik</em>
-            <p>Ezen a ponton nehéz megmondani, hogy helyes-e a programunk. Előfordulhat ugyanis, hogy szintaktika hibát nem vétettünk, 
+            <p>Ezen a ponton nehéz megmondani, hogy helyes-e a programunk. Előfordulhat ugyanis, hogy szintaktikai hibát nem vétettünk,
                 tehát nem írtunk be a Java fordító számára értelmezhetetlen dolgokat, 
                 és a programunk mégsem azt teszi, mint amit szeretnénk 
                 (például biztosan átírtad az érzékelő típusát <code>ORIENTATION</code>-re <code>PROXIMITY</code>-ről?)</p>
@@ -238,10 +239,10 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                     <p>Az ilyen függvényen belül létrehozott változóknál akár cselesen össze is vonhatjuk ezt a két sort:</p>
                     <pre>float ertek = event.values[0];</pre>
             </div>
-            <p><em>Tehát most az ertek változóban van, hogy hány fokra vagyunk az északi saroktól. 
+            <p><em>Tehát most az ertek változóban van, hogy hány fokra vagyunk az északi iránytól.
                 Írjuk ezt ki a <code>TextView</code> változónk <code>setText</code> belső függvényével!</em></p>
             <p>Ehhez használd az alábbi parancsot</p>
-            <pre>változó.setText(ertek+"°");</pre>
+            <pre>változó.setText(ertek+"°"); // a ° karakter az AltGr+7 kombinációval érhető el :)</pre>
             <p>A változó nevét, aminek a feliratát megváltoztatjuk, neked kell beírnod. 
                 Az új felirat pedig nem más, mint az érték egy csinos kis fok jellel.</p>
         </section>
@@ -253,9 +254,9 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <p>Ha a telefonunk  Android 3.0 (API 11), vagy annál újabb rendszert futtat, akkor nagyon egyszerűen elforgathatjuk az <code>ImageView</code> komponenseinket. 
                 Annyit kell csak tennünk, hogy meghívjuk az <code>ImageView</code> <code>setRotation</code> függvényét, 
                 amivel megmondhatjuk, hogy a kép hány fokkal legyen elforgatva eredeti állapotából.</p>
-            <p>Például ha van egy <code>kepecske</code> nevű ImageView változóm, akkor a <code>kepecske.setRotation(60)</code> 
-                elforgatja hatvan fokkal a képemet az óramutató járásával megegyező irányban</p>
-            <pre>kepecske.setRotation(60);</pre>
+            <p>Például ha van egy <code>kepecske</code> nevű ImageView változóm, akkor a <code>kepecske.setRotation(30)</code>
+                elforgatja harminc fokkal a képemet az óramutató járásával megegyező irányban</p>
+            <pre>kepecske.setRotation(30);</pre>
             <img src="/static/img/l06/06_rot.png" class="center-block" />
             <p>Ha esetleg egy kicsit öregebb telefonod lenne, akkor se csüggedj. Van mód a képek elforgatására így is, bár kicsit bonyolultabb. 
                 Hogy ne érjen hátrány ebben a leckében, így írtunk neked egy segédfüggvényt, 
@@ -290,7 +291,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 (például a szakkör kezdőlapja), ahonnan aztán újabb tartalmas oldalakra ugrálhatunk 
                 (például az első vagy a második lecke).</p>
             <img src="/static/img/l06/09_www.png" class="center-block" />
-            <p>A programok gyakran rendelkeznek egy úgynevezett about ablakkal. 
+            <p>A programok gyakran rendelkeznek egy úgynevezett "About" ablakkal.
                 Az applikációnk ezen ablakának egyetlen szerepe van: tájékoztatni a kedves felhasználót, 
                 hogy ki is készítette a programot!</p>
             <img src="/static/img/l06/08_aboutAct.png" class="center-block" />
