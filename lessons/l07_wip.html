@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>L07 - Guruló golyó (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+        type="text/css" rel="stylesheet" title="Featherlight Styles" />
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body>
+    <header data-include="/include/header.html"></header>
+    <div class="container">
+        <h1>
+            7. lecke <small>Guruló golyó</small><p>
+                <small>Online Android szakkör (DKRMG)</small><p>
+        </h1>
+        <hr />
+        <section id="lesson-intro">
+            <p>A korábbi leckékben elkezdtünk megismerkedni a telefonokban található érzékelőkkel (közelségérzékelő, iránytű). 
+                Ezidáig egyszerre mindig egy értéket közöltek velünk a szenzoraink (távolság, elfordulás szöge). 
+                Most azonban megnézzük, hogy mi történik, amikor kilépünk ebből az egysíkú, egydimenziós világból. 
+                Néhány szenzor ugyanis képes egyszerre több mindent is érzékelni!</p>
+            <p>Ebben a leckében egy egyszerű játékot fogunk elkészíteni, amiben egy golyó gurul össze-vissza a képernyőn aszerint, 
+                hogy épp milyen gyorsulási erők hatnak a telefonunkra (hogyan tartjuk, merre forgatjuk és merre mozgatjuk).</p>
+            <p>****TODO kép / videó ****</p>
+            
+            <h4>A cél</h4>
+            <p>Induláskor jelenjen meg egy golyó(t ábrázoló kép) a képernyő közepén. 
+            Ha jobbra-balra illetve előre-hátra billentjük a telefont, a golyó induljon el a megfelelő irányba, 
+            engedelmeskedve a gravitáció csábításának.</p>
+
+            <h4>A terv</h4>
+            <p>Ebben a leckében is egy szenzort fogunk igénybe venni, mégpedig az <code>ACCELEROMETER</code> szenzort, azaz a gyorsulásmérőt. 
+            Ez a szenzor közvetlenül elárulja nekünk, hogy a képernyő tetején pihenő képzeletbeli golyó merre gyorsulna.</p>
+            <p>Most is az lesz a feladatunk, hogy feliratkozzunk a szenzorra, új adat érkezésekor az kiolvasott értékeknek megfelelően  
+            módosítsuk a golyó pozícióját, majd a program leállásakor leiratkozzunk a szenzorról.</p>
+            <p>Vázlatosan tehát:</p>
+            <ol>
+                <li>A golyó képének bemásolása az alkalmazásba</li>
+                <li>Felhasználói felület kialakítása
+                    <ul>
+                        <li>ImageView komponens elhelyezése a layout szerkesztővel</li>
+                        <li>szükséges tulajdonságok (méret, elhelyezkedés) beállítása</li>
+                        <li>kép forrásának megadása</li>
+                    </ul>
+                </li>
+                <li>Feliratkozás az <code>ACCELEROMETER</code> (gyorsulásmérő) szenzorra
+                    <ul>
+                        <li>ImageView komponens elhelyezése a layout szerkesztővel</li>
+                        <li>szükséges tulajdonságok (méret, elhelyezkedés) beállítása</li>
+                        <li>kép forrásának megadása</li>
+                    </ul>
+                </li>
+                <li>Az <code>onSensorChanged</code> függvény törzsének befejezése, hogy a szenzortól érkező adatoknak megfelelően arrébbmozdítsa a golyót.</li>                             
+            </ol>
+
+            <h4>Az eredmény</h4>
+            <p>Előfordulhat, hogy több olyan játékkal is találkoztatok már, amit a telefon mozgatásával kellett vezérelni 
+                (pl.: <a href="https://play.google.com/store/apps/details?id=com.gamelion.speedx3d" target="_blank">SpeedX 3D</a>, 
+                <a href="https://play.google.com/store/apps/details?id=com.lima.doodlejump">Doodle Jump</a>, 
+                <a href="https://play.google.com/store/apps/details?id=com.fridgecat.android.atiltlite">aTilt 3D Labyrinth Free</a>). Ezek mind úgy működnek, mint a mi egyszerű Guruló golyó játékunk. 
+                A különbség csak  annyi, hogy a kiolvasott értékeket máshogy használják fel. Ha az alapok megvannak, 
+                akkor már csak egy jó ötlet kell, és ilyen népszerű játékok születhetnek nem túl sok munkával!</p>
+            
+            <h4>Néhány megjegyzés</h4>
+            <p>A komponenseket, mint amilyen az ImageView is, csak Android 3.0 (API 11) óta lehet kényelmesen 
+                forgatni és arrébb tologatni. Szerencsére majdnem mindenkinek ennél újab készüléke van, 
+                de ha esetleg mégis egy régebbi (pl.: API 9 Gingerbread-et futtató) készüléken dolgoznál, van megoldás. 
+                Figyeld az utasításokat!</p>
+        </section>
+        <section id="lesson">
+            <h1>Guruló golyó alkalmazás elkészítése</h1>
+            <h2 id="new-project">Importálás helyett&hellip; új projekt</h2>
+            <p>Ebben a leckében szakítunk az eddigi gyakorlattal, és Ti fogjátok előkészíteni a projektet! 
+                Nem kell megijedni, nem olyan nagy ördöngősség, csak oda kell figyelni pár dologra. 
+                Emlékeztetésként: a második leckében (Hellow World) is csináltatok már hasonlót!</p>
+            <ol>
+                <li>Indítsuk el az Android Studiot. Ha rögtön megnyitja a legutóbbi projektet, akkor a <code>File -> Close project</code> menüvel zárjuk be!</li>
+                <li>A megjelenő kisebb ablakban válasszuk a "Start a new Android Studio project" lehetőséget. ***TODO kép***</li>
+                <li><p>A következő lépésben adjuk meg az alkalmazásunk alap adatait: ***TODO kép***</p>
+                    <ul>
+                        <li>
+                            <p><strong>Application name</strong>: <code>RollingBall</code> (Ez jelenik meg az ikon alatt a telefonon)</p>
+                            <p>Felmerülhet a kérdés, hogy miért nem magyar nevet adunk a programunknak. 
+                                Azért, mert itt a projekt létrehozásakor nagyon sok mindent a név alapján állít be az Android Studio, 
+                                és mivel a "Guruló golyó" szóközt és ékezetet is tartalmaz, furcsa dolgok történhetnének. 
+                                Sajnos az informatika mai gyakorlatainak megalapozásakor 
+                                nem gondoltak a magyarhoz hasonló egzotikus nyelvekre :)</p>
+                               <p>Később lesz lehetőség a feliratot átírni magyarra.</p>
+                        </li>
+                        <li>
+                            <p><strong>Company domain</strong>: <code>android.dkrmg.hu</code> </p>
+                            <p>Mint a második leckében is írtuk, Java-s körökben az a szokás, 
+                                hogy minden cég/szervezet a saját weboldalának címével azonosítja az általa írt kódokat. 
+                                Mi a DKRMG-n belül az Android csoport vagyunk, így ez a képzeletbeli weboldalunk címe.</p>
+                        </li>
+                        <li>
+                            <p><strong>Project location</strong>: </p>
+                            <p>Ebbe a könyvtárba fogja létrehozni a projektet az Android Studio. 
+                                Célszerű ott megadni egy könyvtárat, ahol a korábbi lekékhez tartozó projektek is vannak. pl.: <code>C:\DkrmgAndroid\L07-RollingBall</code> 
+                                vagy Win7 alatt gyakran: <code>C:\Users\[felhasznalo]\AndroidStudioProjects\L07-RollingBall</code>.</p>
+                        </li>
+                        <li><p>Lépjünk tovább a következő oldalra.</p></li>
+                    </ul>
+                </li>
+                <li><p>Ezen az oldalon megadhatjuk, hogy milyen eszközökre szeretnénk fejleszteni.***TODO kép***</p>
+                    <ul>
+                        <li>
+                            <p>Egyelőre maradjunk a <code>Phone and Tablet</code> opciónál!</p>
+                        </li>
+                        <li>
+                            <p>A "Minimum SDK" mező jelzi, hogy mi legyen a legrégebbi Android verzió, amire fel lehet majd telepíteni az appot.</p>
+                            <p><strong>FONTOS!!!</strong> Itt mindenképp (akkor is ha régebbi telefonod van) az <code>API 19: Android 4.4 (KitKat)</code> legyen kiválasztva! 
+                                Ez azért szükséges, mert az Android Studio ebben ay esetben kicsit túlzottan is segítőkész, és ha alacsonyabb verziód adunk meg, 
+                                akkor mindenféle kiegészítő dolgokat is belerak a projektbe, ami egy komolyabb alkalmazásnál jó lehet, 
+                                de minket most csak zavarna!</p>
+                        </li>
+                        <li>
+                            <p>Lépjünk tovább a következő oldalra.</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>Innentől ismerős lesz a folyamat, ugyanis most következik a kiinduló Acitivity hozzáadása. 
+                        Az előző leckéhez hasonlóan válasszuk a <code>Blank Activity</code> lehetőséget; a neve legyen <code>GolyoActivity</code>.</p>
+                </li>
+                <li>
+                    <p>Végül kattintsunk a <code>Finish</code> gombra!</p>
+                </li>
+                <li>
+                    <p>Némi gondolkodás után (ami számítógéptől függően sajnos akár pár percig is eltarthat) el is készült az új projektünk!
+                        Még annyi dolgunk van, hogy visszaállítsuk a Minimum SDK verziót a telefonunknak megfelelően. Ellenkeyő esetben az SDK 19-nél 
+                        régebbi telefonokon nem indulna el az alkalmazásunk. ***TODO KÉP*** </p>
+                    <li>
+                       <ul>
+                            <li>
+                                <p>Győződjünk meg arról, hogy baloldalt a projektünk fájlai <code>Android</code> nézetben láthatóak. *** TODO kép ***</p>
+                            </li>
+                            <li>
+                                <p>Baloldalt nyissuk meg a <code> Gradle Scripts -> build.gradle (app)</code> fájlt.</p>
+                            </li>
+                            <li>
+                                <p>Ebben keressük meg a <code>minSdkVersion 21</code> sort és írjuk át a <em>számot</em>:</p>
+                                <ul>
+                                    <li>Ha <code>Android 2.3.3 Gingerbread</code>-es telefonunk van, akkor <code>10</code>-re</li>
+                                    <li>Ha újabb, akkor legalább <code>11</code>-re.</li>
+                                </ul>
+                            </li>
+                       </ul> 
+                    </li>
+                </li>
+            </ol>
+
+            <h3 id="import-image">Kép bemásolása a projektbe</h3>
+            <p>Ha a kedves kis android ikonon kívül más képeket is szeretnénk használni az Android projektünkben, akkor a képfájlokat előbb <em>elérhetővé</em> kell tennünk az Android rendszer számára.</p>
+            <p>Ehhez a képfájlokat be kell másolnunk az Android Studio projektünkbe, hogy aztán az Android Studio bepakolhassa őket az alkalmazásba és elküldje a telefonnak is. </p>
+            <p>Ahhoy, hogy az Android Studio megtalálja a képfájlodat, először is keresd meg a <strong>Windows fájlkezelővel</strong> az <code>app\src\main\res</code> mappát a projekteden belül. <br />
+            <em>(Ezt úgy is megteheted, hogy az Android Studioban a <code>res</code> mappára rákattintasz jobb gombbal, majd kiválaszted a <code>Show in Explorer</code> menüpontot</code></code></em>)</p>
+            <p>Készíts a res mappában egy új mappát drawable néven, és másold bele ****todo**** ezt a képet!</p>
+            <p>Ezzel pedig elérhetővé vált a golyó képét a programod számára. A neve megegyezik a jájl nevével: <code>ball</code></p>
+            
+            <h3 id="layout">Felhasználói felület (layout)</h3>
+                <p><em>layout szerkesztő</em></p>
+                <div class="possible-error">
+                    <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
+                        verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
+                        apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
+                    <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
+                </div>
+                <p>A felhasználói felületünk igen egyszerű, és nagyban hasonlít az előző leckében használtakhoz. 
+                    A következőket kell tenned (ha bizonytalan vagy, ott a <a href="/gyik.html#buttonNClick" target="_blank">gyorssegély</a>, 
+                    vagy vissza is olvashatsz egy kicsit a <a href="/lessons/l03.html" target="_blank">harmadik</a>,
+                    <a href="/lessons/l04.html" target="_blank">negyedik</a> vagy 
+                    <a href="/lessons/l05.html" target="_blank">ötödik</a> leckére).</p>
+                <ol>
+                    <li>Nyissuk meg a Layout szerkesztőt. A Design fül legyen kiválasztva.</li>
+                    <li>Helyezzünk el egy <code>ImageView</code> komponenst a telefon kijelzőjére. Az <code>ImageView</code> legyen pontosan középen.
+                        <img src="/static/img/l06/02_imageView.png" class="center-block"/>
+                        <ul>
+                            <li>Adjunk az <code>ImageView</code>-nak egy <strong>id</strong> tulajdonságot is. Mondjuk <code>kep</code></li>
+                            <li>Állítsuk be az ImageView méretét (layout:width és layout:height). 
+                                Mondjuk legyen 100dp magas és 100dp széles. Vagy bármilyen más értéket is választhatsz, ami jól néz ki.</li>
+                            <li>Válasszuk ki, hogy az <code>ImageView</code> az iránytű képét mutassa. Ehhez az <strong>src</strong> (source)
+                                tulajdonságnál kattints a [&hellip;] gombra, és válaszd ki a compass képet.
+                                <div class="imgstore">
+                                    <img src="/static/img/l06/03_src.png" class="center-block" />
+                                    <img src="/static/img/l06/04_res.png" class="center-block" />
+                                </div>
+                                </li>
+                        </ul>
+                    </li>
+                    <li>Helyezzünk egy TextView komponenst a képernyő tetejére. Ide fogjuk kiírni a beolvasott értéket (fok)
+                        <ul>
+                            <li>Növeljük meg egy kicsit a betűméretet</li>
+                            <li>Adjunk a <code>TextView</code>-nak egy <strong>id</strong> tulajdonságot is. Mondjuk <code>felirat</code>.</li>
+                            <li>Adjunk meg valami kezdeti szöveget is (text). Mondjuk ez lehet "<code>fok</code>". Vagy "<code>majd ide jön a fok</code>".</li>
+                        </ul>
+                    </li>
+                </ol>
+            
+            </section>
+            
+        </section>
+
+        <section id="layout">
+                
+        <section id="variables">
+            <h3>Komponensekhez tartozó változók</h3>
+            <em>Java kód</em>
+            <p>Érdemes most még az elején létrehozni a TextView és ImageView típusú változóinkat, 
+                illetve hozzárendelni őket a valódi felirathoz és képhez. 
+                Ezt javasolnánk, hogy az onCreate függvényben tedd meg a findViewById segítségével. 
+                Így a program indulásakor már túl is essünk a munka ezen részén.</p>
+            <p>
+            Javaslatunk az, hogy legyen az <code>ImageView</code> változónk neve <code>iranytuKep</code> (mivel ez a kép mutatja magát az iránytűt), 
+            a <code>TextView</code> változónkat pedig kereszteljük egyszerűen <code>fokFelirat</code>-nak, mivel ez egy felirat, 
+            ahová az elfordulást fogjuk kiírni fokokban. 
+            Természetesen névnek bármit választhatsz (kerülve az ékezetes betűket, betartva a teve szabályt 
+            - minden betű kicsi, kivéve az egymás utáni szavak első betűi. pl. ezEgyValtozo).
+
+                <button data-target="find-help" class="help-link">Segítség?</button></p>
+                <div class="help-container" id="find-help">
+                    <p>A változókat az Activity osztály elején szoktuk létrehozni például ezzel a paranccsal: <code>ImageView iranytuKep;</code></p>
+                    <p>A findViewById parancsot többször is használtuk már. De itt van még egy példa, amit az onCreate függvénybe írjál be!
+                        <code>iranytuKep = (ImageView) findViewById(R.id.kep);</code>
+                    </p>
+                </div>
+        </section>
+        <section id="orientation">
+            <h3>Az Orientation szenzor</h3>
+            <em>Java kód</em>
+            <p>Ez a rész egy az egyben megegyezik az előző leckének az első két feladatával, 
+                a szenzor típusától eltekintve. 
+                Javasoljuk, hogy <a href="/lessons/l05.html#task_1" target="_blank">lapozz vissza</a>, ha bizonytalan vagy. 
+                Különben pedig itt a <a href="/gyik.html#listener" target="_blank">Gyorssegély</a> is.</p>
+            <ol>
+                <li>írd be a public class IranytuActivity… sor megfelelő pontjára az implements SensorEventListener szavakat. Így jelezve, hogy képes az Activity-nk üzeneteket fogadni. 
+                    <span><img src="/static/img/l06/05_implements.png" /></span></li>
+                <li>Írd meg az onSensorChanged és az onAccuracyChanged függvények vázát.
+                    <ul>
+                        <li>Kezdd el beírni az egyik függvény nevét, majd az első 4-5 betű után válaszd ki a megfelelő függvényt a felbukkanó listából. Ezek után Enter.</li>
+                        <li>Ne felejtsd el ugyanezt megtenni a másik függvénnyel is!</li>
+                    </ul>
+                </li>
+                <li>Hozz létre egy <code>SensorManager</code> típusú változót (a neve lehet <code>sensorManager</code> kisbetűvel), és rendeld hozzá a rendszer szenzor managerét. 
+                    Ezt az <code>onCreate</code> függvényben tettük meg a getSystemService(SENSOR_SERVICE) függvénnyel.
+                    <button data-target="smHelp" class="help-link">Segítség?</button></p>
+                    <div class="help-container" id="smHelp">
+                        <p>A hozzárendelés teljes parancsa szerepelt már a korábbi leckében is: 
+                        <code>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</code></p>
+                    </div>
+                </li>
+                <li>
+                    Iratkozz fel az orientation szenzor üzeneteire / érzékeléseire.
+                    <ul>
+                        <li>Készítsd ez az <code>onResume</code> függvényt (az Android Studio segít, ha elkezded beírni)</li>
+                        <li>Nézd meg, hogy az <a href="/lessons/l05.html#task_2" target="_blank">előző leckében</a> 
+                            hogyan használtuk a <code>getDefaultSensor</code> és a <code>regesiterListener</code> függvényeket. 
+                            Csak annyi a dolgod, hogy átírod a <code>TYPE_PROXIMITY</code>-t <code>TYPE_ORIENTATION</code>-re. 
+                            Ezzel máris nem a közelség, hanem az orientáció szenzorra iratkozunk fel.       
+                                <button data-target="smHelp2" class="help-link">Nem sikerül?</button></p>
+                                <div class="help-container" id="smHelp2">
+                                    <p>Tényleg megnézted az előző leckét?! Most még itt megadjuk a megoldást, de ezt a két sort vésd a fejedbe!</p>
+<pre>
+Sensor orientation = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI);
+</pre>
+                                </div>                                 
+                        </li>          
+                    </ul>
+                </li>
+                <li>
+                    <p>Ne felejts el leiratkozni sem az üzenetekről az <code>onPause</code> függvényben! Ehhez először meg kell
+                        írnod az <code>onPause</code> függvényt (az Android Studio segít).</p>
+                    <pre>sensorManager.unregisterListener(this);</pre>
+                </li>
+            </ol>
+            <p>Kész is! Ha elakadtál, vagy nem vagy benne biztos, hogy jól csináltad-e, 
+                akkor hasonlítsd össze az előző lecke megoldásával. Ne feledd, ezen a ponton az
+                 <code>onSensorChanged</code> függvényed még üres (a két kapcsos zárójel között nincs semmi).</p>
+            <p>
+                Futtasd le a programodat! De honnan tudod, hogy működik-e?
+            </p>
+            <p><em>Akik megcsinálták a negyedik lecke Logging szorgalmiját, 
+                azok remélhetőleg itt felhasználják a tudásukat. Ha te nem vagy ennek a <em>szorgalmas</em> társaságnak a tagja, akkor olvass tovább!</em></p>
+        </section>
+
+        <section id="display">
+            <h3>Érték kiírása</h3>
+            <em>ez az onSensorChanged függvényben történik</em>
+            <p>Ezen a ponton nehéz megmondani, hogy helyes-e a programunk. Előfordulhat ugyanis, hogy szintaktikai hibát nem vétettünk,
+                tehát nem írtunk be a Java fordító számára értelmezhetetlen dolgokat, 
+                és a programunk mégsem azt teszi, mint amit szeretnénk 
+                (például biztosan átírtad az érzékelő típusát <code>ORIENTATION</code>-re <code>PROXIMITY</code>-ről?)</p>
+            <p>Most azonban mindjárt kiderül, hogy minden működik-e. Ugyanis megpróbáljuk kiírni az érzékelő által beolvasott 
+             értéket a <code>fokFelirat</code> feliratunkba (<code>TextView</code>). Ha te más nevet adtál a változódnak, akkor most nézd meg gyorsan, 
+                hogy mi volt az!</p>
+            <p>Az előző leckével azonos módon fogjuk megkaparintani az érzékelő által küldött adatot. Mivel minket ismét csak egy szám érdekel 
+                (hány fokot fordultunk el Észak felől), használhatjuk az előző lecke kódját is.</p>
+            <pre data-include="/include/l06/value.java"></pre>
+            <p>Ez létrehoz a függvényünkön belül egy <code>float</code> típusú változót (ertek névvel). A <code>float</code> típus ugyebár egy olyan típus volt, 
+                ami képes nem-egész számok tárolására is (pl <code>0.2357</code>).</p>
+            <p>Az <code>ertek</code> változóhoz pedig rögtön hozzá is rendeljük az érzékelő által küldött értékek közül az elsőt. 
+                Az <code>event.values</code>, mint a múltkor is említettük, egy <em>tömb</em>, melynek az <code>event.values[0]</code> az első eleme. 
+                Érdekességként az Orientation érzékelő több adatot is küldd nekünk egyszerre, nem csak az Északtól való elfordulásunkat. 
+                A többi értéket majd a következő leckében használni is fogjuk.</p>
+            <div class="misc-info">
+                    <p>Az ilyen függvényen belül létrehozott változóknál akár cselesen össze is vonhatjuk ezt a két sort:</p>
+                    <pre>float ertek = event.values[0];</pre>
+            </div>
+            <p><em>Tehát most az ertek változóban van, hogy hány fokra vagyunk az északi iránytól.
+                Írjuk ezt ki a <code>TextView</code> változónk <code>setText</code> belső függvényével!</em></p>
+            <p>Ehhez használd az alábbi parancsot</p>
+            <pre>változó.setText(ertek+"°"); // a ° karakter az AltGr+7 kombinációval érhető el :)</pre>
+            <p>A változó nevét, aminek a feliratát megváltoztatjuk, neked kell beírnod. 
+                Az új felirat pedig nem más, mint az érték egy csinos kis fok jellel.</p>
+        </section>
+
+        <section id="rotImage">
+            <h3>Kép elforgatása a helyes irányba</h3>
+            <p>Most már tényleg minden készen áll ahhoz, hogy megírjuk az iránytű alkalmazásunk azon egy sorát, 
+                ami felhasználók millióit tudta lázba hozni: ez az iránytű képének elforgatása.</p>
+            <p>Ha a telefonunk  Android 3.0 (API 11), vagy annál újabb rendszert futtat, akkor nagyon egyszerűen elforgathatjuk az <code>ImageView</code> komponenseinket. 
+                Annyit kell csak tennünk, hogy meghívjuk az <code>ImageView</code> <code>setRotation</code> függvényét, 
+                amivel megmondhatjuk, hogy a kép hány fokkal legyen elforgatva eredeti állapotából.</p>
+            <p>Például ha van egy <code>kepecske</code> nevű ImageView változóm, akkor a <code>kepecske.setRotation(30)</code>
+                elforgatja harminc fokkal a képemet az óramutató járásával megegyező irányban</p>
+            <pre>kepecske.setRotation(30);</pre>
+            <img src="/static/img/l06/06_rot.png" class="center-block" />
+            <p>Ha esetleg egy kicsit öregebb telefonod lenne, akkor se csüggedj. Van mód a képek elforgatására így is, bár kicsit bonyolultabb. 
+                Hogy ne érjen hátrány ebben a leckében, így írtunk neked egy segédfüggvényt, 
+                ami elvégzi helyetted  a piszkos munkát.</p>
+            <p>A <code>változó.setRotation(fok);</code> parancs helyett használd ezt:</p>
+            <pre>ImageViewHelper.setImageViewRotation(változó, fok);</pre>
+            <p>Futtasd le a programot, és ellenőrizd, hogy működik-e az iránytűd! 
+                Forog a kép a telefon kijelzőjéhez képest? És az északi irányhoz képest?</p>
+            <div class="misc-info">
+                <p>Egy gyakori hiba: túl gyorsan forog az iránytű, amikor forgatom a telefont.</p>
+                <p>Na ez vajon miért lehet? Ha elfordulsz tíz fokot Északhoz képest és a képet további tíz fokkal forgatod, akkor a kép nem fog Észak felé mutatni! 
+                    Itt mit lehetne inkább csinálni?</p>
+                <img src="/static/img/l06/07_err.png" class="center-block" />
+                <button data-target="errHelp" class="help-link">Segítség</button></p>
+                                <div class="help-container" id="errHelp">
+                                    hmmm... <code>-ertek</code>
+                                </div>       
+            </div>
+        </section>
+
+        <section id="aboutActivity">
+            <h2>About Activity</h2>
+            <em>Amikor kilépünk az egy ablakos programok világából.</em>
+            <p>Egészen idáig az alkalmazásaink mindig egyetlen Activity-t használtak. 
+                Egyetlen képernyőt tölthettek meg tartalommal. Sokszor előfordul azonban, 
+                hogy ez a megkötés egyszerűen túl szigorú. Például a programunk beállításait, 
+                vagy további tartalmat érdemes lehet külön ablakokba helyezni.</p>
+            <p>Gondolhatsz erre úgy, mint az asztali számítógépednél az ablakokra. 
+                Amikor elindítod például az Android Studio-t, megjelenik egy ablak. 
+                Ha rámész az importálásra, akkor felugrik egy újabb ablak.</p>
+            <p>Egy másik hasonlat a honlapok működése. Minden oldalnak van egy kezdő lapja 
+                (például a szakkör kezdőlapja), ahonnan aztán újabb tartalmas oldalakra ugrálhatunk 
+                (például az első vagy a második lecke).</p>
+            <img src="/static/img/l06/09_www.png" class="center-block" />
+            <p>A programok gyakran rendelkeznek egy úgynevezett "About" ablakkal.
+                Az applikációnk ezen ablakának egyetlen szerepe van: tájékoztatni a kedves felhasználót, 
+                hogy ki is készítette a programot!</p>
+            <img src="/static/img/l06/08_aboutAct.png" class="center-block" />
+            <p>Mi is szeretnénk, hogy legyen egy about ablakunk. Az Android világában 
+                az ablakoknak vagy oldalaknak az Activity-k felelnek meg; így hát nincs mit tenni, 
+                létre kell hoznunk egy újabb Activity-t, ami gombnyomásra nyílik meg az iránytűs ablakból.</p>
+            <p>Eddig ugyebár egy darab Activity-vel dolgoztunk, amit ebben a leckében IranytuActivity-nek hívnak.  
+               A terv most az, hogy létrehozunk egy új activityt, amit az <code>IranytuActivity</code>-ből érünk el egy gombnyomással.</p>
+            <img src="/static/img/l06/10_actFSM.png" class="center-block" />
+        </section>
+        
+        <section id="newActivity">
+            <h3>Új activity létrehozása</h3>
+            <p>Az új Activity-t néhány lépéssel létre lehet hozni. Figyelj, 
+                nehogy elronts valamit, mert ezen a ponton nehéz utólag javítani a hibákat.</p>
+            <ol>
+                <li>Jobb gombbal kattints az app pontra a projektedben
+                    <img src="/static/img/l06/act0.png" class="center-block" />
+                </li>
+                <li>Válaszd ki a <code>New->Activity->Blank Activiy</code> pontot. 
+                    Ezzel annyit mondtunk, hogy egy üres Activity-t szeretnénk létrehozni.
+                    <img src="/static/img/l06/act1.png" class="center-block" />
+                </li>
+                <li>
+                    Az Activity dialógusban adjuk meg az Activity nevét. Ez legyen mondjuk <code>AboutActivity</code>.
+                    <img src="/static/img/l06/act2.png" class="center-block" />
+                </li>
+                <li>Láthatjuk, hogy a projektünkben született egy új layout fájl (<code>activity_about</code>) 
+                    és egy új java kód fájl (<code>AboutActivity</code>). Ezek teljesen függetlenek az <code>IranytuActivity</code>-nktől! 
+                    A két új fájl az új <code>AboutActivity</code> kinézetét és viselkedését szabják meg.
+                    <img src="/static/img/l06/act3.png" class="center-block" />
+                </li>
+            </ol>
+            <p>Ne is féljünk az új Activity-től (nem harap), nyissuk meg a layout szerkesztőjét, 
+                és írjuk át a hello world szöveget valami tartalmasabbra. 
+                Például hogy ki mikor és miért készítette ezt az alkalmazást.</p>
+            <img src="/static/img/l06/act4.png" class="center-block" />
+        </section>
+
+        <section id="openActivity">
+            <h3>AboutActivity megnyitása</h3>
+            <p>Ha most elindítod a programodat, akkor láthatod, hogy látszólag semmi nem változott. 
+                Ugyanúgy az <code>IranytuActivity</code> indul el. 
+                Kész szerencse, hiszen nem is akarnánk mást. Mi most viszont azt szeretnénk, 
+                hogy egy gombnyomásra hirtelen megjelenjen az új <code>AboutActivity</code>!</p>
+            <ol>
+                <li>
+                    Először is ehhez el kell helyezünk egy gombot az IranytuActivity layout szerkesztőjével.
+                    <img src="/static/img/l06/act5.png" class="center-block" />
+                    Ezek a lépések remélhetőleg ismerősek, gomboknak onClick függvényt már sokat írtunk!
+                    <ul>
+                        <li>Gomb elhelyezése, szöveg átírása stb.</li>
+                        <li>Készítsünk egy <code>aboutOnClick</code> függvényt az <code>IranytuActivity</code> java kódjában</li>
+                        <li>Állítsuk be a gombunk <code>onClick</code> tulajdonságát az új függvényre (<code>aboutOnClick</code>)</li>
+                    </ul>
+                </li>
+                <li>
+                    Ha ez megvan, akkor nincs más dolgunk, mint befejezni az aboutOnClick függvényünket.
+                    <pre data-include="/include/l06/launch.java"></pre>
+                </li>
+            </ol>
+            <p>A kódrészlet pontos működése most nem érdekes számunkra. Az viszont remélhetőleg egyértelműen látszik, 
+                hogy hol határozzuk meg az elindításra váró <code>Activity</code>-t (<code>AboutActivity</code>).</p>
+            <p>Most futtasd le a programodat, hogy valóban sikerült-e jól befejezned a feladatot. 
+                Ha lenyomod a gombot, akkor elindul az <code>AboutActivity</code> ablakunk? 
+                Ha vissza szeretnél térni az <code>IranytuActivity</code>-re, 
+                csak nyomd meg a vissza gombot a telefonodon :)</p>
+            <p>Ha végeztél és minden működik, töltsd fel a projektedet tömörített (pl zip) 
+                formátumban a <a href="http://goo.gl/UMyfuL" target="_blank">szakkör feltöltő oldalán</a> keresztül!</p>
+        </section>
+    </div>
+    <footer data-include="/include/footer.html"></footer>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+</body>
+</html>
