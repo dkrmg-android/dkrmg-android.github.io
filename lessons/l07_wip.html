@@ -201,7 +201,7 @@
                 <img src="/static/img/l07/orientation3.png" class="center-block" />
             </div>
 
-            Ezzel beállítottuk, hogy mi bizony minden esetben ragaszkodunk a "portrait" nézethez; és köszönjük, de nem szeretnénk, hogy minket bárki is elforgasson.
+            Ezzel beállítottuk, hogy mi bizony minden esetben ragaszkodunk a <code>portrait</code> nézethez; és köszönjük, de nem szeretnénk, hogy minket bárki is elforgasson.
 
          </section>
          <section id="layout">
@@ -241,8 +241,14 @@
                             </li>
                             <li>Állítsd be a színét (<code>background</code>) feketére. Némely telefonnál ez az alapértelmezett szín, de menjünk inkább biztosra. 
                                 Ezt (emlékeztetésként) vagy úgy tudod megtenni, hogy beírod a fekete szín kódját (<code>#ff000000</code>), 
-                                vagy a sor végén lévő [&hellip;] gombra kattintasz, majd a Colour fülön kiválasztod a tetszőleges színt. </code>.</li>
+                                vagy a sor végén lévő [&hellip;] gombra kattintasz, majd a Colour fülön kiválasztod a tetszőleges színt. </code>.
                                 <img src="/static/img/l07/layout3.png" class="center-block" />
+                            </li>    
+                            <li>
+                                Győződjünk meg arról, hogy a <code>RelativeLayout</code> a teljes képernyőt kihasználja, és nincsen semmilyen belső margó be'll\tva.
+                                Ehhez állítsuk a <code>padding</code> tulajdonságot üresre (vagy mindenhol <code>0</code>-ra).
+                                <img src="/static/img/l07/layout4.png" class="center-block" />
+                            </li>
                         </ul>
                     </li>
                 </ol>
@@ -251,13 +257,16 @@
         </section>
 
         <section id="variables">
-            <h3>ImageView változó</h3>
+            <h3>Java változók</h3>
             <em>Java kód</em>
             <p>Érdemes most még az elején létrehozni az ImageView típusú változónkat, és hozzárendelni a valódi képhez. 
                 Ezt javasolnánk, hogy az onCreate függvényben tedd meg a findViewById segítségével. 
                 Így a program indulásakor már túl is essünk a munka ezen részén.</p>
             <p>
-            Javaslatunk az, hogy legyen az <code>ImageView</code> változónk neve <code>golyoKep</code> (mivel ez a kép mutatja magát az golyót). 
+            <p>Javaslatunk az, hogy legyen az <code>ImageView</code> változónk neve <code>golyoKep</code> (mivel ez a kép mutatja magát az golyót). </p>
+            <p>Ezen kívül a golyó mozgatása során szeretnénk a háttér (<code>root</code>) szélességére is hivatkozni. Ezért érdemes a hátteret még most elmenteni egy változóba.
+                Készítsünk egy <code>RelativeLayout</code> típusú változót is a program elején. A neve lehet <code>root</code>. Ne felejtsd el ehhez a változóhoz is hozzárendelni a megfelelő értéket
+                az <code>onCreate</code> függvényben!</p>
         </section>
 
         <section id="accelerometer">
@@ -510,10 +519,11 @@ if (ujX > root.getWidth() - 30)
             <p>Közeledik a karácsony (a leckék írásakor legalábbis december eleje van már). Cseréld le a golyót valami karácsonyi hangulatúra!</p>
             <p>Ehhez:</p>
             <ul>
-                <li>Helyezz el egy új képet a <code>res\drawable</code> mappába (pl. <a href="http://upload.wikimedia.org/wikipedia/commons/9/99/Christmas_ball_icon.png">karácsonyi gömb</a>). Ne feledd, a kép neve csak az angol abc kisbetűit és a <code>_</code> karaktert tartalmazhatja</li>
+                <li>Helyezz el egy új képet a <code>res\drawable</code> mappába (pl. <a href="/static/img/l07/christmas_ball.png" target="_blank">karácsonyi gömb</a>). Ne feledd, a kép neve csak az angol abc kisbetűit és a <code>_</code> karaktert tartalmazhatja</li>
                 <li>Állítsd át a <code>layout szerkesztőben</code> az <code>ImageView</code> képed <code>src</code> tulajdonságát. Emlékeztetésként, ez a tulajdonság határozza meg, hogy milyen kép jelenjen meg.</li>
                 <li>Esetleg állítsd át az ImageView méretét (layout:width és layout:height). Ne feledd az ütközéseknél a <em>Java kód</em>-ban is módosítani a 30-as számot. 
                     Vagy használd a <code>golyoKep.getWidth()</code> és <code>golyoKep.getHeight()</code> függvényeit.</li>
+                <em>(A karácsonyi gömb a <a href="http://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License_1.2" target="_blank">GNU Free Documentation License V 1.2</a> alatt kerülhetett a szakkör honlapjára.)</em>
             </ul>    
         </section>
         
@@ -524,7 +534,12 @@ if (ujX > root.getWidth() - 30)
             Ehhez az alábbiakat kell tenned:
             <ul>
                 <li>Létre kell hoznod egy Vibrator típusú rezgoMotor változót az osztályodban</li>
-                <li>Rendeld hozzá a rezgoMotor változódhoz a telefon rezgő motorját az onCreate függvényben. ****TODO HELP rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE); ***</li>
+                <li>Rendeld hozzá a rezgoMotor változódhoz a telefon rezgő motorját az onCreate függvényben. 
+                    <button data-target="vibHelp" class="help-link">Nem emlékszel?</button></p>
+                    <div class="help-container" id="vibHelp">
+                        <p>A hozzárendelés teljes parancsa szerepelt már a korábbi leckében is: 
+                        <code>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</code></p>
+                    </div>
                 <li>Ha a négy if-elágazásod közül bármelyik igaz (tehát a négy közül bármelyik falnak nekimentünk), akkor indíts el egy rövid rezgést (rezgoMotor vibrate függvénye)</li>
             </ul>
 
@@ -538,8 +553,8 @@ if (ujX > root.getWidth() - 30)
                     <pre>&lt;uses-permission android:name="android.permission.VIBRATE"/&gt;</pre>
                 </li>
             </ul>
-            *** TODO KEP ***
-            Most már futtathatod az alkalmazást. Ezzel az egy sorral jelezted az Android rendszernek, hogy a programod szeretné a rezgő motort (a korábbi leckékben ezt a sort mi beleírtuk az előkészített projektekbe).            
+            <img src="/static/img/l07/vibrate1.png" class="center-block" />
+            <p>Most már futtathatod az alkalmazást. Ezzel az egy sorral jelezted az Android rendszernek, hogy a programod szeretné a rezgő motort (a korábbi leckékben ezt a sort mi beleírtuk az előkészített projektekbe).</p>
         </section>
 
         <section id="starred4">
@@ -577,7 +592,7 @@ if (ujX > root.getWidth() - 30)
         <section id="starred5">
             <h3 class="task">5* Egy kis tehetetlenség</h3>
             <p>Főként a fizikát kedvelőknek javasoljuk, hogy vizsgálják meg, mi történik, ha az álló telefont hirtelen megmozdítjuk. Hogyan reagál a golyó? Mi a helyzet akkor, 
-                ha az egyenletesen mozgó telefont hirtelen megállítjuk (*** TODO képek***)? Mit csinál ilyenkor a golyó? Milyen magyarázatot tudsz adni minderre?</p>
+                ha az egyenletesen mozgó telefont hirtelen megállítjuk? Mit csinál ilyenkor a golyó? Milyen magyarázatot tudsz adni minderre?</p>
         </section>
 
         <section id="starred6">
