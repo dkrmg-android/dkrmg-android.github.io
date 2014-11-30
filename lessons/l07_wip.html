@@ -23,12 +23,17 @@
         <hr />
         <section id="lesson-intro">
             <p>A korábbi leckékben elkezdtünk megismerkedni a telefonokban található érzékelőkkel (közelségérzékelő, iránytű). 
-                Ezidáig egyszerre mindig egy értéket közöltek velünk a szenzoraink (távolság, elfordulás szöge). 
+                Ez idáig egyszerre mindig egy értéket közöltek velünk a szenzoraink (távolság, elfordulás szöge). 
                 Most azonban megnézzük, hogy mi történik, amikor kilépünk ebből az egysíkú, egydimenziós világból. 
                 Néhány szenzor ugyanis képes egyszerre több mindent is érzékelni!</p>
             <p>Ebben a leckében egy egyszerű játékot fogunk elkészíteni, amiben egy golyó gurul össze-vissza a képernyőn aszerint, 
                 hogy épp milyen gyorsulási erők hatnak a telefonunkra (hogyan tartjuk, merre forgatjuk és merre mozgatjuk).</p>
-            <p>****TODO kép / videó ****</p>
+            <p>
+                <video width="320" height="240" controls class="center-block">
+                <source src="/static/vid/RollingBall.mp4" type="video/mp4">
+                Itt lehetne egy szép kis videó a guruló golyóról, ha a böngésződ támogatná a vide tag-et :(
+                </video>
+            </p>
             
             <h4>A cél</h4>
             <p>Induláskor jelenjen meg egy golyó(t ábrázoló kép) a képernyő közepén. 
@@ -57,7 +62,7 @@
                         <li>kép forrásának megadása</li>
                     </ul>
                 </li>
-                <li>Az <code>onSensorChanged</code> függvény törzsének befejezése, hogy a szenzortól érkező adatoknak megfelelően arrébbmozdítsa a golyót.</li>                             
+                <li>Az <code>onSensorChanged</code> függvény törzsének befejezése, hogy a szenzortól érkező adatoknak megfelelően arrébb mozdítsa a golyót.</li>                             
             </ol>
 
             <h4>Az eredmény</h4>
@@ -70,19 +75,22 @@
             
             <h4>Néhány megjegyzés</h4>
             <p>A komponenseket, mint amilyen az ImageView is, csak Android 3.0 (API 11) óta lehet kényelmesen 
-                forgatni és arrébb tologatni. Szerencsére majdnem mindenkinek ennél újab készüléke van, 
+                forgatni és arrébb tologatni. Szerencsére majdnem mindenkinek ennél újabb készüléke van, 
                 de ha esetleg mégis egy régebbi (pl.: API 9 Gingerbread-et futtató) készüléken dolgoznál, van megoldás. 
                 Figyeld az utasításokat!</p>
         </section>
         <section id="new-project">
             <h2>Importálás helyett&hellip; új projekt</h2>
             <p>Ebben a leckében szakítunk az eddigi gyakorlattal, és Ti fogjátok előkészíteni a projektet! 
-                Nem kell megijedni, nem olyan nagy ördöngősség, csak oda kell figyelni pár dologra. 
+                Nem kell megijedni, nem olyan nagy ördöngösség, csak oda kell figyelni pár dologra. 
                 Emlékeztetésként: a második leckében (Hellow World) is csináltatok már hasonlót!</p>
             <ol>
                 <li>Indítsuk el az Android Studiot. Ha rögtön megnyitja a legutóbbi projektet, akkor a <code>File -> Close project</code> menüvel zárjuk be!</li>
-                <li>A megjelenő kisebb ablakban válasszuk a "Start a new Android Studio project" lehetőséget. ***TODO kép***</li>
-                <li><p>A következő lépésben adjuk meg az alkalmazásunk alap adatait: ***TODO kép***</p>
+                <li>A megjelenő kisebb ablakban válasszuk a "Start a new Android Studio project" lehetőséget.
+                    <img src="/static/img/l07/newProj1.png" class="center-block" />
+                </li>
+                <li><p>A következő lépésben adjuk meg az alkalmazásunk alap adatait:</p>
+                    <img src="/static/img/l07/newProj2.png" class="center-block" />
                     <ul>
                         <li>
                             <p><strong>Application name</strong>: <code>RollingBall</code> (Ez jelenik meg az ikon alatt a telefonon)</p>
@@ -102,13 +110,14 @@
                         <li>
                             <p><strong>Project location</strong>: </p>
                             <p>Ebbe a könyvtárba fogja létrehozni a projektet az Android Studio. 
-                                Célszerű ott megadni egy könyvtárat, ahol a korábbi lekékhez tartozó projektek is vannak. pl.: <code>C:\DkrmgAndroid\L07-RollingBall</code> 
+                                Célszerű ott megadni egy könyvtárat, ahol a korábbi leckékhez tartozó projektek is vannak. pl.: <code>C:\DkrmgAndroid\L07-RollingBall</code> 
                                 vagy Win7 alatt gyakran: <code>C:\Users\[felhasznalo]\AndroidStudioProjects\L07-RollingBall</code>.</p>
                         </li>
                         <li><p>Lépjünk tovább a következő oldalra.</p></li>
                     </ul>
                 </li>
-                <li><p>Ezen az oldalon megadhatjuk, hogy milyen eszközökre szeretnénk fejleszteni.***TODO kép***</p>
+                <li><p>Ezen az oldalon megadhatjuk, hogy milyen eszközökre szeretnénk fejleszteni.</p>
+                    <img src="/static/img/l07/newProj3.png" class="center-block" />
                     <ul>
                         <li>
                             <p>Egyelőre maradjunk a <code>Phone and Tablet</code> opciónál!</p>
@@ -128,18 +137,20 @@
                 <li>
                     <p>Innentől ismerős lesz a folyamat, ugyanis most következik a kiinduló Acitivity hozzáadása. 
                         Az előző leckéhez hasonlóan válasszuk a <code>Blank Activity</code> lehetőséget; a neve legyen <code>GolyoActivity</code>.</p>
+                    <img src="/static/img/l07/newProj4.png" class="center-block" />
                 </li>
                 <li>
                     <p>Végül kattintsunk a <code>Finish</code> gombra!</p>
+                    <img src="/static/img/l07/newProj5.png" class="center-block" />
                 </li>
                 <li>
                     <p>Némi gondolkodás után (ami számítógéptől függően sajnos akár pár percig is eltarthat) el is készült az új projektünk!
-                        Még annyi dolgunk van, hogy visszaállítsuk a Minimum SDK verziót a telefonunknak megfelelően. Ellenkeyő esetben az SDK 19-nél 
-                        régebbi telefonokon nem indulna el az alkalmazásunk. ***TODO KÉP*** </p>
+                        Még annyi dolgunk van, hogy visszaállítsuk a Minimum SDK verziót a telefonunknak megfelelően. Ellenkező esetben az SDK 19-nél 
+                        régebbi telefonokon nem indulna el az alkalmazásunk. </p>
                     <li>
                        <ul>
                             <li>
-                                <p>Győződjünk meg arról, hogy bal oldalt a projektünk fájlai <code>Android</code> nézetben láthatóak. *** TODO kép ***</p>
+                                <p>Győződjünk meg arról, hogy bal oldalt a projektünk fájlai <code>Android</code> nézetben láthatóak.</p>
                             </li>
                             <li>
                                 <p>Bal oldalt nyissuk meg a <code> Gradle Scripts -> build.gradle (app)</code> fájlt.</p>
@@ -153,34 +164,42 @@
                             </li>
                        </ul> 
                     </li>
+                    <div class="imgstore">
+                        <img src="/static/img/l07/newProj6.png" class="center-block" />
+                        <img src="/static/img/l07/newProj7.png" class="center-block" />
+                        <img src="/static/img/l07/newProj8.png" class="center-block" />
+                    </div>
                 </li>
             </ol>
 
             <h2 id="import-image">Kép bemásolása a projektbe</h2>
-            <p>Ha a kedves kis android ikonon kívül más képeket is szeretnénk használni az Android projektünkben, akkor a képfájlokat előbb <em>elérhetővé</em> kell tennünk az Android rendszer számára.</p>
+            <p>Ha a kedves kis Android ikonon kívül más képeket is szeretnénk használni az Android projektünkben, akkor a képfájlokat előbb <em>elérhetővé</em> kell tennünk az Android rendszer számára.</p>
             <p>Ehhez a képfájlokat be kell másolnunk az Android Studio projektünkbe, hogy aztán az Android Studio bepakolhassa őket az alkalmazásba és elküldje a telefonnak is. </p>
-            <p>Ahhoy, hogy az Android Studio megtalálja a képfájlodat, először is keresd meg a <strong>Windows fájlkezelővel</strong> az <code>app\src\main\res</code> mappát a projekteden belül. <br />
-            <em>(Ezt úgy is megteheted, hogy az Android Studioban a <code>res</code> mappára rákattintasz jobb gombbal, majd kiválaszted a <code>Show in Explorer</code> menüpontot</code></code></em>)</p>
-            <p>Készíts a res mappában egy új mappát drawable néven, és másold bele ****todo**** ezt a képet!</p>
-            <p>Ezzel pedig elérhetővé vált a golyó képét a programod számára. A neve megegyezik a jájl nevével: <code>ball</code></p>
+            <p>Ahhoz, hogy az Android Studio megtalálja a képfájlodat, először is keresd meg a <strong>Windows fájlkezelővel</strong> az <code>app\src\main\res</code> mappát a projekteden belül. <br />
+            <em>(Ezt úgy is megteheted, hogy az Android Studioban a <code>res</code> mappára rákattintasz jobb gombbal, majd kiválasztod a <code>Show in Explorer</code> menüpontot</code></code></em>)</p>
+            <p>Készíts a res mappában egy új mappát drawable néven, és másold bele <a href="/static/img/l07/ball.png" target="_blank">ezt</a> a képet!</p>
+            <p>Ezzel pedig elérhetővé vált a golyó képét a programod számára. A neve megegyezik a fájl nevével: <code>ball</code></p>
             <div class="misc-info">
-                    <p>Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az <em>angol abc kisbetűit</em> és a <code>_</code> karaktert tartalmayhatja. Nagybetűk és ékezetek nem megengedettek.</p>
+                    <p>Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az <em>angol abc kisbetűit</em> és a <code>_</code> karaktert tartalmazhatja. Nagybetűk és ékezetek nem megengedettek.</p>
                     <p>Pl. egy jó fájl: <code>ez_egy_kep.png</code></p>
             </div>
 
             <h2 id="fixed-orientation">Miért forog a képernyő&hellip;</h2>
-            <p>Ha most futtatod az alkalmazásodat, akkor bizonyára észreveszed, hogy a telefon elforgatásakor a kijelzően az applikció ablaka midnent megtesz azért, hogy továbbra is a <em>jó irányba</em> forduljon.</p>
-            <p>Ez a viselkedés sokszor hasznos, azonban (mint remélhetőleg emlékeztek rá), minden elfordításnál egy pillanatig leáál az alkalmazásunk (<code>onPause</code>), majd újraindul (<code>onResume</code>).
-                Tehát az automatikus elforgatás egy olyan játéknál, ami a képernyő elforgatására épól, komoly gondokat okozhat.</p>
+            <p>Ha most futtatod az alkalmazásodat, akkor bizonyára észreveszed, hogy a telefon elforgatásakor a kijelzően az applikáció ablaka mindnent megtesz azért, hogy továbbra is a <em>jó irányba</em> forduljon.</p>
+            <p>Ez a viselkedés sokszor hasznos, azonban (mint remélhetőleg emlékeztek rá), minden elfordításnál egy pillanatig leáll az alkalmazásunk (<code>onPause</code>), majd újraindul (<code>onResume</code>).
+                Tehát az automatikus elforgatás egy olyan játéknál, ami a képernyő elforgatására épül, komoly gondokat okozhat.</p>
 
-            **** TODO KEP***
+            <img src="/static/img/l07/orientation1.png" class="center-block" />
 
             <p>Szerencsére az alkalmazásunk tulajdonságaiban meghatározhatjuk azt, hogy szeretnénk-e élni az automatikus elforgatás lehetőségével.</p>
             <p>Ennek a beállításához nyisd meg bal oldalt az <code>app -> manifests -> AndroidManifest.xml</code> fájlt! Ez az Xml fájl tartalmazza az applikációnk néhány fontos beállítását.</p>
             <p>Nem szeretnénk részletekbe bocsátkozni a manifeszt fájllal kapcsolatban (bár az érdeklődőbbek megnézhetik az <code>android:icon</code> vagy épp az <code>android:label</code> tulajdonságokat is)</p>
-            <p><strong>Készíts egy új sort az <code>activity</code> ponton tulajdonságain belül (pl. <code>android:name=".MyActivity"</code> alá), és másold be az alábbi szöveget:</strong></p>
+            <p><strong>Készíts egy új sort az <code>activity</code> ponton tulajdonságain belül (pl. <code>android:name=".GolyoActivity"</code> alá), és másold be az alábbi szöveget:</strong></p>
             <pre>android:screenOrientation="portrait"</pre>
-            ****TODO KEP****
+            <div class="imgstore">
+                <img src="/static/img/l07/orientation2.png" class="center-block" />
+                <img src="/static/img/l07/orientation3.png" class="center-block" />
+            </div>
 
             Ezzel beállítottuk, hogy mi bizony minden esetben ragaszkodunk a "portrait" nézethez; és köszönjük, de nem szeretnénk, hogy minket bárki is elforgasson.
 
@@ -200,7 +219,7 @@
                 <ol>
                     <li>Nyissuk meg a Layout szerkesztőt. A Design fül legyen kiválasztva.</li>
                     <li>Helyezzünk el egy <code>ImageView</code> komponenst a telefon kijelzőjére. Az <code>ImageView</code> legyen <strong>A bal felső sarokban</strong>.
-                        *****TODO KÉP****
+                        <img src="/static/img/l07/layout1.png" class="center-block" />
                         <ul>
                             <li>Állítsuk be az ImageView méretét (layout:width és layout:height). 
                                 Mondjuk legyen 30dp magas és 30dp széles. Vagy bármilyen más értéket is választhatsz, ami jól néz ki.</li>
@@ -216,9 +235,14 @@
                     </li>
                     <li>Kattints a háttérre, hogy a RelativeLayout komponens legyen kiválasztva. Ez a komponens az ablakunk háttere.
                         <ul>
-                            <li>Adj valamilyen azonosítót a háttérnek is(<strong>id</strong>), pl.: <code>root</code>.***KEP***</li>
+                            <li>
+                                Adj valamilyen azonosítót a háttérnek is(<strong>id</strong>), pl.: <code>root</code>.
+                                <img src="/static/img/l07/layout2.png" class="center-block" />
+                            </li>
                             <li>Állítsd be a színét (<code>background</code>) feketére. Némely telefonnál ez az alapértelmezett szín, de menjünk inkább biztosra. 
-                                Ezt (emlékeztetésként) vagy úgy tudod megtenni, hogy beírod a fekete szín kódját (<code>#ff000000</code>), vagy a sor végén lévő [&hellip;] gombra kattintasz, majd a Colour fülön kiválasztod a tetszőleges színt. ***TODO link 3. lecke****</code>.</li>
+                                Ezt (emlékeztetésként) vagy úgy tudod megtenni, hogy beírod a fekete szín kódját (<code>#ff000000</code>), 
+                                vagy a sor végén lévő [&hellip;] gombra kattintasz, majd a Colour fülön kiválasztod a tetszőleges színt. </code>.</li>
+                                <img src="/static/img/l07/layout3.png" class="center-block" />
                         </ul>
                     </li>
                 </ol>
@@ -245,7 +269,7 @@
                 Különben pedig itt a <a href="/gyik.html#listener" target="_blank">Gyorssegély</a> is.</p>
             <ol>
                 <li>írd be a <code>public class GolyoActivity&hellip;</code> sor megfelelő pontjára az implements SensorEventListener szavakat. Így jelezve, hogy képes az Activity-nk üzeneteket fogadni. 
-                    <span>****TODO KEP****</span></li>
+                    <span><img src="/static/img/l07/sensor1.png" class="center-block" /></span></li>
                 <li>Írd meg az onSensorChanged és az onAccuracyChanged függvények vázát.
                     <ul>
                         <li>Kezdd el beírni az egyik függvény nevét, majd az első 4-5 betű után válaszd ki a megfelelő függvényt a felbukkanó listából. Ezek után Enter.</li>
@@ -255,7 +279,7 @@
                 <li>Hozz létre egy <code>SensorManager</code> típusú változót (a neve lehet <code>sensorManager</code> kisbetűvel), és rendeld hozzá a rendszer szenzor managerét. 
                     Ezt az <code>onCreate</code> függvényben tettük meg a getSystemService(SENSOR_SERVICE) függvénnyel.
                     <button data-target="smHelp" class="help-link">Segítség?</button></p>
-                    <div class="help-container" id="Div1">
+                    <div class="help-container" id="smHelp">
                         <p>A hozzárendelés teljes parancsa szerepelt már a korábbi leckében is: 
                         <code>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</code></p>
                     </div>
@@ -269,7 +293,7 @@
                             Csak annyi a dolgod, hogy átírod a <code>TYPE_PROXIMITY</code>-t <code>TYPE_ACCELEROMETER</code>-re. 
                             Ezzel máris nem a közelség, hanem az orientáció szenzorra iratkozunk fel.       
                                 <button data-target="smHelp2" class="help-link">Nem sikerül?</button></p>
-                                <div class="help-container" id="Div2">
+                                <div class="help-container" id="smHelp2">
                                     <p>Tényleg megnézted az előző leckét?! Most még itt megadjuk a megoldást, de ezt a két sort vésd a fejedbe!</p>
 <pre>
 Sensor orientation = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -336,13 +360,16 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
         <section id="moveBall">
             <h2>A golyó mozgatása a képernyőn</h2>
             <p>A golyó mozgatását első megközelítésben nagyon egyszerűen fogjuk megoldani: </p>
-            <p><strong>Amikor érkezik egy új mérés a telefon gyorsulásmérőjéről, annyiszor arrébbtoljuk a golyót mutató képet a megfelelő irányba</strong>.</p> 
+            <p><strong>Amikor érkezik egy új mérés a telefon gyorsulásmérőjéről, annyiszor arrébb toljuk a golyót mutató képet a megfelelő irányba</strong>.</p> 
             <p>Természetesen a golyó nem tud kilépni a telefon síkjából, így csak két tengely (x,y) mentén mozgunk. 
-                Ez a megoldásunk fizikailag nem teljesen helyes (<em>gyorsulás nem egyenlő sebesség, lásd szorgalmik</em>), 
+                A golyót a gyorsulásmérő által mért értékkel fogjuk arréb tolni. Ez a megoldásunk fizikailag nem teljesen helyes (<em>gyorsulás nem egyenlő sebesség, lásd szorgalmik</em>), 
                 de egy ilyen egyszerű programnál megengedhetünk magunknak ennyi csalást.</p>
-
-            ****TODO egy szép kis kép a várt értékekről, tengelyekről stb.****
-            <p><em>A golyó midenkori pozícióját két <code>int</code> típusú változóban fogjuk tárolni (<code>xPos</code>, <code>yPos</code>)</em>. Amikor új mérés érkezik, akkor
+                <div class="imgstore">
+                    <img src="/static/img/l07/move1.png" class="center-block" />
+                    <img src="http://developer.android.com/images/axis_device.png" class="center-block" />
+                </div>
+                
+            <p><em>A golyó mindenkori pozícióját két <code>int</code> típusú változóban fogjuk tárolni (<code>xPos</code>, <code>yPos</code>)</em>. Amikor új mérés érkezik, akkor
                 ezeknek a változóknak az értékét frissítjük, majd beállítjuk, hogy az <code>ImageView</code> komponensünk is a megfelelő helyen legyen.</p>
 
             <h4 class="task">Feladat</h4>
@@ -358,7 +385,6 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <p>Gondoljunk vissza a korábbi leckékre, ahol az event.<code>value[0]</code> kifejezést használtuk. Hiszen ezzel valójában az <code>event.values</code> tömb első elemét nyertük ki, nem?</p>
 
             <p>Most nézzük meg, hogy a gyorsulásmérő mit is küld nekünk pontosan az event.values tömbben:</p>
-            ***TODO tengelyek megint***
 
             <table class="table table-bordered table-responsive">
                 <thead>
@@ -376,7 +402,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                     </tr>
                 </tbody>
             </table>
-
+            <img src="/static/img/l07/move3.png" class="center-block" />
             <p>A képről is láthatjuk, hogy a harmadik érték (z tengely) számunkra haszontalan, 
                 hiszen a telefonunk (3D-s kijelző híján) nem tudja kiemelni a golyót a saját síkjából. 
                 Viszont a másik két értéket használni tudjuk!</p>
@@ -392,6 +418,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 Mint említettük, egy kis csalással azt feltételezzük, hogy az új pozíció nem más, mint a régi pozíció + a mért gyorsulás.</p>
             <p>Tehát például:</p>
             <pre>float ujX = xPos + xGyorsulas;</pre>
+            <img src="/static/img/l07/move4.png" class="center-block" />
             <p>Hasonlóan írd meg az ujY változót is!</p>
             <p>Ha kiszámítottuk az új pozíciót, akkor frissítsük erre az <code>xPos</code> és az <code>yPos</code> változó értékét.</p>
             <p>Óvatosnak kell lennünk, hiszen az <code>xPos</code> és <code>yPos</code> változóink egész számokat tartalmaznak (<code>int</code>), míg <code>ujX</code> és <code>ujY</code> változónk <code>float</code> típusúak. 
@@ -399,14 +426,14 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
             <pre>xPos = Math.round(ujX);</pre>
             <p>Ez alapján írd meg az yPos értékadását is!</p>
 
-            <p><em>Az ****TODO LINK**** szorgalmiban megnézzük, hogy ez a modell fizikailag miért nem helyes, és hogyan lehetne javítani.</em></p>
+            <p><em>A <a href="#starred4">negyedik szorgalmiban</a> megnézzük, hogy ez a modell fizikailag miért nem helyes, és hogyan lehetne javítani.</em></p>
         </section>
 
         <section id="move-image">
             <h3>Golyó áthelyezése</h3>
             <p>Ha a telefonunk  Android 3.0 (API 11), vagy annál újabb rendszert futtat, akkor nagyon egyszerűen megadhatjuk az <code>ImageView</code> komponenseink helyét. 
                 Annyit kell csak tennünk, hogy meghívjuk az <code>ImageView</code> <code>setX</code> és <code>setY</code> függvényeit az x és y ko-ordináta megadásához.</p>
-            <p>Tehát például ha például ha azt akarjuk elérni, hogy a golyó a bal felső sarokban legyen (kezdéskor remélheőleg már ott van), akkor az alábbi két parancsot használjuk:</p>
+            <p>Tehát például ha például ha azt akarjuk elérni, hogy a golyó a bal felső sarokban legyen (kezdéskor remélhetőleg már ott van), akkor az alábbi két parancsot használjuk:</p>
 <pre>
 golyoKep.setX(0); // vizszinten
 golyoKep.setY(0); // fuggoleges
@@ -418,15 +445,15 @@ golyoKep.setY(0); // fuggoleges
             <pre>ImageViewHelper.setImageViewPosition(imageViewVáltozó, xÉrték, yÉrték);</pre>
 
             <p><em>(Ez a függvény egy általunk írt osztályban található. Mivel ebben a leckében saját projektet használtok, 
-                ezért ezt a fájlt le kell töltenetek ****TODO LINK*** innen, és be kell másolnotok a MainActivity.java fájl mellé.)</em></p>
+                ezért <a href="/static/files/ImageViewHelper.java" target="_blank">ezt a java fájlt</a> le kell töltenetek, és be kell másolnotok a MainActivity.java fájl mellé.)</em></p>
 
-            <p>Most írd meg azt a két parancsot az <code>onSensorEvent</code> függvényben, ami a golyokep változónkat nem az origóra, hanem az (<code>xPos</code>;<code>yPos</code>) pontra helyezi!
+            <p>Most írd meg azt a két parancsot az <code>onSensorEvent</code> függvényben, ami a golyoKep változónkat nem az origóra, hanem az (<code>xPos</code>;<code>yPos</code>) pontra helyezi!
 
 
 
 
             <p>Futtasd a programot, és nézd meg, hogy működik-e. Előfordulhat, hogy a golyó a várttal ellentétes irányba indul el (x irányban). Ezt a hibát remélhetőleg könnyedén tudod javítani az előző lecke után ( <code>+</code> helyett <code>-</code> ).</p>
-            <p>Ne feledd, a golyó ilyenkor még könnyedén kiléphet a telefon kijelzőjéről. Ezt az első szorgalmiban ***TODO LINK**** fogjuk orvosolni. Javasoljuk, hogy mindenki nézze ezt meg</p>
+            <p>Ne feledd, a golyó ilyenkor még könnyedén kiléphet a telefon kijelzőjéről. Ezt az <a href="#starred1">első szorgalmiban</a> fogjuk orvosolni. Javasoljuk, hogy mindenki nézze ezt meg</p>
             <p>Ha esetleg úgy érzed, hogy a golyó nem mozog elég gyorsan, akkor próbáld az xGyorsulas változót megszorozni mondjuk 3-al. pl.:</p>
             <pre>float ujY = yPos+ yGyorsulas * 3;</pre>
 
@@ -446,8 +473,8 @@ golyoKep.setY(0); // fuggoleges
             <ul>
                 <li>Az <code>ujX</code> változó nem lehet kisebb, mint 0.</li>
                 <li>Az <code>ujY</code> változó sem lehet kisebb, mint 0</li>
-                <li>Az <code>ujX</code> változó nem lehet nagyobb, mint a képernyő szélessége minusz a <code>golyoKep</code> <code>ImageView</code> szélessége</li>
-                <li>Az <code>ujY</code> változó nem lehet nagyobb, mint a képernyő magassága minusz a <code>golyoKep</code> <code>ImageView</code> magassága</li>
+                <li>Az <code>ujX</code> változó nem lehet nagyobb, mint a képernyő szélessége mínusz a <code>golyoKep</code> <code>ImageView</code> szélessége</li>
+                <li>Az <code>ujY</code> változó nem lehet nagyobb, mint a képernyő magassága mínusz a <code>golyoKep</code> <code>ImageView</code> magassága</li>
             </ul>
 
             <p>Hogyan tudjuk ezt leprogramozni? A legegyszerűbb, ha az <code>ujX</code>, <code>ujY</code> változók értékadása után 
@@ -483,7 +510,7 @@ if (ujX > root.getWidth() - 30)
             <p>Közeledik a karácsony (a leckék írásakor legalábbis december eleje van már). Cseréld le a golyót valami karácsonyi hangulatúra!</p>
             <p>Ehhez:</p>
             <ul>
-                <li>Helyezz el egy új képet a <code>res\drawable</code> mappába (pl. ***TODO LINK***). Ne feledd, a kép neve csak az angol abc kisbetűit és a <code>_</code> karaktert tartalmazhatja</li>
+                <li>Helyezz el egy új képet a <code>res\drawable</code> mappába (pl. <a href="http://upload.wikimedia.org/wikipedia/commons/9/99/Christmas_ball_icon.png">karácsonyi gömb</a>). Ne feledd, a kép neve csak az angol abc kisbetűit és a <code>_</code> karaktert tartalmazhatja</li>
                 <li>Állítsd át a <code>layout szerkesztőben</code> az <code>ImageView</code> képed <code>src</code> tulajdonságát. Emlékeztetésként, ez a tulajdonság határozza meg, hogy milyen kép jelenjen meg.</li>
                 <li>Esetleg állítsd át az ImageView méretét (layout:width és layout:height). Ne feledd az ütközéseknél a <em>Java kód</em>-ban is módosítani a 30-as számot. 
                     Vagy használd a <code>golyoKep.getWidth()</code> és <code>golyoKep.getHeight()</code> függvényeit.</li>
@@ -492,7 +519,7 @@ if (ujX > root.getWidth() - 30)
         
         <section id="starred3">
             <h3 class="task">3* Rezgés, amikor a golyó a képernyő falának ütközik</h3>
-            <em>Szükséges az első szorgalmi elvézgése</em>
+            <em>Szükséges az első szorgalmi elvégzése</em>
             Használjuk a negyedik leckében tanultakat, és változtassuk a jelenlegi programunkat úgy, hogy amikor nekiütközik egy falnak, akkor a telefon elindít egy rövid rezgést (pl. <code>100</code>ms)
             Ehhez az alábbiakat kell tenned:
             <ul>
@@ -527,7 +554,7 @@ if (ujX > root.getWidth() - 30)
                 <li><p>A sebesség változók kezdeti értéke legyen 0.</p></li>
                 <li>
                     <p>Ahhoz, hogy kiszámoljuk a sebesség változását, előbb meg kell tudnunk, hogy mennyi idő telt el a golyó utolsó mozgatása óta (<em>&Delta;t</em>). Ehhez pedig szükség lesz még egy változóra, ami rögzíti, hogy 
-                    mikor mozgattuk utóljára a golyót. A neve mondjuk legyen <code>ido</code>, a típusa pedig <code>long</code>.</p>
+                    mikor mozgattuk utoljára a golyót. A neve mondjuk legyen <code>ido</code>, a típusa pedig <code>long</code>.</p>
                     <ul>
                         <li><p>A rendszertől lekérdezhetjük a jelenlegi időt. Ehhez felhasználhatod a <code>System.currentTimeMillis()</code> függvény visszatérési értékét, 
                             ami egy long típusú egész szám, és a <a href="http://hu.wikipedia.org/wiki/Unix-id%C5%91" target="_blank">UNIX Epoch</a>, azaz 1970. jan. 01. óta eltelt milliszekundumok számát tartalmazza.</p></li>
@@ -548,24 +575,24 @@ if (ujX > root.getWidth() - 30)
         </section>
         
         <section id="starred5">
-            <h3 class="task">Egy kis tehetetlenség</h3>
+            <h3 class="task">5* Egy kis tehetetlenség</h3>
             <p>Főként a fizikát kedvelőknek javasoljuk, hogy vizsgálják meg, mi történik, ha az álló telefont hirtelen megmozdítjuk. Hogyan reagál a golyó? Mi a helyzet akkor, 
                 ha az egyenletesen mozgó telefont hirtelen megállítjuk (*** TODO képek***)? Mit csinál ilyenkor a golyó? Milyen magyarázatot tudsz adni minderre?</p>
         </section>
 
         <section id="starred6">
-            <h3 class="task">Pattogás</h3>
+            <h3 class="task">6* Pattogás</h3>
             <p>Jelenleg a golyó, amikor eléri a képernyő szélét, egyszerűen megáll. Bizonyára azonban a való életben tapasztalhattátok, 
                 hogy a falnak lökött golyók és labdák egyáltalán nem így viselkednek! Az elmozdíthatatlan fal és a kemény fémgolyó ütközésekor a golyónak legalább egy kicsit vissza kéne pattannia!</p>
-            <p>Az ütközésre vonatkozó szabályok szerencsére elég egyszerűek (bár fizkailag ezek sem tökéletesek, de egy Android programnál már így is nagyon jól néznek ki</p>
+            <p>Az ütközésre vonatkozó szabályok szerencsére elég egyszerűek (bár fizikailag ezek sem tökéletesek, de egy Android programnál már így is nagyon jól néznek ki</p>
             <ul>
-                <li>Ha a golyó mondjuk <code>x=0</code>-nál ütközik, akkor az vízszintes irányú sebessége tökröződik (<code>x = -x;</code>). A függőleges irányú sebessége változatlan marad</li>
+                <li>Ha a golyó mondjuk <code>x=0</code>-nál ütközik, akkor az vízszintes irányú sebessége tükröződik (<code>x = -x;</code>). A függőleges irányú sebessége változatlan marad</li>
                 <li>Fontos, hogy az <code>ujX</code> változót így is 0-ra kell állítanunk.</li>
                 <li>Az összes többi falnál ehhez hasonló szabályok lépnek érvénybe</li>
             </ul>
 
             <p>A valódi életben az ütközéskor valamennyit veszítene a golyó a sebességéből. Az elveszített energia mértéke pedig sokban függene a golyó anyagától. 
-                Gondolj bele: amikor egy kosárlabdát elengedsz, akkor majdnem az ugyanolyan magasra visszajön (de csak majdnem). Egy fémgolyó is pattan, de kissebbet</p> 
+                Gondolj bele: amikor egy kosárlabdát elengedsz, akkor majdnem az ugyanolyan magasra visszajön (de csak majdnem). Egy fémgolyó is pattan, de kisebbet</p> 
             <p>Próbáld meg ezt úgy szimulálni, hogy ütközéskor megszorzod a sebességet (mind a két irányban) egy állandóval. Például <code>0.35</code>-el. Minél nagyobb az érték, annál nagyobbat pattan a golyó!</p>
 
         </section>
