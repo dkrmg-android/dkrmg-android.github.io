@@ -136,7 +136,8 @@
                 </li>
                 <li>
                     <p>Innentől ismerős lesz a folyamat, ugyanis most következik a kiinduló Acitivity hozzáadása. 
-                        Az előző leckéhez hasonlóan válasszuk a <code>Blank Activity</code> lehetőséget; a neve legyen <code>GolyoActivity</code>.</p>
+                        Az előző leckéhez hasonlóan válasszuk a <code>Blank Activity</code> lehetőséget; a következő oldalon pedig
+                        a neve legyen <code>GolyoActivity</code>.</p>
                     <img src="/static/img/l07/newProj4.png" class="center-block" />
                 </li>
                 <li>
@@ -177,11 +178,14 @@
             <p>Ehhez a képfájlokat be kell másolnunk az Android Studio projektünkbe, hogy aztán az Android Studio bepakolhassa őket az alkalmazásba és elküldje a telefonnak is. </p>
             <p>Ahhoz, hogy az Android Studio megtalálja a képfájlodat, először is keresd meg a <strong>Windows fájlkezelővel</strong> az <code>app\src\main\res</code> mappát a projekteden belül. <br />
             <em>(Ezt úgy is megteheted, hogy az Android Studioban a <code>res</code> mappára rákattintasz jobb gombbal, majd kiválasztod a <code>Show in Explorer</code> menüpontot</code></code></em>)</p>
-            <p>Készíts a res mappában egy új mappát drawable néven, és másold bele <a href="/static/img/l07/ball.png" target="_blank">ezt</a> a képet!</p>
-            <p>Ezzel pedig elérhetővé vált a golyó képét a programod számára. A neve megegyezik a fájl nevével: <code>ball</code></p>
+            <p>Készíts a res mappában egy új mappát <strong>drawable</strong> néven, és másold bele <a href="/static/img/l07/ball.png" target="_blank">ezt</a> a képet!</p>
+            <p>Ezzel pedig elérhetővé vált a golyó képe a programod számára. Mostantól kezdve a fájl nevével (<code>R.drawable.ball</code>) tudsz hivatkozni rá (pl. megjeleníteni)</p>
             <div class="misc-info">
-                    <p>Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az <em>angol abc kisbetűit</em> és a <code>_</code> karaktert tartalmazhatja. Nagybetűk és ékezetek nem megengedettek.</p>
-                    <p>Pl. egy jó fájl: <code>ez_egy_kep.png</code></p>
+                <p>Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak
+                    az <em>angol abc kisbetűit</em> és a <code>_</code> karaktert tartalmazhatja.
+                    Nagybetűk és ékezetek nem megengedettek.</p>
+                <p>Valamint az is fontos, hogy a <strong>drawable</strong> mappába kerüljenek a képek, különben nem lesznek elérhetőek!</p>
+                <p>Pl. egy jó fájl: <code>drawable/ez_egy_kep.png</code></p>
             </div>
 
             <h2 id="fixed-orientation">Miért forog a képernyő&hellip;</h2>
@@ -192,9 +196,12 @@
             <img src="/static/img/l07/orientation1.png" class="center-block" />
 
             <p>Szerencsére az alkalmazásunk tulajdonságaiban meghatározhatjuk azt, hogy szeretnénk-e élni az automatikus elforgatás lehetőségével.</p>
-            <p>Ennek a beállításához nyisd meg bal oldalt az <code>app -> manifests -> AndroidManifest.xml</code> fájlt! Ez az Xml fájl tartalmazza az applikációnk néhány fontos beállítását.</p>
-            <p>Nem szeretnénk részletekbe bocsátkozni a manifeszt fájllal kapcsolatban (bár az érdeklődőbbek megnézhetik az <code>android:icon</code> vagy épp az <code>android:label</code> tulajdonságokat is)</p>
-            <p><strong>Készíts egy új sort az <code>activity</code> ponton tulajdonságain belül (pl. <code>android:name=".GolyoActivity"</code> alá), és másold be az alábbi szöveget:</strong></p>
+            <p>Ennek a beállításához nyisd meg bal oldalt az <code>app -> manifests -> AndroidManifest.xml</code> fájlt!
+                Ez az Xml fájl tartalmazza az applikációnk néhány fontos beállítását.</p>
+            <p>Nem szeretnénk részletekbe bocsátkozni a manifeszt fájllal kapcsolatban (bár az érdeklődőbbek
+                megnézhetik az <code>android:icon</code> vagy épp az <code>android:label</code> tulajdonságokat is)</p>
+            <p><strong>Készíts egy új sort az <code>activity</code> pont tulajdonságain belül (pl. <code>android:name=".GolyoActivity"</code> alá),
+                és másold be az alábbi szöveget. Figyelj, hogy a záró <code>&gt;</code> <em>elé</em> írd be!</strong></p>
             <pre>android:screenOrientation="portrait"</pre>
             <div class="imgstore">
                 <img src="/static/img/l07/orientation2.png" class="center-block" />
@@ -218,6 +225,8 @@
                     vagy vissza is olvashatsz egy kicsit a <a href="/index.html#lessons" target="_blank">korábbi leckékben</a>)</p>
                 <ol>
                     <li>Nyissuk meg a Layout szerkesztőt. A Design fül legyen kiválasztva.</li>
+                    <li>Az Android Studio a projekt létrehozásakor belerakott egy TextView komponenst, csak hogy látszódjon valami rögtön az elején.
+                        Ez nekünk nem fog kelleni, <em>jobbklikk -> Delete</em>-el töröljük is!</li>
                     <li>Helyezzünk el egy <code>ImageView</code> komponenst a telefon kijelzőjére. Az <code>ImageView</code> legyen <strong>A bal felső sarokban</strong>.
                         <img src="/static/img/l07/layout1.png" class="center-block" />
                         <ul>
@@ -226,7 +235,8 @@
                             <li>Adjunk az <code>ImageView</code>-nak egy <strong>id</strong> tulajdonságot is. Mondjuk <code>golyo</code></li>
                             <li>Nézzük meg, hogy a <code>layout:centerInParent</code> tualjdonság legyen üres. Ellenkező esetben a golyó nem fog rendesen mozogni.</li>
                             <li>Válasszuk ki, hogy az ImageView az golyó képét mutassa. Ehhez az <strong>src</strong> (source)
-                                tulajdonságnál kattints a [&hellip;] gombra. Ha mindent jól csináltál a kép bemásolásakor korábban, akkor ott kell lennie a <code>ball</code> képnek. Ezt válaszd is ki!
+                                tulajdonságnál kattints a [&hellip;] gombra. Ha mindent jól csináltál a kép bemásolásakor korábban,
+                                akkor ott kell lennie a <code>ball</code> képnek. Ezt válaszd is ki!
                                 <div class="imgstore">
                                     <img src="/static/img/l06/03_src.png" class="center-block" />
                                 </div>
@@ -245,7 +255,7 @@
                                 <img src="/static/img/l07/layout3.png" class="center-block" />
                             </li>    
                             <li>
-                                Győződjünk meg arról, hogy a <code>RelativeLayout</code> a teljes képernyőt kihasználja, és nincsen semmilyen belső margó be'll\tva.
+                                Győződjünk meg arról, hogy a <code>RelativeLayout</code> a teljes képernyőt kihasználja, és nincsen semmilyen belső margó beállítva.
                                 Ehhez állítsuk a <code>padding</code> tulajdonságot üresre (vagy mindenhol <code>0</code>-ra).
                                 <img src="/static/img/l07/layout4.png" class="center-block" />
                             </li>
@@ -259,7 +269,7 @@
         <section id="variables">
             <h3>Java változók</h3>
             <em>Java kód</em>
-            <p>Érdemes most még az elején létrehozni az ImageView típusú változónkat, és hozzárendelni a valódi képhez. 
+            <p>Érdemes most még az elején létrehozni az ImageView típusú változónkat (az onCreate fölött!), és hozzárendelni a valódi képhez.
                 Ezt javasolnánk, hogy az onCreate függvényben tedd meg a findViewById segítségével. 
                 Így a program indulásakor már túl is essünk a munka ezen részén.</p>
             <p>
@@ -267,6 +277,10 @@
             <p>Ezen kívül a golyó mozgatása során szeretnénk a háttér (<code>root</code>) szélességére is hivatkozni. Ezért érdemes a hátteret még most elmenteni egy változóba.
                 Készítsünk egy <code>RelativeLayout</code> típusú változót is a program elején. A neve lehet <code>root</code>. Ne felejtsd el ehhez a változóhoz is hozzárendelni a megfelelő értéket
                 az <code>onCreate</code> függvényben!</p>
+            <p>Az Android Studio megint segíteni szeretett vonlna, ezért beleírt két függvényt a GolyoActivity
+                fájlba (<code>onCreateOptionsMenu</code> és <code>onOptionsItemSelected</code>). Ezek a menü kezelésére szolgálnak, de mi nem fogjuk használni őket.
+                Ha zavarnak, nyugodtan töröld ki őket, de ekkor nagyon figyelj, hogy minden részét töröld
+                (<code>@Override</code>-al kezdődik, és a vele egy oszlopban lévő <code>}</code> jellel végződik)!!! Ha inkább benne hagynád, akkor sem történik semmi.</p>
         </section>
 
         <section id="accelerometer">
@@ -296,7 +310,7 @@
                 <li>
                     Iratkozz fel az orientation szenzor üzeneteire / érzékeléseire.
                     <ul>
-                        <li>Készítsd ez az <code>onResume</code> függvényt (az Android Studio segít, ha elkezded beírni)</li>
+                        <li>Készítsd el az <code>onResume</code> függvényt (az Android Studio segít, ha elkezded beírni)</li>
                         <li>Nézd meg, hogy az <a href="/lessons/l05.html#task_2" target="_blank">ötödik leckében</a> (vagy akár a hatodikban)
                             hogyan használtuk a <code>getDefaultSensor</code> és a <code>regesiterListener</code> függvényeket. 
                             Csak annyi a dolgod, hogy átírod a <code>TYPE_PROXIMITY</code>-t <code>TYPE_ACCELEROMETER</code>-re. 
@@ -382,7 +396,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 ezeknek a változóknak az értékét frissítjük, majd beállítjuk, hogy az <code>ImageView</code> komponensünk is a megfelelő helyen legyen.</p>
 
             <h4 class="task">Feladat</h4>
-            <p>Hozz létre két <code>int</code> típusú változót (<code>xPos</code> és <code>yPos</code>) az osztályod elején. Ez a két vá Az <code>onCreate</code> függvényedben adj értéket mind a két változódnak. 
+            <p>Hozz létre két <code>int</code> típusú változót (<code>xPos</code> és <code>yPos</code>) az osztályod elején. Az <code>onCreate</code> függvényedben adj értéket mind a két változódnak.
             A golyó eleinte a bal felső sarokban van, így <code>xPos&nbsp;=&nbsp;0;</code> és <code>yPos&nbsp;=&nbsp;0;</code>.</p>
         </section>
 
@@ -444,14 +458,14 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 Annyit kell csak tennünk, hogy meghívjuk az <code>ImageView</code> <code>setX</code> és <code>setY</code> függvényeit az x és y ko-ordináta megadásához.</p>
             <p>Tehát például ha például ha azt akarjuk elérni, hogy a golyó a bal felső sarokban legyen (kezdéskor remélhetőleg már ott van), akkor az alábbi két parancsot használjuk:</p>
 <pre>
-golyoKep.setX(0); // vizszinten
+golyoKep.setX(0); // vizszintes
 golyoKep.setY(0); // fuggoleges
 </pre>
 
             <p>Ha esetleg egy kicsit öregebb telefonod lenne, akkor se csüggedj. Van mód a képek áthelyezésére így is, bár kicsit bonyolultabb. 
                 Hogy ne érjen hátrány ebben a leckében, így írtunk neked egy segédfüggvényt, 
                 ami elvégzi helyetted  a piszkos munkát.</p>
-            <pre>ImageViewHelper.setImageViewPosition(imageViewVáltozó, xÉrték, yÉrték);</pre>
+            <pre>ImageViewHelper.setImageViewPosition(imageViewValtozo, xErtek, yErtek);</pre>
 
             <p><em>(Ez a függvény egy általunk írt osztályban található. Mivel ebben a leckében saját projektet használtok, 
                 ezért <a href="/static/files/ImageViewHelper.java" target="_blank">ezt a java fájlt</a> le kell töltenetek, és be kell másolnotok a MainActivity.java fájl mellé.)</em></p>
@@ -501,11 +515,11 @@ if (ujX < 0) {
   ujX = 0;
 }
                 </pre>
-                És ha a golyoKep szélessége nálatok is <code>30</code> (ha nem, akkor használd az általad beállított értéket. Vagy a <code>golyoKep.getWidth()</code> függvényt).:
+                A golyoKep méreteit a <code>golyoKep.getWidth()</code> és <code>golyoKep.getHeight()</code> függvényekkel lehet lekérdezni:
                 <pre>
-if (ujX > root.getWidth() - 30)
+if (ujX > root.getWidth() - golyoKep.getWidth())
 {
-  ujX = root.getWidth() - 30;
+  ujX = root.getWidth() - golyoKep.getWidth();
 }
                 </pre>
                 
@@ -521,8 +535,7 @@ if (ujX > root.getWidth() - 30)
             <ul>
                 <li>Helyezz el egy új képet a <code>res\drawable</code> mappába (pl. <a href="/static/img/l07/christmas_ball.png" target="_blank">karácsonyi gömb</a>). Ne feledd, a kép neve csak az angol abc kisbetűit és a <code>_</code> karaktert tartalmazhatja</li>
                 <li>Állítsd át a <code>layout szerkesztőben</code> az <code>ImageView</code> képed <code>src</code> tulajdonságát. Emlékeztetésként, ez a tulajdonság határozza meg, hogy milyen kép jelenjen meg.</li>
-                <li>Esetleg állítsd át az ImageView méretét (layout:width és layout:height). Ne feledd az ütközéseknél a <em>Java kód</em>-ban is módosítani a 30-as számot. 
-                    Vagy használd a <code>golyoKep.getWidth()</code> és <code>golyoKep.getHeight()</code> függvényeit.</li>
+                <li>Esetleg állítsd át az ImageView méretét (layout:width és layout:height).</li>
                 <em>(A karácsonyi gömb a <a href="http://commons.wikimedia.org/wiki/Commons:GNU_Free_Documentation_License_1.2" target="_blank">GNU Free Documentation License V 1.2</a> alatt kerülhetett a szakkör honlapjára.)</em>
             </ul>    
         </section>
@@ -565,7 +578,7 @@ if (ujX > root.getWidth() - 30)
             <p>Az ehhez hasonló (ún. diszkrét) szimulációknál ezért inkább az alábbi képleteket használjuk (delta (&Delta;) a változást jelenti. pl. sebesség változása):</p>
             <img src="/static/img/l07/phy.png" class="center-block" />
             <ul>
-                <li><p>Tehát nem elég csak a pozíciónkat tárolni! Szükség lesz két őj változóra (<code>vX</code> és <code>vY</code>), ami tárolja a golyó x és y irányú sebességét. Ezek a változók legyenek <code>float</code> típusúak.</p></li>
+                <li><p>Tehát nem elég csak a pozíciónkat tárolni! Szükség lesz két új változóra (<code>vX</code> és <code>vY</code>), ami tárolja a golyó x és y irányú sebességét. Ezek a változók legyenek <code>float</code> típusúak.</p></li>
                 <li><p>A sebesség változók kezdeti értéke legyen 0.</p></li>
                 <li>
                     <p>Ahhoz, hogy kiszámoljuk a sebesség változását, előbb meg kell tudnunk, hogy mennyi idő telt el a golyó utolsó mozgatása óta (<em>&Delta;t</em>). Ehhez pedig szükség lesz még egy változóra, ami rögzíti, hogy 
@@ -601,7 +614,7 @@ if (ujX > root.getWidth() - 30)
                 hogy a falnak lökött golyók és labdák egyáltalán nem így viselkednek! Az elmozdíthatatlan fal és a kemény fémgolyó ütközésekor a golyónak legalább egy kicsit vissza kéne pattannia!</p>
             <p>Az ütközésre vonatkozó szabályok szerencsére elég egyszerűek (bár fizikailag ezek sem tökéletesek, de egy Android programnál már így is nagyon jól néznek ki</p>
             <ul>
-                <li>Ha a golyó mondjuk <code>x=0</code>-nál ütközik, akkor az vízszintes irányú sebessége tükröződik (<code>x = -x;</code>). A függőleges irányú sebessége változatlan marad</li>
+                <li>Ha a golyó mondjuk <code>x=0</code>-nál ütközik, akkor az vízszintes irányú sebessége tükröződik (<code>vX = -vX;</code>). A függőleges irányú sebessége változatlan marad</li>
                 <li>Fontos, hogy az <code>ujX</code> változót így is 0-ra kell állítanunk.</li>
                 <li>Az összes többi falnál ehhez hasonló szabályok lépnek érvénybe</li>
             </ul>
