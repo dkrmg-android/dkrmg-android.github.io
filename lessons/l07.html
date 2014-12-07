@@ -308,19 +308,19 @@
                     </div>
                 </li>
                 <li>
-                    Iratkozz fel az orientation szenzor üzeneteire / érzékeléseire.
+                    Iratkozz fel az accelerometer szenzor üzeneteire / érzékeléseire.
                     <ul>
                         <li>Készítsd el az <code>onResume</code> függvényt (az Android Studio segít, ha elkezded beírni)</li>
                         <li>Nézd meg, hogy az <a href="/lessons/l05.html#task_2" target="_blank">ötödik leckében</a> (vagy akár a hatodikban)
                             hogyan használtuk a <code>getDefaultSensor</code> és a <code>regesiterListener</code> függvényeket. 
                             Csak annyi a dolgod, hogy átírod a <code>TYPE_PROXIMITY</code>-t <code>TYPE_ACCELEROMETER</code>-re. 
-                            Ezzel máris nem a közelség, hanem az orientáció szenzorra iratkozunk fel.       
+                            Ezzel máris a gyorsulásmérő szenzorra iratkozunk fel.       
                                 <button data-target="smHelp2" class="help-link">Nem sikerül?</button></p>
                                 <div class="help-container" id="smHelp2">
-                                    <p>Tényleg megnézted az előző leckét?! Most még itt megadjuk a megoldást, de ezt a két sort vésd a fejedbe!</p>
+                                    <p>Tényleg megnézted az előző leckéket?! Most még itt megadjuk a megoldást, de ezt a két sort vésd a fejedbe!</p>
 <pre>
-Sensor orientation = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI);
+Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
 </pre>
                                 </div>                                 
                         </li>          
