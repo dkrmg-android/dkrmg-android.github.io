@@ -33,42 +33,28 @@
     <p>Ha az Android Studio első indításánál hiányzik a JAVA_PATH környezeti változó, akkor sajnos a Java JDK
         telepítése folyamán elmulasztotta megmondani a Windowsnak, hogy merre találja legfontosabb fájljait.
         Ezt a mulasztást most nekünk kell jóvá tennünk.</p>
-    <p>Két lehetőség közül is választhatunk:</p>
-    <ol>
-        <li>
-            <em>Windows 7/8 alatt</em><br/>
-            Töltsd le és futtasd RENDSZERGAZDAKÉNT az alábbi fájlt:
-            <a href="http://goo.gl/tZlKEw" target="_blank">JavaHome.bat</a> <br/>
-            Sikeres futtatás után az alábbi ablakot látod:
-            <img src="/static/img/l01/javaPath/cmd.png" class="center-block" />
-        </li>
-        <li>
-            <em>Manuálisan</em>
-            Kézileg is hozzá lehet adni az új változót a "Rendszertulajdonságok" dialóguson keresztül.
-            <ol>
-                <li>Start menü</li>
-                <li><strong>jobb gombbal</strong> Számítógép</li>
-                <li>tulajdonságok
-                    <div class="imgstore">
-                        <img src="/static/img/l01/javaPath/seven1.png" />
-                        <img src="/static/img/l01/javaPath/XP1.png" />
-                    </div>
-                </li>
-                <li><em>Csak Windows 7/8 alatt:</em> Speciális rendszerbeállítások (baloldalt keresd!)</li>
-                <li>A megjelenő ablakban a Speciális fül legyen kiválasztva</li>
-                <li>Alul Környezeti változók gomb, majd az alsó Új… gombra kattintva meg kell mondani,
-                    hogy hol található a feltelepített java fejlesztői kit (JDK): <br/>
-                    A „Változó neve” legyen JAVA_HOME a „Változó értéke” pedig ahova a JDK-t telepítetted
-                    (ez valószínűleg a következő: C:\Program Files\Java\jdk1.8.0_20).
-                    <div class="imgstore">
-                        <img src="/static/img/l01/javaPath/seven2.png" />
-                        <img src="/static/img/l01/javaPath/XP2.png" />
-                    </div>
-                </li>
-                <li>Végül mindegyik ablakot zárd be az OK gombbal, és próbáld meg újra elindítani az Android Studiot!</li>
-            </ol>
-        </li>
-    </ol>
+        <ol>
+            <li>Start menü</li>
+            <li><strong>jobb gombbal</strong> Számítógép</li>
+            <li>tulajdonságok
+                <div class="imgstore">
+                    <img src="/static/img/l01/javaPath/seven1.png" />
+                    <img src="/static/img/l01/javaPath/XP1.png" />
+                </div>
+            </li>
+            <li><em>Csak Windows 7/8 alatt:</em> Speciális rendszerbeállítások (baloldalt keresd!)</li>
+            <li>A megjelenő ablakban a Speciális fül legyen kiválasztva</li>
+            <li>Alul Környezeti változók gomb, majd az alsó Új… gombra kattintva meg kell mondani,
+                hogy hol található a feltelepített java fejlesztői kit (JDK): <br/>
+                A „Változó neve” legyen JAVA_HOME a „Változó értéke” pedig ahova a JDK-t telepítetted
+                (ez valószínűleg a következő: C:\Program Files\Java\jdk1.8.0_25).
+                <div class="imgstore">
+                    <img src="/static/img/l01/javaPath/seven2.png" />
+                    <img src="/static/img/l01/javaPath/XP2.png" />
+                </div>
+            </li>
+            <li>Végül mindegyik ablakot zárd be az OK gombbal, és próbáld meg újra elindítani az Android Studiot!</li>
+        </ol>
 
 </div>
 
