@@ -245,3 +245,47 @@ table.comparison td:nth-child(7) {
 #gyik-template {
     display: none;
 }
+
+/* Interactive stuff */
+/* ############################################################################################### */
+.interactive {
+    width: 100%;
+    border: 2px solid #A4C739;
+    padding: 5px;
+}
+
+#panels-container .interactive-panel {
+    float: left;
+    width: 50%;
+}
+
+.interactive-panel .ih {
+    font-weight: bold;
+    border: 1px solid #A4C739;
+    display: inline-block;
+}
+
+.interactive-panel .ih.selected, div.description {
+    -webkit-box-shadow: 0 0 20px 5px rgba(163, 199, 57, 1);
+    -moz-box-shadow: 0 0 20px 5px rgba(163, 199, 57, 1);
+    box-shadow: 0 0 20px 5px rgba(163, 199, 57, 1);
+    padding: 3px;
+}
+
+.interactive .description {
+    /* mostly from bootstrap's 'pre' rule */
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom:10px;
+    min-height:100px;
+}
+
+.interactive .description p {
+    display: none;
+}
+
+.interactive .description p.selected {
+    display: block;
+}

@@ -428,8 +428,36 @@ szolista.setAdapter(adapter);</pre>
 
     public Szo() {}
 }</pre>
-            <p>
-                *** TODO INTERAKTÍV ***</p>
+
+            <div id="interactive-class" class="interactive clearfix">
+                <div id="panels-container">
+                    <div class="interactive-panel">
+                        <pre data-include="/include/l08/Szo.java.html"></pre>
+                    </div>
+                </div>
+                <div id="description" class="description" style="float: left; width: 48%;">
+                    <p class="selected" data-iid="default">Kattints rá balra a zöld keretes részekre,
+                        hogy megtudd, mire valók!</p>
+                    <p data-iid="class-name">Ez az új osztályunk neve.</p>
+                    <p data-iid="fields">*** TODO mit mesélünk a mezőkről? ***</p>
+                    <p data-iid="tostring">*** TODO mit mesélünk a toString-ről? ***</p>
+                    <p data-iid="return">*** TODO mit mesélünk a return-ről? ***</p>
+                    <p data-iid="constructor">*** TODO mit mesélünk a konstruktorról? ***</p>
+                    <p data-iid="default-constructor">*** TODO mit mesélünk a default konstruktorról? ***</p>
+                </div>
+
+                <script type="application/javascript">
+                    $('#panels-container').on('click', 'span.ih', function () {
+                        var iid = $(this).data('iid');
+                        $('span.ih').removeClass('selected');
+                        $('span.ih[data-iid="' + iid + '"]').addClass('selected');
+
+                        $('.interactive #description p').hide();
+                        $('.interactive #description p[data-iid="' + iid + '"]').show();
+                    });
+                </script>
+            </div>
+
             <ul>
                 <li>
                     Az új osztályunk neve legyen Szo. Az ezt követő nyitó kapcsoszárójel és a
