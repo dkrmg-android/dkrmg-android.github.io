@@ -106,10 +106,10 @@
                 Az előző leckéhez hasonlóan most sem készítettünk elő projektet, így azt Nektek
                 kell létrehozni. Kicsit lusták is vagyunk, és nem szeretjük ismételni magunkat,
                 ezért nem írnánk le megint az új projekt létrehozásának menetét, kövessétek az
-                előző leckében (***TODO link***) leírtakat! <em>Az "Importálás helyett…" rész
+                <a href="/lessons/l07.html#new-project">előző leckében leírtakat</a>! <em>Az "Importálás helyett…" rész
                 mind a <strong>nyolc</strong> pontját figyelmesen csináljátok végig!</em> Amire figyelj:</p>
-                <p>
-                    Alkalmazás adatai</p>
+            <p>
+                Alkalmazás adatai</p>
             <ul>
                 <li>
                     <strong>Application name:</strong> Szotar</li>
@@ -147,8 +147,8 @@
                     írjuk be a megfelelő szövegeket az ábra alapján.</li>
                 <li>
                     Ezek után az activity kinézetét ízlés szerint formázhatjuk színekkel,
-                    betűtípusokkal, vagy képekkel. (utóbbihoz a hetedik lecke megfelelő része
-                    nyújthat segítséget (*** TODO LINK***)</li>
+                    betűtípusokkal, vagy képekkel. (utóbbihoz a hetedik lecke
+                    <a href="/lessons/l07.html#import-image">megfelelő része</a> nyújthat segítséget</li>
                 <li>
                     Minden gombnak legyen egy saját kattintást kezelő függvénye. A kattintáskor
                     lefutó részt még nem tudjuk megírni, így a függvény törzsét üresen fogjuk hagyni. Pl.
@@ -165,7 +165,7 @@
             <h2>Ismétlés: AboutActivity</h2>
             <p>
                 Ismétlés a tudás anyja, mondták már sokan, és milyen igazuk van! Ismételjünk most mi
-                is egy kicsit. A 6. lecke (Iránytű) (***TODO link***) végén létrehoztunk egy második
+                is egy kicsit. A 6. lecke (Iránytű) <a href="/lessons/l06.html#openActivity">végén</a> létrehoztunk egy második
                 Activity-t, ami a készítő nevét tartalmazta. Csináljunk egy ilyen About Activityt
                 ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél több eszetekbe jutna,
                 de persze ha elakadtok szabad puskázni a 6. lecke leírásából.</p>
@@ -193,7 +193,7 @@
     startActivity(intent);
 }</pre>
             <p>
-                Ehhez a feladathoz tartozik egy szorgalmi is ***TODO LINK***, amiben a gombot felváltja
+                Ehhez a feladathoz tartozik egy <a href="#starred1">szorgalmi</a> is, amiben a gombot felváltja
                 egy felbukkanó menü. Az érdekesség kedvéért javasoljuk, hogy a következő lecke előtt
                 nézd majd meg!</p>
         </section>
@@ -222,7 +222,13 @@
             <p>
                 Az első sorban létrehozott Intent típusú változónk tárolja, hogy melyik Activity-t
                 szeretnénk megnyitni. Írd át úgy a parancsot, hogy ne az AboutActivity-t nyissa meg,
-                hanem a SzavakActvity-t (*** TODO megfontoltan haladóknak gombos segítség***)</p>
+                hanem a SzavakActvity-t
+                <button data-target="help_open_SzavakActivity" class="help-link">Katt a megoldáshoz!</button></p>
+            <div class="help-container" id="help_open_SzavakActivity">
+<pre>
+Intent intent = new Intent(this, SzavakActvity.class);
+startActivity(intent);</pre>
+            </div>
             
             <h3>Szavak tárolása</h3>
             <p>
@@ -246,7 +252,7 @@ szo2 = "macska = cat";</pre>
                 A megoldás, hogy az előző leckében tanult tömböket alkalmazzuk. Tehát:</p>
             <p>
                 <strong>A szavainkat egyelőre egy <code>String</code> típusú tömbben fogjuk tárolni.</strong>
-                (***TODO LINK***) Emlékeztetésként , a String tömb egy olyan
+                <a href="/lessons/l07.html#arrays">Emlékeztetésként</a> , a String tömb egy olyan
                 adatszerkezet, amelynek minden eleme egy String típusú változó.</p>
             <ul>
                 <li>
@@ -295,7 +301,7 @@ szo2 = "macska = cat";</pre>
                 <code>findViewById</code> paranccsal).</p>
             <p>
                 Tehát jelenleg a szavaink egy String tömbben laknak, és ezeket szeretnénk megjeleníteni
-                a ListView komponensünkön. Nézzük meg az alábbi két sort, amjd írjuk be az onCreate
+                a ListView komponensünkön. Nézzük meg az alábbi két sort, majd írjuk be az onCreate
                 függvényünk végére.</p>
 <pre>ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
 szolista.setAdapter(adapter);</pre>
@@ -308,7 +314,12 @@ szolista.setAdapter(adapter);</pre>
             <p>
                 *** TODO image nyilakkal. Legyen kiemelve a "String" szó (2x), "szavak", "lista" ***</p>
             <p>
-                (*** TODO puskában gombnyomásra a teljes onCreate függvény ****)</p>
+                Ha esetleg elakadtál volna, így kellk inéznie az onCreate függvénynek:
+                <button data-target="help_onCreate_final" class="help-link">Katt ide!</button></p>
+            <div class="help-container" id="help_onCreate_final">
+                <pre data-include="/include/l08/onCreate_final.java.html"></pre>
+                <!-- TODO check if it's really all right! -->
+            </div>
             <p>
                 Futtassuk le a programot. Ha minden igaz, akkor a Menüből a megfelelő gombra kattintva
                 eljutunk a Szavak activity-re, ahol ott sorakoznak a kódban megadott szavak.</p>
@@ -546,11 +557,15 @@ kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
                 kell megadni (itt pl. "szavak").</p>
             <p>
                 De mi azt szeretnénk, hogy ne String-eket, hanem Szo objektumokat tároljon a tömbünk.
-                Ezt hogyan tudnád elérni? *** TODO button help <code>Szo[]</code> szavak;***</p>
+                Ezt hogyan tudnád elérni?
+                <button data-target="help_Szo_array" class="help-link">Segítség</button></p>
+            <div class="help-container" id="help_Szo_array">
+                <pre>Szo[] szavak;</pre>
+            </div>
             <p>
                 Ha a tömbünk típusát átírtuk, akkor a benne lakó adatokat is meg kell változtatni
-                egy csöppet. Az Android Studio most aláhúzza azt a sort, ahol a "macska = cat",
-                "kutya = dog", "molylepke = moth" szópárokat bepakoltuk a tömbbe. Mindezt teljesen
+                egy csöppet. Az Android Studio most aláhúzza azt a sort, ahol a "macska&nbsp;=&nbsp;cat",
+                "kutya&nbsp;=&nbsp;dog", "molylepke&nbsp;=&nbsp;moth" szópárokat bepakoltuk a tömbbe. Mindezt teljesen
                 jogosan teszi, hiszen a szavak tömbbe most már nem Stringeket, hanem Szo típusú
                 változókat kéne tenni.</p>
             <ul>
@@ -589,25 +604,31 @@ szavak = {kutya, cica, molylepke};</pre></li>
             <h3>1. Feladat</h3>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a
-                szavak közé egyelőségjel helyett kötőjelet tegyen inkább!</p>
-            <p>
-                *** TODO HELP az az egy sor, kiemelve az egyelőségjelet ***</p>
+                szavak közé egyelőségjel helyett kötőjelet tegyen inkább!
+                <button data-target="help_task1" class="help-link">Megoldás</button></p>
+            <div class="help-container" id="help_task1">
+                <pre>return angol + " <strong>-</strong> " + magyar;</pre>
+            </div>
             
             <h3>2. Feladat</h3>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a nyelveket
-                angol-magyar sorrendben jelenítse meg!</p>
-            <p>
-                *** TODO help az az egy sor, kiemelve a két változót ***</p>
+                angol-magyar sorrendben jelenítse meg!
+                <button data-target="help_task2" class="help-link">Megoldás</button></p>
+            <div class="help-container" id="help_task2">
+                <pre>return <strong>magyar</strong> + " - " + <strong>angol</strong>;</pre>
+            </div>
         </section>
 
         
         <h1>
             Szorgalmi
         </h1>
-        <h2>AboutActivity menüből</h2>
-        <p>
-            <em>Kis mese a menüről, aztán a 2 fgv megírása.</em></p>
+        <section id="starred1">
+            <h2>AboutActivity menüből</h2>
+            <p>
+                <em>Kis mese a menüről, aztán a 2 fgv megírása.</em></p>
+        </section>
 
 
     </div>
