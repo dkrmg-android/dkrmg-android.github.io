@@ -61,9 +61,10 @@
                 Az általunk tervezett program négy Activity-ből fog állni. Ennek a gyorsan
                 rajzolt (wireframe) terveit itt láthatjátok. Javasoljuk, hogy ismerkedj meg az
                 árbán szereplő ablakokkal, és vagy másold le, vagy térj vissza ide minden
-                alkalommal, mielőtt munkához látsz.</p>
+                alkalommal, mielőtt munkához látsz. <em>A kép kattintással nagyítható</em></p>
             <p>
-                ***TODO wireframe ***</p>
+                <img src="/static/img/l08/wireframe.png" class="center-block" />
+             </p>
             <ul>
                 <li>
                     <strong>Szavak (SzavakActivity)</strong><br/>
@@ -106,20 +107,20 @@
                 Az előző leckéhez hasonlóan most sem készítettünk elő projektet, így azt Nektek
                 kell létrehozni. Kicsit lusták is vagyunk, és nem szeretjük ismételni magunkat,
                 ezért nem írnánk le megint az új projekt létrehozásának menetét, kövessétek az
-                <a href="/lessons/l07.html#new-project">előző leckében leírtakat</a>! <em>Az "Importálás helyett…" rész
+                <a href="/lessons/l07.html#new-project" target="_blank">előző leckében leírtakat</a>! <em>Az "Importálás helyett…" rész
                 mind a <strong>nyolc</strong> pontját figyelmesen csináljátok végig!</em> Amire figyelj:</p>
             <p>
                 Alkalmazás adatai</p>
             <ul>
                 <li>
-                    <strong>Application name:</strong> Szotar</li>
+                    <strong>Application name:</strong> <code>Szotar</code></li>
                 <li>
                     <strong>Project location:</strong> Célszerűen a korábbi projektek mellé érdemes létrehozni,
                     például egy L08-Szotar mappába (pl.: <code>C:\DkrmgAndroid\L08-Szotar</code>)</li>
                 <li>
-                    API 19 kiválasztása</li>
+                    <code>API 19</code> kiválasztása</li>
                 <li>
-                    A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve legyen MenuActivity.</li>
+                    A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve legyen <code>MenuActivity</code>.</li>
             </ul>
             <p>
                 Ne felejtsd el beállítani a megfelelő SDK verziót, majd futtasd a programot a telefonodon!</p>
@@ -131,7 +132,8 @@
             <p>
                 Bemelegítésként rendezzük be a MenuActivity ablakunkat.</p>
             <p>
-                ****TODO Image***</p>
+                <img src="/static/img/l08/menu.png" class="center-block" />
+            </p>
             <p>
                 Ez a menü ablak tényleg pofon egyszerű. Összesen három gombra lesz csak szükségünk,
                 melyek a megfelelő Activity-ket nyitják meg. A megnyitás kódját egyelőre nem tudjuk
@@ -170,7 +172,8 @@
                 ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél több eszetekbe jutna,
                 de persze ha elakadtok szabad puskázni a 6. lecke leírásából.</p>
             <p>
-                *** TODO Image of the finished activity, or at least the wireframe ***</p>
+                <img src="/static/img/l08/about.png" class="center-block" />
+            </p>
             <p>
                 A lépések nagy vonalaiban:</p>
             <ul>
@@ -204,7 +207,8 @@
             <p>
                 <em>Első megközelítés</em></p>
             <p>
-                *** TODO IMAGE ***</p>
+                <img src="/static/img/l08/szavak.png" class="center-block" />
+            </p>
             <p>
                 Szuper, most már van egy "névjegy" activity-nk (AboutActivity) és egy kiinduló menü
                 activitynk, ahonnan az alkalmazás funkciói lesznek elérhetőek. Ideje elkészítenünk
@@ -259,7 +263,7 @@ szo2 = "macska = cat";</pre>
                     Hozzunk is létre egy szavak nevű, String tömb (String[]) típusú változót a
                     SzavakActvity-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
                     A teljes tömbnek az alábbi módon adhatunk értéket:<br/>
-                    <pre>szavak = {"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
+                    <pre>szavak = new String[]{"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
             </ul>
             <p>
                 A fentiek alapján akárhány Stringet (szöveget) megadhatunk kettősidézőjelek (<code>"</code>)
@@ -278,16 +282,18 @@ szo2 = "macska = cat";</pre>
                 hogy most nem elég csak a layout szerkesztőben kattintgatni ahhoz, hogy  String tömbünk
                 elemei megjelenjenek a listában. A Java kódba is kicsit jobban bele kell másznunk.</p>
             <p>
-                *** TODO image, ami szépen bemutatja ezt a kettősséget. tömb a Java kódban, kontroller
-                a layout-ban. Esetleg egy provokatív "?" a kettő között, felhívva arra a figyelmet,
-                hogy valahogy kapcsolatot kell teremteni a tömb és a vezérlő között***</p>
-            
-            
+                <img src="/static/img/l08/adapter1.png" class="center-block" />
+            </p>
             <h3>Layout kialakítása</h3>
             <p>
                 Helyezzünk el egy ListView komponenst a layout szerkesztőben (Containers kategória alatt).
                 Az Activity legfontosabb feladata a szavak megjelenítése, tehát méretezzük úgy a listánkat,
-                hogy a képernyő nagyrészét elfoglalja *** TODO IMG***</p>
+                hogy a képernyő nagyrészét elfoglalja
+                <div class="imgstore">
+                        <img src="/static/img/l08/listView1.png" class="center-block" />
+                        <img src="/static/img/l08/listView2.png" class="center-block" />
+                    </div>
+            </p>
             <p>
                 Láthatjuk, hogy a layout szerkesztőnknek fogalma sincs, hogy mit szeretnénk a
                 listánkban megjeleníteni, így jobb híján az "item 1", "item 2", … szavakat használja.
@@ -312,7 +318,7 @@ szolista.setAdapter(adapter);</pre>
                 ami szól a ListView változónknak: itt vannak az új adatok a <code>szavak</code> tömbben,
                 jelenítsd meg őket!</p>
             <p>
-                *** TODO image nyilakkal. Legyen kiemelve a "String" szó (2x), "szavak", "lista" ***</p>
+                <img src="/static/img/l08/adapter2.png" class="center-block" />
             <p>
                 Ha esetleg elakadtál volna, így kellk inéznie az onCreate függvénynek:
                 <button data-target="help_onCreate_final" class="help-link">Katt ide!</button></p>
@@ -382,8 +388,6 @@ szolista.setAdapter(adapter);</pre>
             <p>
                 Példaként megnézhetjük a Haromszog osztályt, ami tartalmazza egy háromszög adatait,
                 és felvázolja, hogy milyen "cselekvéseket" végezhetünk egy háromszöggel.</p>
-            <p>
-                *** TODO IMG***</p>
             <ul>
                 <li>
                     Adatok lehetnek: a,b,c, azaz a három oldal hossza</li>
@@ -392,6 +396,9 @@ szolista.setAdapter(adapter);</pre>
                     kinyomtatja egy papírra, vagy csak kiszámolja nekünk a háromszög területét, vagy
                     kerületét.</li>
             </ul>
+            <p>
+               <img src="/static/img/l08/tri.png" class="center-block" />
+            </p>
             <p>
                 Fontos, hogy mi ezzel egy <em>tervrajzot</em> készítünk csak, azt mondjuk el a Java
                 nyelvnek, hogy egy háromszög típusú változó milyen adatokat tároljon. Nem egy bizonyos
@@ -421,8 +428,12 @@ szolista.setAdapter(adapter);</pre>
                     tartalmát a LitstView-ba, az eddig ismertetett módon.</li>
             </ul>
             <p>
-                Vágjunk is bele. Hozz létre egy új osztály (Jobb klikk, New, Class ***TODO IMG***)
-                Szo néven, és másold be az alábbi kódot:</p>
+                Vágjunk is bele. Hozz létre egy új osztály <code>Szo</code> néven!
+                <div class="imgstore">
+                        <img src="/static/img/l08/newClass1.png" class="center-block" />
+                        <img src="/static/img/l08/newClass2.png" class="center-block" />
+                    </div>
+                Most pedig másold be az alábbi kódot:</p>
 <pre>public class Szo {
     public String angol;
     public String magyar;
@@ -575,10 +586,10 @@ kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
 Szo cica = new Szo("cica", "cat");
 Szo kutya = new Szo("kutya", "dog");
 …
-szavak = {kutya, cica, molylepke};</pre></li>
+szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
                 <li>
                     Vagy az egyszerűség kedvéért írhatjuk ezt is:
-<pre>szavak = {new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
+<pre>szavak = new Szo[]{new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
             </ul>
             <p>
                 Már csak annyi feladatunk van, hogy az adaptert is átállítsuk, hogy ne String-eket használjon,
@@ -598,10 +609,8 @@ szavak = {kutya, cica, molylepke};</pre></li>
             <p>
                 És hogy mégis miért szenvedtünk ennyit az osztályunk megírásával?</p>
         </section>
-
-
         <section id="tasks">
-            <h3>1. Feladat</h3>
+            <h4 class="task">1. Feladat</h3>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a
                 szavak közé egyelőségjel helyett kötőjelet tegyen inkább!
@@ -610,7 +619,7 @@ szavak = {kutya, cica, molylepke};</pre></li>
                 <pre>return angol + " <strong>-</strong> " + magyar;</pre>
             </div>
             
-            <h3>2. Feladat</h3>
+            <h4 class="task">2. Feladat</h3>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a nyelveket
                 angol-magyar sorrendben jelenítse meg!
@@ -621,9 +630,9 @@ szavak = {kutya, cica, molylepke};</pre></li>
         </section>
 
         
-        <h1>
+        <h2>
             Szorgalmi
-        </h1>
+        </h2>
         <section id="starred1">
             <h2>AboutActivity menüből</h2>
             <p>
