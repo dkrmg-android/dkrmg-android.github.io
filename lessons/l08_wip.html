@@ -20,636 +20,560 @@
             8. lecke <small>Szótár (1)</small><p>
                 <small>Online Android szakkör (DKRMG)</small><p>
         </h1>
-        <hr />
-        <h2>
-            Egy kis bevezetés
-        </h2>
-        <p>
-            Az első hét lecke elkészítése után nem túlzás azt mondani, hogy sikeresen vetted
-            az Android programozás talán legnagyobb akadályait. Feltelepítetted az Android Studiot,
-            megírtad az első önálló alkalmazásaidat, saját Activity-ket hoztál létre, használatba
-            vetted a rezgőmotort és három különböző érzékelőt is. Ehhez meg kellett tanulnod
-            a layout szerkesztő használatát és a Java nyelv alapjait. Gratulálunk!
-        </p>
-        <p>
-            Az új év (eredetileg januári lecke) viszont most új kihívásokat tartogat. Ahhoz,
-            hogy tényleg otthonosan tudjatok mozogni az androidos alkalmazás fejlesztés világában,
-            kicsit komolyabb programok felé fordítjuk a figyelmünket.
-        </p>
-        <p>
-            Az egyik fontos változás, hogy nem fogunk minden leckében új programot készíteni;
-            például a mostani leckével egy három leckén átívelő projektbe kezdünk. Ami viszont
-            reményeink szerint nem fog változni: minden lecke végén egy használható alkalmazás
-            lesz a kezetekben, legfeljebb nem lesz teljesen készen.
-        </p>
-        <h2>
-            Tehát akkor a tervezett program
-        </h2>
-        <p>
-            Az első nagyobb projektben szeretnénk valami olyan programot alkotni, ami hasznosnak
-            bizonyulhat akár a mindennapokban is. Az angolórák/nyelvórák pedig elég fontos részét
-            képezik a mindennapjainknak; ezen belül pedig mi egész pontosan a szavak megtanulására
-            fogunk összpontosítani.
-        </p>
-        <p>
-            A mostani leckénk célja nem lesz más, mint egy egyszerű szótarfüzet program megírása.
-            Az applikáció készítése közben megismerkedünk majd a listákkal és azok megjelenítésével,
-            négy Activity-vel zsonglőrködünk egyszerre, ezáltal tényleg megtapasztalva az igazi
-            Android fejlesztés nehézségeit. A végeredmény viszont egy teljes, használható applikáció
-            lesz (puskázó appal kombinálva kéretik tanóra keretein belül nem használni!)
-        </p>
-        <h3>
-            A program részei
-        </h3>
-        <p>
-            Az általunk tervezett program négy Activity-ből fog állni. Ennek a gyorsan rajzolt
-            (wireframe) terveit itt láthatjátok. Javasoljuk, hogy ismerkedj meg az árbán szereplő
-            ablakokkal, és vagy másold le, vagy térj vissza ide minden alkalommal, mielőtt munkához
-            látsz.
-        </p>
-        <p>
-            ***TODO wireframe ***
-        </p>
-        <li>Szavak (SzavakActivity) </li>
-        <li>Kulcsfontosságú része az alkalmazásnak. Itt listázzuk majd ki a szavakat. </li>
-        <li>Kvíz (KvizActivity) </li>
-        <li>Ez az Activity segít majd minket a nyelvtanulásban. A program véletlenszerűen kérdez
-            tőlünk szavakat </li>
-        <li>About (AboutActivity) </li>
-        <li>6. leckéhez hasonlóan egy egyszerű kis Activity, ami rólad, azaz a program készítőjéről
-            ad egy kicsit több információt (pl. név, email cím stb.) </li>
-        <li>Menü (MenuActivity) </li>
-        <li>Egy ekkora programnak kell egy kezdőképernyő, ahonnan a különböző ablakokra navigálhatunk.
-            Pofon egyszerű, három gomb, három click függvény, ami a megfelelő Activity-t hívja
-            meg. </li>
-        <p>
-        </p>
-        <p>
-            Ebben a leckében a menü és az About ablakok elkészítése mellett szeretnénk letenni
-            a SzavakActivity alapjait. A következő két leckében ezt fogjuk tovább finomítani,
-            illetve megírjuk a KvizActivity ablakot is.
-        </p>
-        <h3>
-            Honnan jönnek a szavak?
-        </h3>
-        <p>
-            Egy szótárfüzet programnál jogosan merül fel a kérdés: honnan jönnek a szavak? Ebben
-            a leckében a szavakat a program készítésekor kell majd beírnunk (például egy tömbbe),
-            részleteket lásd később. A folytatásban viszont már fájlokat fogunk használni, amiket
-            akár számítógépen is szerkeszthettek, illetve egymással vagy akár osztálytársakkal
-            is megoszthattok. Néhány minta fájl: ****TODO link***. Ennek kapcsán javasolnánk,
-            hogy mindenki olyan szavakat írjon be (mind a programba, mind a fájlokba), amelyek
-            a nyelvi tudását tükrözik. Így hasznosabb lesz a program, mint ha a mi fantáziátlan
-            példáinkat használjátok.
-        </p>
-        <h2>
-            Új projekt létrehozása
-        </h2>
-        <p>
-            Az előző leckéhez hasonlóan most sem készítettünk elő projektet, így azt Nektek
-            kell létrehozni. Kicsit lusták is vagyunk, és nem szeretjük ismételni magunkat,
-            ezért nem írnánk le megint az új projekt létrehozásának menetét, kövessétek az előző
-            leckében (TODO link) leírtakat! Az “Importálás helyett…” rész mind a nyolc pontját
-            figyelmesen csináljátok végig!
-        </p>
-        <p>
-            Amire figyelj:
-        </p>
-        <li>Alkalmazás adatai </li>
-        <li>Application name: Szotar </li>
-        <li>Project location: Célszerűen a korábbi projektek mellé érdemes létrehozni, például
-            egy L08-Szotar mappába (pl.: C:\DkrmgAndroid\L08-Szotar) </li>
-        <li>API 19 kiválasztása </li>
-        <li>A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve legyen MenuActivity.
-        </li>
-        <p>
-            Ne felejtsd el beállítani a megfelelő SDK verziót, majd futtasd a programot a telefonodon!
-        </p>
-        <h2>
-            Menü (MenuActivity)
-        </h2>
-        <p>
-            Bemelegítésként rendezzük be a MenuActivity ablakunkat.
-        </p>
-        <p>
-            ****TODO Image***
-        </p>
-        <p>
-            Ez a menü ablak tényleg pofon egyszerű. Összesen három gombra lesz csak szükségünk,
-            melyek a megfelelő Activity-ket nyitják meg. A megnyitás kódját egyelőre nem tudjuk
-            megírni (ahhoz hiányoznak az Activity-k).
-        </p>
-        <p>
-            Amit már most meg tudunk csinálni:
-        </p>
-        <li>A RelativeLayout komponensünknek is állítsuk be az id tulajdonságát például root
-            értékre (később sok fejfájástól óvhat meg minket) </li>
-        <li>Három gomb elhelyezése a layout szerkesztőben. Ezeket rendezzük középre, és írjuk
-            be a megfelelő szövegeket az ábra alapján. </li>
-        <li>Ezek után az activity kinézetét ízlés szerint formázhatjuk színekkel, betűtípusokkal,
-            vagy képekkel. (utóbbihoz a hetedik lecke megfelelő része nyújthat segítséget ***
-            TODO LINK***) </li>
-        <li>Minden gombnak legyen egy saját kattintást kezelő függvénye. A kattintáskor lefutó
-            részt még nem tudjuk megírni, így a függvény törzsét üresen fogjuk hagyni. Pl.
-        </li>
-        <p>
-            public void buttonSzavakOnClick(View v) { // TODO: a SzavakActivity megnyitása }
-        </p>
-        <p>
-            A függvényeinket akkor tudjuk majd befejezni, amikor a többi Activity elkészült.
-        </p>
-        <h2>
-            Ismétlés: AboutActivity
-        </h2>
-        <p>
-            Ismétlés a tudás anyja, mondták már sokan, és milyen igazuk van! Ismételjünk most
-            mi is egy kicsit. A 6. lecke (Iránytű) (TODO link) végén létrehoztunk egy második
-            Activity-t, ami a készítő nevét tartalmazta. Csináljunk egy ilyen About Activityt
-            ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél több eszetekbe jutna,
-            de persze ha elakadtok szabad puskázni a 6. lecke leírásából.
-        </p>
-        <p>
-            *** TODO Image of the finished activity, or at least the wireframe ***
-        </p>
-        <p>
-            A lépések nagy vonalaiban:
-        </p>
-        <li>Új Blank Activity létrehozása (New -> Activity -> Blank Activity) </li>
-        <li>Activity neve: AboutActivity </li>
-        <li>Layout szerkesztővel alakítsuk ki az új activity-t (activity_about.xml) tetszés
-            szerint </li>
-        <li>Írjuk be azt a két soros kódot, ami megnyitja az About ablakunkat. Mivel az AboutActivity-t
-            a menüből akarjuk megírni, ezért ez a menü ablakunk Java kódjába kell, hogy kerüljön,
-            az egyik gombkattintást kezelő függvénybe azok közül, amit az előző pontban hoztunk
-            létre. </li>
-        <p>
-            A kód, amely elindítja az AboutActivity-t:
-        </p>
-        <p>
-            public void aboutOnClick(View v) { Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent); }
-        </p>
-        <p>
-            Ehhez a feladathoz tartozik egy szorgalmi is ***TODO LINK***, amiben a gombot felváltja
-            egy felbukkanó menü. Az érdekesség kedvéért javasoljuk, hogy a következő lecke előtt
-            nézd majd meg!
-        </p>
-        <p>
-        </p>
-        <h2>
-            Mégegy activity: SzavakActivity
-        </h2>
-        <p>
-            <em>Első megközelítés</em>
-        </p>
-        <p>
-            *** TODO IMAGE ***
-        </p>
-        <p>
-            Szuper, most már van egy “névjegy” activity-nk (AboutActivity) és egy kiinduló menü
-            activitynk, ahonnan az alkalmazás funkciói lesznek elérhetőek. Ideje elkészítenünk
-            az első funkciót, a szavak kilistázását! A cél tehát: egy Activity, ami megjeleníti
-            a program által ismert szavak listáját.
-        </p>
-        <h3>
-            Üres Activity létrezohása, megnyitása
-        </h3>
-        <p>
-            A fentiek mintájára adjunk hozzá a projekthez még egy activity-t (puska itt), aminek
-            a típusa legyen továbbra is Blank Activity és a neve SzavakActivity!
-        </p>
-        <p>
-        </p>
-        <p>
-            Most, hogy már többször is beírtátok/bemásoltátok az új activity-t megnyitó kódot,
-            nézzük meg kicsit közelebbről ezt a két sort!
-        </p>
-        <p>
-            Az első sorban létrehozott Intent típusú változónk tárolja, hogy melyik Activity-t
-            szeretnénk megnyitni. Írd át úgy a parancsot, hogy ne az AboutActivity-t nyissa
-            meg, hanem a SzavakActvity-t (*** TODO megfontoltan haladóknak gombos segítség***)
-        </p>
-        <h3>
-            Szavak tárolása
-        </h3>
-        <p>
-            Futólagos ismerettséget köthettünk már az előző leckék során a String típussal.
-            Emlékeztetésként: ez egy olyan típus, amely szövegeket tárol. Például nézzük meg
-            az alábbi változót:
-        </p>
-        <p>
-            String szoveg;
-        </p>
-        <p>
-            szoveg = “kutya”;
-        </p>
-        <p>
-            A String típus azonban ennél sokkal többre is képes. A szöveg tartalmazhat szóközöket
-            illetve (végre valahára) ékezetes karaktereket is! Például:
-        </p>
-        <p>
-            String szoveg2;
-        </p>
-        <p>
-            szoveg2 = “Ez egy szép kis árvíztűrő tükörfúrógép”;
-        </p>
-        <p>
-            Innen jön az ötlet: egy magyar-angol szópárt könnyedén eltárolhatunk egy String
-            típusú változóban:
-        </p>
-        <p>
-            szo1 = “kutya = dog”;
-        </p>
-        <p>
-            szo2 = “macska = cat”;
-        </p>
-        <p>
-            Azonban természetesen nem szeretnénk minden szóhoz új változót létrehozni. A megoldás,
-            hogy az előző leckében tanult tömböket alkalmazzuk. Tehát:
-        </p>
-        <p>
-            A szavainkat egyelőre egy String típusú tömbben fogjuk tárolni. (***TODO LINK***)
-            Emlékeztetésként , a String tömb egy olyan adatszerkezet, amelynek minden eleme
-            egy String típusú változó.
-        </p>
-        <li>Hozzunk is létre egy szavak nevű, String tömb (String[]) típusú változót a SzavakActvity-n
-            belül. Az onCreate függvényben pedig töltsük fel adatokkal. A teljes tömbnek az
-            alábbi módon adhatunk értéket: </li>
-        <p>
-            szavak = {“kutya = dog”, “macska = cat”, “molylepke = moth”};
-        </p>
-        <p>
-            A fentiek alapján akárhány Stringet (szöveget) megadhatunk kettősidézőjelek (“)
-            között, vesszővel elválasztva.
-        </p>
-        <h3>
-            Egy String tömb megjelenítése
-        </h3>
-        <p>
-            Az eddigi programjaink során több layout komponenssel is találkoztunk már. Rengeteg
-            gombot és feliratot hoztunk már létre, és a képeket tároló ImageView sem teljesen
-            ismeretlen számunkra. Ezúttal azonban egy olyan összetett komponensre lesz szükségünk,
-            ami szavak/szövegek egy egész listáját tudja megjeleníteni. Ehhez fogjuk használni
-            a ListView vezérlőt.
-        </p>
-        <p>
-            A most bemutatásra kerülő ListView egy elég különös, univerzális elem, ami kicsit
-            másképp viselkedik, mint a korábbi komponenseink. Ügyelnünk kell arra, hogy most
-            nem elég csak a layout szerkesztőben kattintgatni ahhoz, hogy String tömbünk elemei
-            megjelenjenek a listában. A Java kódba is kicsit jobban bele kell másznunk.
-        </p>
-        <p>
-            *** TODO image, ami szépen bemutatja ezt a kettősséget. tömb a Java kódban, kontroller
-            a layout-ban. Esetleg egy provokatív “?” a kettő között, felhívva arra a figyelmet,
-            hogy valahogy kapcsolatot kell teremteni a tömb és a vezérlő között***
-        </p>
-        <p>
-        </p>
-        <h3>
-            Layout kialakítása
-        </h3>
-        <p>
-            Helyezzünk el egy ListView komponenst a layout szerkesztőben (Containers kategória
-            alatt). Az Activity legfontosabb feladata a szavak megjelenítése, tehát méretezzük
-            úgy a listánkat, hogy a képernyő nagyrészét elfoglalja *** TODO IMG***
-        </p>
-        <p>
-            Láthatjuk, hogy a layout szerkesztőnknek fogalma sincs, hogy mit szeretnénk a listánkban
-            megjeleníteni, így jobb híján az “item 1”, “item 2”, … szavakat használja. Ezeket
-            fogjuk lecserélni a saját szavainkra.
-        </p>
-        <h3>
-            Tömb megjelenítése a ListView komponensen (Adapter)
-        </h3>
-        <p>
-            Mielőtt megnézzük az ehhez szükséges mágikus parancsot, előbb hozzunk létre egy
-            ListView típusú változót a SzavakActivity-ben, mondjuk szolista néven, és rendeljük
-            hozzá a ListView komponensünkhöz (ilyet már sokszor csinátuk a findViewById paranccsal).
-        </p>
-        <p>
-            Tehát jelenleg a szavaink egy String tömbben laknak, és ezeket szeretnénk megjeleníteni
-            a ListView komponensünkön. Nézzük meg az alábbi két sort, amjd írjuk be az onCreate
-            függvényünk végére.
-        </p>
-        <p>
-            ArrayAdapter<string> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-            szavak);
-        </p>
-        <p>
-            szolista.setAdapter(adapter);
-        </p>
-        <p>
-            Nem kell teljességgel értenünk a fentieket; így is láthatjuk, hogy létrehoztunk
-            egy adaptert, ami segít a tömbünket a szolista (ListView) számára megemészthető
-            formába hozni. Egészen pontosan létrehoztunk egy úgynevezett ArrayAdapter objektumot,
-            ami szól a ListView változónknak: itt vannak az új adatok a szavak tömbben, jelenítsd
-            meg őket!
-        </p>
-        <p>
-            *** TODO image nyilakkal. Legyen kiemelve a “String” szó (2x), “szavak”, “lista”
-            ***
-        </p>
-        <p>
-            (*** TODO puskában gombnyomásra a teljes onCreate függvény ****)
-        </p>
-        <p>
-            Futtassuk le a programot. Ha minden igaz, akkor a Menüből a megfelelő gombra kattintva
-            eljutunk a Szavak activity-re, ahol ott sorakoznak a kódban megadott szavak.
-        </p>
-        <h2>
-            Szavak tárolása, második megközelítés
-        </h2>
-        <p>
-            A programunk ugyan szépen működik, gyönyörűen kilistázza a String értékeket. Ha
-            csak ennyit szerettünk volna, akkor most kényelmesen hátradőlhetnénk, elfogyasztva
-            a karácsonyról maradt bejglit (ha még nem száradt ki teljesen).
-        </p>
-        <p>
-            Ahhoz azonban, hogy továbbhaladjunk, egy kicsit át kell alakítanunk, hogy miként
-            tároljuk a szavakat.
-        </p>
-        <p>
-            Emlékeztetésként: egy szópárt (magyar-angol) egy String-ben került tárolásra “magyar
-            = angol” formában. Tehát például:
-        </p>
-        <p>
-            “küllopsz = cyclops”, “szem = eye”, stb.
-        </p>
-        <p>
-            Ez egy igen rugalmatlan módszer. Néhány példa, hogy miért nem szeretnénk így tárolni
-            a szópárokat:
-        </p>
-        <li>Nagyon bonyolult lenne elérnünk, ha azt szeretnénk, hogy a szavak fordított sorrendben
-            jelenjenek meg (“angol = magyar”). Mégpedig egy szótár programban miért ne lehetne
-            ezt könnyedén elérni? </li>
-        <li>Hogy adnánk hozzá szépen mondjuk egy harmadik nyelvet? Van, aki németül/franciául/olaszul
-            is tanul! </li>
-        <li>Macerás lenne lecserélni az “=” jelet mondjuk egy nyílra (“-->”) </li>
-        <li>Hogy nyerhetjük ki egy ilyen Stringből (“angol = magyar”) csak az egyik nyelvű szót?
-            Erre szükségünk lesz pedig a kvíznél! És mi lenne, ha hirtelen szeretnénk egy harmadik
-            nyelvet is? </li>
-        <p>
-            A fenti problémára több megoldás is létezik. Korábbi programozási nyelveknél előfordult,
-            hogy például az angol szavakat és a magyar szavakat külön-külön String tömbben tárolták.
-            Mi ehelyett egy Java programozók által kedveltebb megoldást választunk.
-        </p>
-        <p>
-            A lecke folytatásában betekintés-jellegűleg megismerkedünk a Java nyelvben méltán
-            népszerű osztály fogalmával. Itt előre szeretnénk leszögezni, hogy ez a téma túl
-            nagy egy ilyen leckéhez (vagy akár szakkörhöz); a lecke végén nem célunk, hogy bárki
-            is saját osztályt tudjon írni. Ennél sokkal fontosabb, hogy megértse magát az alap
-            ötletet, és lássa, hogy miként alkalmazzuk mindezt a szavaink tárolásához. Lazarus
-            nyelvből a class vagy record adatszerkezetek ismerete óriási előnyt jelenthet.
-        </p>
-        <h3>
-            Osztály
-        </h3>
-        <p>
-            Az osztály egy igen érdekes adatszerkezet, ami segítségével létrehozhatjuk a saját
-            változó típusainkat a Java nyelvben. Egészen pontosan amikor megírunk egy osztályt,
-            akkor azzal felvázoljuk
-        </p>
-        <li>a szerkezetben tárolható adatokat </li>
-        <li>és a rajtuk elvégezhető cselekvéseket. </li>
-        <p>
-            Példaként megnézhetjük a Haromszog osztályt, ami tartalmazza egy háromszög adatait,
-            és felvázolja, hogy milyen “cselekvéseket” végezhetünk egy háromszöggel.
-        </p>
-        <p>
-            *** TODO IMG***
-        </p>
-        <li>Adatok lehetnek: a,b,c, azaz a három oldal hossza </li>
-        <li>cselekvések lehetnek pl. egy függvény, ami kirajzolja a háromszöget a képernyőre,
-            kinyomtatja egy papírra, vagy csak kiszámolja nekünk a háromszög területét, vagy
-            kerületét. </li>
-        <p>
-            Fontos, hogy mi ezzel egy tervrajzot készítünk csak, azt mondjuk el a Java nyelvnek,
-            hogy egy háromszög típusú változó milyen adatokat tároljon. Nem egy bizonyos háromszögről
-            van szó!
-        </p>
-        <p>
-            A háromszög osztályt itt és most nem írjuk meg (bár javasoljuk, hogy az érdeklődő
-            kedvűek olvassanak utána a Java osztályoknak és írják meg az osztály kódját). Ehelyett
-            inkább nézzük meg, hogy miként festene egy osztály, ami egy szót tartalmaz, különböző
-            nyelveken!
-        </p>
-        <p>
-            Tehát a két kérdés, amit fel kell tennünk magunknak:
-        </p>
-        <li>Milyen adatot tároljon a Szo típus? </li>
-        <li>Milyen cselekvések/függvényeket kell elvégeznie ennek a típusnak? </li>
-        <p>
-            A válaszokat most mi adjuk meg:
-        </p>
-        <li>A Szo típusnak legalább két adatot kell tárolnia: a szó angol és magyar formáját.
-            Késbb ez több nyelvvel is kiegészíthető </li>
-        <li>Az egyetlen fontos cselekvés, amit elvárunk a Szo osztálytól, hogy a tartalmát egyetlen
-            String-ben is ki tudja írni. Ez szükséges ahhoz, hogy ki tudjuk írni a tartalmát
-            a LitstView-ba, az eddig ismertetett módon. </li>
-        <p>
-            Vágjunk is bele. Hozz létre egy új osztály (Jobb klikk, New, Class ***TODO IMG***)
-            Szo néven, és másold be az alábbi kódot:
-        </p>
-        <p>
-            public class Szo { public String angol; public String magyar; @Override public String
-            toString() { return angol + “ = “ + magyar; }
-        </p>
-        <p>
-            public Szo(String angol, String magyar)
-        </p>
-        <p>
-            {
-        </p>
-        <p>
-            this.angol = angol;
-        </p>
-        <p>
-            this.magyar = magyar;
-        </p>
-        <p>
-            }
-        </p>
-        <p>
-            public Szo()
-        </p>
-        <p>
-            {
-        </p>
-        <p>
-            } }
-        </p>
-        <p>
-            *** TODO INTERAKTÍV ***
-        </p>
-        <li>Az új osztályunk neve legyen Szo. Az ezt követő nyitó kapcsoszárójel és a legvégén
-            található záró kapcsoszárójel között minden az osztályhoz fog tartozni. </li>
-        <li>Az angol és a magyar szó helye. De ilyesmit mintha már láttunk volna! Igen, ez pontosan
-            olyan, mint amit az Activity elején szoktunk csinálni amikor létrehozunk egy változót
-            valamelyik komponensnek vagy mint a 3. leckében a tippelt számnak. Tehát az angol
-            és a magyar egy-egy változó, mégpedig String típusú. És mivel az osztályunkon belül
-            találhatóak, ezért belső változónak fogjuk hívni őket. </li>
-        <li>A következő dolog szintén ismerős lehet: ez egy függvény mégpedig egy belső függvény,
-            hiszen ez is az osztályon belül található. Látszik rajta, hogy a neve toString.
-            Java nyelven ez a toString függvény használható arra, hogy egy osztályt szöveggé
-            alakítsunk. </li>
-        <p>
-            <strong>Fontos! </strong>
-        </p>
-        <p>
-            Amint már utaltunk rá, az osztály, amit a fenti kóddal adunk meg, az csak egy tervrajz!
-            Megmondja, hogy hogy kell kinéznie egy Szo-nak. Ezzel csak egy új típust hoztunk
-            létre. Ahhzo, hogy igazán használni tudjuk, el keell kezdenünk Szo típusú változókat
-            gyártani. Ez a következő kóddal tehetjük meg:
-        </p>
-        <p>
-            Szo kutya;
-        </p>
-        <p>
-            kutya = new Szo();
-        </p>
-        <p>
-        </p>
-        <p>
-            Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a kutya változó magyar
-            és angol megfelelőit, akkor azt könnyedén megtehetjük:
-        </p>
-        <p>
-            kutya.angol = “dog”; kutya.magyar = “kutya”;
-        </p>
-        <p>
-            Láthatjuk, hogy a kutya mögé helyezett ponttal a kutya változónk belső változóinak
-            adhatunk értéket (vagy olvashatjuk ki őket).
-        </p>
-        <p>
-            Mi most még ezen felül csalhatunk is egy kicsit, hogy ne kelljen három sort gépelni,
-            beírhatjuk az alábbit is:
-        </p>
-        <p>
-            Szo kutya; // deklarálás.
-        </p>
-        <p>
-            kutya = new Szo(“kutya”, “dog”); // új szó létrehozása
-        </p>
-        <p>
-        </p>
-        <h3>
-            Belső függvény
-        </h3>
-        <h2>
-            Láthattuk, hogy a kutya változó mögé helyezett ponttal a kutya változó belső változóihoz
-            nyertünk hozzáférést (pl. kutya.angol, kutya.magyar). Ehhez hasonlatosan nem nehéz
-            kitalálni, hogy a “kutya.toString()” parancs meghívja a kutya toString belső függvényét.
-            Ha megnézed a Szo osztály kódját, akkor láthatod, hogy az az alábbi Stringet fogja
-            nekünk visszaadni: “kutya = dog”. Ha létrehozunk egy macska változót is (macska
-            =new Szo(“macska”, “cat”);), akkor a macska.toString() parancs pedig nem túl meglepő
-            módon a “macska = cat” Stringet fogja visszaadni. Eddig nem foglalkoztunk mélyrehatóan
-            a függvények működésével, így nem probléma, ha ezt nem látod át teljesen.
-        </h2>
-        <h2>
-            Tömb átalakítása saját objektumossá
-        </h2>
-        <p>
-            A szólistánkat eddig egy tömbben tároltuk. Egy olyan tömbben, ami egyszerű Stringekből
-            állt. Talán nem túl meglepő lépés, hogy most szeretnénk ezt a tömbünket kicsit átalakítani,
-            és egy olyan tömböt használni inkább, amelynek minden eleme Szo típusú.
-        </p>
-        <p>
-            Ha visszaemlékeztek, a lecke elején csináltunk egy tömböt, ami String-eket tudott
-            tárolni, és ezeket jelenítettük meg a ListView-ban. Ezt a String tömböt így deklaráltuk
-            az Activity kódjának elején.
-        </p>
-        <p>
-            String[] szavak;
-        </p>
-        <p>
-            Figyeld meg, hogy mi mit jelent/jelez! Először leírjuk, hogy milyen típusú objektumokat
-            szeretnénk belerakni, majd a [] karakterekkel megmondjuk, hogy nem egyet, hanem
-            többet egy tömbben szeretnénk belerakni a változóba. Utána már csak a változó nevét
-            kell megadni (itt pl. “szavak”).
-        </p>
-        <p>
-            De mi azt szeretnénk, hogy ne String-eket, hanem Szo objektumokat tároljon a tömbünk.
-            Ezt hogyan tudnád elérni? ** TODO button help Szo[] szavak;***
-        </p>
-        <p>
-            Ha a tömbünk típusát átírtuk, akkor a benne lakó adatokat is meg kell változtatni
-            egy csöppet. Az Android Studio most aláhúzza azt a sort, ahol a “macska = cat”,
-            “kutya = dog”, “molylepke = moth” szópárokat bepakoltuk a tömbbe. Mindezt teljesen
-            jogosan teszi, hiszen a szavak tömbbe most már nem Stringeket, hanem Szo típusú
-            változókat kéne tenni.
-        </p>
-        <li>Ehhez vagy minden szónak kell csinálni egy új változót. Pl. Szo cica = new Szo(“cica”,
-            “cat”); </li>
-        <p>
-            Szo kutya = new Szo(“kutya”, “dog”);
-        </p>
-        <p>
-            …
-        </p>
-        <p>
-            szavak = {kutya, cica, molylepke};
-        </p>
-        <li>Vagy az egyszerűség kedvéért írhatjuk ezt is: </li>
-        <p>
-            szavak = {new Szo(“kutya”, “dog”), new Szo(“macska”, “cat”), new Szo(“molylepke”,
-            “moth”) };
-        </p>
-        <p>
-            Már csak annyi feladatunk van, hogy az adaptert is átállítsuk, hogy ne String-eket
-            használjon, hanem Szo-kat. Ehhez keresd meg azt a részt, ahova ezt beírtad:
-        </p>
-        <p>
-            ArrayAdapter<string> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-            szavak);
-        </p>
-        <p>
-            És ahol String-et látsz, írd át Szo-ra (2 helyen van, ezeket kiemeltük)!
-        </p>
-        <p>
-            Ezzel készen is vagyunk, ki lehet próbálni a programot! Ha mindent jól csináltál,
-            akkor ugyan azt kell látnod, mint amikor String-ek voltak a tömbben! Mindez annak
-            köszönhető, hogy a ListView (egészen pontosan az adapter) a Szo típusunk kiírásához
-            rögtön a toString() függvény segítéségét kéri. Tehát a ListView minden egyes Szo-nak
-            meghívja a saját toString-jét. És mivel mi úgy írtuk meg a Szo toString függvényét,
-            hogy “angol = magyar” formába alakítsa szöveggé a Szo-t pontosan ezt is fogjuk látni
-            a listánkban.
-        </p>
-        <p>
-            És hogy mégis miért szenvedtünk ennyit az osztályunk megírásával?
-        </p>
-        <h3>
-            1. Feladat
-        </h3>
-        <p>
-            Változtasd meg úgy a Szo osztály toString() belső fóggvényét, hogy a szavak közé
-            egyelőségjel helyett kötőjelet tegyen inkább!
-        </p>
-        <p>
-            *** TODO HELP az az egy sor, kiemelve az egyelőségjelet ***
-        </p>
-        <h3>
-            2. Feladat
-        </h3>
-        <p>
-            Változtasd meg úgy a Szo osztály toString() belső függvényét, hogy a nyelveket angol-magyar
-            sorrendben jelenítse meg!
-        </p>
-        <p>
-            *** TODO help az az egy sor, kiemelve a két változót ***
-        </p>
+        <hr/>
+
+        <section id="lesson-intro">
+            <h2>Egy kis bevezetés</h2>
+            <p>
+                Az első hét lecke elkészítése után nem túlzás azt mondani, hogy sikeresen vetted az Android
+                programozás talán legnagyobb akadályait. Feltelepítetted az Android Studiot, megírtad az
+                első önálló alkalmazásaidat, saját Activity-ket hoztál létre, használatba vetted a rezgőmotort
+                és három különböző érzékelőt is. Ehhez meg kellett tanulnod a layout szerkesztő használatát és
+                a Java nyelv alapjait. Gratulálunk!</p>
+            <p>
+                Az új év <em>(eredetileg januári lecke)</em> viszont most új kihívásokat tartogat. Ahhoz,
+                hogy tényleg otthonosan tudjatok mozogni az androidos alkalmazás fejlesztés világában,
+                kicsit komolyabb programok felé fordítjuk a figyelmünket.</p>
+            <p>
+                Az egyik fontos változás, hogy nem fogunk minden leckében új programot készíteni;
+                például a mostani leckével egy három leckén átívelő projektbe kezdünk. Ami viszont
+                reményeink szerint nem fog változni: minden lecke végén egy használható alkalmazás
+                lesz a kezetekben, legfeljebb nem lesz teljesen készen.</p>
+        </section>
+
+
+        <section id="lesson-goal">
+            <h2>Tehát akkor a tervezett program</h2>
+            <p>
+                Az első nagyobb projektben szeretnénk valami olyan programot alkotni, ami hasznosnak
+                bizonyulhat akár a mindennapokban is. Az angolórák/nyelvórák pedig elég fontos részét
+                képezik a mindennapjainknak; ezen belül pedig mi egész pontosan a szavak megtanulására
+                fogunk összpontosítani.</p>
+            <p>
+                A mostani leckénk célja nem lesz más, mint egy egyszerű szótarfüzet program megírása.
+                Az applikáció készítése közben megismerkedünk majd a listákkal és azok megjelenítésével,
+                négy Activity-vel zsonglőrködünk egyszerre, ezáltal tényleg megtapasztalva az igazi
+                Android fejlesztés nehézségeit. A végeredmény viszont egy teljes, használható
+                applikáció lesz (puskázó appal kombinálva kéretik tanóra keretein belül nem használni!)</p>
+
+            <h3>A program részei</h3>
+            <p>
+                Az általunk tervezett program négy Activity-ből fog állni. Ennek a gyorsan
+                rajzolt (wireframe) terveit itt láthatjátok. Javasoljuk, hogy ismerkedj meg az
+                árbán szereplő ablakokkal, és vagy másold le, vagy térj vissza ide minden
+                alkalommal, mielőtt munkához látsz.</p>
+            <p>
+                ***TODO wireframe ***</p>
+            <ul>
+                <li>
+                    <strong>Szavak (SzavakActivity)</strong><br/>
+                    Kulcsfontosságú része az alkalmazásnak. Itt listázzuk majd ki a szavakat.</li>
+                <li>
+                    <strong>Kvíz (KvizActivity)</strong><br/>
+                    Ez az Activity segít majd minket a nyelvtanulásban. A program véletlenszerűen
+                    kérdez tőlünk szavakat</li>
+                <li>
+                    <strong>About (AboutActivity)</strong><br/>
+                    6. leckéhez hasonlóan egy egyszerű kis Activity, ami rólad, azaz a program
+                    készítőjéről ad egy kicsit több információt (pl. név, email cím stb.)</li>
+                <li>
+                    <strong>Menü (MenuActivity)</strong><br/>
+                    Egy ekkora programnak kell egy kezdőképernyő, ahonnan a különböző ablakokra
+                    navigálhatunk. Pofon egyszerű, három gomb, három click függvény, ami a
+                    megfelelő Activity-t hívja meg.</li>
+            </ul>
+            
+            <p>
+                Ebben a leckében a menü és az About ablakok elkészítése mellett szeretnénk
+                letenni a SzavakActivity alapjait. A következő két leckében ezt fogjuk tovább
+                finomítani, illetve megírjuk a <code>KvizActivity</code> ablakot is.</p>
+            
+            <h3>Honnan jönnek a szavak?</h3>
+            <p>
+                Egy szótárfüzet programnál jogosan merül fel a kérdés: honnan jönnek a szavak?
+                Ebben a leckében a szavakat a program készítésekor kell majd beírnunk (például
+                egy tömbbe), részleteket lásd később. A folytatásban viszont már fájlokat fogunk
+                használni, amiket akár számítógépen is szerkeszthettek, illetve egymással vagy
+                akár osztálytársakkal is megoszthattok. Néhány minta fájl: ****TODO link***.
+                Ennek kapcsán javasolnánk, hogy mindenki olyan szavakat írjon be (mind a programba,
+                mind a fájlokba), amelyek a nyelvi tudását tükrözik. Így hasznosabb lesz a program,
+                mint ha a mi fantáziátlan példáinkat használjátok.</p>
+        </section>
+
+        <section id="new-project">
+            <h2>Új projekt létrehozása</h2>
+            <p>
+                Az előző leckéhez hasonlóan most sem készítettünk elő projektet, így azt Nektek
+                kell létrehozni. Kicsit lusták is vagyunk, és nem szeretjük ismételni magunkat,
+                ezért nem írnánk le megint az új projekt létrehozásának menetét, kövessétek az
+                előző leckében (***TODO link***) leírtakat! <em>Az "Importálás helyett…" rész
+                mind a <strong>nyolc</strong> pontját figyelmesen csináljátok végig!</em> Amire figyelj:</p>
+                <p>
+                    Alkalmazás adatai</p>
+            <ul>
+                <li>
+                    <strong>Application name:</strong> Szotar</li>
+                <li>
+                    <strong>Project location:</strong> Célszerűen a korábbi projektek mellé érdemes létrehozni,
+                    például egy L08-Szotar mappába (pl.: <code>C:\DkrmgAndroid\L08-Szotar</code>)</li>
+                <li>
+                    API 19 kiválasztása</li>
+                <li>
+                    A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve legyen MenuActivity.</li>
+            </ul>
+            <p>
+                Ne felejtsd el beállítani a megfelelő SDK verziót, majd futtasd a programot a telefonodon!</p>
+        </section>
+
+
+        <section id="menu-activity">
+            <h2>Menü (MenuActivity)</h2>
+            <p>
+                Bemelegítésként rendezzük be a MenuActivity ablakunkat.</p>
+            <p>
+                ****TODO Image***</p>
+            <p>
+                Ez a menü ablak tényleg pofon egyszerű. Összesen három gombra lesz csak szükségünk,
+                melyek a megfelelő Activity-ket nyitják meg. A megnyitás kódját egyelőre nem tudjuk
+                megírni (ahhoz hiányoznak az Activity-k).</p>
+            <p>
+                Amit már most meg tudunk csinálni:</p>
+            <ul>
+                <li>
+                    A RelativeLayout komponensünknek is állítsuk be az <code>id</code> tulajdonságát például
+                    root értékre (később sok fejfájástól óvhat meg minket)</li>
+                <li>
+                    Három gomb elhelyezése a layout szerkesztőben. Ezeket rendezzük középre, és
+                    írjuk be a megfelelő szövegeket az ábra alapján.</li>
+                <li>
+                    Ezek után az activity kinézetét ízlés szerint formázhatjuk színekkel,
+                    betűtípusokkal, vagy képekkel. (utóbbihoz a hetedik lecke megfelelő része
+                    nyújthat segítséget (*** TODO LINK***)</li>
+                <li>
+                    Minden gombnak legyen egy saját kattintást kezelő függvénye. A kattintáskor
+                    lefutó részt még nem tudjuk megírni, így a függvény törzsét üresen fogjuk hagyni. Pl.
+<pre>public void buttonSzavakOnClick(View v)  {
+    // TODO: a SzavakActivity megnyitása
+}</pre>
+                <p>
+                    A függvényeinket akkor tudjuk majd befejezni, amikor a többi Activity elkészült.</p>
+            </ul>
+        </section>
+
+
+        <section id="about-activity">
+            <h2>Ismétlés: AboutActivity</h2>
+            <p>
+                Ismétlés a tudás anyja, mondták már sokan, és milyen igazuk van! Ismételjünk most mi
+                is egy kicsit. A 6. lecke (Iránytű) (***TODO link***) végén létrehoztunk egy második
+                Activity-t, ami a készítő nevét tartalmazta. Csináljunk egy ilyen About Activityt
+                ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél több eszetekbe jutna,
+                de persze ha elakadtok szabad puskázni a 6. lecke leírásából.</p>
+            <p>
+                *** TODO Image of the finished activity, or at least the wireframe ***</p>
+            <p>
+                A lépések nagy vonalaiban:</p>
+            <ul>
+                <li>
+                    Új Blank Activity létrehozása (<em>New -> Activity -> Blank Activity</em>)</li>
+                <li>
+                    Activity neve: AboutActivity</li>
+                <li>
+                    Layout szerkesztővel alakítsuk ki az új activity-t (activity_about.xml) tetszés szerint</li>
+                <li>
+                    Írjuk be azt a két soros kódot, ami megnyitja az About ablakunkat. Mivel az
+                    AboutActivity-t a menüből akarjuk megírni, ezért ez a menü ablakunk Java kódjába
+                    kell, hogy kerüljön, az egyik gombkattintást kezelő függvénybe azok közül, amit
+                    az előző pontban hoztunk létre.</li>
+            </ul>
+            <p>
+                A kód, amely elindítja az AboutActivity-t:</p>
+<pre>public void aboutOnClick(View v) {
+    Intent intent = new Intent(this, AboutActivity.class);
+    startActivity(intent);
+}</pre>
+            <p>
+                Ehhez a feladathoz tartozik egy szorgalmi is ***TODO LINK***, amiben a gombot felváltja
+                egy felbukkanó menü. Az érdekesség kedvéért javasoljuk, hogy a következő lecke előtt
+                nézd majd meg!</p>
+        </section>
+
+
+        <section id="szavak-activity">
+            <h2>Mégegy activity: SzavakActivity</h2>
+            <p>
+                <em>Első megközelítés</em></p>
+            <p>
+                *** TODO IMAGE ***</p>
+            <p>
+                Szuper, most már van egy "névjegy" activity-nk (AboutActivity) és egy kiinduló menü
+                activitynk, ahonnan az alkalmazás funkciói lesznek elérhetőek. Ideje elkészítenünk
+                az első funkciót, a szavak kilistázását! A cél tehát: egy Activity, ami megjeleníti a
+                program által ismert szavak listáját.</p>
+            
+            <h3>Üres Activity létrezohása, megnyitása</h3>
+            <p>
+                A fentiek mintájára adjunk hozzá a projekthez még egy activity-t (puska itt), aminek
+                a típusa legyen továbbra is <em>Blank Activity</em> és a neve <code>SzavakActivity</code>!</p>
+            
+            <p>
+                Most, hogy már többször is beírtátok/bemásoltátok az új activity-t megnyitó kódot,
+                nézzük meg kicsit közelebbről ezt a két sort!</p>
+            <p>
+                Az első sorban létrehozott Intent típusú változónk tárolja, hogy melyik Activity-t
+                szeretnénk megnyitni. Írd át úgy a parancsot, hogy ne az AboutActivity-t nyissa meg,
+                hanem a SzavakActvity-t (*** TODO megfontoltan haladóknak gombos segítség***)</p>
+            
+            <h3>Szavak tárolása</h3>
+            <p>
+                Futólagos ismerettséget köthettünk már az előző leckék során a <code>String</code>
+                típussal. Emlékeztetésként: ez egy olyan típus, amely szövegeket tárol. Például
+                nézzük meg az alábbi változót:</p>
+<pre>String szoveg;
+szoveg = "kutya";</pre>
+            <p>
+                A String típus azonban ennél sokkal többre is képes. A szöveg tartalmazhat szóközöket
+                illetve (végre valahára) ékezetes karaktereket is! Például:</p>
+<pre>String szoveg2;
+szoveg2 = "Ez egy szép kis árvíztűrő tükörfúrógép";</pre>
+            <p>
+                Innen jön az ötlet: egy magyar-angol szópárt könnyedén eltárolhatunk egy
+                String típusú változóban:</p>
+<pre>szo1 = "kutya = dog";
+szo2 = "macska = cat";</pre>
+            <p>
+                Azonban természetesen nem szeretnénk minden szóhoz új változót létrehozni.
+                A megoldás, hogy az előző leckében tanult tömböket alkalmazzuk. Tehát:</p>
+            <p>
+                <strong>A szavainkat egyelőre egy <code>String</code> típusú tömbben fogjuk tárolni.</strong>
+                (***TODO LINK***) Emlékeztetésként , a String tömb egy olyan
+                adatszerkezet, amelynek minden eleme egy String típusú változó.</p>
+            <ul>
+                <li>
+                    Hozzunk is létre egy szavak nevű, String tömb (String[]) típusú változót a
+                    SzavakActvity-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
+                    A teljes tömbnek az alábbi módon adhatunk értéket:<br/>
+                    <pre>szavak = {"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
+            </ul>
+            <p>
+                A fentiek alapján akárhány Stringet (szöveget) megadhatunk kettősidézőjelek (<code>"</code>)
+                között, vesszővel elválasztva.</p>
+            
+            <h3>Egy String tömb megjelenítése</h3>
+            <p>
+                Az eddigi programjaink során több layout komponenssel is találkoztunk már.
+                Rengeteg gombot és feliratot hoztunk már létre, és a képeket tároló ImageView
+                sem teljesen ismeretlen számunkra. Ezúttal azonban egy olyan összetett komponensre
+                lesz szükségünk, ami szavak/szövegek egy egész listáját tudja megjeleníteni. Ehhez
+                fogjuk használni a <code>ListView</code> vezérlőt.</p>
+            <p>
+                A most bemutatásra kerülő <code>ListView</code> egy elég különös, univerzális elem,
+                ami kicsit másképp viselkedik, mint a korábbi komponenseink. Ügyelnünk kell arra,
+                hogy most nem elég csak a layout szerkesztőben kattintgatni ahhoz, hogy  String tömbünk
+                elemei megjelenjenek a listában. A Java kódba is kicsit jobban bele kell másznunk.</p>
+            <p>
+                *** TODO image, ami szépen bemutatja ezt a kettősséget. tömb a Java kódban, kontroller
+                a layout-ban. Esetleg egy provokatív "?" a kettő között, felhívva arra a figyelmet,
+                hogy valahogy kapcsolatot kell teremteni a tömb és a vezérlő között***</p>
+            
+            
+            <h3>Layout kialakítása</h3>
+            <p>
+                Helyezzünk el egy ListView komponenst a layout szerkesztőben (Containers kategória alatt).
+                Az Activity legfontosabb feladata a szavak megjelenítése, tehát méretezzük úgy a listánkat,
+                hogy a képernyő nagyrészét elfoglalja *** TODO IMG***</p>
+            <p>
+                Láthatjuk, hogy a layout szerkesztőnknek fogalma sincs, hogy mit szeretnénk a
+                listánkban megjeleníteni, így jobb híján az "item 1", "item 2", … szavakat használja.
+                Ezeket fogjuk lecserélni a saját szavainkra.</p>
+            
+            <h3>Tömb megjelenítése a ListView komponensen (Adapter)</h3>
+            <p>
+                Mielőtt megnézzük az ehhez szükséges <em>mágikus parancsot</em>, előbb hozzunk létre egy
+                <code>ListView</code> típusú változót a SzavakActivity-ben, mondjuk <code>szolista</code>
+                néven, és rendeljük hozzá a ListView komponensünkhöz (ilyet már sokszor csinátuk a
+                <code>findViewById</code> paranccsal).</p>
+            <p>
+                Tehát jelenleg a szavaink egy String tömbben laknak, és ezeket szeretnénk megjeleníteni
+                a ListView komponensünkön. Nézzük meg az alábbi két sort, amjd írjuk be az onCreate
+                függvényünk végére.</p>
+<pre>ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
+szolista.setAdapter(adapter);</pre>
+            <p>
+                Nem kell teljességgel értenünk a fentieket; így is láthatjuk, hogy létrehoztunk egy
+                adaptert, ami segít a tömbünket a szolista (<code>ListView</code>) számára megemészthető
+                formába hozni. Egészen pontosan létrehoztunk egy úgynevezett ArrayAdapter objektumot,
+                ami szól a ListView változónknak: itt vannak az új adatok a <code>szavak</code> tömbben,
+                jelenítsd meg őket!</p>
+            <p>
+                *** TODO image nyilakkal. Legyen kiemelve a "String" szó (2x), "szavak", "lista" ***</p>
+            <p>
+                (*** TODO puskában gombnyomásra a teljes onCreate függvény ****)</p>
+            <p>
+                Futtassuk le a programot. Ha minden igaz, akkor a Menüből a megfelelő gombra kattintva
+                eljutunk a Szavak activity-re, ahol ott sorakoznak a kódban megadott szavak.</p>
+        </section>
+
+
+        <section id="szo-objektum">
+            <h2>Szavak tárolása, második megközelítés</h2>
+            <p>
+                A programunk ugyan szépen működik, gyönyörűen kilistázza a String értékeket. Ha csak
+                ennyit szerettünk volna, akkor most kényelmesen hátradőlhetnénk, elfogyasztva a
+                karácsonyról maradt bejglit (ha még nem száradt ki teljesen).</p>
+            <p>
+                Ahhoz azonban, hogy továbbhaladjunk, egy kicsit át kell alakítanunk, hogy miként
+                tároljuk a szavakat.</p>
+            <p>
+                Emlékeztetésként: egy szópárt (magyar-angol) egy String-ben került tárolásra
+                <code>"magyar = angol"</code> formában. Tehát például:</p>
+                <pre>"küklopsz = cyclops", "szem = eye", stb.</pre>
+            <p>
+                Ez egy igen rugalmatlan módszer. Néhány példa, hogy miért nem szeretnénk így tárolni a szópárokat:</p>
+            <ul>
+                <li>
+                    Nagyon bonyolult lenne elérnünk, ha azt szeretnénk, hogy a szavak fordított
+                    sorrendben jelenjenek meg ("angol = magyar"). Mégpedig egy szótár programban miért
+                    ne lehetne ezt könnyedén elérni?</li>
+                <li>
+                    Hogy adnánk hozzá szépen mondjuk egy harmadik nyelvet? Van, aki németül/franciául/olaszul is tanul!</li>
+                <li>
+                    Macerás lenne lecserélni az <code>=</code> jelet mondjuk egy nyílra (<code>--&gt;</code>)</li>
+                <li>
+                    Hogy nyerhetjük ki egy ilyen Stringből ("angol = magyar") csak az egyik nyelvű szót?
+                    Erre szükségünk lesz pedig a kvíznél! És mi lenne, ha hirtelen szeretnénk egy
+                    harmadik nyelvet is?</li>
+            </ul>
+            <p>
+                A fenti problémára több megoldás is létezik. Korábbi programozási nyelveknél előfordult,
+                hogy például az angol szavakat és a magyar szavakat külön-külön String tömbben tárolták.
+                Mi ehelyett egy Java programozók által kedveltebb megoldást választunk.</p>
+            <p>
+                A lecke folytatásában betekintés-jellegűleg megismerkedünk a Java nyelvben méltán
+                népszerű <em>osztály</em> fogalmával. Itt előre szeretnénk leszögezni, hogy ez a
+                téma túl nagy egy ilyen leckéhez (vagy akár szakkörhöz); a lecke végén a célunk az
+                lenne, hogy mindenki megértse magát az <em>alap ötletet</em>, és lássa, hogy miként
+                alkalmazzuk mindezt a szavaink tárolásához. Ne aggódj, ha nem értesz minden részletet.
+                Emellett szeretnénk megjegezni, hogy Lazarus nyelvből a <code>class</code> vagy
+                <code>record</code> adatszerkezetek ismerete óriási előnyt jelenthet.</p>
+            
+            <h3>Osztály</h3>
+            <p>
+                Az osztály egy igen érdekes adatszerkezet, ami segítségével létrehozhatjuk a saját
+                változó típusainkat a Java nyelvben. Egészen pontosan amikor megírunk egy osztályt,
+                akkor azzal felvázoljuk</p>
+            <ul>
+                <li>
+                    a szerkezetben tárolható adatokat</li>
+                <li>
+                    és a rajtuk elvégezhető cselekvéseket.</li>
+            </ul>
+            <p>
+                Példaként megnézhetjük a Haromszog osztályt, ami tartalmazza egy háromszög adatait,
+                és felvázolja, hogy milyen "cselekvéseket" végezhetünk egy háromszöggel.</p>
+            <p>
+                *** TODO IMG***</p>
+            <ul>
+                <li>
+                    Adatok lehetnek: a,b,c, azaz a három oldal hossza</li>
+                <li>
+                    cselekvések lehetnek pl. egy függvény, ami kirajzolja a háromszöget a képernyőre,
+                    kinyomtatja egy papírra, vagy csak kiszámolja nekünk a háromszög területét, vagy
+                    kerületét.</li>
+            </ul>
+            <p>
+                Fontos, hogy mi ezzel egy <em>tervrajzot</em> készítünk csak, azt mondjuk el a Java
+                nyelvnek, hogy egy háromszög típusú változó milyen adatokat tároljon. Nem egy bizonyos
+                háromszögről van szó!</p>
+            <p>
+                A háromszög osztályt itt és most nem írjuk meg (bár javasoljuk, hogy az érdeklődő
+                kedvűek olvassanak utána a Java osztályoknak és írják meg az osztály kódját).
+                Ehelyett inkább nézzük meg, hogy miként festene egy osztály, ami egy szót tartalmaz,
+                különböző nyelveken!</p>
+            <p>
+                Tehát a két kérdés, amit fel kell tennünk magunknak:</p>
+            <ul>
+                <li>
+                    Milyen adatot tároljon a Szo típus?</li>
+                <li>
+                    Milyen cselekvések/függvényeket kell elvégeznie ennek a típusnak?</li>
+            </ul>
+            <p>
+                A válaszokat most mi adjuk meg:</p>
+            <ul>
+                <li>
+                    A Szo típusnak legalább két adatot kell tárolnia: a szó angol és magyar formáját.
+                    Később ez több nyelvvel is kiegészíthető.</li>
+                <li>
+                    Az egyetlen fontos cselekvés, amit elvárunk a Szo osztálytól, hogy a tartalmát
+                    egyetlen String-ben is ki tudja írni. Ez szükséges ahhoz, hogy ki tudjuk írni a
+                    tartalmát a LitstView-ba, az eddig ismertetett módon.</li>
+            </ul>
+            <p>
+                Vágjunk is bele. Hozz létre egy új osztály (Jobb klikk, New, Class ***TODO IMG***)
+                Szo néven, és másold be az alábbi kódot:</p>
+<pre>public class Szo {
+    public String angol;
+    public String magyar;
+
+    @Override
+    public String toString() {
+        return angol + " = " + magyar;
+    }
+
+    public Szo(String magyar, String angol) {
+        this.magyar = magyar;
+        this.angol = angol;
+    }
+
+    public Szo() {}
+}</pre>
+            <p>
+                *** TODO INTERAKTÍV ***</p>
+            <ul>
+                <li>
+                    Az új osztályunk neve legyen Szo. Az ezt követő nyitó kapcsoszárójel és a
+                    legvégén található záró kapcsoszárójel között minden az osztályhoz fog tartozni.</li>
+                <li>
+                    Az angol és a magyar szó helye. De ilyesmit mintha már láttunk volna! Igen,
+                    ez pontosan olyan, mint amit az Activity elején szoktunk csinálni amikor
+                    létrehozunk egy változót valamelyik komponensnek vagy mint a 3. leckében a tippelt
+                    számnak. Tehát az angol és a magyar egy-egy változó, mégpedig String típusú. És mivel
+                    az osztályunkon belül találhatóak, ezért belső változónak fogjuk hívni őket.</li>
+                <li>
+                    A következő dolog szintén ismerős lehet: ez egy függvény mégpedig egy belső függvény,
+                    hiszen ez is az osztályon belül található. Látszik rajta, hogy a neve toString. Java
+                    nyelven ez a toString függvény használható arra, hogy egy osztályt szöveggé alakítsunk.</li>
+            </ul>
+            <p>
+                <strong>Fontos!</strong></p>
+            <p>
+                Amint már utaltunk rá, az osztály, amit a fenti kóddal adunk meg, az
+                <em>csak egy tervrajz</em>! Megmondja, hogy hogy kell kinéznie egy Szo-nak.
+                Ezzel csak egy új típust hoztunk létre. Ahhzo, hogy igazán használni tudjuk, el kell
+                kezdenünk Szo típusú változókat gyártani. Ez a következő kóddal tehetjük meg:</p>
+<pre>Szo kutya;
+kutya = new Szo();</pre>
+            
+            <p>
+                Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a kutya változó magyar és
+                angol megfelelőit, akkor azt könnyedén megtehetjük:</p>
+<pre>kutya.angol = "dog";
+kutya.magyar = "kutya";</pre>
+            <p>
+                Láthatjuk, hogy a kutya mögé helyezett ponttal a kutya változónk belső változóinak
+                adhatunk értéket (vagy olvashatjuk ki őket).</p>
+            <p>
+                Mi most még ezen felül csalhatunk is egy kicsit, hogy ne kelljen három sort gépelni,
+                beírhatjuk az alábbit is:</p>
+<pre>Szo kutya; // deklarálás.
+kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
+            <p>
+                Vagy ha még messzebb akarunk menni, akkor mindez egy sorba is leírható!</p>
+            <p>
+<pre>Szo kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
+
+            <h3>Belső függvény</h3>
+            <p>
+                Láthattuk, hogy a kutya változó mögé helyezett ponttal a kutya változó belső változóihoz
+                nyertünk hozzáférést (pl. kutya.angol, kutya.magyar). Ehhez hasonlatosan nem nehéz
+                kitalálni, hogy a <code>kutya.toString()</code> parancs meghívja a kutya toString
+                belső függvényét. Ha megnézed a Szo osztály kódját, akkor láthatod, hogy az az alábbi
+                Stringet fogja nekünk visszaadni: "kutya = dog". Ha létrehozunk egy macska változót is
+                (<code>macska =new Szo("macska", "cat");</code>), akkor a <code>macska.toString()</code>
+                parancs pedig nem túl meglepő módon a "<code>macska = cat</code>" Stringet fogja visszaadni.
+                Eddig nem foglalkoztunk mélyrehatóan a függvények működésével, így nem probléma, ha ezt nem
+                látod át teljesen.</p>
+        </section>
+
+
+
+        <section id="tomb-sajat-objektummal">
+            <h2>Tömb átalakítása saját objektumossá</h2>
+            <p>
+                A szólistánkat eddig egy tömbben tároltuk. Egy olyan tömbben, ami egyszerű Stringekből állt.
+                Talán nem túl meglepő lépés, hogy most szeretnénk ezt a tömbünket kicsit átalakítani, és egy
+                olyan tömböt használni inkább, amelynek minden eleme <code>Szo</code> típusú.</p>
+            <p>
+                Ha visszaemlékeztek, a lecke elején csináltunk egy tömböt, ami String-eket tudott tárolni,
+                és ezeket jelenítettük meg a <code>ListView</code>-ban. Ezt a String tömböt így deklaráltuk
+                az Activity kódjának elején.</p>
+<pre>String[] szavak;</pre>
+            <p>
+                Figyeld meg, hogy mi mit jelent/jelez! Először leírjuk, hogy milyen típusú objektumokat
+                szeretnénk belerakni, majd a <code>[]</code> karakterekkel megmondjuk, hogy nem egyet,
+                hanem többet egy tömbben szeretnénk belerakni a változóba. Utána már csak a változó nevét
+                kell megadni (itt pl. "szavak").</p>
+            <p>
+                De mi azt szeretnénk, hogy ne String-eket, hanem Szo objektumokat tároljon a tömbünk.
+                Ezt hogyan tudnád elérni? *** TODO button help <code>Szo[]</code> szavak;***</p>
+            <p>
+                Ha a tömbünk típusát átírtuk, akkor a benne lakó adatokat is meg kell változtatni
+                egy csöppet. Az Android Studio most aláhúzza azt a sort, ahol a "macska = cat",
+                "kutya = dog", "molylepke = moth" szópárokat bepakoltuk a tömbbe. Mindezt teljesen
+                jogosan teszi, hiszen a szavak tömbbe most már nem Stringeket, hanem Szo típusú
+                változókat kéne tenni.</p>
+            <ul>
+                <li>
+                    Ehhez vagy minden szónak kell csinálni egy új változót. Pl.
+<pre>
+Szo cica = new Szo("cica", "cat");
+Szo kutya = new Szo("kutya", "dog");
+…
+szavak = {kutya, cica, molylepke};</pre></li>
+                <li>
+                    Vagy az egyszerűség kedvéért írhatjuk ezt is:
+<pre>szavak = {new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
+            </ul>
+            <p>
+                Már csak annyi feladatunk van, hogy az adaptert is átállítsuk, hogy ne String-eket használjon,
+                hanem Szo-kat. Ehhez keresd meg azt a részt, ahova ezt beírtad:</p>
+            <p>
+<pre>ArrayAdapter&lt;<strong>String</strong>&gt; adapter = new ArrayAdapter&lt;<strong>String</strong>&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
+            <p>
+                És ahol <strong>String</strong>-et látsz, írd át <strong>Szo</strong>-ra
+                (2 helyen van, ezeket kiemeltük)!</p>
+            <p>
+                Ezzel készen is vagyunk, ki lehet próbálni a programot! Ha mindent jól csináltál,
+                akkor ugyan azt kell látnod, mint amikor String-ek voltak a tömbben! Mindez annak
+                köszönhető, hogy a ListView (egészen pontosan az adapter) a Szo típusunk kiírásához
+                rögtön a toString() függvény segítéségét kéri. Tehát a ListView minden egyes Szo-nak
+                meghívja a saját toString-jét. És mivel mi úgy írtuk meg a Szo toString függvényét,
+                hogy "angol = magyar" formába alakítsa szöveggé a Szo-t pontosan ezt is fogjuk látni a listánkban.</p>
+            <p>
+                És hogy mégis miért szenvedtünk ennyit az osztályunk megírásával?</p>
+        </section>
+
+
+        <section id="tasks">
+            <h3>1. Feladat</h3>
+            <p>
+                Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a
+                szavak közé egyelőségjel helyett kötőjelet tegyen inkább!</p>
+            <p>
+                *** TODO HELP az az egy sor, kiemelve az egyelőségjelet ***</p>
+            
+            <h3>2. Feladat</h3>
+            <p>
+                Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a nyelveket
+                angol-magyar sorrendben jelenítse meg!</p>
+            <p>
+                *** TODO help az az egy sor, kiemelve a két változót ***</p>
+        </section>
+
+        
         <h1>
             Szorgalmi
         </h1>
-        <h2>
-            AboutActivity menüből
-        </h2>
+        <h2>AboutActivity menüből</h2>
         <p>
-            <em>Kis mese a menüről, aztán a 2 fgv megírása.</em>
-        </p>
+            <em>Kis mese a menüről, aztán a 2 fgv megírása.</em></p>
+
+
     </div>
     <footer data-include="/include/footer.html"></footer>
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
-    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link rel="stylesheet" href="/static/css/stsheet.css" />
 </body>
 </html>
