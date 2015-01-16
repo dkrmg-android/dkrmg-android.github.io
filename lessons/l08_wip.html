@@ -439,11 +439,23 @@ szolista.setAdapter(adapter);</pre>
                     <p class="selected" data-iid="default">Kattints rá balra a zöld keretes részekre,
                         hogy megtudd, mire valók!</p>
                     <p data-iid="class-name">Ez az új osztályunk neve.</p>
-                    <p data-iid="fields">*** TODO mit mesélünk a mezőkről? ***</p>
-                    <p data-iid="tostring">*** TODO mit mesélünk a toString-ről? ***</p>
-                    <p data-iid="return">*** TODO mit mesélünk a return-ről? ***</p>
-                    <p data-iid="constructor">*** TODO mit mesélünk a konstruktorról? ***</p>
-                    <p data-iid="default-constructor">*** TODO mit mesélünk a default konstruktorról? ***</p>
+                    <p data-iid="fields">Ezek az osztály belső változói. Olyanok, mint az eddig is használt változók,
+                        tehát nem csak String típusúak lehetnek, hanem bármi, ami egy sima változó lehet. Annyiban
+                        különböznek a sima változóktól, hogy az osztály minden egyes <em>példányának</em> van egy
+                        sajátja ezekből.</p>
+                    <p data-iid="tostring">Ez a belső függvény való arra, hogy egy objektumot szöveggé alakítsunk.
+                        Az osztály egy példányán meghívva mindig az adott példány saját belső változóit fogja használni.</p>
+                    <p data-iid="return">A return kulcsszó után álló kifejezés lesz a függvény visszatérési értéke.
+                        Olyan, mint amikor Pascalban/Lazarusban ezt írod: <br/>
+                        <code>Function koszon; <br/> begin <br/> koszon := "Szia!"; <br/> end;</code>
+                    </p>
+                    <p data-iid="constructor">Amikor azt írod, hogy <code>new Szo("macska", "cat")</code>,
+                        akkor ez a függvény fut le. Az ilyen belső függvényeket <em>konstruktor</em>nak hívjuk,
+                        és például arra jók, hogy rögtön a létrehozáskor be lehet állítani a belső változók értékeit.</p>
+                    <p data-iid="default-constructor">Ez pedig az alapértelmezett konstruktor. Ez fut le akkor,
+                        ha ezt írod: <code>new Szo()</code>. Mint látható, ez most nem csinál semmit, de például
+                        ide lehetne megírni azt, hogy a belső változók valami alap értéket kapjanak, amit később meg
+                        lehet változtatni.</p>
                 </div>
 
                 <script type="application/javascript">
@@ -467,9 +479,9 @@ szolista.setAdapter(adapter);</pre>
                     ez pontosan olyan, mint amit az Activity elején szoktunk csinálni amikor
                     létrehozunk egy változót valamelyik komponensnek vagy mint a 3. leckében a tippelt
                     számnak. Tehát az angol és a magyar egy-egy változó, mégpedig String típusú. És mivel
-                    az osztályunkon belül találhatóak, ezért belső változónak fogjuk hívni őket.</li>
+                    az osztályunkon belül találhatóak, ezért <strong>belső változó</strong>nak fogjuk hívni őket.</li>
                 <li>
-                    A következő dolog szintén ismerős lehet: ez egy függvény mégpedig egy belső függvény,
+                    A következő dolog szintén ismerős lehet: ez egy függvény mégpedig egy <strong>belső függvény</strong>,
                     hiszen ez is az osztályon belül található. Látszik rajta, hogy a neve toString. Java
                     nyelven ez a toString függvény használható arra, hogy egy osztályt szöveggé alakítsunk.</li>
             </ul>
