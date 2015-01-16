@@ -31,9 +31,9 @@
 		</h1>
 		<hr/>
 
-        <div class="possible-error">
-            <p>Figyelem! 2014. december 18. előtt pár dolog máshogy működött! A régi leírást
-                <a href="/lessons/l01_old.html">itt</a> éred el, ha mégis szükséged lenne rá.</p>
+        <div class="possible-error" style="border-width: 3px;">
+            <p><strong>Vigyázz! Ez egy régebbi verzió telepítését mutatja be! 2014. december 18.
+                után az <a href="/lessons/l01.html">új változatot</a> kövesd!</strong></p>
         </div>
 
         <p>
@@ -66,8 +66,8 @@
                 <img src="/static/img/l01/install/jdk1.png" class="center-block" />
             </li>
             <li>
-                <p>Indítsd el a letöltött .exe fájlt, majd a dialógus segítségével többszöri "Next" végül a "Close" gomb
-                megnyomásával telepítsd a programot. Ne módosíts semmilyen beállítást, ha nem feltétlenül szükséges!</p>
+                <p>Indítsd el a letöltött .exe fájlt, majd a dialógus segítségével a "Next" végül a "Close" gomb
+                ismételt megnyomásával telepítsd a programot.</p>
                 <p>Ha a géped korábban nem találkozott volna a Java semmilyen változatával, akkor települni fog a
                     JRE (Java Runtime Environment) is</p>
                 <p class="xpspec">
@@ -81,37 +81,30 @@
         <ol>
             <li>
                 Töltsd le ingyenesen a Google honlapjáról
-                <a href="http://developer.android.com/sdk/index.html">
-                    http://developer.android.com/sdk/index.html
-                </a>
+                <a href="http://developer.android.com/sdk/installing/studio.html">
+                    http://developer.android.com/sdk/installing/studio.html
+                </a> (362 MB)
                 <ul>
                     <li>Ehhez kattints a "Download Android Studio..." gombra</li>
                     <li>Fogadd el a felhasználói feltételeket</li>
                     <li>Kattints a lap alján található letöltés gombra</li>
                 </ul>
                 <div class="center-block imgstore">
-                    <img src="/static/img/l01/install/andStud1.png" />
+                    <img src="/static/img/l01/install/andStud1_old.png" />
                     <img src="/static/img/l01/install/andStud2.png" />
                 </div>
             </li>
             <li>
-                <p>Telepítés közben vegyük ki a pipát az Android Virtual Device elől (2. kép)!</p>
-                <p>A 3. képen megkérdezi, hogy hova telepítse az Android SDK-t. A későbbi könnyebb kezelés érdekében
-                    érdemes egy egyszerű mappába tenni, például <code>C:\DkrmgAndroid\android-sdk</code>. Elég beírni,
-                    a telepítő létrehozza magának a mappákat.</p>
+                <p>Telepítés közben Ellenőrizzük, hogy a telepítés helye (Destination Folder) ne tartalmazzon szóközöket!</p>
+                <p>Ha az alapértelmezett hely mégis tartalmazna szóközt, telepíts inkább pl. a "C:\Android" mappába.</p>
+                <p class="xpspec">Windows XP-n az alapértelmezett útvonalban szerepel az "Application Data" mappa,
+                    amely sajnos tartalmaz egy szóközt! Ezért XP-n hozzunk létre pl a C: meghajtó gyökerében egy
+                    mappát (pl.: AndroidSzakkor), ezen belül egy <code>android-studio</code> nevűt, és ide telepítsünk!
+                </p>
                 <div class="imgstore">
-                    <img src="/static/img/l01/install/andStud3.png" />
-                    <img src="/static/img/l01/install/andStud3_2.png" />
-                    <img src="/static/img/l01/install/andStud4.png" />
+                    <img src="/static/img/l01/install/andStud3_old.png" />
+                    <img src="/static/img/l01/install/andStud4_old.png" />
                     <img src="/static/img/l01/install/andStud5.png" />
-                </div>
-            </li>
-            <li>
-                <p>Ha a fő program feltelepült, akkor még egy gyors konfigurálást elvégez magától.
-                    Amint befejezte, a <em>Finish</em> gombra kattintva be lehet zárni az ablakot.</p>
-                <div class="imgstore">
-                    <img src="/static/img/l01/install/andStud_firstStart.png" class="center-block" />
-                    <img src="/static/img/l01/install/andStud_firstStart2.png" class="center-block" />
                 </div>
             </li>
             <li>
@@ -141,8 +134,7 @@
                        </div>
                     </li>
                     <li>
-                        <p>A listában győződj meg arról, hogy semmi nincs kipipálva, csak az alábbi dolgok
-                            (alul a <em>Deselect all</em> linkkel tudod törölni a pipákat):</p>
+                        <p>A listában győződj meg arról, hogy semmi nincs kipipálva, csak az alábbi dolgok:</p>
                         <ul>
                             <li>Android 4.4.2 (API 19)
                                 <ul>
