@@ -50,7 +50,7 @@
                 képezik a mindennapjainknak; ezen belül pedig mi egész pontosan a szavak megtanulására
                 fogunk összpontosítani.</p>
             <p>
-                A mostani leckénk célja nem lesz más, mint egy egyszerű szótarfüzet program megírása.
+                A mostani leckénk célja nem lesz más, mint egy egyszerű szótárfüzet program megírása.
                 Az applikáció készítése közben megismerkedünk majd a listákkal és azok megjelenítésével,
                 négy Activity-vel zsonglőrködünk egyszerre, ezáltal tényleg megtapasztalva az igazi
                 Android fejlesztés nehézségeit. A végeredmény viszont egy teljes, használható
@@ -60,7 +60,7 @@
             <p>
                 Az általunk tervezett program négy Activity-ből fog állni. Ennek a gyorsan
                 rajzolt (wireframe) terveit itt láthatjátok. Javasoljuk, hogy ismerkedj meg az
-                árbán szereplő ablakokkal, és vagy másold le, vagy térj vissza ide minden
+                ábrán szereplő ablakokkal, és vagy másold le, vagy térj vissza ide minden
                 alkalommal, mielőtt munkához látsz. <em>A kép kattintással nagyítható</em></p>
             <p>
                 <img src="/static/img/l08/wireframe.png" class="center-block" />
@@ -95,7 +95,7 @@
                 Ebben a leckében a szavakat a program készítésekor kell majd beírnunk (például
                 egy tömbbe), részleteket lásd később. A folytatásban viszont már fájlokat fogunk
                 használni, amiket akár számítógépen is szerkeszthettek, illetve egymással vagy
-                akár osztálytársakkal is megoszthattok. Néhány minta fájl: ****TODO link***.
+                akár osztálytársakkal is megoszthattok. Egy <a href="/static/files/dict1.txt" target="_blank">minta fájl</a>.
                 Ennek kapcsán javasolnánk, hogy mindenki olyan szavakat írjon be (mind a programba,
                 mind a fájlokba), amelyek a nyelvi tudását tükrözik. Így hasznosabb lesz a program,
                 mint ha a mi fantáziátlan példáinkat használjátok.</p>
@@ -203,7 +203,7 @@
 
 
         <section id="szavak-activity">
-            <h2>Mégegy activity: SzavakActivity</h2>
+            <h2>Még egy activity: SzavakActivity</h2>
             <p>
                 <em>Első megközelítés</em></p>
             <p>
@@ -215,7 +215,7 @@
                 az első funkciót, a szavak kilistázását! A cél tehát: egy Activity, ami megjeleníti a
                 program által ismert szavak listáját.</p>
             
-            <h3>Üres Activity létrezohása, megnyitása</h3>
+            <h3>Üres Activity létrehozása, megnyitása</h3>
             <p>
                 A fentiek mintájára adjunk hozzá a projekthez még egy activity-t (puska itt), aminek
                 a típusa legyen továbbra is <em>Blank Activity</em> és a neve <code>SzavakActivity</code>!</p>
@@ -236,7 +236,7 @@ startActivity(intent);</pre>
             
             <h3>Szavak tárolása</h3>
             <p>
-                Futólagos ismerettséget köthettünk már az előző leckék során a <code>String</code>
+                Futólagos ismeretséget köthettünk már az előző leckék során a <code>String</code>
                 típussal. Emlékeztetésként: ez egy olyan típus, amely szövegeket tárol. Például
                 nézzük meg az alábbi változót:</p>
 <pre>String szoveg;
@@ -267,7 +267,14 @@ szo2 = "macska = cat";</pre>
             </ul>
             <p>
                 A fentiek alapján akárhány Stringet (szöveget) megadhatunk kettősidézőjelek (<code>"</code>)
-                között, vesszővel elválasztva.</p>
+                között, vesszővel elválasztva. Például: </p>
+            <pre>
+szavak = new String[]{ "kutya = dog", "macska = cat", "ló = horse", "tehén = cow", "állat = animal", 
+                       "iskola = school", "osztály = class", "osztályterem = classroom", "ceruza = pencil", "vonalzó = ruler", 
+                        "gondol = think", "érez = feel", "szeret = like", "ad = give", "kap = get", 
+                        "ékesszólás = eloquence", "kétkedő = incredulous", "egyszerű = trivial", "elkeseredés = exasperation", "győzedelmes = triumphant" }
+
+            </pre>
             
             <h3>Egy String tömb megjelenítése</h3>
             <p>
@@ -288,7 +295,7 @@ szo2 = "macska = cat";</pre>
             <p>
                 Helyezzünk el egy ListView komponenst a layout szerkesztőben (Containers kategória alatt).
                 Az Activity legfontosabb feladata a szavak megjelenítése, tehát méretezzük úgy a listánkat,
-                hogy a képernyő nagyrészét elfoglalja
+                hogy a képernyő nagy részét elfoglalja
                 <div class="imgstore">
                         <img src="/static/img/l08/listView1.png" class="center-block" />
                         <img src="/static/img/l08/listView2.png" class="center-block" />
@@ -303,7 +310,7 @@ szo2 = "macska = cat";</pre>
             <p>
                 Mielőtt megnézzük az ehhez szükséges <em>mágikus parancsot</em>, előbb hozzunk létre egy
                 <code>ListView</code> típusú változót a SzavakActivity-ben, mondjuk <code>szolista</code>
-                néven, és rendeljük hozzá a ListView komponensünkhöz (ilyet már sokszor csinátuk a
+                néven, és rendeljük hozzá a ListView komponensünkhöz (ilyet már sokszor csináltunk a
                 <code>findViewById</code> paranccsal).</p>
             <p>
                 Tehát jelenleg a szavaink egy String tömbben laknak, és ezeket szeretnénk megjeleníteni
@@ -320,7 +327,7 @@ szolista.setAdapter(adapter);</pre>
             <p>
                 <img src="/static/img/l08/adapter2.png" class="center-block" />
             <p>
-                Ha esetleg elakadtál volna, így kellk inéznie az onCreate függvénynek:
+                Ha esetleg elakadtál volna, így kell kinéznie az onCreate függvénynek:
                 <button data-target="help_onCreate_final" class="help-link">Katt ide!</button></p>
             <div class="help-container" id="help_onCreate_final">
                 <pre data-include="/include/l08/onCreate_final.java.html"></pre>
@@ -366,7 +373,7 @@ szolista.setAdapter(adapter);</pre>
                 hogy például az angol szavakat és a magyar szavakat külön-külön String tömbben tárolták.
                 Mi ehelyett egy Java programozók által kedveltebb megoldást választunk.</p>
             <p>
-                A lecke folytatásában betekintés-jellegűleg megismerkedünk a Java nyelvben méltán
+                A lecke folytatásában betekintés szintjén megismerkedünk a Java nyelvben méltán
                 népszerű <em>osztály</em> fogalmával. Itt előre szeretnénk leszögezni, hogy ez a
                 téma túl nagy egy ilyen leckéhez (vagy akár szakkörhöz); a lecke végén a célunk az
                 lenne, hogy mindenki megértse magát az <em>alap ötletet</em>, és lássa, hogy miként
@@ -494,8 +501,8 @@ szolista.setAdapter(adapter);</pre>
 
             <ul>
                 <li>
-                    Az új osztályunk neve legyen Szo. Az ezt követő nyitó kapcsoszárójel és a
-                    legvégén található záró kapcsoszárójel között minden az osztályhoz fog tartozni.</li>
+                    Az új osztályunk neve legyen Szo. Az ezt követő nyitó kapcsos zárójel és a
+                    legvégén található záró kapcsos zárójel között minden az osztályhoz fog tartozni.</li>
                 <li>
                     Az angol és a magyar szó helye. De ilyesmit mintha már láttunk volna! Igen,
                     ez pontosan olyan, mint amit az Activity elején szoktunk csinálni amikor
@@ -511,7 +518,7 @@ szolista.setAdapter(adapter);</pre>
                 <strong>Fontos!</strong></p>
             <p>
                 Amint már utaltunk rá, az osztály, amit a fenti kóddal adunk meg, az
-                <em>csak egy tervrajz</em>! Megmondja, hogy hogy kell kinéznie egy Szo-nak.
+                <em>csak egy tervrajz</em>! Megmondja, hogy hogyan kell kinéznie egy Szo-nak.
                 Ezzel csak egy új típust hoztunk létre. Ahhzo, hogy igazán használni tudjuk, el kell
                 kezdenünk Szo típusú változókat gyártani. Ez a következő kóddal tehetjük meg:</p>
 <pre>Szo kutya;
@@ -613,7 +620,7 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
             <h4 class="task">1. Feladat</h3>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a
-                szavak közé egyelőségjel helyett kötőjelet tegyen inkább!
+                szavak közé egyenlőségjel helyett kötőjelet tegyen inkább!
                 <button data-target="help_task1" class="help-link">Megoldás</button></p>
             <div class="help-container" id="help_task1">
                 <pre>return angol + " <strong>-</strong> " + magyar;</pre>
