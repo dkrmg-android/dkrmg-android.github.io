@@ -663,7 +663,7 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
                 megjelenjen a megoldás!</p>
             <div id="thirdlang_solution" style="display: none;">
                 <p>
-                    Az interaktív részben láthattad, hogy a Szo objektumok <code>public String nyelv;</code>
+                    Az interaktív részben láthattad, hogy a Szo objektumok <code>public String &lt;nyelv&gt;;</code>
                     belső változókban tárolják az adott nyelvű szavakat. Tehát az első lépés az, hogy felveszünk
                     egy új belső változót, a mi esetünkben így:</p>
                 <pre>public String nemet;</pre>
@@ -703,7 +703,7 @@ this.nemet = nemet;</pre>
 
     @Override
     public String toString() {
-        String sor = magyar + " = " + angol;
+        String sor = magyar + " = " + angol + " = " + nemet;
         return sor;
     }
 
