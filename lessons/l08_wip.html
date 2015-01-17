@@ -201,7 +201,7 @@
     startActivity(intent);
 }</pre>
             <p>
-                Ehhez a feladathoz tartozik egy <a href="#starred1">szorgalmi</a> is, amiben a gombot felváltja
+                Ehhez a feladathoz tartozik egy <a href="#starred_about_menu">szorgalmi</a> is, amiben a gombot felváltja
                 egy felbukkanó menü. Az érdekesség kedvéért javasoljuk, hogy a következő lecke előtt
                 nézd majd meg!</p>
         </section>
@@ -271,7 +271,7 @@ szo2 = "macska = cat";</pre>
             <ul>
                 <li>
                     Hozzunk is létre egy <code>szavak</code> nevű, String tömb (<code>String[]</code>) típusú
-                    változót a SzavakActvity-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
+                    változót a <code><strong>SzavakActvity</strong></code>-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
                     Figyeld meg, hogy a tömbünket első használat előtt a <code>new</code> szóval létrehozzuk,
                     majd kapcsos zárójelek között felsoroljuk, hogy kezdetben milyen Stringek legyenek az elemei.<br/>
                     <pre>szavak = new String[] {"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
@@ -286,7 +286,7 @@ szavak = new String[] { "kutya = dog", "macska = cat", "ló = horse", "tehén = 
                         "kap = get", "ékesszólás = eloquence", "kétkedő = incredulous", "egyszerű = trivial",
                         "elkeseredés = exasperation", "győzedelmes = triumphant" };</pre>
             <p>
-            Vedd elő a saját szótárfözetedet, és írj is be néhány olyan szót, amit Neked kell megtanulnod!
+            Vedd elő a saját szótárfüzetedet, és írj is be néhány olyan szót, amit Neked kell megtanulnod!
             </p>
             <h3>Egy String tömb megjelenítése</h3>
             <p>
@@ -320,7 +320,7 @@ szavak = new String[] { "kutya = dog", "macska = cat", "ló = horse", "tehén = 
                 Mielőtt megnézzük a String tömb megjelenítéséhez szükséges <em>mágikus parancsot</em>, 
                 hozzunk létre egy <code>ListView</code> típusú változót a SzavakActivity-ben, mondjuk <code>szolista</code>
                 néven, és rendeljük hozzá a ListView komponensünkhöz (ilyet már sokszor csináltunk a
-                <code>findViewById</code> paranccsal)!</p>
+                <code>findViewById</code> paranccsal)! <em>Ugye adtál id-t a ListView komponensnek?</em></p>
             
             <h3>Tömb megjelenítése a ListView komponensen (Adapter)</h3>
             <p>
@@ -343,7 +343,6 @@ szolista.setAdapter(adapter);</pre>
                 <button data-target="help_onCreate_final" class="help-link">Katt ide!</button></p>
             <div class="help-container" id="help_onCreate_final">
                 <pre data-include="/include/l08/onCreate_final.java.html"></pre>
-                <!-- TODO check if it's really all right! -->
             </div>
             <p>
                 Futtassuk le a programot. Ha minden igaz, akkor a Menüből a megfelelő gombra kattintva
@@ -377,7 +376,7 @@ szolista.setAdapter(adapter);</pre>
                 <li>
                     Macerás lenne lecserélni az <code>=</code> jelet mondjuk egy nyílra (<code>--&gt;</code>)</li>
                 <li>
-                    Hogy nyerhetjük ki egy ilyen Stringből ("angol = magyar") csak az egyik nyelvű szót?
+                    Hogy nyerhetjük ki egy ilyen Stringből ("magyar = angol") csak az egyik nyelvű szót?
                     Erre szükségünk lesz pedig a kvíznél! És mi lenne, ha hirtelen szeretnénk egy
                     harmadik nyelvet is?</li>
             </ul>
@@ -458,8 +457,8 @@ szolista.setAdapter(adapter);</pre>
             <p>
                 Most pedig másold be az alábbi kódot a <code>package...</code> sor alá, felülírva az Android Studio által írt sorokat:</p>
 <pre>public class Szo {
-    public String angol;
     public String magyar;
+    public String angol;
 
     @Override
     public String toString() {
@@ -530,8 +529,8 @@ kutya = new Szo();   // új, üres szó létrehozása</pre>
             <p>
                 Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a kutya változó magyar és
                 angol megfelelőit, akkor azt könnyedén megtehetjük:</p>
-<pre>kutya.angol = "dog";
-kutya.magyar = "kutya";</pre>
+<pre>kutya.magyar = "kutya";
+kutya.angol = "dog";</pre>
             <p>
                 Láthatjuk, hogy a kutya mögé helyezett ponttal a kutya változónk belső változóinak
                 adhatunk értéket (vagy olvashatjuk ki őket).</p>
@@ -547,9 +546,11 @@ kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
 
             <h3>Belső függvény</h3>
             <p>
-                Láthattuk, hogy a kutya változó mögé helyezett ponttal a kutya változó belső változóihoz
+                Láthattuk, hogy a kutya változó mögé helyezett ponttal a kutya változóban lévő Szo típusú objektum
+                belső változóihoz
                 nyertünk hozzáférést (pl. kutya.angol, kutya.magyar). Ehhez hasonlatosan nem nehéz
-                kitalálni, hogy a <code>kutya.toString()</code> parancs meghívja a kutya toString
+                kitalálni, hogy a <code>kutya.toString()</code> parancs meghívja a kutya változóban lévő Szo típusú
+                objektum toString
                 belső függvényét. Ha megnézed a Szo osztály kódját, akkor láthatod, hogy az az alábbi
                 Stringet fogja nekünk visszaadni: "kutya = dog". Ha létrehozunk egy macska változót is
                 (<code>macska =new Szo("macska", "cat");</code>), akkor a <code>macska.toString()</code>
@@ -574,8 +575,9 @@ kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
             <p>
                 Figyeld meg, hogy mi mit jelent/jelez! Először leírjuk, hogy milyen típusú objektumokat
                 szeretnénk belerakni, majd a <code>[]</code> karakterekkel megmondjuk, hogy nem egyet,
-                hanem többet egy tömbben szeretnénk belerakni a változóba. Utána már csak a változó nevét
-                kell megadni (itt pl. "szavak").</p>
+                hanem többet szeretnénk tárolni a változóban. Utána már csak a változó nevét
+                kell megadni (itt pl. "szavak"). Eddig egy változóba csak egy objektum fért, de ha a <code>[]</code>ket
+                is használjuk, akkor már több is belefér egymás mellé. Ilyenkor tömb-nek hívjuk.</p>
             <p>
                 De mi azt szeretnénk, hogy ne String-eket, hanem Szo objektumokat tároljon a tömbünk.
                 Ezt hogyan tudnád elérni?
@@ -648,8 +650,139 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
         <h2>
             Szorgalmi
         </h2>
-        <section id="starred1">
-        <p><em>A tartalom még nem került feltöltésre. Látogass vissza később!</em></p>
+
+        <section id="starred_third_language">
+            <h3>Harmadik nyelv hozzáadása</h3>
+            <p>
+                Fentebb említettük, hogy például azért jó, hogy bevezettük az új osztályt, mert könnyebb új
+                nyelvet hozzáadni. Csináljuk is meg! Válassz ki egy tetszőleges nyelvet (mi a németet választottuk),
+                és gondolkozz el, hogy miket kéne csinálni ahhoz, hogy egy Szo objektum a harmadik nyelven is tudja
+                tárolni a szó jelentését! Érdemes lehet visszamenni az
+                <a href="#interactive-class">interaktív részhez</a>. Ha végiggondoltad,
+                <button onclick="$('#thirdlang_solution').show();">kattints ide</button>, hogy
+                megjelenjen a megoldás!</p>
+            <div id="thirdlang_solution" style="display: none;">
+                <p>
+                    Az interaktív részben láthattad, hogy a Szo objektumok <code>public String nyelv;</code>
+                    belső változókban tárolják az adott nyelvű szavakat. Tehát az első lépés az, hogy felveszünk
+                    egy új belső változót, a mi esetünkben így:</p>
+                <pre>public String nemet;</pre>
+                <p class="task">
+                    Ezt a már meglévő két nyelv alá írd be!</p>
+                <p>
+                    Mostantól a régi módszerrel már megadható a német alakja is a szónak, így:</p>
+<pre>Szo kutya;      // változó deklarálása
+kutya = new Szo();   // új, üres szó létrehozása
+kutya.angol = "dog";
+kutya.magyar = "kutya";
+<strong>kutya.nemet = "der Hund";</strong></pre>
+                <p>
+                    Persze jó lenne, ha másik módszer is használható lenne
+                    (<code>new Szo("kutya", "dog", <strong>"der Hund"</strong>)</code>). Ehhez a konstruktort is
+                    módosítani kell. (Melyik is a konstruktor? Nézd meg az iteraktív részben!)</p>
+                <p class="task">
+                    Fel kell venni hozzá egy új paramétert:</p>
+                <pre>public Szo(String magyar, String angol<strong>, String nemet</strong>) { ...</pre>
+                <p class="task">
+                    Valamint a konstruktor törzsét is ki kell egészíteni:</p>
+<pre>this.magyar = magyar;
+this.angol = angol;
+this.nemet = nemet;</pre>
+                <p>Szuper, most már németül is el tudjuk tárolni a szavak jelentését (persze ehhez át kell írni
+                    a tömb feltöltése rész, hogy a német alak is szerepeljen)! De ha most kipróbálod a programot,
+                    akkor nem látsz semmilyen változást. Ahhoz, hogy a listában is megjelenjen a német alak,
+                    a toString() függvént is módosítani kell. Ezt rád bízzuk!</p>
+                <p>A végén így kell kinéznie a Szo osztálynak (csak akkor nézd meg, ha a toString-et is
+                    megpróbáltad átírni):
+                    <button data-target="help_Szo_3rd_language" class="help-link">A Szo osztály új verziója</button></p>
+                <div class="help-container" id="help_Szo_3rd_language">
+<pre>public class Szo {
+    public String magyar;
+    public String angol;
+    public String nemet;
+
+    @Override
+    public String toString() {
+        String sor = magyar + " = " + angol;
+        return sor;
+    }
+
+    public Szo(String magyar, String angol, String nemet) {
+        this.magyar = magyar;
+        this.angol = angol;
+        this.nemet = nemet;
+    }
+
+    public Szo() {}
+}</pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="starred_about_menu">
+            <h3>AboutActivity menüből</h3>
+
+            <p>
+                Bizonyára találkoztatok már más alkalmazásokban a "három pont" ikonnal.</p>
+            <img src="/static/img/l08/action_bar_pattern_overflow.png" class="center-block" />
+            <p>Ez arra jó, hogy bizonyos funkciókat onnan lehet elérni, és nem egy külön gomb van nekik.
+                Az About activity megnyitása tipikusan ilyen funkció, mivel elég ritkán használják, de mégis szükséges.
+                Csináljunk mi is egy menüt, amivel meg lehet nyitni az AboutActivitynket!</p>
+            <ol>
+                <li>
+                    A <em>res -> menu</em> mappában kell lennie egy menu.xml fájlnak. Ezt nyisd meg!
+                    Ez a fájl írja le, hogy <em>hogy nézzen ki</em> a menü. (Pont mint a layout az activitynél.)</li>
+                <li>
+                    Ebben a fájlban az <code>&lt;item</code> és a <code>/&gt;</code> közötti részben fogunk dolgozni.
+                    Ezt a részt írd át, hogy pontosan így nézzen ki! (alatta megnézzük, hogy mi micsoda)
+<pre>&lt;item android:id="@+id/open_about" android:title="About"
+      android:orderInCategory="100" app:showAsAction="never" /&gt;</pre>
+                    Az <code>android:id="@+id/xxxxxxxx"</code> a menü azonosítója, ugyan úgy, mint ahogy
+                    a komponenseknek is van.
+                    Az <code>android:title</code> rész tartalma (az idézőjelek között) az a szöveg,
+                    ami meg fog jelnni, ha megnyomják a 3 pontot.
+                    A másik kettővel egyelőre nem foglalkozunk, de akit érdekel utánanézhet! :)
+                </li>
+                <li>
+                    Ahhoz, hogy a 3 pontos gomb megjelenjen, az <code>onCreateOptionsMenu</code> függvényt kell megírnunk
+                    a MenuActivityben. Előfordulhat, hogy az AndroidStudio már generált ilyet, akkor azt kell
+                    módosítani. A lényeg, hogy a végén így nézzen ki:
+<pre>@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    <strong>getMenuInflater().inflate(R.menu.menu, menu);</strong>
+    return super.onCreateOptionsMenu(menu);
+}</pre>
+                    A kiemelt rész felelős azért, hogy amit megírtunk menu.xml fájl által leírt menü
+                    megjelenjen a 3 pont megnyomásakor. (A részletekről szívesen mesélünk, de nem annyira
+                    lényeges, ezért most nem mennénk bele a részletekbe.)
+                </li>
+                <li>
+                    Ha most lefuttatod a programot, akkor meg kell jelennie a 3 pontnak a képernyő tetején,
+                    és rákattintásra meg kell jelennie egy <code>About</code> feliratnak, amire kattintva
+                    nem történik semmi. Persze, hiszen azt még nem írtuk meg, hogy mi történjen ebben az esetben.</li>
+                <li>
+                    Ehhez az <code>onOptionsItemSelected</code> függvényt kell megírni/módosítani. Ez a
+                    függvény akkor hívódik meg, amikor a felhasználó megnyomja valamelyik menüsort.
+                    A MenuItem típusú paramétere tartalmazza a megnyomott menüsor adatait, pl. az id-jét.</li>
+                <li>Mivel később esetleg lehet több különböző menüsorunk is, az első feladat, hogy megnézzük,
+                    hogy melyiket is nyomta meg a felhasználó. <br/> Pédául így:
+                    <em><strong>HA</strong> a megnyomott menüsor azonosítója
+                        <code>open_about</code>, akkor csináljunk <strong>valamit</strong>
+                    </em><br/>
+                    Remélhetőleg erről rögtön az if-szerkezet jut eszedbe. Érdemes átnézni
+                    <a href="http://goo.gl/VWkLlk" target="_blank">a harmadik lecke 2. pdf-ének 3. oldalán</a>!</li>
+                <li>Próbáld meg ezek alapján magadtól megírni, hogy ha az open_about id-jű menüsort
+                    nyomták meg, akkor nyissa meg az AboutActivity-t! Kis segítség: a menüsor
+                    id-ja így kérdezhető le: <code>item.getItemId()</code> Ha elakadsz, vagy ellenőrzésképp
+                    gombnyomás után láthatod a megoldást.
+                    <button data-target="help_onOptionsItemSelected" class="help-link">Megoldás</button></p>
+                    <div class="help-container" id="help_onOptionsItemSelected">
+<pre>if (item.getItemId() == R.id.open_about) {
+    Intent intent = new Intent(this, AboutActivity.class);
+    startActivity(intent);
+}</pre>
+                    </div></li>
+            </ol>
         </section>
 
 

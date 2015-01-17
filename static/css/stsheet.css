@@ -124,11 +124,7 @@ h4 {
 	letter-spacing: 1px;
 }
 
-h3.task {
-	color: #738c28;
-}
-
-h4.task {
+.task {
 	color: #738c28;
 }
 
