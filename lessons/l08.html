@@ -189,8 +189,16 @@
                 <li>
                     Layout szerkesztővel alakítsuk ki az új activity-t (activity_about.xml) tetszés szerint</li>
                 <li>
+                    <div class="possible-error">
+                        Valószínűleg az új activity kódjának az elején ez a sor szerepel:
+                        <pre>public class AboutActivity extends <strong>ActionBarActivity</strong> {</pre>
+                        Ezt javítsd át erre:
+                        <pre>public class AboutActivity extends <strong>Activity</strong> {</pre>
+                    </div>
+                </li>
+                <li>
                     Írjuk be azt a két soros kódot, ami megnyitja az About ablakunkat. Mivel az
-                    AboutActivity-t a menüből akarjuk megírni, ezért ez a menü ablakunk Java kódjába
+                    AboutActivity-t a menüből akarjuk negnyitni, ezért ez a menü activitynk Java kódjába
                     kell, hogy kerüljön, az egyik gombkattintást kezelő függvénybe azok közül, amit
                     az előző pontban hoztunk létre.</li>
             </ul>
@@ -224,7 +232,8 @@
             <p>
                 A fentiek mintájára adjunk hozzá a projekthez még egy activity-t (puska
                 <a href="/lessons/l06.html#newActivity" target="_blank">itt</a>) <code>SzavakActivity</code> néven, aminek
-                a típusa legyen továbbra is <em>Blank Activity</em>!</p>
+                a típusa legyen továbbra is <em>Blank Activity</em>!
+                <strong>Figyelj rá, hogy itt is írd át az ActionBarActivity-t sima Activity-re!</strong></p>
             
             <p>
                 Most, hogy már többször is beírtátok/bemásoltátok az új activity-t megnyitó kódot,
@@ -490,7 +499,8 @@ szolista.setAdapter(adapter);</pre>
                         ez pontosan olyan, mint amit az Activity elején szoktunk csinálni amikor
                         létrehozunk egy változót valamelyik komponensnek vagy mint a 3. leckében a tippelt
                         számnak. Tehát az angol és a magyar egy-egy változó, mégpedig String típusú. És mivel
-                        az osztályunkon belül találhatóak, ezért <strong>belső változó</strong>nak fogjuk hívni őket.</p>
+                        az osztályunkon belül találhatóak, ezért <strong>belső változó</strong>nak fogjuk hívni őket. <br/>
+                        A <code>public</code> szócska felelős azért, hogy írhassunk ilyet: <code>szo1<strong>.magyar</strong></code></p>
                     <p data-iid="tostring">Ez a belső függvény való arra, hogy egy <code>Szo</code> típusú változót majd
                         szöveggé tudjunk alakítani. Nézd meg, hogy ez a belső függvény hogyan használja a belső változókat!
                         Ez is ismerős lehet egyébként, egy függvény, mégpedig egy <strong>belső függvény</strong>,
@@ -523,33 +533,33 @@ szolista.setAdapter(adapter);</pre>
                 <em>csak egy tervrajz</em>! Megmondja, hogy hogyan kell kinéznie egy Szo-nak.
                 Ezzel csak egy új típust hoztunk létre. Ahhoz, hogy igazán használni tudjuk, el kell
                 kezdenünk Szo típusú változókat gyártani. Ez a következő kóddal tehetjük meg:</p>
-<pre>Szo kutya;      // változó deklarálása
-kutya = new Szo();   // új, üres szó létrehozása</pre>
+<pre>Szo szo1;      // változó deklarálása
+szo1 = new Szo();   // új, üres szó létrehozása</pre>
             
             <p>
-                Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a kutya változó magyar és
+                Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a szo1 változó magyar és
                 angol megfelelőit, akkor azt könnyedén megtehetjük:</p>
-<pre>kutya.magyar = "kutya";
-kutya.angol = "dog";</pre>
+<pre>szo1.magyar = "kutya";
+szo1.angol = "dog";</pre>
             <p>
-                Láthatjuk, hogy a kutya mögé helyezett ponttal a kutya változónk belső változóinak
+                Láthatjuk, hogy a szo1 mögé helyezett ponttal a szo1 változónk belső változóinak
                 adhatunk értéket (vagy olvashatjuk ki őket).</p>
             <p>
                 Mi most még ezen felül csalhatunk is egy kicsit, hogy ne kelljen három sort gépelni,
                 beírhatjuk az alábbit is:</p>
-<pre>Szo kutya;                  // változó deklarálása
-kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
+<pre>Szo szo1;                  // változó deklarálása
+szo1 = new Szo("kutya", "dog"); // új szó létrehozása</pre>
             <p>
-                Vagy ha még messzebb akarunk menni, akkor mindez egy sorba is leírható!</p>
+                Vagy ha még messzebb akarunk menni, akkor mindez egy sorba is leírható (a konstruktor miatt)!</p>
             <p>
-<pre>Szo kutya = new Szo("kutya", "dog"); // változó deklarálása <strong>ÉS</strong> új szó létrehozása</pre>
+<pre>Szo szo1 = new Szo("kutya", "dog"); // változó deklarálása <strong>ÉS</strong> új szó létrehozása</pre>
 
             <h3>Belső függvény</h3>
             <p>
-                Láthattuk, hogy a kutya változó mögé helyezett ponttal a kutya változóban lévő Szo típusú objektum
+                Láthattuk, hogy a szo1 változó mögé helyezett ponttal a szo1 változóban lévő Szo típusú objektum
                 belső változóihoz
-                nyertünk hozzáférést (pl. kutya.angol, kutya.magyar). Ehhez hasonlatosan nem nehéz
-                kitalálni, hogy a <code>kutya.toString()</code> parancs meghívja a kutya változóban lévő Szo típusú
+                nyertünk hozzáférést (pl. szo1.angol, szo1.magyar). Ehhez hasonlatosan nem nehéz
+                kitalálni, hogy a <code>szo1.toString()</code> parancs meghívja a szo1 változóban lévő Szo típusú
                 objektum toString
                 belső függvényét. Ha megnézed a Szo osztály kódját, akkor láthatod, hogy az az alábbi
                 Stringet fogja nekünk visszaadni: "kutya = dog". Ha létrehozunk egy macska változót is
@@ -595,10 +605,10 @@ kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
                 <li>
                     Ehhez vagy minden szónak kell csinálni egy új változót. Pl.
 <pre>
-Szo cica = new Szo("cica", "cat");
-Szo kutya = new Szo("kutya", "dog");
+Szo szo1 = new Szo("kutya", "dog");
+Szo szo2 = new Szo("cica", "cat");
 …
-szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
+szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
                 <li>
                     Vagy az egyszerűség kedvéért írhatjuk ezt is:
 <pre>szavak = new Szo[] {new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
@@ -671,11 +681,11 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
                     Ezt a már meglévő két nyelv alá írd be!</p>
                 <p>
                     Mostantól a régi módszerrel már megadható a német alakja is a szónak, így:</p>
-<pre>Szo kutya;      // változó deklarálása
-kutya = new Szo();   // új, üres szó létrehozása
-kutya.angol = "dog";
-kutya.magyar = "kutya";
-<strong>kutya.nemet = "der Hund";</strong></pre>
+<pre>Szo szo1;      // változó deklarálása
+szo1 = new Szo();   // új, üres szó létrehozása
+szo1.angol = "dog";
+szo1.magyar = "kutya";
+<strong>szo1.nemet = "der Hund";</strong></pre>
                 <p>
                     Persze jó lenne, ha másik módszer is használható lenne
                     (<code>new Szo("kutya", "dog", <strong>"der Hund"</strong>)</code>). Ehhez a konstruktort is
