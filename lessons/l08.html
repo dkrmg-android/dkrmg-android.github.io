@@ -661,74 +661,6 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
             Szorgalmi
         </h2>
 
-        <section id="starred_third_language">
-            <h3>Harmadik nyelv hozzáadása</h3>
-            <p>
-                Fentebb említettük, hogy például azért jó, hogy bevezettük az új osztályt, mert könnyebb új
-                nyelvet hozzáadni. Csináljuk is meg! Válassz ki egy tetszőleges nyelvet (mi a németet választottuk),
-                és gondolkozz el, hogy miket kéne csinálni ahhoz, hogy egy Szo objektum a harmadik nyelven is tudja
-                tárolni a szó jelentését! Érdemes lehet visszamenni az
-                <a href="#interactive-class">interaktív részhez</a>. Ha végiggondoltad,
-                <button onclick="$('#thirdlang_solution').show();">kattints ide</button>, hogy
-                megjelenjen a megoldás!</p>
-            <div id="thirdlang_solution" style="display: none;">
-                <p>
-                    Az interaktív részben láthattad, hogy a Szo objektumok <code>public String &lt;nyelv&gt;;</code>
-                    belső változókban tárolják az adott nyelvű szavakat. Tehát az első lépés az, hogy felveszünk
-                    egy új belső változót, a mi esetünkben így:</p>
-                <pre>public String nemet;</pre>
-                <p class="task">
-                    Ezt a már meglévő két nyelv alá írd be!</p>
-                <p>
-                    Mostantól a régi módszerrel már megadható a német alakja is a szónak, így:</p>
-<pre>Szo szo1;      // változó deklarálása
-szo1 = new Szo();   // új, üres szó létrehozása
-szo1.angol = "dog";
-szo1.magyar = "kutya";
-<strong>szo1.nemet = "der Hund";</strong></pre>
-                <p>
-                    Persze jó lenne, ha másik módszer is használható lenne
-                    (<code>new Szo("kutya", "dog", <strong>"der Hund"</strong>)</code>). Ehhez a konstruktort is
-                    módosítani kell. (Melyik is a konstruktor? Nézd meg az iteraktív részben!)</p>
-                <p class="task">
-                    Fel kell venni hozzá egy új paramétert:</p>
-                <pre>public Szo(String magyar, String angol<strong>, String nemet</strong>) { ...</pre>
-                <p class="task">
-                    Valamint a konstruktor törzsét is ki kell egészíteni:</p>
-<pre>this.magyar = magyar;
-this.angol = angol;
-this.nemet = nemet;</pre>
-                <p>Szuper, most már németül is el tudjuk tárolni a szavak jelentését (persze ehhez át kell írni
-                    a tömb feltöltése rész, hogy a német alak is szerepeljen)! De ha most kipróbálod a programot,
-                    akkor nem látsz semmilyen változást. Ahhoz, hogy a listában is megjelenjen a német alak,
-                    a toString() függvént is módosítani kell. Ezt rád bízzuk!</p>
-                <p>A végén így kell kinéznie a Szo osztálynak (csak akkor nézd meg, ha a toString-et is
-                    megpróbáltad átírni):
-                    <button data-target="help_Szo_3rd_language" class="help-link">A Szo osztály új verziója</button></p>
-                <div class="help-container" id="help_Szo_3rd_language">
-<pre>public class Szo {
-    public String magyar;
-    public String angol;
-    public String nemet;
-
-    @Override
-    public String toString() {
-        String sor = magyar + " = " + angol + " = " + nemet;
-        return sor;
-    }
-
-    public Szo(String magyar, String angol, String nemet) {
-        this.magyar = magyar;
-        this.angol = angol;
-        this.nemet = nemet;
-    }
-
-    public Szo() {}
-}</pre>
-                </div>
-            </div>
-        </section>
-
         <section id="starred_about_menu">
             <h3>AboutActivity menüből</h3>
 
@@ -795,6 +727,74 @@ public boolean onCreateOptionsMenu(Menu menu) {
 }</pre>
                     </div></li>
             </ol>
+        </section>
+
+        <section id="starred_third_language">
+            <h3>Harmadik nyelv hozzáadása</h3>
+            <p>
+                Fentebb említettük, hogy például azért jó, hogy bevezettük az új osztályt, mert könnyebb új
+                nyelvet hozzáadni. Csináljuk is meg! Válassz ki egy tetszőleges nyelvet (mi a németet választottuk),
+                és gondolkozz el, hogy miket kéne csinálni ahhoz, hogy egy Szo objektum a harmadik nyelven is tudja
+                tárolni a szó jelentését! Érdemes lehet visszamenni az
+                <a href="#interactive-class">interaktív részhez</a>. Ha végiggondoltad,
+                <button onclick="$('#thirdlang_solution').show();">kattints ide</button>, hogy
+                megjelenjen a megoldás!</p>
+            <div id="thirdlang_solution" style="display: none;">
+                <p>
+                    Az interaktív részben láthattad, hogy a Szo objektumok <code>public String &lt;nyelv&gt;;</code>
+                    belső változókban tárolják az adott nyelvű szavakat. Tehát az első lépés az, hogy felveszünk
+                    egy új belső változót, a mi esetünkben így:</p>
+                <pre>public String nemet;</pre>
+                <p class="task">
+                    Ezt a már meglévő két nyelv alá írd be!</p>
+                <p>
+                    Mostantól a régi módszerrel már megadható a német alakja is a szónak, így:</p>
+<pre>Szo szo1;      // változó deklarálása
+szo1 = new Szo();   // új, üres szó létrehozása
+szo1.angol = "dog";
+szo1.magyar = "kutya";
+<strong>szo1.nemet = "der Hund";</strong></pre>
+                <p>
+                    Persze jó lenne, ha másik módszer is használható lenne
+                    (<code>new Szo("kutya", "dog", <strong>"der Hund"</strong>)</code>). Ehhez a konstruktort is
+                    módosítani kell. (Melyik is a konstruktor? Nézd meg az iteraktív részben!)</p>
+                <p class="task">
+                    Fel kell venni hozzá egy új paramétert:</p>
+                <pre>public Szo(String magyar, String angol<strong>, String nemet</strong>) { ...</pre>
+                <p class="task">
+                    Valamint a konstruktor törzsét is ki kell egészíteni:</p>
+<pre>this.magyar = magyar;
+this.angol = angol;
+this.nemet = nemet;</pre>
+                <p>Szuper, most már németül is el tudjuk tárolni a szavak jelentését (persze ehhez át kell írni
+                    a tömb feltöltése rész, hogy a német alak is szerepeljen)! De ha most kipróbálod a programot,
+                    akkor nem látsz semmilyen változást. Ahhoz, hogy a listában is megjelenjen a német alak,
+                    a toString() függvént is módosítani kell. Ezt rád bízzuk!</p>
+                <p>A végén így kell kinéznie a Szo osztálynak (csak akkor nézd meg, ha a toString-et is
+                    megpróbáltad átírni):
+                    <button data-target="help_Szo_3rd_language" class="help-link">A Szo osztály új verziója</button></p>
+                <div class="help-container" id="help_Szo_3rd_language">
+<pre>public class Szo {
+    public String magyar;
+    public String angol;
+    public String nemet;
+
+    @Override
+    public String toString() {
+        String sor = magyar + " = " + angol + " = " + nemet;
+        return sor;
+    }
+
+    public Szo(String magyar, String angol, String nemet) {
+        this.magyar = magyar;
+        this.angol = angol;
+        this.nemet = nemet;
+    }
+
+    public Szo() {}
+}</pre>
+                </div>
+            </div>
         </section>
 
 
