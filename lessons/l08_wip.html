@@ -741,7 +741,9 @@ this.nemet = nemet;</pre>
                     a komponenseknek is van.
                     Az <code>android:title</code> rész tartalma (az idézőjelek között) az a szöveg,
                     ami meg fog jelnni, ha megnyomják a 3 pontot.
-                    A másik kettővel egyelőre nem foglalkozunk, de akit érdekel utánanézhet! :)
+                    A másik kettővel egyelőre nem foglalkozunk, de akit érdekel utánanézhet! :) <br/>
+                    Ha esetleg aláhúzná a app:showAsAction részt, akkor a fájl tetején az xmlns:android="blabla" után írd be ezt:
+                    <code>xmlns:app="http://schemas.android.com/apk/res-auto"</code>
                 </li>
                 <li>
                     Ahhoz, hogy a 3 pontos gomb megjelenjen, az <code>onCreateOptionsMenu</code> függvényt kell megírnunk
