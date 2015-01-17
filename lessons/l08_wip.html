@@ -95,7 +95,8 @@
                 Ebben a leckében a szavakat a program készítésekor kell majd beírnunk (például
                 egy tömbbe), részleteket lásd később. A folytatásban viszont már fájlokat fogunk
                 használni, amiket akár számítógépen is szerkeszthettek, illetve egymással vagy
-                akár osztálytársakkal is megoszthattok. Egy <a href="/static/files/dict1.txt" target="_blank">minta fájl</a>.
+                akár osztálytársakkal is megoszthattok. Egy
+                <a href="/static/files/dict1.txt" target="_blank">minta fájl</a>.
                 Ennek kapcsán javasolnánk, hogy mindenki olyan szavakat írjon be (mind a programba,
                 mind a fájlokba), amelyek a nyelvi tudását tükrözik. Így hasznosabb lesz a program,
                 mint ha a mi fantáziátlan példáinkat használjátok.</p>
@@ -107,8 +108,9 @@
                 Az előző leckéhez hasonlóan most sem készítettünk elő projektet, így azt Nektek
                 kell létrehozni. Kicsit lusták is vagyunk, és nem szeretjük ismételni magunkat,
                 ezért nem írnánk le megint az új projekt létrehozásának menetét, kövessétek az
-                <a href="/lessons/l07.html#new-project" target="_blank">előző leckében leírtakat</a>! <em>Az "Importálás helyett…" rész
-                mind a <strong>nyolc</strong> pontját figyelmesen csináljátok végig!</em> Amire figyelj:</p>
+                <a href="/lessons/l07.html#new-project" target="_blank">előző leckében leírtakat</a>!
+                <em>Az "Importálás helyett…" rész mind a <strong>nyolc</strong> pontját
+                figyelmesen csináljátok végig!</em> Amire figyelj:</p>
             <p>
                 Alkalmazás adatai</p>
             <ul>
@@ -120,7 +122,8 @@
                 <li>
                     <code>API 19</code> kiválasztása</li>
                 <li>
-                    A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve legyen <code>MenuActivity</code>.</li>
+                    A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve
+                    legyen <code>MenuActivity</code>.</li>
             </ul>
             <p>
                 Ne felejtsd el beállítani a megfelelő SDK verziót, majd futtasd a programot a telefonodon!</p>
@@ -167,10 +170,10 @@
             <h2>Ismétlés: AboutActivity</h2>
             <p>
                 Ismétlés a tudás anyja, mondták már sokan, és milyen igazuk van! Ismételjünk most mi
-                is egy kicsit. A 6. lecke (Iránytű) <a href="/lessons/l06.html#openActivity">végén</a> létrehoztunk egy második
-                Activity-t, ami a készítő nevét tartalmazta. Csináljunk egy ilyen About Activityt
-                ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél több eszetekbe jutna,
-                de persze ha elakadtok szabad puskázni a 6. lecke leírásából.</p>
+                is egy kicsit. A 6. lecke (Iránytű) <a href="/lessons/l06.html#openActivity">végén</a>
+                létrehoztunk egy második Activity-t, ami a készítő nevét tartalmazta. Csináljunk egy
+                ilyen About Activityt ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél
+                több eszetekbe jutna, de persze ha elakadtok szabad puskázni a 6. lecke leírásából.</p>
             <p>
                 <img src="/static/img/l08/about.png" class="center-block" />
             </p>
@@ -256,25 +259,24 @@ szo2 = "macska = cat";</pre>
                 A megoldás, hogy az előző leckében tanult tömböket alkalmazzuk. Tehát:</p>
             <p>
                 <strong>A szavainkat egyelőre egy <code>String</code> típusú tömbben fogjuk tárolni.</strong>
-                <a href="/lessons/l07.html#arrays">Emlékeztetésként</a> , a String tömb egy olyan
+                <a href="/lessons/l07.html#arrays">Emlékeztetésként</a>, a String tömb egy olyan
                 adatszerkezet, amelynek minden eleme egy String típusú változó.</p>
             <ul>
                 <li>
-                    Hozzunk is létre egy szavak nevű, String tömb (String[]) típusú változót a
-                    SzavakActvity-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
+                    Hozzunk is létre egy <code>szavak</code> nevű, String tömb (<code>String[]</code>) típusú
+                    változót a SzavakActvity-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
                     A teljes tömbnek az alábbi módon adhatunk értéket:<br/>
-                    <pre>szavak = new String[]{"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
+                    <pre>szavak = new String[] {"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
             </ul>
             <p>
                 A fentiek alapján akárhány Stringet (szöveget) megadhatunk kettősidézőjelek (<code>"</code>)
                 között, vesszővel elválasztva. Például: </p>
             <pre>
-szavak = new String[]{ "kutya = dog", "macska = cat", "ló = horse", "tehén = cow", "állat = animal", 
-                       "iskola = school", "osztály = class", "osztályterem = classroom", "ceruza = pencil", "vonalzó = ruler", 
-                        "gondol = think", "érez = feel", "szeret = like", "ad = give", "kap = get", 
-                        "ékesszólás = eloquence", "kétkedő = incredulous", "egyszerű = trivial", "elkeseredés = exasperation", "győzedelmes = triumphant" }
-
-            </pre>
+szavak = new String[] { "kutya = dog", "macska = cat", "ló = horse", "tehén = cow", "állat = animal",
+                        "iskola = school", "osztály = class", "osztályterem = classroom", "ceruza = pencil",
+                        "vonalzó = ruler", "gondol = think", "érez = feel", "szeret = like", "ad = give",
+                        "kap = get", "ékesszólás = eloquence", "kétkedő = incredulous", "egyszerű = trivial",
+                        "elkeseredés = exasperation", "győzedelmes = triumphant" };</pre>
             
             <h3>Egy String tömb megjelenítése</h3>
             <p>
@@ -295,12 +297,11 @@ szavak = new String[]{ "kutya = dog", "macska = cat", "ló = horse", "tehén = c
             <p>
                 Helyezzünk el egy ListView komponenst a layout szerkesztőben (Containers kategória alatt).
                 Az Activity legfontosabb feladata a szavak megjelenítése, tehát méretezzük úgy a listánkat,
-                hogy a képernyő nagy részét elfoglalja
-                <div class="imgstore">
-                        <img src="/static/img/l08/listView1.png" class="center-block" />
-                        <img src="/static/img/l08/listView2.png" class="center-block" />
-                    </div>
-            </p>
+                hogy a képernyő nagy részét elfoglalja.</p>
+            <div class="imgstore">
+                <img src="/static/img/l08/listview1.png" class="center-block" />
+                <img src="/static/img/l08/listview2.png" class="center-block" />
+            </div>
             <p>
                 Láthatjuk, hogy a layout szerkesztőnknek fogalma sincs, hogy mit szeretnénk a
                 listánkban megjeleníteni, így jobb híján az "item 1", "item 2", … szavakat használja.
@@ -419,7 +420,7 @@ szolista.setAdapter(adapter);</pre>
                 Tehát a két kérdés, amit fel kell tennünk magunknak:</p>
             <ul>
                 <li>
-                    Milyen adatot tároljon a Szo típus?</li>
+                    Milyen adatot tároljon a <code><strong>Szo</strong></code> típus?</li>
                 <li>
                     Milyen cselekvések/függvényeket kell elvégeznie ennek a típusnak?</li>
             </ul>
@@ -435,11 +436,12 @@ szolista.setAdapter(adapter);</pre>
                     tartalmát a LitstView-ba, az eddig ismertetett módon.</li>
             </ul>
             <p>
-                Vágjunk is bele. Hozz létre egy új osztály <code>Szo</code> néven!
-                <div class="imgstore">
-                        <img src="/static/img/l08/newClass1.png" class="center-block" />
-                        <img src="/static/img/l08/newClass2.png" class="center-block" />
-                    </div>
+                Vágjunk is bele. Hozz létre egy új osztály <code>Szo</code> néven!</p>
+            <div class="imgstore">
+                <img src="/static/img/l08/newClass1.png" class="center-block" />
+                <img src="/static/img/l08/newClass2.png" class="center-block" />
+            </div>
+            <p>
                 Most pedig másold be az alábbi kódot:</p>
 <pre>public class Szo {
     public String angol;
@@ -521,8 +523,8 @@ szolista.setAdapter(adapter);</pre>
                 <em>csak egy tervrajz</em>! Megmondja, hogy hogyan kell kinéznie egy Szo-nak.
                 Ezzel csak egy új típust hoztunk létre. Ahhzo, hogy igazán használni tudjuk, el kell
                 kezdenünk Szo típusú változókat gyártani. Ez a következő kóddal tehetjük meg:</p>
-<pre>Szo kutya;
-kutya = new Szo();</pre>
+<pre>Szo kutya;      // változó deklarálása
+kutya = new Szo();   // új, üres szó létrehozása</pre>
             
             <p>
                 Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a kutya változó magyar és
@@ -535,12 +537,12 @@ kutya.magyar = "kutya";</pre>
             <p>
                 Mi most még ezen felül csalhatunk is egy kicsit, hogy ne kelljen három sort gépelni,
                 beírhatjuk az alábbit is:</p>
-<pre>Szo kutya; // deklarálás.
+<pre>Szo kutya;                  // változó deklarálása
 kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
             <p>
                 Vagy ha még messzebb akarunk menni, akkor mindez egy sorba is leírható!</p>
             <p>
-<pre>Szo kutya = new Szo("kutya", "dog"); // új szó létrehozása</pre>
+<pre>Szo kutya = new Szo("kutya", "dog"); // változó deklarálása <strong>ÉS</strong> új szó létrehozása</pre>
 
             <h3>Belső függvény</h3>
             <p>
@@ -596,7 +598,7 @@ Szo kutya = new Szo("kutya", "dog");
 szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
                 <li>
                     Vagy az egyszerűség kedvéért írhatjuk ezt is:
-<pre>szavak = new Szo[]{new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
+<pre>szavak = new Szo[] {new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
             </ul>
             <p>
                 Már csak annyi feladatunk van, hogy az adaptert is átállítsuk, hogy ne String-eket használjon,
@@ -617,7 +619,7 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
                 És hogy mégis miért szenvedtünk ennyit az osztályunk megírásával?</p>
         </section>
         <section id="tasks">
-            <h4 class="task">1. Feladat</h3>
+            <h4 class="task">1. Feladat</h4>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a
                 szavak közé egyenlőségjel helyett kötőjelet tegyen inkább!
@@ -626,7 +628,7 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
                 <pre>return angol + " <strong>-</strong> " + magyar;</pre>
             </div>
             
-            <h4 class="task">2. Feladat</h3>
+            <h4 class="task">2. Feladat</h4>
             <p>
                 Változtasd meg úgy a Szo osztály <code>toString()</code> belső függvényét, hogy a nyelveket
                 angol-magyar sorrendben jelenítse meg!
@@ -641,7 +643,7 @@ szavak = new Szo[]{kutya, cica, molylepke};</pre></li>
             Szorgalmi
         </h2>
         <section id="starred1">
-            <h2>AboutActivity menüből</h2>
+            <h3>AboutActivity menüből</h3>
             <p>
                 <em>Kis mese a menüről, aztán a 2 fgv megírása.</em></p>
         </section>

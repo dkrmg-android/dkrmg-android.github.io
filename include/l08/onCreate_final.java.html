@@ -5,7 +5,7 @@ protected void onCreate(Bundle savedInstanceState) {
 	
     szolista = (ListView) findViewById(R.id.lista);
 
-    szavak = new String[]{"kutya = dog", "macska = cat", "molylepke = moth"};
+    szavak = new String[] {"kutya = dog", "macska = cat", "molylepke = moth"};
 
     ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
     szolista.setAdapter(adapter);
