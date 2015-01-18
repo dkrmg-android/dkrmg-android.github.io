@@ -611,7 +611,11 @@ Szo szo2 = new Szo("cica", "cat");
 szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
                 <li>
                     Vagy az egyszerűség kedvéért írhatjuk ezt is:
-<pre>szavak = new Szo[] {new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("molylepke", "moth") };</pre></li>
+<pre>szavak = new Szo[] { new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("ló", "horse"), new Szo("tehén", "cow"), new Szo("állat", "animal"),
+                     new Szo("iskola", "school"), new Szo("osztály", "class"), new Szo("osztályterem", "classroom"), new Szo("ceruza", "pencil"),
+                     new Szo("vonalzó", "ruler"), new Szo("gondol", "think"), new Szo("érez", "feel"), new Szo("szeret", "like"), new Szo("ad", "give"),
+                     new Szo("kap", "get"), new Szo("ékesszólás", "eloquence"), new Szo("kétkedő", "incredulous"), new Szo("egyszerű", "trivial"),
+                     new Szo("elkeseredés", "exasperation"), new Szo("győzedelmes", "triumphant") };</pre></li>
             </ul>
             <p>
                 Már csak annyi feladatunk van, hogy az adaptert is átállítsuk, hogy ne String-eket használjon,
@@ -667,6 +671,12 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
             <p>
                 Bizonyára találkoztatok már más alkalmazásokban a "három pont" ikonnal.</p>
             <img src="/static/img/l08/action_bar_pattern_overflow.png" class="center-block" />
+            <div class="possible-error">
+                Ez a 3 pont ikon csak Android 3.0 és újabb rendszeren és <em>nem</em> Samsung telefonon létezik. Akik
+                Régebbi rendszert használnak, vagy Samsungjuk van, azok a fizikai "menü" gombot használhatják (Samsungokon
+                a "home" gombtól balra található).
+                Más változás nincs.
+            </div>
             <p>Ez arra jó, hogy bizonyos funkciókat onnan lehet elérni, és nem egy külön gomb van nekik.
                 Az About activity megnyitása tipikusan ilyen funkció, mivel elég ritkán használják, de mégis szükséges.
                 Csináljunk mi is egy menüt, amivel meg lehet nyitni az AboutActivitynket!</p>
@@ -684,8 +694,10 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
                     Az <code>android:title</code> rész tartalma (az idézőjelek között) az a szöveg,
                     ami meg fog jelnni, ha megnyomják a 3 pontot.
                     A másik kettővel egyelőre nem foglalkozunk, de akit érdekel utánanézhet! :) <br/>
-                    Ha esetleg aláhúzná a app:showAsAction részt, akkor a fájl tetején az xmlns:android="blabla" után írd be ezt:
-                    <code>xmlns:app="http://schemas.android.com/apk/res-auto"</code>
+                    <div class="possible-error">Ha esetleg aláhúzná a app:showAsAction részt, akkor
+                        a fájl tetején az xmlns:android="blabla" után írd be ezt:
+                        <code>xmlns:app="http://schemas.android.com/apk/res-auto"</code>
+                    </div>
                 </li>
                 <li>
                     Ahhoz, hogy a 3 pontos gomb megjelenjen, az <code>onCreateOptionsMenu</code> függvényt kell megírnunk
