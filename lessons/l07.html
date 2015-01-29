@@ -548,11 +548,12 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
             <ul>
                 <li>Létre kell hoznod egy Vibrator típusú rezgoMotor változót az osztályodban</li>
                 <li>Rendeld hozzá a rezgoMotor változódhoz a telefon rezgő motorját az onCreate függvényben. 
-                    <button data-target="vibHelp" class="help-link">Nem emlékszel?</button></p>
+                    <button data-target="vibHelp" class="help-link">Nem emlékszel?</button>
                     <div class="help-container" id="vibHelp">
                         <p>A hozzárendelés teljes parancsa szerepelt már a korábbi leckében is: 
                         <code>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</code></p>
                     </div>
+                </li>
                 <li>Ha a négy if-elágazásod közül bármelyik igaz (tehát a négy közül bármelyik falnak nekimentünk), akkor indíts el egy rövid rezgést (rezgoMotor vibrate függvénye)</li>
             </ul>
 

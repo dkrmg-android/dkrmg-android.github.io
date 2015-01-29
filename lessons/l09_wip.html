@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>L08 - Szótár (2) (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body>
+<header data-include="/include/header.html"></header>
+<div class="container">
+    <h1>9. lecke
+        <small>Szótár (2)</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p></h1>
+    <hr/>
+    <section id="lesson-intro">
+        <h2>Hol tartunk most?</h2>
+
+        <p>Ez a szótárfüzet alkalmazás projekt második leckéje. Gyorsan összegeznénk, hogy miként
+            fest majd a kész program, mennyit sikerült ebből megvalósítani az előző leckében,
+            illetve milyen munkát tartogat a mostani segédanyag.</p>
+
+        <h3>A program részei</h3>
+
+        <p>Az általunk tervezett program négy Activity-ből áll.</p>
+
+        <p><img src="/static/img/l08/wireframe.png" class="center-block"/></p>
+        <ul>
+            <li><strong>Szavak (SzavakActivity)</strong><br/>
+                Kulcsfontosságú része az
+                alkalmazásnak. Itt listázzuk majd ki a szavakat.</li>
+            <li><strong>Kvíz (KvizActivity)</strong><br/>
+                Ez az Activity segít majd minket a
+                nyelvtanulásban. A program véletlenszerűen kérdez tőlünk szavakat</li>
+            <li><strong>About (AboutActivity)</strong><br/>
+                A 6. leckéhez hasonlóan egy egyszerű kis
+                Activity, ami rólad, azaz a program készítőjéről ad egy kicsit több információt (pl.
+                név, email cím stb.)</li>
+            <li><strong>Menü (MenuActivity)</strong><br/>
+                Egy ekkora programnak kell egy
+                kezdőképernyő, ahonnan a különböző ablakokra navigálhatunk. Pofon egyszerű, három
+                gomb, három click függvény, ami a megfelelő Activity-t hívja meg.</li>
+        </ul>
+
+        <h3>Ebből mi készült el?</h3>
+
+        <p>Az előző leckében majdnem teljesen elkészítettük a menünket, írtunk egy névjegy (about)
+            activityt, illetve lefektettük a SzavakActivity alapjait. Utóbbi ablak egészen pontosan
+            ott tart, hogy az általunk beírt szavakat szépen kilistázza a Szo típusú tömbünkből.</p>
+
+        <h3>Tehát mi maradt a mai napra?</h3>
+
+        <p>A programunk a mostani állapotában alig pár szót használ, amit a program készítésekor
+            kellett beírnunk a Java kódunkba. Ez nem túl kényelmes, és szélesebb körben
+            gyakorlatilag használhatatlanná teszi az alkalmazást. Tehát ma:</p>
+        <ul>
+            <li>Lehetőséget adunk a felhasználónak, hogy a SzavakActivityben hozzáadjon vagy
+                töröljön (**** TODO törlés megírása ****) egy-két szót.</li>
+        </ul>
+        <p>A külső fájlok használata és a kvíz elkészítése a következő leckékre marad.</p>
+    </section>
+
+
+    <h2 id="add-word-heading">Szavak hozzáadása és törlése</h2>
+
+    <p>Biztos nektek is feltűnt, hogy jelenleg ahhoz, hogy új szópárokat adhassunk hozzá az
+        alkalmazáshoz, közvetlenül a Java <strong>forráskódot kell szerkesztgetni</strong>, és
+        mindig újra el kell készíteni (fordítani) az alkalmazást a zöld "Futtatás” gombra kattintva.
+        Ez egy se nem túl kellemes se gyors, és hosszú távon gyakorlatilag használhatatlan megoldás.
+        <br/>
+        Sokkal jobb lenne, ha az alkalmazás <strong>futása közben</strong>lehetne beírni új
+        szavakat, amik rögtön meg is jelennének a listában illetve később már ezeket is
+        visszakérdezné az alkalmazás. Ehhez kell egy felület, ahol be lehet írni az új szópárokat,
+        valamint a Java kódot is meg kell írni, ami elvégzi a hozzáadást. Csináljuk is meg!</p>
+
+    <section id="add-word-layout">
+        <h3>Felhasználói felület (layout)</h3>
+
+        <p>Először a layoutot csináljuk meg, mégpedig oda, ahol a listát is megjelenítjük
+            (activity_szavak.xml):</p>
+
+        <p>A feladat elvégzéséhez próbáld meg a SzavakActvity layoutját a képen ábrázolthoz
+            hasonlóra átalakítani! *** TODO kép ***</p>
+
+        <h4 class="task">1. feladat</h4>
+        <ul>
+            <li>Az előző leckében azt írtuk, hogy a <code>ListView</code>-t a képernyő aljához
+                rögzítsük, de foglalja el a képernyő nagyobb részét. Az új komponenseket a lista
+                fölé, az üres részre tegyük, ahogy a képen is látszik!</li>
+            <li>Az elrendezést rátok bízzuk, mindenképp legyen <strong>2</strong>(vagy ahány
+                nyelvet szeretnétek) <code>EditText</code>(A Text Fields kategória alatt, Plain
+                text néven találjátok)</li>
+            <li>és <strong>egy gomb</strong>.</li>
+            <li>Mindegyiknek adjatok valami értelmes azonosítót (id), amivel később a Java kódból
+                meg tudjátok majd találni. Mi a magyar szó helyének a <code>hun</code>, az angolénak
+                az <code>eng</code>, és a gombnak az <code>add</code>azonosítót adtuk, így fogunk
+                rájuk hivatkozni.</li>
+        </ul>
+
+        <h4 class="task">2. feladat</h4>
+        <ul>
+            <li>Ha kész a layout, akkor ahhoz még hozzál létre egy-egy EditText típusú változót a
+                SzavakActivity elején, és rendeld hozzájuk az új szövegmezőket (<code>findViewById(R.id.…)</code>.
+                Ahhoz hogy el tudjuk menteni a beírt szavakat, ki kell tudnunk majd olvasni a
+                szvegmezők tartalmát. Ilyet már sokszor csináltatok, de szabad puskázni a 3.
+                leckéből, ott a gondolt számot kezeltük hasonlóan.</li>
+            <li>Ezen kívül írni kell egy onClick függvényt a gombnak (egyelőre ne csináljon semmit,
+                maradjon üres a belseje) és hozzá kell rendelni a gombhoz. Ilyet is sokat
+                csináltatok már. Ha eddig kész, ellenőrizzétek le, hogy jól néz-e ki az alkalmazás
+                telefonon is!</li>
+        </ul>
+    </section>
+    <section id="add-word-code">
+        <h3>Működés (Java kód)</h3>
+
+        <p>Most nézzük meg, hogy minek is kéne történnie a gomb megnyomásakor.</p>
+        <ul>
+            <li>Ki kell olvasni a két EditText-be beírt szöveget</li>
+            <li>Ezekből le kell gyártani egy új Szo objektumot</li>
+            <li>Ezt hozzá kell adni a szavak tömbhöz</li>
+            <li>Jelezni kell valahogy a listának, hogy változott a tömb, frissítse magát.
+                (Emlékeztető: <a href="/lessons/l08.html#list-adapter" target="_blank">Adapter</a>)</li>
+        </ul>
+        <p>Ezeket mind a gomb onClick-jében kell megírni!</p>
+
+        <p id="add-word-steps1"><strong>Lépésről lépésre:</strong></p>
+        <ol>
+            <li>Szöveg kiolvasása: Ehhez hasonló már volt, szintén a 3. leckében. Olvassatok
+                vissza, hogy hogy kellett! Figyelem, most a kiolvasott értéket nem kell számmá
+                alakítani!
+                <button data-target="help_gettext_from_ui" class="help-link">Lustábbaknak itt egy kis segítség</button>
+                <div class="help-container" id="help_gettext_from_ui">
+                    <pre>String magyar = hun.getText().toString();</pre>
+                </div>
+            </li>
+            <li>Új szó létrehozása: Erre sok példa volt az előző leckében, tessék puskázni!
+                Javasoljuk, hogy az új változód neve legyen <code>ujSzo</code>!
+                <button data-target="help_new_Szo" class="help-link">Segítség</button>
+                <div class="help-container" id="help_new_Szo">
+                    <pre>Szo ujSzo = new Szo(hun, eng);</pre>
+                </div>
+            </li>
+            <li>Új szó hozzáadása a szavak tömbhöz: Sajnos a tömb fix méretű adatszerkezet, ha
+                egyszer létre lett hozva, már nem lehet növelni a méretét. Amikor az onCreate-ben
+                létrehoztuk így:
+                <pre>szavak = new Szo[] {szo1, szo2, szo3};</pre>
+                akkor egy <strong>3 egység hosszú</strong>tömböt csináltunk, amibe nem fér bele egy
+                negyedik szó! Bár ez a probléma áthidalható, az inkább haladóbb feladat. Az
+                érdeklődőknek kapcsolódik ide két szorgalmi feladat, amiket most érdemes
+                megcsinálni, mert a későbbi változtatásokkal már nem működnek.</li>
+            <li>Létezik azonban egy sokkal egyszerűbb és szebb megoldás erre a problémára: a Listák
+                használata. A következő részben megismerkedünk a listákkal, és befejezzük az onClick
+                függvényt. Addig nyugodtan hagyjátok így félkészen!</li>
+        </ol>
+    </section>
+    <h2 id="list-intro">Második megközelítés: List (Lista)</h2>
+
+    <p>Remélhetőleg ezen a ponton mindenkiben felmerül a kérdés: ha a tömbökbe ilyen nehéz új
+        elemeket beilleszteni, törölni pedig elegánsan és gyorsan szinte lehetetlen, akkor milyen
+        más megoldás van helyette?</p>
+    <section id="arraylist-details"><h4>Az <code>ArrayList</code></h4>
+
+        <p>A jó hír: létezik Java-ban egy a tömbökhöz <code>ArrayList</code>nevű adatszerkezet,
+            amit pont az ilyen problémákra találtak ki. Az <code>ArrayList</code>jó tulajdonságait
+            átvette a tömböktől, a rosszakat pedig igyekezett a legjobban áthidalni. Nézzük meg, mit
+            tud:</p>
+        <ul>
+            <li>A tömbökhoz hasonlóan bármilyen egyforma típusú objektumok sokaságát el tudja
+                tárolni.</li>
+            <li>Bármikor kiolvashatjuk vagy felülírhatjuk az ArrayList tetszőleges elemét</li>
+            <li>Ugyanúgy oda lehet adni egy adapternek, így a tartalmát meg lehet jeleníteni egy
+                ListView-ban. Tehát még az adapter kódunkat sem kell változtatnunk! Tehát eddig
+                ugyanaz, mint a tömb. De most jönnek az extra tulajdonságok!</li>
+            <li>Könnydén illeszthetünk be új elemet</li>
+            <li>Könnyedén törölhetjük ki az ArrayList bármelyik elemét</li>
+            <li>Sőt, akár az egész adatszerkezetet egy mozdulattal (egészen pontosan egy
+                paranccsal) ABC sorrendbe rendezhetjük.</li>
+        </ul>
+        <h4>Néhány példa a használatára:</h4>
+        <ul>
+            <li><strong>Létrehozás:</strong><br/>
+                <pre>ArrayList &lt;Szo&gt; szavak = new ArrayList &lt;Szo&gt;();</pre>
+                Ez egy kicsit eltér a tömbök deklarációjától, valószínűleg egy kis magyarázatra
+                szorul. Nézzük meg magát a változódeklarációt:
+                <pre>ArrayList &lt;Szo&gt; szavak;</pre>
+                Látszik, hogy a változó neve továbbra is egyszerűen szavak (bármi más is lehetne) a
+                típusa viszont furcsa: két részből áll, az <code>ArrayList</code>megmondja, hogy ez
+                egy lista lesz, utána a <strong>két kacsacsőr között</strong>pedig azt kell
+                megmondani, hogy milyen típusú elemei lehetnek. A létrehozása innentől egyértelmű,
+                és a táblázat alapján talán még könnyebb megérteni:
+                <table id="variable-creation"
+                       class="comparison table table-bordered table-responsive">
+                    <thead>
+                        <tr>
+                            <th><!-- Típus magyarul --></th>
+                            <th>Típus</th>
+                            <th>Név</th>
+                            <th colspan="2">Létrehozás</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                        <tr>
+                            <td>Egy változó</td>
+                            <td>Szo</td>
+                            <td>szo1</td>
+                            <td>= new</td>
+                            <td>Szo();</td>
+                        </tr>
+                        <tr>
+                            <td>Fix méretű tömb</td>
+                            <td>Szo[]</td>
+                            <td>szavakTomb</td>
+                            <td>= new</td>
+                            <td>Szo[10];</td>
+                        </tr>
+                        <tr>
+                            <td>Változó méretű lista</td>
+                            <td>ArrayList&lt;Szo&gt;</td>
+                            <td>szavakLista</td>
+                            <td>= new</td>
+                            <td>ArrayList&lt;Szo&gt;();</td>
+                        </tr>
+                    </tbody>
+                </table></li>
+            <li><strong>Hozzáadás:</strong><br/>
+<pre>Szo szo1 = new Szo("kutya”, "dog”);
+szavak.add(szo1); // hozzáadás egyetlen paranccsal!</pre></li>
+            <li><strong>Törlés:</strong><br/>
+<pre>int index = 0; // így az első elemet fogja törölni. Itt is a nullás indexű elem az első!
+szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</pre></li>
+        </ul>
+    </section>
+    <section id="arraylist-changes">
+        <h3>Mi változik?</h3>
+
+        <p>Láthatjuk, hogy sokkal kényelmesebb listákat használni. Írjuk is át az alkalmazásunkat
+            listásra!</p>
+        <ol>
+            <li>Ismét módosítani kell a <code>szavak</code> változó típusát, ezúttal
+                <code>Szo[]</code> helyett <code>ArrayList &lt;Szo&gt;</code> legyen!</li>
+            <li>Az onCreate-ben most pirossal alá van húzva a szavak létrehozása. Ez azért van,
+                mert már nem tömb típusú a változó, de még úgy szeretnénk inicializálni, mintha tömb
+                lenne. Írjuk át ezt is:
+                <pre>szavak = new ArrayList &lt;Szo&gt;();</pre></li>
+            <li>Talán az egyetlen apróbb hátránya a listáknak, hogy nem annyira egyszerű a kezdeti
+                elemeket belepakolni, mint a tömbbe. Ezt a részt a lecke végén, korábbi ígéretünknek
+                megfelelően, átalakítjuk majd, hogy egy csinos kis fájlból olvassa be a szavakat.
+                Addig viszont írd át a kódot, hogy az alábbi mintát kövesse:
+<pre>szavak.add(new Szo("kutya”, "dog”));
+szavak.add(new Szo("macska”, "cat”));
+// stb…</pre>
+            </li>
+            <li>Az adapter létrehozását nem kell módosítani. Hurrá!</li>
+            <li>Most már be tudjuk fejezni a <a href="#add-word-steps1">félbehagyott onClick</a>
+                függvényünket: <br/>
+                Az első két lépés stimmel, tehát továbbra is ki kell olvasni a
+                magyar és az angol alakját a szónak, és gyártani kell belőlük egy új szót. Ez lesz
+                az ujSzo változóban. <br/>
+                A 3. pontot most már mindenki meg tudja oldani, ugye?
+                <button data-target="help_add_word_to_list" class="help-link">Segítség</button>
+                <div class="help-container" id="help_add_word_to_list">
+                    <pre>szavak.add(ujSzo);</pre>
+                </div></li>
+            <li>Ha most kipróbálod a programot, azt láthatod, hogy sajnos nem igazán úgy működik,
+                ahogy szeretnénk: <em>gombnyomásra nem jelenik meg az új szó a listában!</em>Ez
+                azért van, mert mi a szavak listát módosítottuk ugyan, de arról nem szóltunk
+                senkinek, hogy módosult! Az adapter pedig nem figyeli folyamatosan, külön szólni
+                kell neki, ha változás történt.
+                <img src="/static/img/l08/adapter1.png" class="center-block" />
+                Erre való az adapter <code>notifyDataSetChanged()</code>
+                belső függvénye. Ahhoz, hogy ezt használhassuk, először az adaptert el kell tárolni
+                egy külön változóba, ami mindenhonnan elérhető:
+                <ol>
+                    <li>Az Activity elején a szavak változó deklarációja alá hozzunk létre egy új
+                        változót, aminek típusa <code>ArrayAdapter&lt;Szo&gt;</code>, neve <code>adapter</code>
+                        legyen.</li>
+                    <li>Az onCreate függvényben keressük meg ezt a sort:
+                        <pre>ArrayAdapter &lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
+                        és töröljük ki az elejéről az <code>ArrayAdapter&lt;Szo&gt;</code>részt.
+                        Figyeld meg, hogy megváltozott az "adapter” változó színe! Ez azért van,
+                        mert eddig úgynevezett <strong>lokális változó</strong>volt, azaz csak a
+                        függvényen belül létezett, mostantól pedig az Activity
+                        <strong>globális változó</strong>ját jelenti (amit az előbb fent deklaráltunk).</li>
+                </ol>
+            </li>
+            <li>Menjünk vissza az onClick függvénybe, és a végén hívjuk meg a globális adapter
+                <code>notifyDataSetChanged()</code>belső függvényét:
+                <pre>adapter.notifyDataSetChanged();</pre></li>
+            <li>A még jobb felhasználói élmény eléréséhez érdemes lenne szólni a felhasználónak,
+                hogy sikeresen hozzá lett adva az új szó: <br/>A függvény végén (de még a kapcsos
+                zárójelen belül!) jeleníts meg egy Toast-ot pl. ezzel a felirattal:
+                <pre>"Hozzáadva: <em>&lt;az új szó szöveges formája, mint a listában&gt;</em>"</pre>
+                Figyelj, hogy itt most neked kell meghívnod az új szó toString függvényét!
+                <button data-target="help_show_toast" class="help-link">Segítség</button>
+                <br/>
+                <div class="help-container" id="help_show_toast">
+                    <pre>Toast.makeText(this, "Hozzáadva " + ujSzo.toString(), LENGTH_SHORT).show();</pre>
+                </div>
+                Még hasznosabb lenne, ha rezegne is a telefon egy rövidet (pl.: 100 ms) ilyenkor!
+                Írd meg ezt is (A <a href="/lessons/l07.html#starred3" target="_blank">7. lecke 3.
+                    szorgalmijá</a>nál találsz hozzá segítséget)!</li>
+        </ol>
+        <p>Ezzel készen is vagyunk! Próbáld ki, adj hozzá pár új szót a listához!</p>
+
+        <p>Ha minden működik, csinálj pár screenshotot, amin látszik, hogy hozzáadtál pár saját
+            szót!<br/>
+            Az elkészült projektet csomagold be, és küldd el nekünk a
+            <a href="http://goo.gl/UMyfuL">feltöltő oldalon</a>keresztül!</p>
+    </section>
+</div>
+<footer data-include="/include/footer.html"></footer>
+<script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+</body>
+</html>
