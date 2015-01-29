@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>L09 - Szótár (2) - Szorgalmi (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body>
+    <header data-include="/include/header.html"></header>
+    <div class="container">
+        <h1>9. lecke
+            <small>Szótár (2) - Szorgalmi</small>
+            <p>
+                <small>Online Android szakkör (DKRMG)</small>
+            <p></h1>
+        <hr/>
+
+        <section id="array-add">
+            <h3>Hozzáadás</h3>
+
+            <p>
+                Természetesen ez is megoldható tömbökkel is, pont ez a jó a programozásban: nincsen
+                lehetetlen! Legfeljebb nem lesz olyan szép/hatékony/érthető. Nézzük meg, hogy lehet
+                hozzáadni egy újabb elemet a tömb végére:</p>
+
+            <p>
+                Fentebb azt mondtuk, hogy a tömb mérete kőbe van vésve, az nem változtatható. Ez így is van,
+                tehát a régi tömbünkbe már nem fér bele több elem. De mi akadályoz meg minket abban, hogy
+                <strong>csináljunk egy új tömböt, abba belerakjuk az összes régi elemet <em>ÉS</em> az újat</strong>?</p>
+
+            <p>
+                A terv:</p>
+            <ol>
+                <li>
+                    új tömb létrehozása, ami pont eggyel nagyobb, mint a régi (tömb hossza: <code>szavak.length</code>)</li>
+                <li>
+                    Elemek másolása a régiből az újba, egyesével, az elejéről kezdve</li>
+                <li>
+                    Új elem beszúrása az új tömb utolsó helyére</li>
+                <li>
+                    Régi tömb változójának átállítása az új tömbre.</li>
+            </ol>
+            <p>
+                Érdemes lenne magadtól megpróbálni megírni a fenti lépéseket, amihez adunk pár
+                tippet/javaslatot. Ha elakadnál, gombnyomásra megjelenik a megoldás.</p>
+
+            <p>
+                Tippek:</p>
+            <ul>
+                <li>
+                    új, N méretű tömb létrehozása: <code>new Szo[N];</code></li>
+                <li>
+                    tömb "bejárása", minden elemének feldolgozása: for-ciklus 0-tól az utolsó indexig</li>
+                <li>
+                    tömb indexei: első elem: <code>0</code>, utolsó elem: <code>hossz-1</code></li>
+                <li>
+                    tömb adott helyére beírás: <code>tomb[5] = &lt;valami&gt;;</code> (az 5-ös <em>indexű</em> helyre &lt;valami&gt; kerül)</li>
+            </ul>
+            <p>
+                Megoldás: <button onclick="$('#array_add_solution').show(); $(this).hide();">Mutat</button></p>
+            <div id="array_add_solution" style="display: none;">
+                <ol>
+                    <li>Új tömb: <br/>
+                        <pre>Szo[] ujSzavak = new Szo[szavak.length + 1];</pre></li>
+                    <li>Régi elemek másolása: <br/>
+<pre>for (int i = 0; i < szavak.length; i++) {
+    ujSzavak[i] = szavak[i]; // szavak i-edik elemét berakja az ujSzavak i-edik helyére
+}</pre>
+                    </li>
+                    <li>Új szó a végére: <br/>
+                        <pre>ujszavak[ujSzavak.length - 1] = ujSzo;</pre></li>
+                    <li>Változó átállítása: <br/>
+                        <pre>szavak = ujSzavak;</pre></li>
+                </ol>
+                <p>
+                    Ahhoz, hogy a változást a lista is észrevegye, sajnos újra kell csinálnunk az adaptert, és
+                    újra hozzá kell rendelnünk a listához:</p>
+<pre>ArrayAdapter&lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);
+szolista.setAdapter(adapter);
+</pre>
+            </div>
+        </section>
+
+
+        <section id="array-delete">
+            <h3>Törlés</h3>
+
+            <p>
+                Ha már itt vagyunk, érdemes lenne a törlést is megnézni.</p>
+
+            <p>
+                Ahogy a tömb mérete nem nőhet, úgy csökkenteni sem lehet azt. Elvileg meg lehetne csinálni,
+                hogy a törlendő elem helyére valami spéci értéket rakunk (Java-ban ez általában a
+                <code>null</code>), de azzal a ListView, illetve az Adapter nem tud mit kezdeni, hibát fog
+                dobni, és összeomlik a program. Itt is hasonló logikát kell követni, mint a hozzáadásnál:
+                <strong>új tömböt kell gyártani, amiből hiányzik a törlendő elem.</strong></p>
+
+            <p>
+                Egy másik probléma, hogy nem tudjuk, hogy melyik elemet szeretnénk törölni. Később lesz rá
+                feladat, most maradjunk annyiban, hogy például a "Hozzáadás" gomb megnyomásakor mindig
+                töröljük ki a <strong>3.</strong> elemet a tömbből. Nem túl felhasználóbarát, de
+                használható, és később megírjuk rendesen.</p>
+
+            <p>
+                A terv:</p>
+            <ol>
+                <li>
+                    új tömb létrehozása, ami pont eggyel kisebb, mint a régi</li>
+                <li>
+                    Elemek másolása a régiből az újba, de figyelve, hogy a törlendő elemet nem szabad
+                    másolni!</li>
+                <li>
+                    Régi tömb változójának átállítása az új tömbre.</li>
+            </ol>
+            <p>
+                <em>Ezt is érdemes lenne megpróbálni önállóan!</em></p>
+
+            <p>
+                Tippek:</p>
+            <ul>
+                <li>
+                    Az új tömb <strong>első</strong> eleme ugyan az lesz,
+                    mint a régi <strong>első</strong> eleme <br/>
+                    Az új tömb <strong>második</strong> eleme ugyan az lesz,
+                    mint a régi <strong>második</strong> eleme</li>
+                <li>
+                    Az új tömb <strong>harmadik</strong> eleme ugyan az lesz,
+                    mint a régi tömb <strong><em>negyedik</em></strong> eleme (hiszen a
+                    régiből a 3.-at szeretnénk törölni!)</li>
+                <li>
+                    Az új tömb <strong>negyedik</strong> eleme ugyan az lesz,
+                    mint a régi <strong><em>ötödik</em></strong> eleme <br/>
+                    stb…</li>
+            </ul>
+            <p>
+                Megoldás: <button onclick="$('#array_delete_solution').show(); $(this).hide();">Mutat</button></p>
+            <div id="array_delete_solution" style="display: none">
+                <ol>
+                    <li>Új tömb: <br/>
+                        <pre>Szo[] ujSzavak = new Szo[szavak.length - 1];</pre></li>
+                    <li>Másolás, kihagyva a törlendőt: <br/>
+<pre>int torlendoIndex = 2; // nullától indexelünk!
+int ujIndex = 0; // az ujSzavak-beli index
+for (int i = 0; i < szavak.length; i++) {
+    if (i != torlendoIndex) {
+        // nem ezt kell törölni
+        ujSzavak[ujIndex] = szavak[i];
+        ujIndex++;
+    }
+}</pre>
+                    </li>
+                    <li>Változó átállítása: <br/>
+                        <pre>szavak = ujSzavak;</pre></li>
+                </ol>
+                <p>
+                    Figyeld meg, hogy most két indexet kell használni, hiszen a harmadik elemtől kezdve nem
+                    ugyanonnan másolunk ugyanoda, hanem elcsúszik a két tömbbeli pozíció!</p>
+
+                <p>
+                    Ahhoz, hogy a lista most is frissüljön, megint új adapter kell, amit hozzá kell rendelni a
+                    listához. Lásd a "Hozzáadás" rész végén.</p>
+            </div>
+        </section>
+
+        <section id="summary">
+            <p>Fontos, hogy megértsd, mit és miért csinálnak a for-ciklusok. Ha bármi nem teljesen világos,
+                olvass utána, vagy kérdezz minket!</p>
+            <p>Ha mindezekkel megbírkóztál, térj vissza leckéhez, és folytasd a listákkal! <br/>
+                A fentiek tükrében remélhetőleg egyértelmű lesz, hogy miért használunk majdnem mindenhol
+                listákat tömbök helyett.</p>
+        </section>
+    </div>
+    <footer data-include="/include/footer.html"></footer>
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+    <link rel="stylesheet" href="/static/css/stsheet.css"/>
+</body>
+</html>
