@@ -72,14 +72,14 @@
     </section>
 
 
-    <h2 id="add-word-heading">Szavak hozzáadása és törlése</h2>
+    <h2 id="add-word-heading">Szavak hozzáadása</h2>
 
     <p>Biztos nektek is feltűnt, hogy jelenleg ahhoz, hogy új szópárokat adhassunk hozzá az
         alkalmazáshoz, közvetlenül a Java <strong>forráskódot kell szerkesztgetni</strong>, és
         mindig újra el kell készíteni (fordítani) az alkalmazást a zöld "Futtatás” gombra kattintva.
         Ez egy se nem túl kellemes se gyors, és hosszú távon gyakorlatilag használhatatlan megoldás.
         <br/>
-        Sokkal jobb lenne, ha az alkalmazás <strong>futása közben</strong>lehetne beírni új
+        Sokkal jobb lenne, ha az alkalmazás <strong>futása közben</strong> lehetne beírni új
         szavakat, amik rögtön meg is jelennének a listában illetve később már ezeket is
         visszakérdezné az alkalmazás. Ehhez kell egy felület, ahol be lehet írni az új szópárokat,
         valamint a Java kódot is meg kell írni, ami elvégzi a hozzáadást. Csináljuk is meg!</p>
@@ -98,13 +98,13 @@
             <li>Az előző leckében azt írtuk, hogy a <code>ListView</code>-t a képernyő aljához
                 rögzítsük, de foglalja el a képernyő nagyobb részét. Az új komponenseket a lista
                 fölé, az üres részre tegyük, ahogy a képen is látszik!</li>
-            <li>Az elrendezést rátok bízzuk, mindenképp legyen <strong>2</strong>(vagy ahány
-                nyelvet szeretnétek) <code>EditText</code>(A Text Fields kategória alatt, Plain
+            <li>Az elrendezést rátok bízzuk, mindenképp legyen <strong>2</strong> (vagy ahány
+                nyelvet szeretnétek) <code>EditText</code> (A Text Fields kategória alatt, Plain
                 text néven találjátok)</li>
             <li>és <strong>egy gomb</strong>.</li>
             <li>Mindegyiknek adjatok valami értelmes azonosítót (id), amivel később a Java kódból
                 meg tudjátok majd találni. Mi a magyar szó helyének a <code>hun</code>, az angolénak
-                az <code>eng</code>, és a gombnak az <code>add</code>azonosítót adtuk, így fogunk
+                az <code>eng</code>, és a gombnak az <code>add</code> azonosítót adtuk, így fogunk
                 rájuk hivatkozni.</li>
         </ul>
 
@@ -155,7 +155,7 @@
                 egyszer létre lett hozva, már nem lehet növelni a méretét. Amikor az onCreate-ben
                 létrehoztuk így:
                 <pre>szavak = new Szo[] {szo1, szo2, szo3};</pre>
-                akkor egy <strong>3 egység hosszú</strong>tömböt csináltunk, amibe nem fér bele egy
+                akkor egy <strong>3 egység hosszú</strong> tömböt csináltunk, amibe nem fér bele egy
                 negyedik szó! <br/>
                 Bár ez a probléma áthidalható, az inkább haladóbb feladat. Az
                 érdeklődőknek kapcsolódik ide
@@ -173,8 +173,8 @@
         más megoldás van helyette?</p>
     <section id="arraylist-details"><h4>Az <code>ArrayList</code></h4>
 
-        <p>A jó hír: létezik Java-ban egy a tömbökhöz <code>ArrayList</code>nevű adatszerkezet,
-            amit pont az ilyen problémákra találtak ki. Az <code>ArrayList</code>jó tulajdonságait
+        <p>A jó hír: létezik Java-ban egy a tömbökhöz <code>ArrayList</code> nevű adatszerkezet,
+            amit pont az ilyen problémákra találtak ki. Az <code>ArrayList</code> jó tulajdonságait
             átvette a tömböktől, a rosszakat pedig igyekezett a legjobban áthidalni. Nézzük meg, mit
             tud:</p>
         <ul>
@@ -197,8 +197,8 @@
                 szorul. Nézzük meg magát a változódeklarációt:
                 <pre>ArrayList &lt;Szo&gt; szavak;</pre>
                 Látszik, hogy a változó neve továbbra is egyszerűen szavak (bármi más is lehetne) a
-                típusa viszont furcsa: két részből áll, az <code>ArrayList</code>megmondja, hogy ez
-                egy lista lesz, utána a <strong>két kacsacsőr között</strong>pedig azt kell
+                típusa viszont furcsa: két részből áll, az <code>ArrayList</code> megmondja, hogy ez
+                egy lista lesz, utána a <strong>két kacsacsőr között</strong> pedig azt kell
                 megmondani, hogy milyen típusú elemei lehetnek. A létrehozása innentől egyértelmű,
                 és a táblázat alapján talán még könnyebb megérteni:
                 <table id="variable-creation"
@@ -234,13 +234,19 @@
                             <td>ArrayList&lt;Szo&gt;();</td>
                         </tr>
                     </tbody>
-                </table></li>
+                </table>
+            </li>
             <li><strong>Hozzáadás:</strong><br/>
 <pre>Szo szo1 = new Szo("kutya”, "dog”);
-szavak.add(szo1); // hozzáadás egyetlen paranccsal!</pre></li>
+szavak.add(szo1); // hozzáadás egyetlen paranccsal!</pre>
+            </li>
+            <li><strong>Kiolvasás:</strong><br/>
+                <pre>Szo azOtosIndexuSzo = szavak.get(5);</pre>
+            </li>
             <li><strong>Törlés:</strong><br/>
 <pre>int index = 0; // így az első elemet fogja törölni. Itt is a nullás indexű elem az első!
-szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</pre></li>
+szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</pre>
+            </li>
         </ul>
     </section>
     <section id="arraylist-changes">
@@ -275,7 +281,7 @@ szavak.add(new Szo("macska”, "cat”));
                     <pre>szavak.add(ujSzo);</pre>
                 </div></li>
             <li>Ha most kipróbálod a programot, azt láthatod, hogy sajnos nem igazán úgy működik,
-                ahogy szeretnénk: <em>gombnyomásra nem jelenik meg az új szó a listában!</em>Ez
+                ahogy szeretnénk: <em>gombnyomásra nem jelenik meg az új szó a listában!</em> Ez
                 azért van, mert mi a szavak listát módosítottuk ugyan, de arról nem szóltunk
                 senkinek, hogy módosult! Az adapter pedig nem figyeli folyamatosan, külön szólni
                 kell neki, ha változás történt.
@@ -289,15 +295,15 @@ szavak.add(new Szo("macska”, "cat”));
                         legyen.</li>
                     <li>Az onCreate függvényben keressük meg ezt a sort:
                         <pre>ArrayAdapter &lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
-                        és töröljük ki az elejéről az <code>ArrayAdapter&lt;Szo&gt;</code>részt.
+                        és töröljük ki az elejéről az <code>ArrayAdapter&lt;Szo&gt;</code> részt.
                         Figyeld meg, hogy megváltozott az "adapter” változó színe! Ez azért van,
-                        mert eddig úgynevezett <strong>lokális változó</strong>volt, azaz csak a
+                        mert eddig úgynevezett <strong>lokális változó</strong> volt, azaz csak a
                         függvényen belül létezett, mostantól pedig az Activity
                         <strong>globális változó</strong>ját jelenti (amit az előbb fent deklaráltunk).</li>
                 </ol>
             </li>
             <li>Menjünk vissza az onClick függvénybe, és a végén hívjuk meg a globális adapter
-                <code>notifyDataSetChanged()</code>belső függvényét:
+                <code>notifyDataSetChanged()</code> belső függvényét:
                 <pre>adapter.notifyDataSetChanged();</pre></li>
             <li>A még jobb felhasználói élmény eléréséhez érdemes lenne szólni a felhasználónak,
                 hogy sikeresen hozzá lett adva az új szó: <br/>A függvény végén (de még a kapcsos
@@ -305,20 +311,132 @@ szavak.add(new Szo("macska”, "cat”));
                 <pre>"Hozzáadva: <em>&lt;az új szó szöveges formája, mint a listában&gt;</em>"</pre>
                 Figyelj, hogy itt most neked kell meghívnod az új szó toString függvényét!
                 <button data-target="help_show_toast" class="help-link">Segítség</button>
-                <br/>
                 <div class="help-container" id="help_show_toast">
                     <pre>Toast.makeText(this, "Hozzáadva " + ujSzo.toString(), LENGTH_SHORT).show();</pre>
                 </div>
+                <br/>
                 Még hasznosabb lenne, ha rezegne is a telefon egy rövidet (pl.: 100 ms) ilyenkor!
                 Írd meg ezt is (A <a href="/lessons/l07.html#starred3" target="_blank">7. lecke 3.
                     szorgalmijá</a>nál találsz hozzá segítséget)!</li>
         </ol>
         <p>Ezzel készen is vagyunk! Próbáld ki, adj hozzá pár új szót a listához!</p>
+    </section>
 
+    <h2 id="delete-word-heading">Szavak törlése</h2>
+    <p>Sajnos jelenleg ha elrontunk egy szót hozzáadáskor, akkor az egytelen lehetőségünk a javításra,
+        hogy kilépünk a programból, újraindítjuk azt, majd újra bevisszük a szavakat. Ez így nem túl
+        használható, bár kétségkívül ha sokszor írjuk be a szópárokat, egy idő után megtanulja az ember őket!</p>
+    <p>Sokkal jobb lenne, ha egy-egy szót tudnánk törölni a listából (szorgalmisoknak: most már tetszőlegeset,
+        nem csak fixen a harmadikat), anélkül, hogy az egészet előről kéne kezdenünk.</p>
+    <p>Természetesen erre is van megoldás, nézzük is meg!</p>
+
+    <section id="deleting">
+        <h3>Melyik szót töröljük?</h3>
+
+        <p>Ahhoz, hogy megtudjuk melyik szót kell törölni a listából, valahogy lehetpséget kéne biztosítani
+            a felhasználónak arra, hogy kiválassza a törlendő szót. Android eszközökön általában
+            "hosszú érintésre" (long tap) felugrik egy kis helyi menü, hasonlóan ahhoz, amikor
+            a számítógépen jobb egérgombbal kattintasz valamire. Mi most a helyi menüt (aki utánanézne:
+            context menu a kulcsszó) kihagyjuk, helyette hosszú érintésre rögtön törölni fogunk.</p>
+
+        <p>A gombok onClick-jéhez hasonlóan itt is kell valami a Java kódban, ahol megírhatjuk, hogy
+            mi történjen ha a felhasználó rajtatartja az ujját a lista egy során. Itt azonban nem
+            elég egyetlen függvényt megírni, és a layout szerkesztőben hozzárendelni, hanem egy
+            egész picit bonyolultabban kell megoldani.</p>
+
+        <p>Létre kell hozni egy <code>AdapterView.OnItemLongClickListener</code> típusú változót,
+            aminek rögtön meg is kell írni az <code>onItemLongClick</code> függvényének a törzsét.
+            Ez ijesztően hangozhat, és a miértekbe nem is mennénk bele, de az nem is annyira fontos most.</p>
+
+        <p>Csináljunk egy <code>AdapterView.OnItemLongClickListener</code> típusú változót,
+                aminek a neve legyen mondjuk <code>deleteListener</code> majd rögtön adjunk is
+                neki értéket (folytatva a sort, pontosvessző csak a záró kapcsos zárójel után):</p>
+
+<pre>AdapterView.OnItemLongClickListener deleteListener = new AdapterView.OnItemLongClickListener() {
+    @Override
+    public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, int position, long id) {
+        // a szavak lista position-adik elemére kattintott a felhasználó
+
+        <strong>// itt kell megírni, hogy mi történjen hosszú érintésre</strong>
+
+        return true; // ez fontos, ezzel jelezzük a rendszernek, hogy tudomásul vettük a hosszú érintést.
+    }
+};</pre>
+
+        <p>Nézzük meg, hogy mit is kell csinálni, a törléshez:</p>
+        <ol>
+            <li>Ki kell olvasni a <code>szavak</code> listából a törlendő szót.</li>
+            <li>Ki kell törölni a listából a törlendő szót.</li>
+            <li>Meg kell jeleníteni egy Toast üzenetet, hogy sikeresen töröltük az adott szót.</li>
+            <li>Érdemes lehet egy rövid rezgést is elindítani, hogy a még jobb felhasználói
+                élmény kedvéért.</li>
+        </ol>
+
+        <p>Részletesen:</p>
+        <ol>
+            <li>Ha megnézed fent létrehozott <code>onItemLongClick</code> függvényt, akkor láthatod, hogy
+                a harmadik paramétere (<code>int position</code>) egy szám, mégpedig pont a törlendő szó
+                <em>indexe</em> a <code>szavak</code> listában. <br/>
+                Csináljunk itt helyben, a függvényen belül egy Szo típusú változót, és rakjuk
+                bele a törlendő szót! (Olvass vissza, hogy hogyan kell a listából kiolvasni egy adott elemet!).
+                <button data-target="help_get_word_to_delete" class="help-link">Segítség</button>
+                <div class="help-container" id="help_get_word_to_delete">
+                    <pre>Szo torlendo = szavak.get(position);</pre>
+                </div>
+            </li>
+            <li>A szó törlését puskázd ki fentebbről
+                (az <a href="#arraylist-details"><code>ArrayList</code> leírásánál</a> szerepelt már!)<br/>
+                Ne felejtsd el, hogy itt is a listát módosítod, amit az Adapter/ListView nem figyel folyamatosan,
+                így a törlés után külön szólni kell az adapternek, hogy változás
+                történt (<code>notifyDataSetChanged()</code>).</li>
+            <li>A Toast megjelenítésének és a rezgés elindításának már fejből kéne mennie! :) <br/>
+                Vagy puskázhatsz a hozzáadás részből is, ott is ugyan ezt csináljuk, csak a
+                szavat tartalmazó változó neve más.</li>
+        </ol>
+
+        <p>Az lenne az igazi, ha a fenti 3-4 lépést már magadtól (esetleg a korábbi kódjaidat felhasználva)
+            sikerülne megírni, de ha esetleg mégis elakadtál volna, vagy csak leellenőriznéd a munkádat,
+            itt egy lehetséges megoldás:
+            <button data-target="help_full_delete_word" class="help-link">Megoldás</button>
+        </p>
+            <div class="help-container" id="help_full_delete_word">
+<pre>AdapterView.OnItemLongClickListener deleteListener = new AdapterView.OnItemLongClickListener() {
+    @Override
+    public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, int position, long id) {
+        Szo torlendo = szavak.get(position);
+
+        szavak.remove(position);
+        adapter.notifyDataSetChanged();
+
+        Toast.makeText(SzavakActivity.this, "Törölve: " + torlendo.toString(), Toast.LENGTH_SHORT).show();
+        rezgoMotor.vibrate(100);
+
+        return true;
+    }
+};</pre>
+                <p>Ne felejtsd el, hogy ez közvetlenül a SzavakActivity két kapcsos zárójele közé kell
+                    írni, nem az onCreate-be, sem bármelyik másik függvénybe!</p>
+            </div>
+
+        <p>Végezetül meg kell mondani a ListView-nak, hogy a fent megírt objektumot használja,
+            amikor a felhasználó hosszan kattint valamylik elemére. <br/>
+            Ez az onCreate-ben kell megcsinálni, ott, ahol az adaptert is létrehozod, és
+            odaadod a ListView-nak. A kód hozzá:</p>
+        <pre>lista.setOnItemLongClickListener(deleteListener); // a lista a findViewById által megtalált ListView változó neve</pre>
+
+    </section>
+
+    <section id="finish">
+        <h2>Vége!</h2>
+
+        <p><strong>Gratulálunk!</strong> Ha idáig eljutottál, az azt jelenti hogy sikerült mindent pontosan követned ebben
+            a nem túl egyszerű, ám annál több helyen elrontható leckében!</p>
         <p>Ha minden működik, csinálj pár screenshotot, amin látszik, hogy hozzáadtál pár saját
             szót!<br/>
             Az elkészült projektet csomagold be, és küldd el nekünk a
             <a href="http://goo.gl/UMyfuL">feltöltő oldalon</a> keresztül!</p>
+        <p>Hamarosan jelentkezünk a következő leckével, amiben végre megoldjuk, hogy megmaradjanak a
+            szavaink két programfuttatás között is!</p>
     </section>
 </div>
 <footer data-include="/include/footer.html"></footer>
