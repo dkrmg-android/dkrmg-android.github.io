@@ -78,17 +78,17 @@
 }</pre>
                     </li>
                     <li>Új szó a végére: <br/>
-                        <pre>ujszavak[ujSzavak.length - 1] = ujSzo;</pre></li>
+                        <pre>ujSzavak[ujSzavak.length - 1] = ujSzo;</pre></li>
                     <li>Változó átállítása: <br/>
                         <pre>szavak = ujSzavak;</pre></li>
                 </ol>
-                <p>
-                    Ahhoz, hogy a változást a lista is észrevegye, sajnos újra kell csinálnunk az adaptert, és
-                    újra hozzá kell rendelnünk a listához:</p>
+            </div>
+            <p>
+                Ahhoz, hogy a változást a lista is észrevegye, sajnos újra kell csinálnunk az adaptert, és
+                újra hozzá kell rendelnünk a listához:</p>
 <pre>ArrayAdapter&lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);
 szolista.setAdapter(adapter);
 </pre>
-            </div>
         </section>
 
 
@@ -165,11 +165,11 @@ for (int i = 0; i < szavak.length; i++) {
                 <p>
                     Figyeld meg, hogy most két indexet kell használni, hiszen a harmadik elemtől kezdve nem
                     ugyanonnan másolunk ugyanoda, hanem elcsúszik a két tömbbeli pozíció!</p>
-
-                <p>
-                    Ahhoz, hogy a lista most is frissüljön, megint új adapter kell, amit hozzá kell rendelni a
-                    listához. Lásd a "Hozzáadás" rész végén.</p>
             </div>
+
+            <p>
+                Ahhoz, hogy a lista most is frissüljön, megint új adapter kell, amit hozzá kell rendelni a
+                listához. Lásd a "Hozzáadás" rész végén.</p>
         </section>
 
         <section id="summary">

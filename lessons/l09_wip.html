@@ -77,7 +77,7 @@
     <p>Biztos nektek is feltűnt, hogy jelenleg ahhoz, hogy új szópárokat adhassunk hozzá az
         alkalmazáshoz, közvetlenül a Java <strong>forráskódot kell szerkesztgetni</strong>, és
         mindig újra el kell készíteni (fordítani) az alkalmazást a zöld "Futtatás” gombra kattintva.
-        Ez egy se nem túl kellemes se gyors, és hosszú távon gyakorlatilag használhatatlan megoldás.
+        Ez egy se nem túl kellemes sem nem gyors, és hosszú távon gyakorlatilag használhatatlan megoldás.
         <br/>
         Sokkal jobb lenne, ha az alkalmazás <strong>futása közben</strong> lehetne beírni új
         szavakat, amik rögtön meg is jelennének a listában illetve később már ezeket is
@@ -130,14 +130,14 @@
             <li>Ezekből le kell gyártani egy új Szo objektumot</li>
             <li>Ezt hozzá kell adni a szavak tömbhöz</li>
             <li>Jelezni kell valahogy a listának, hogy változott a tömb, frissítse magát.
-                (Emlékeztető: <a href="/lessons/l08.html#list-adapter" target="_blank">Adapter</a>)</li>
+                (Emlékeztető: <a href="/lessons/l08.html#list-adapter2" target="_blank">Adapter</a>)</li>
         </ul>
-        <p>Ezeket mind a gomb onClick-jében kell megírni!</p>
+        <p><strong>Ezeket mind a gomb onClick-jében kell megírni!</strong></p>
 
         <p id="add-word-steps1"><strong>Lépésről lépésre:</strong></p>
         <ol>
             <li>Szöveg kiolvasása: Ehhez hasonló már volt, szintén a 3. leckében. Olvassatok
-                vissza, hogy hogy kellett! Figyelem, most a kiolvasott értéket nem kell számmá
+                vissza, hogy kellett! Figyelem, most a kiolvasott értéket nem kell számmá
                 alakítani!
                 <button data-target="help_gettext_from_ui" class="help-link">Lustábbaknak itt egy kis segítség</button>
                 <div class="help-container" id="help_gettext_from_ui">
@@ -148,7 +148,7 @@
                 Javasoljuk, hogy az új változód neve legyen <code>ujSzo</code>!
                 <button data-target="help_new_Szo" class="help-link">Segítség</button>
                 <div class="help-container" id="help_new_Szo">
-                    <pre>Szo ujSzo = new Szo(hun, eng);</pre>
+                    <pre>Szo ujSzo = new Szo(magyar, angol);</pre>
                 </div>
             </li>
             <li>Új szó hozzáadása a szavak tömbhöz: Sajnos a tömb fix méretű adatszerkezet, ha
@@ -173,7 +173,7 @@
         más megoldás van helyette?</p>
     <section id="arraylist-details"><h4>Az <code>ArrayList</code></h4>
 
-        <p>A jó hír: létezik Java-ban egy a tömbökhöz <code>ArrayList</code> nevű adatszerkezet,
+        <p>A jó hír, hogy létezik Java-ban egy a tömbökhöz hasonló, <code>ArrayList</code> nevű adatszerkezet,
             amit pont az ilyen problémákra találtak ki. Az <code>ArrayList</code> jó tulajdonságait
             átvette a tömböktől, a rosszakat pedig igyekezett a legjobban áthidalni. Nézzük meg, mit
             tud:</p>
@@ -192,10 +192,10 @@
         <h4>Néhány példa a használatára:</h4>
         <ul>
             <li><strong>Létrehozás:</strong><br/>
-                <pre>ArrayList &lt;Szo&gt; szavak = new ArrayList &lt;Szo&gt;();</pre>
+                <pre>ArrayList&lt;Szo&gt; szavak = new ArrayList&lt;Szo&gt;();</pre>
                 Ez egy kicsit eltér a tömbök deklarációjától, valószínűleg egy kis magyarázatra
                 szorul. Nézzük meg magát a változódeklarációt:
-                <pre>ArrayList &lt;Szo&gt; szavak;</pre>
+                <pre>ArrayList&lt;Szo&gt; szavak;</pre>
                 Látszik, hogy a változó neve továbbra is egyszerűen szavak (bármi más is lehetne) a
                 típusa viszont furcsa: két részből áll, az <code>ArrayList</code> megmondja, hogy ez
                 egy lista lesz, utána a <strong>két kacsacsőr között</strong> pedig azt kell
@@ -215,7 +215,7 @@
                         <tr>
                             <td>Egy változó</td>
                             <td>Szo</td>
-                            <td>szo1</td>
+                            <td>egyDarabSzo</td>
                             <td>= new</td>
                             <td>Szo();</td>
                         </tr>
@@ -256,11 +256,11 @@ szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</pre>
             listásra!</p>
         <ol>
             <li>Ismét módosítani kell a <code>szavak</code> változó típusát, ezúttal
-                <code>Szo[]</code> helyett <code>ArrayList &lt;Szo&gt;</code> legyen!</li>
+                <code>Szo[]</code> helyett <code>ArrayList&lt;Szo&gt;</code> legyen!</li>
             <li>Az onCreate-ben most pirossal alá van húzva a szavak létrehozása. Ez azért van,
                 mert már nem tömb típusú a változó, de még úgy szeretnénk inicializálni, mintha tömb
                 lenne. Írjuk át ezt is:
-                <pre>szavak = new ArrayList &lt;Szo&gt;();</pre></li>
+                <pre>szavak = new ArrayList&lt;Szo&gt;();</pre></li>
             <li>Talán az egyetlen apróbb hátránya a listáknak, hogy nem annyira egyszerű a kezdeti
                 elemeket belepakolni, mint a tömbbe. Ezt a részt a lecke végén, korábbi ígéretünknek
                 megfelelően, átalakítjuk majd, hogy egy csinos kis fájlból olvassa be a szavakat.
@@ -294,7 +294,7 @@ szavak.add(new Szo("macska”, "cat”));
                         változót, aminek típusa <code>ArrayAdapter&lt;Szo&gt;</code>, neve <code>adapter</code>
                         legyen.</li>
                     <li>Az onCreate függvényben keressük meg ezt a sort:
-                        <pre>ArrayAdapter &lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
+                        <pre>ArrayAdapter&lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
                         és töröljük ki az elejéről az <code>ArrayAdapter&lt;Szo&gt;</code> részt.
                         Figyeld meg, hogy megváltozott az "adapter” változó színe! Ez azért van,
                         mert eddig úgynevezett <strong>lokális változó</strong> volt, azaz csak a
@@ -333,7 +333,7 @@ szavak.add(new Szo("macska”, "cat”));
     <section id="deleting">
         <h3>Melyik szót töröljük?</h3>
 
-        <p>Ahhoz, hogy megtudjuk melyik szót kell törölni a listából, valahogy lehetpséget kéne biztosítani
+        <p>Ahhoz, hogy megtudjuk melyik szót kell törölni a listából, valahogy lehetőséget kéne biztosítani
             a felhasználónak arra, hogy kiválassza a törlendő szót. Android eszközökön általában
             "hosszú érintésre" (long tap) felugrik egy kis helyi menü, hasonlóan ahhoz, amikor
             a számítógépen jobb egérgombbal kattintasz valamire. Mi most a helyi menüt (aki utánanézne:
