@@ -91,7 +91,7 @@
             (activity_szavak.xml):</p>
 
         <p>A feladat elvégzéséhez próbáld meg a SzavakActvity layoutját a képen ábrázolthoz
-            hasonlóra átalakítani!<p>
+            hasonlóra átalakítani! (Segítség a kép alatt.)<p>
 		<img src="/static/img/l09/szavak.png" class="center-block" />
 
         <h4 class="task">1. feladat</h4>
@@ -109,12 +109,36 @@
                 rájuk hivatkozni.</li>
         </ul>
 
+        <p>Sajnos több éves pályafutásunk alatt még nem találkoztunk olyan layout szerkesztővel,
+            ami igazán egyszerűen és intuitíven segíti a megálmodott layout kialakítását. Ez alól
+            az Android Studio szerkesztője sem kivétel, bár általában elég jól használható.</p>
+        <p>A kalandvágyóbbak megpróbálkozhatnak maguk összeállítani a fenti layoutot. Ehhez érdemes az
+            adott komponens <code>layout:alignComponent</code> tulajdonságát állítgatni (lásd kép).
+            Itt az egyes sorok <code>saját:másik</code> felépítésűek, azaz például a <code>top:bottom = hun</code>
+            azt jelenti, hogy az adott komponens tetejét (top) a <code>hun</code> azonosítójú
+            komponens aljához (bottom) igazítja.</p>
+        <img src="/static/img/l09/layout_alignComponent.png" class="center-block" />
+        <p>A kevésbé kalandvágyóbbaknak előkészítettünk két layoutot:
+            <a href="/static/files/l09/activity_szavak.xml">két nyelv</a>,
+            <a href="/static/files/l09/activity_szavak3.xml">három nyelv</a>. Ezeket le kell tölteni
+            (jobbklikk -> Link mentése másként), és felülírni velük a projekt mappában az
+            <em>app/src/main/res/layout/activity_main.xml</em> fájlt.</p>
+        <p>Ebben a következő azonosítókat használtuk:</p>
+        <ul>
+            <li>Magyar szó EditText-je: <code>hun</code></li>
+            <li>Angol szó EditText-je: <code>eng</code></li>
+            <li>Német szó EditText-je: <code>ger</code></li>
+            <li>Gomb: <code>add</code></li>
+            <li>Lista: <code>szolista</code></li>
+        </ul>
+
         <h4 class="task">2. feladat</h4>
         <ul>
-            <li>Ha kész a layout, akkor ahhoz még hozzál létre egy-egy EditText típusú változót a
-                SzavakActivity elején, és rendeld hozzájuk az új szövegmezőket (<code>findViewById(R.id.…)</code>.
+            <li>Ha kész a layout, akkor ahhoz még hozz létre egy-egy EditText típusú változót a
+                SzavakActivity elején, és rendeld hozzájuk az új szövegmezőket (<code>findViewById(R.id.…)</code>
+                az onCreate-ben.
                 Ahhoz hogy el tudjuk menteni a beírt szavakat, ki kell tudnunk majd olvasni a
-                szvegmezők tartalmát. Ilyet már sokszor csináltatok, de szabad puskázni a 3.
+                szövegmezők tartalmát. Ilyet már sokszor csináltatok, de szabad puskázni a 3.
                 leckéből, ott a gondolt számot kezeltük hasonlóan.</li>
             <li>Ezen kívül írni kell egy onClick függvényt a gombnak (egyelőre ne csináljon semmit,
                 maradjon üres a belseje) és hozzá kell rendelni a gombhoz. Ilyet is sokat

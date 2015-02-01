@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="hu.dkrmg.android.admin.szotar.SzavakActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Új szó"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="magyar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/hun" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="angol"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBaseline="@+id/eng" />
+
+    <EditText
+        android:id="@+id/hun"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="A szó magyar jelentése"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toLeftOf="@+id/add"
+        android:layout_toStartOf="@+id/add"
+        android:layout_below="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/eng"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="A szó angol jelentése"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toLeftOf="@+id/add"
+        android:layout_toStartOf="@+id/add"
+        android:layout_below="@+id/hun" />
+
+    <ListView
+        android:id="@+id/szolista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eng"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        tools:listitem="@android:layout/simple_list_item_1" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_alignRight="@+id/szolista"
+        android:layout_alignEnd="@+id/szolista"
+        android:layout_alignBottom="@+id/eng"
+        android:layout_alignTop="@+id/hun" />
+
+</RelativeLayout>
