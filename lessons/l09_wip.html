@@ -112,7 +112,7 @@
         </ul>
 
         <p>Sajnos több éves pályafutásunk alatt még nem találkoztunk olyan layout szerkesztővel,
-            ami igazán egyszerűensegíti a megálmodott layout kialakítását. Ez alól
+            ami igazán egyszerűen segíti a megálmodott layout kialakítását. Ez alól
             az Android Studio szerkesztője sem kivétel, bár általában elég jól használható.</p>
         <p>A kalandvágyóbbak megpróbálkozhatnak maguk összeállítani a fenti layoutot. Ehhez az egérrel kattintgatás mellett érdemes az
             adott komponens <code>layout:alignComponent</code> tulajdonságát állítgatni (lásd kép).
@@ -123,7 +123,7 @@
         <p>A kevésbé kalandvágyóbbaknak előkészítettünk két layoutot:
             <a href="/static/files/l09/activity_szavak.xml" target="_blank">két nyelv</a>,
             <a href="/static/files/l09/activity_szavak3.xml" target="_blank">három nyelv</a>. Ezeket le kell tölteni
-            (jobbklikk -> Link mentése másként), és felülírni velük a projekt mappában az
+            (jobbklikk -> Link mentése másként), és felülírni velük a projekt mappában az 
             <em>app/src/main/res/layout/activity_main.xml</em> fájlt.</p>
         <p>Ebben a következő azonosítókat használtuk:</p>
         <ul>
@@ -207,13 +207,13 @@
             átvette a tömböktől, a rosszakat pedig igyekezett a legjobban áthidalni. Nézzük meg, mit
             tud:</p>
         <ul>
-            <li>A tömbökhoz hasonlóan bármilyen egyforma típusú objektumok sokaságát el tudja
+            <li>A tömbökhöz hasonlóan bármilyen egyforma típusú objektumok sokaságát el tudja
                 tárolni.</li>
             <li>Bármikor kiolvashatjuk vagy felülírhatjuk az ArrayList tetszőleges elemét</li>
             <li>Ugyanúgy oda lehet adni egy adapternek, így a tartalmát meg lehet jeleníteni egy
                 ListView-ban. Tehát még az adapter kódunkat sem kell változtatnunk! Tehát eddig
                 ugyanaz, mint a tömb. De most jönnek az extra tulajdonságok!</li>
-            <li>Könnydén illeszthetünk be új elemet</li>
+            <li>Könnyedén illeszthetünk be új elemet</li>
             <li>Könnyedén törölhetjük ki az ArrayList bármelyik elemét</li>
             <li>Sőt, akár az egész adatszerkezetet egy mozdulattal (egészen pontosan egy
                 paranccsal) ABC sorrendbe rendezhetjük.</li>
@@ -316,7 +316,7 @@ szavak.add(new Szo("macska”, "cat”));
                 kell neki, ha változás történt.
                 <img src="/static/img/l08/adapter1.png" class="center-block" />
                 Elméletileg megtehetnénk, hogy a lista minden egyes módosításakor létrehozunk egy új adaptert, 
-                de ennél sokkal csinosabb megoldás, ha inkáébb elmentjük az adapterünket egy változóban, majd az <code>notifyDataSetChanged()</code>
+                de ennél sokkal csinosabb megoldás, ha inkább elmentjük az adapterünket egy változóban, majd az <code>notifyDataSetChanged()</code>
                 belső függvényt meghívjuk a változtatások után. Tehát: ahhoz, hogy ezt használhassuk, először az adaptert el kell tárolni
                 egy külön változóba, ami mindenhonnan elérhető:
                 <ol>
@@ -370,7 +370,7 @@ szavak.add(new Szo("macska”, "cat”));
             a számítógépen jobb egérgombbal kattintasz valamire. Mi most a helyi menüt (aki utánanézne:
             context menu a kulcsszó) kihagyjuk, helyette hosszú érintésre rögtön törölni fogunk.</p>
 
-        <p>A gombok onClick-jéhez hasonlóan írhatunk egy olyan függvényt, ami az ilyen hosszú értintésekre figyel.
+        <p>A gombok onClick-jéhez hasonlóan írhatunk egy olyan függvényt, ami az ilyen hosszú érintésekre figyel.
             Itt is kell valami a Java kódban, ahol megírhatjuk, hogy mi történjen ha a felhasználó 
             rajtatartja az ujját a lista egy során. A szimpla kattintással/érintéssel szemben azonban nem elég 
             egyetlen függvényt megírni, és a layout szerkesztőben hozzárendelni, hanem egy
@@ -390,7 +390,7 @@ szavak.add(new Szo("macska”, "cat”));
 });</pre>
 
         <p>A pontos részletek és fenti sorok szintaktikáját egyelőre nem áll módunknban részletesen elmagyarázni. A lényeg azonban: 
-        <strong>A fenti kód megmondja, hogy a <code>lista</code> változó <code>OnItemLongClick</code> eseményénél mi rörténjen.</strong>
+        <strong>A fenti kód megmondja, hogy a <code>lista</code> változó <code>OnItemLongClick</code> eseményénél mi történjen.</strong>
         Tehát nem elég, hogy hivatkozunk a lista változónkra, de rögtön azt a kódot is ide írjuk be, amit egyébként külön függvénybe helyeznénk.</p>
         
         <p>És most nézzük meg, hogy mit is kell csinálni, a törléshez:</p>
@@ -419,7 +419,8 @@ szavak.add(new Szo("macska”, "cat”));
                 Ne felejtsd el, hogy itt is a listát módosítod, amit az Adapter/ListView nem figyel folyamatosan,
                 így a törlés után külön szólni kell az adapternek, hogy változás
                 történt (<code>notifyDataSetChanged()</code>).</li>
-            <li>A Toast megjelenítésétől most tekintsünk el. A rezgés elindításának viszont már fejből kéne mennie! :) <br/>
+            <li>A Toast megjelenítésétől most tekintsünk el. </li>
+            <li>A rezgés elindításának viszont már fejből kéne mennie! :) <br/>
                 Vagy puskázhatsz a hozzáadás részből is.</li>
         </ol>
 
