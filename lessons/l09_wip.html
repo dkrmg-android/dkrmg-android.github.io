@@ -389,7 +389,7 @@ szavak.add(new Szo("macska”, "cat”));
     }
 });</pre>
 
-        <p>A pontos részletek és fenti sorok szintaktikáját egyelőre nem áll módunknban részletesen elmagyarázni. A lényeg azonban: 
+        <p>A fenti sorokból ijesztőnek tűnhetnek, de most elég annyit megérteni belőlük, hogy: 
         <strong>A fenti kód megmondja, hogy a <code>lista</code> változó <code>OnItemLongClick</code> eseményénél mi történjen.</strong>
         Tehát nem elég, hogy hivatkozunk a lista változónkra, de rögtön azt a kódot is ide írjuk be, amit egyébként külön függvénybe helyeznénk.</p>
         
@@ -397,7 +397,6 @@ szavak.add(new Szo("macska”, "cat”));
         <ol>
             <li>Ki kell olvasni a <code>szavak</code> listából a törlendő szót.</li>
             <li>Ki kell törölni a listából a törlendő szót.</li>
-            <li>Meg kell jeleníteni egy Toast üzenetet, hogy sikeresen töröltük az adott szót.</li>
             <li>Érdemes lehet egy rövid rezgést is elindítani, hogy a még jobb felhasználói
                 élmény kedvéért.</li>
         </ol>
@@ -419,7 +418,6 @@ szavak.add(new Szo("macska”, "cat”));
                 Ne felejtsd el, hogy itt is a listát módosítod, amit az Adapter/ListView nem figyel folyamatosan,
                 így a törlés után külön szólni kell az adapternek, hogy változás
                 történt (<code>notifyDataSetChanged()</code>).</li>
-            <li>A Toast megjelenítésétől most tekintsünk el. </li>
             <li>A rezgés elindításának viszont már fejből kéne mennie! :) <br/>
                 Vagy puskázhatsz a hozzáadás részből is.</li>
         </ol>
