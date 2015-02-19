@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>L10 - Szótár (3) (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body>
+<header data-include="/include/header.html"></header>
+<div class="container">
+    <h1>10. lecke
+        <small>Szótár (3)</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p></h1>
+    <hr/>
+
+    <section id="lesson-intro">
+        <h2>Hol tartunk most?</h2>
+
+        <p>
+            Ez a szótárfüzet alkalmazás projekt harmadik leckéje. Gyorsan összegeznénk, hogy miként fest
+            majd a kész program, mennyit sikerült ebből megvalósítani az előző leckékben, illetve milyen
+            munkát tartogat a mostani segédanyag.</p>
+
+        <h3>A program részei</h3>
+
+        <p>
+            Az általunk tervezett program négy Activity-ből áll.</p>
+
+        <p><img src="/static/img/l08/wireframe.png" class="center-block"/></p>
+        <ul>
+            <li><strong>Szavak (SzavakActivity)</strong><br/>
+                Kulcsfontosságú része az
+                alkalmazásnak. Itt listáztuk ki az előző leckében is a szavakat</li>
+            <li><strong>Kvíz (KvizActivity)</strong><br/>
+                Ez az Activity segít majd minket a
+                nyelvtanulásban. A program véletlenszerűen kérdez tőlünk szavakat</li>
+            <li><strong>About (AboutActivity)</strong><br/>
+                A 6. leckéhez hasonlóan egy egyszerű kis
+                Activity, ami rólad, azaz a program készítőjéről ad egy kicsit több információt (pl.
+                név, email cím stb.)</li>
+            <li><strong>Menü (MenuActivity)</strong><br/>
+                Egy ekkora programnak kell egy
+                kezdőképernyő, ahonnan a különböző ablakokra navigálhatunk. Pofon egyszerű, három
+                gomb, három click függvény, ami a megfelelő Activity-t hívja meg.</li>
+        </ul>
+
+        <h3>Emlékeztetésként: hol tartunk most?</h3>
+
+        <p>
+            Az előző leckékben írtunk egy névjegy (about) activityt, illetve majdnem teljesen
+            elkészítettük a menünket és a SzavakActivityt. Utóbbi ablak egészen pontosan ott tart, hogy
+            az általunk beírt szavakat szépen kilistázza, ráadásul újabb szavakat is hozzáadhatunk / a
+            nem kívánatos szavakat kitörölhetjük menet közben.</p>
+
+        <h3>Tehát mi maradt a mai napra?</h3>
+
+        <p>
+            Megtanuljuk, hogy miként menthetjük ki a szavainkat egy külső fájlba, illetve olvashatjuk
+            vissza őket. Ilyen <a href="/static/files/dict1.txt" target="_blank">minta fájlokat</a> is láthatsz. A módszer szépsége, hogy
+            ezek a fájlok a számítógépeden (pl. Excelben) könnyedén szerkeszthetőek (<em>Mentés másként
+            -> csv</em>)! A szógyűjteményeket pedig egymással is könnyedén megoszthatjátok majd.</p>
+
+    </section>
+
+    <section>
+        <h2>Fájlkezelés</h2>
+
+        <p>
+            Ha a program futása folyamán új szavakat adunk a listánkhoz, vagy annak egyes elemeit
+            töröljük, az sajnos csak addig marad meg, amíg fut az alkalmazás. Újraindítás után ismét az
+            a kezdeti pár szó fogad csak minket, amit az onCreate-ben adtunk hozzá a listához. Mennyivel
+            jobb lenne, ha valahogy el tudnánk menteni a szavainkat, és bármikor újra be tudnánk tölteni
+            őket! Sőt, továbbmenve, tegyük fel, hogy már működik a kikérdező része is a programunknak.
+            Elég nehezen használható így, hogy előtte minden egyes szót kézzel be kell írni, és csak
+            utána tudja kikérdezni. Majd ha valamiért kilépünk (mert pl. felhívnak), akkor kezdhetjük
+            előröl az egész macerás műveletet.</p>
+
+        <p>
+            Az Android rendszer
+            <a href="http://developer.android.com/guide/topics/data/data-storage.html" target="_blank">többféle módot
+            nyújt</a> adatok tárolására. A mi esetünkben az a módszer a legpraktikusabb, ha a <strong>külső
+            tárhelyen (SD kártyán) egy külön fájlban fogjuk tárolni a szavakat</strong>. Így amellett,
+            hogy a telefonon be lehet írni az új szavakat, a fájlt gépen is lehet szerkeszteni
+            (Jegyzettömb, Excel, stb.), sőt, akár egymás között meg is lehet osztani!</p>
+
+        <p>
+            Android rendszeren merevlemez hiányában fájltárolásra az SD-kártya használható. Illetve
+            egyes telefonokban, mint pl. Nexusok, ehelyett elérhető egy <em>beépített SD-kártya</em>. Az
+            SD kártya az az adattároló egység, amit a Sajátgépben is látsz, amikor a telefonodat a
+            számítógépedhez csatlakoztatod egy USB kábelen keresztül . Ha most megnézed (akár a
+            számítógéped segítségével, akár a készülék fájlkezelőjével), itt egy csomó alkalmazásnak
+            megtalálod a saját mappáját. A saját mappákat azért használják, hogy ne keveredjenek össze a
+            különböző applikációk fájljai. Mi is létre fogunk hozni egy saját mappát, és abban fogjuk
+            tárolni a szavakat tartalmazó fájlt.</p>
+
+        <p>
+            *** TODO IMAGE: quick sketch of the directory structure***</p>
+
+        <h3>Formátum</h3>
+
+        <p>
+            Maga a fájl így fog kinézni:</p>
+
+<pre>kutya,dog
+macska,cat
+ébresztőóra,alarm clock</pre>
+
+        <p>
+            Figyeld meg, hogy minden egyes sor egy-egy szó különböző alakjait tartalmazza, és a soron
+            belül az egyes nyelvek vesszővel vannak elválasztva (csak egy vessző! space nincs köztük!).
+            A nyelvek mindig ugyanabban a sorrendben szerepelnek (pl. magyar,angol). A szavak
+            tartalmazhatnak space-t, kötőjelet, sőt, igazából bármit, <em>vessző </em>kivételével.
+            Érdekesség kedvéért ezt a méltán népszerű, bár kissé öreg, formátumot <strong>CSV</strong>-nek (comma
+            separated values) hívják.</p>
+
+        <h3>Manifest</h3>
+
+        <p>
+            Az SD kártya tartalmához nem fér hozzá minden alkalmazás az Android rendszer alatt. Ez is
+            egy olyan eszköz/erőforrás, amihez engedélyt kell kérnünk, mint például a rezgő motorhoz,
+            vagy az internet használathoz (karácsonyi szakkör). Ahhoz, hogy a program hozzáférjen az
+            SD-kártya tartalmához, onnan fájlokat olvashasson be, illetve fájlokat írhasson oda, először
+            engedélyt kell kérnie a rendszertől. A következőket kell tennünk:</p>
+        <ul>
+            <li>
+                Nyisd meg az <em>app -> manifests -> AndroidManifest.xml</em> fájlt.</li>
+            <li>
+                Az
+                <code>&lt;application</code> sor fölött már találsz egy user-permission sort, amit az előző leckében a
+                             rezgő motor használatához kellett beírnod. Ez alá írd be a következő két
+                             sort most! Figyelj, az Android Studio segít: amint elkezded írni a
+                             parancsot, megjelenik egy kis ablak, ahol a fel-le nyilakkal és az enterrel
+                             ki tudod választani, hogy mit szeretnél, és beírja helyetted!
+<pre>
+&lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/&gt;
+&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;</pre>
+
+                *** TODO img ***
+            <li>
+                Kész is, mostantól hozzáférhet a program az SD-kártyához. Most következzen az
+                írás/olvasás fájlművelet.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Írás a fájlba</h2>
+
+        <p>
+            A könnyebbség kedvéért azzal kezdünk, hogy a már meglévő szavainkat elmentjük egy fájlba.
+            <em>Előbb olvasd végig az alábbi leírást, és csak utána kezdd el írni a Java kódot!</em></p>
+
+        <h3>Fájl megkeresése</h3>
+
+        <p>
+            Először is meg kell keresnünk a fájlunkat, amibe írni szeretnénk. Az Android rendszerben (és
+            általában a Java világban) a mappák és fájlok kezelésére a <code>File</code> típust
+            használjuk. Az alábbi kód megkeresi az SD kártya "DkrmgSzakkor" mappán belül a szavak.csv
+            fájlt.</p>
+
+<pre>
+File sdcard = Environment.getExternalStorageDirectory(); // megkeresi az SDkártyát
+File folder = new File(sdcard, "DkrmgSzakkor");          // az SDkártyán a mappát
+folder.mkdir();
+File file = new File(folder, "szavak.csv");              // a mappában a fájlt</pre>
+
+        <p>
+            A program első futtatásakor előfordulhat, hogy a mappa még nem létezik. Ezért használjuk a
+            <code>folder.mkdir();</code> parancsot, ami készségesen létrehozza a DkrmgSzakkor mappát,
+            amennyiben még nem létezik. Ha a mappát korábban már létrehoztuk, akkor ez a parancs nem
+            csinál semmit.</p>
+
+        <p>
+            ***TODO IMAGE, ahol szép görbe nyilakkal a 2 sdcard és a 2 folder szó össze van kötve + egy
+            fa-struktúrában is látszik***</p>
+
+        <h4 class="task">1. feladat</h4>
+        <p>
+            <em>Írd be a fenti kódot a SzavakActivity onPause függvényébe! Ha a függvény még nem
+                létezik, akkor hozd létre a már ismert módon (az onPause szó első pár betűjének
+                begépelésével, az Android Studio kódkiegészítését használva)! Emlékeztetésként: azért az
+                onPause függvényt használjuk, mert szeretnénk, hogy a listában található fájlok a szavak
+                ablakának bezárása után is megmaradjanak.</em></p>
+
+        <h3>Megnyitás (és egyebek)</h3>
+
+        <p>
+            A következő fontos lépés a fájl megtalálása után, a fájl megnyitása. Ehhez egy <code>PrintWriter</code>
+            típusú változót fogunk használni, ami megnyitja nekünk a fájlt, illetve olyan hasznos
+            függvényeket tartalmaz, mint a <code>println</code>, vagy a <code>close</code>.
+            A Java nyelvben biztonsági okokból a fájlkezelést kicsit megnehezítik az úgynevezett <em>kivételek
+            (Exceptions)</em>. A <em>kivételek</em> és kezelésük a Java nyelv szerves részét képezik,
+            azonban a szakkör ezen pontján idő és hely hiányában nem mutatnánk be őket részletesen, csak
+            amennyire feltétlen szükséges a leckéhez. Amennyit fontos azonban tudnunk:
+            <em>kivételekkel</em> akkor találkozunk, ha futás közben a programmal valami váratlan
+            probléma történik. Ilyen <em>kivétel</em> esetünkben az lehet, ha a fájl megnyitása
+            sikertelen (pl. SD kártya nincs bedugva, az applikációnk nem rendelkezik írás joggal, vagy a
+            meghajtó írásvédett). A fájlkezeléssel kapcsolatos kivételeket pedig a Javában nem lehet
+            csak úgy figyelmen kívül hagyni.
+            Nézzük meg az alábbi kódot:</p>
+
+<pre>try {
+    // PrintWriter segítségével megnyitjuk a fájlt
+    PrintWriter writer = new PrintWriter(file);
+
+    // írás a fájlba
+    writer.println("hahó, ezt a fájlba írom ki");
+    writer.println("Ez a második sorba fog kerülni");
+
+    // A végén le kell zárnunk a fájlt
+    writer.close();
+
+} catch (IOException e) {
+    // A catch rész csak akkor fut le, ha valami baj történt a fájl használata közben
+    Log.e("SZAVAK", "nem sikerült kiírni a szavakat a fájlba"+e.getMessage());
+}</pre>
+
+        <p>
+            Tehát:</p>
+        <ul>
+            <li>
+                A fájl írásával kapcsolatos műveletek legyenek a try után (a catch előtt).</li>
+            <li>
+                A fájl korábbi tartalmát a fenti kód felülírja</li>
+            <li>
+                a <code>writer.println("blah");</code> parancs kiírja a megadott szöveget a fájlba, majd új sort
+                kezd. Tehát minden println paranccsal kiírt szöveg a saját sorában lesz.</li>
+            <li>
+                Ha végeztünk a fájl használatával, ne felejtsük el lezárni!! (<code>writer.close()</code>). Sok
+                izgalmas dolog történhet, ha ez a sor lemarad, de inkább ne próbáljuk ki őket.</li>
+        </ul>
+
+        <h4 class="task">2. feladat</h4>
+        <p>
+            <em>Írd be a fenti kódot az 1. feladat kódja alá. Ezt a SzavakActivity onPause függvényében
+                kéne megtalálnod.</em></p>
+
+        <h3>A szólista kiírása a fájlba</h3>
+
+        <p>
+            Ezen a ponton, ha valaki vakmerően lefuttatja az alkalmazását (és bátorítanánk mindenkit,
+            hogy tegye ezt meg), akkor láthatja: az SD kártyán létrejön a DkrmgSzakkor mappa, azon belül
+            pedig megszületik a szavak.csv fájl. Ha mégsem, akkor most kell még gyorsan visszafordulni,
+            és megnézni, hogy mi a gond. Szükség esetén írhatsz emailt is a szokásos
+            dkrmg.android@gmail.com címre.</p>
+
+        <p>
+            A szép új fájlunk azonban szavak helyett az alábbi két sort tartalmazza:</p>
+
+<pre>hahó, ezt a fájlba írom ki
+Ez a második sorba fog kerülni</pre>
+
+        <p>
+            Nem túl meglepő, hiszen a kódunkban ezt a két sort írtuk ki a <code>println</code>
+            parancsokkal. Most cseréljük le a két <code>println</code> utasítást, és írjuk ki a szavak
+            <code>lista</code> tartalmát inkább! Ehhez egy igen egyszerű <code>for</code> ciklust fogunk
+            használni, amivel egyesével kiírjuk a <code>szavak</code> lista elemeit. Ha nem találkoztál
+            még a <code>for</code> ciklussal, akkor olvasd el az alábbi kitérőt!</p>
+
+        <div class="misc-info">
+            <p class="lead"><strong>Kitérő - for ciklus</strong></p>
+
+            <p>
+                A program azon ismétlődő részeit, melyeket egymás után többször is végre szeretnénk hajtani,
+                cilusoknak nevezzük. A ciklusok egyik leggyakrabban használt típusa a for ciklus (számlálós
+                cilus), ahol a ciklusmagról előre tudjuk, hogy hányszor fog lefutni. Klasszikus példák, ha
+                például ki akarjuk írni a számokat egytől tízig.</p>
+
+            <p>
+                Egy Java ciklus többnyire így néz ki</p>
+
+<pre>for (int i = 0; i < <strong>X</strong>; i++) {
+    // ciklusmag
+    // Ide kerül az, amit <strong>X</strong>-szer szeretnénk lefuttatni
+}</pre>
+
+            <p>
+                A fenti ciklus <code>X</code>-szer fog lefutni. Az <code>X</code> lecserélhető bármilyen
+                számra, szám típusú változóra, vagy függvényre, ami számot ad eredményül. Például a <code>szavak.size()</code>
+                kifejezés, ami megadja, hogy hány elem van a szólistánkban.</p>
+
+            <p>
+                A ciklusmagban felhasználhatjuk az <code>i</code> változót. Ez a változó minden lefutásnál
+                egyel növekszik majd (0, 1, 2, 3, …, X-1).</p>
+        </div>
+
+        <h4 class="task">3. feladat</h4>
+        <p>
+            A ciklusunk legyen a fájl megnyitása után (de a lezárás előtt). Azt szeretnénk, ha a ciklus
+            <strong>határértéke</strong> <code>szavak.size()</code> lenne, hiszen minden szót pontosan
+            egyszer ki szeretnénk írni.</p>
+
+        <p>
+            Írd meg az a cilust, ami a szavakat az alábbi formában írja ki:</p>
+
+        <p>
+            <em>magyar,angol</em></p>
+
+        <p>Segítség: a szavak lista <code>i</code>-edik elemét így éred el: <code>szavak.get(i)</code></p>
+        <p>
+            Tehát ha a ciklusmagba beírod az alábbi parancsot, az a szavak angol nyelvű formáját
+            fogja kiírni:</p>
+
+            <pre>writer.println(szavak.get(i).angol);</pre>
+
+        <p>
+            <button data-target="help_serialize_word" class="help-link">Katt a megoldáshoz!</button></p>
+        <div class="help-container" id="help_serialize_word">
+            <pre>writer.println(szavak.get(i).angol + "," + szavak.get(i).magyar);</pre>
+        </div>
+
+        <p>
+            Teszteld a programodat, hogy a SzavakActivity lezárásakor a kívánt tartalom jelenik-e meg a
+            fájlban!</p>
+    </section>
+
+    <section>
+        <h2>Fájl olvasása</h2>
+
+        <p>
+            Megbirkóztunk a fájl írásának nehéz feladatával. A létező fájl beolvasása ezek után
+            lényegesen könnyebb lesz, hiszen a kódunk egy része szinte megegyezik.</p>
+
+        <h3>Fájl megkeresése</h3>
+
+        <p>
+            <em>Másold be a fájl megkeresésére vonatkozó kódot egy az egyben az előző feladatból a
+            SzavakActivity onResume függvényébe! Ezt követően az onResume függvényben dolgozunk
+            majd, így garantálva, hogy a szavak beolvasása az szavak ablakának megjelenésekor időben
+            megtörténjen.</em></p>
+
+        <h3>Fájl megnyitása olvasásra, kivételek</h3>
+
+        <p>
+            A kivételekkel kapcsolatban megszerzett ismereteink itt is felhasználhatóak. A fájlok
+            olvasásához most a BufferedReader típust használjuk, az elképzelés ugyanaz: meg kell
+            nyitnunk a fájlunkat, le kell zárnunk időben, illetve el kell kapnunk a váratlan kivételeket
+            (pl. nem található a fájl)</p>
+
+        <p>
+            <em>Írd be az alábbi kódot az onResume függvénybe</em></p>
+
+        <p>
+<pre>try {
+    // fájl megnyitása
+    BufferedReader reader = new BufferedReader(new FileReader(file));
+
+    <strong>// TODO: itt az alkalom, olvassunk a fájlból.</strong>
+
+    // lezárás
+    reader.close();
+} catch (IOException e) {
+    Log.e("FILE",e.getMessage());
+}</pre>
+
+        <h3>Szavak beolvasása a fájlból a szavak listába</h3>
+
+        <p>
+            Ezen a ponton a programunk <em>fájlolvasás</em> része nehezen nevezhető hasznosnak. A kódunk
+            megnyitja a fájlt, majd azonnal le is zárja.</p>
+
+        <p>
+            A <code>reader</code> változónk (<code>BufferedReader</code> típusú) szerencsére sok hasznos
+            függvényt tartalmaz a fájlunk tartalmának kiolvasásához. Ezek közül a legpraktikusabb
+            megoldást választjuk: kiolvassuk a fájl tartalmát, soronként, elejétől a végéig. Tehát
+            végigmegyünk a fájlon, mintha egy izgalmas könyvet olvasnánk (soronként). Talán már látható:
+            ehhez is írnunk kell egy ciklust, ami egyesével kiolvassa a fájl sorait, majd a vesszővel
+            elválasztott szövegekből Szo objektumokat készít.</p>
+        <ul>
+            <li>
+                Felmerül azonban a jogos kérdés: hány szót kell kiolvasnunk a fájlból?</li>
+            <li>
+                A válasz sajnos az, hogy nem tudhatjuk előre. Ezért a for ciklus helyett egy rugalmasabb
+                szerkezetet, a while (elöltesztelős) ciklust kell használnunk.</li>
+        </ul>
+        <p>
+            A három alap ciklus (számlálós, elöl- és hátultesztelős) részletesebb bemutatása nem célunk
+            ebben a leckében, az alábbi kód megértéséhez remélhetőleg elegendő háttér információt
+            szolgáltattunk. A ciklusokról hallhatsz még az iskolai programozás szakkörön (Pascal).</p>
+
+<pre>while (reader.ready()) {
+    String sor = reader.readLine();
+    // a kiolvasott sor most a sor változóban lakik.
+}</pre>
+
+        <div class="misc-info">
+            <p class="lead">
+                <strong>String változók szétvágása (split)</strong></p>
+
+            <p>
+                Sokszor előfordul, hogy szeretnénk egy String szöveget egy bizonyos karakter mentén
+                szétszabdalni. Erre kitűnő példa jelen feladatunk, ahol a beolvasott sort két (vagy három)
+                részre kell választanunk egy vessző (<code>,</code>) mentén. Máskor előfordulhat, hogy mondatokat
+                szeretnénk szóközök mentén szavakra bontani, vagy pontok mentén egész bekezdéseket
+                mondatokra stb.</p>
+
+            <p>
+                A fenti probléma megoldására használhatjuk a <code>String</code> típus <code>split</code>
+                függvényét. A <code>split</code> függvény (miután megadtuk neki, hogy milyen karakterek
+                mentén kívánjuk a szövegünket felszabdalni) ad nekünk egy String tömböt, amiben ott
+                sorakoznak a szétválasztott részek.</p>
+
+            <p>
+                Egy példa segítségével illusztrálva:</p>
+
+            <p>
+                Ha a <code>sor</code> változónk tartalma <code>"kutya,dog"</code></p>
+
+            <p>
+                a <code>sor.split(",")</code> parancs egy olyan tömböt ad vissza, melynek a nulladik eleme
+                (Java 0-tól indexel!) <code>"kutya"</code>, az első eleme <code>"dog"</code>.</p>
+        </div>
+
+        <h4 class="task">4. feladat</h4>
+        <p>
+            <em>Fejezd be az onResume függvényedet! </em></p>
+
+        <p>
+            Segítségként:</p>
+        <ul>
+            <li>
+                Használjuk a sor.split függvényt a sor vessző menti szétbontására.
+                <button data-target="help_parse_line" class="help-link">Segítség</button></li>
+            <li>A kapott Stringekből csináljunk egy új <code>Szo</code> objektumot (A hozzáadás gomb onClick-jében találsz rá példát)</li>
+            <li>
+                Az új szót adjuk hozzá a szavak listához. Erre láthatsz példát az onCreate
+                függvényedben, amit az előző leckében írtunk!</li>
+            <li>
+                Érdemes lenne kitörölni a szavak lista tartalmát mielőtt szorgalmasan hozzáadjuk az
+                összes szót, nehogy ugyanaz a szó többször is szerepeljen. Ehhez használd a lista clear
+                függvényét, még a ciklus előtt!</li>
+            <li>
+                Ne felejtsd, babráltál a szavak listáddal. Ahhoz, hogy a változások megjelenjenek a
+                felhasználói felöleten is (ListView), meg kell még hívnod az adapter
+                notifyDataSetChanged(); függvényét. Ezt bárhol megteheted az utolsó szó hozzáadása után,
+                de talán érdemes a fájl lezárása után írni.</li>
+        </ul>
+        <div class="help-container" id="help_parse_line">
+<pre>
+String sor = reader.readLine();
+String[] nyelvek = sor.split(",");
+// most már ott vannak a szavak a megfelelő helyen: nyelvek[0] és nyelvek[1]</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Vége!</h2>
+
+        <p>
+            Ha mindent jól csináltál, akkor a programod mostantól megjegyzi a listában tartott szavakat
+            az alkalmazás bezárása után is. A CSV fájlt szerkesztheted a számítógépeden is (ehhez
+            használj egy egyszerű szövegszerkesztőt, vagy az Excel importálás/exportálás funkcióit).</p>
+        <p>
+            Amikor végeztél, töltsd fel a projektedet a szakkör <a href="http://goo.gl/UMyfuL" target="_blank">feltöltő oldalán</a> keresztül. Ha elakadtál, vagy kérdésed támad a fentiekkel kapcsolatban, nyugodtan írd meg
+            emailben <a href="mailto:dkrmg.android@gmail.com" target="_blank">dkrmg.android@gmail.com</a></p>
+    </section>
+
+    <h2>Szorgalmi</h2>
+
+    <h3>1* Feladat</h3>
+
+    <p>
+        <em>for each. Mert a 21. században élünk :)</em>
+
+
+</div>
+<footer data-include="/include/footer.html"></footer>
+<script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+</body>
+</html>
