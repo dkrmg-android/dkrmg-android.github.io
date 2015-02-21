@@ -72,6 +72,8 @@
             ezek a fájlok a számítógépeden (pl. Excelben) könnyedén szerkeszthetőek (<em>Mentés másként
             -> csv</em>)! A szógyűjteményeket pedig egymással is könnyedén megoszthatjátok majd.</p>
 
+        <img src="/static/img/l09/wireframe.png" class="center-block"/>
+
     </section>
 
     <section>
@@ -105,8 +107,7 @@
             különböző applikációk fájljai. Mi is létre fogunk hozni egy saját mappát, és abban fogjuk
             tárolni a szavakat tartalmazó fájlt.</p>
 
-        <p>
-            *** TODO IMAGE: quick sketch of the directory structure***</p>
+        <img src="/static/img/l10/foldersFiles3.png" class="center-block"/>
 
         <h3>Formátum</h3>
 
@@ -119,11 +120,12 @@ macska,cat
 
         <p>
             Figyeld meg, hogy minden egyes sor egy-egy szó különböző alakjait tartalmazza, és a soron
-            belül az egyes nyelvek vesszővel vannak elválasztva (csak egy vessző! space nincs köztük!).
+            belül az egyes nyelvek vesszővel vannak elválasztva (csak egy vessző! szóköz nincs köztük!).
             A nyelvek mindig ugyanabban a sorrendben szerepelnek (pl. magyar,angol). A szavak
-            tartalmazhatnak space-t, kötőjelet, sőt, igazából bármit, <em>vessző </em>kivételével.
+            tartalmazhatnak szóközt, kötőjelet, sőt, igazából bármit, <em>vessző </em>kivételével.
             Érdekesség kedvéért ezt a méltán népszerű, bár kissé öreg, formátumot <strong>CSV</strong>-nek (comma
             separated values) hívják.</p>
+         <a href="/static/files/dict1.txt" target="_blank">Egy kicsit hosszabb mintafájl</a>.
 
         <h3>Manifest</h3>
 
@@ -147,7 +149,7 @@ macska,cat
 &lt;uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/&gt;
 &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;</pre>
 
-                *** TODO img ***
+                <img src="/static/img/l10/manifest.png" class="center-block"/>
             <li>
                 Kész is, mostantól hozzáférhet a program az SD-kártyához. Most következzen az
                 írás/olvasás fájlművelet.</li>
@@ -181,9 +183,10 @@ File file = new File(folder, "szavak.csv");              // a mappában a fájlt
             amennyiben még nem létezik. Ha a mappát korábban már létrehoztuk, akkor ez a parancs nem
             csinál semmit.</p>
 
-        <p>
-            ***TODO IMAGE, ahol szép görbe nyilakkal a 2 sdcard és a 2 folder szó össze van kötve + egy
-            fa-struktúrában is látszik***</p>
+            <imgstore>
+                <img src="/static/img/l10/foldersFiles2.png" class="center-block"/>
+                <img src="/static/img/l10/foldersFiles.png" class="center-block"/>
+            </imgstore>
 
         <h4 class="task">1. feladat</h4>
         <p>
@@ -252,7 +255,7 @@ File file = new File(folder, "szavak.csv");              // a mappában a fájlt
             Ezen a ponton, ha valaki vakmerően lefuttatja az alkalmazását (és bátorítanánk mindenkit,
             hogy tegye ezt meg), akkor láthatja: az SD kártyán létrejön a DkrmgSzakkor mappa, azon belül
             pedig megszületik a szavak.csv fájl. Ha mégsem, akkor most kell még gyorsan visszafordulni,
-            és megnézni, hogy mi a gond. Szükség esetén írhatsz emailt is a szokásos
+            és megnézni, hogy mi a gond. Szükség esetén írhatsz e-mailt is a szokásos
             dkrmg.android@gmail.com címre.</p>
 
         <p>
@@ -273,8 +276,8 @@ Ez a második sorba fog kerülni</pre>
 
             <p>
                 A program azon ismétlődő részeit, melyeket egymás után többször is végre szeretnénk hajtani,
-                cilusoknak nevezzük. A ciklusok egyik leggyakrabban használt típusa a for ciklus (számlálós
-                cilus), ahol a ciklusmagról előre tudjuk, hogy hányszor fog lefutni. Klasszikus példák, ha
+                ciklusoknak nevezzük. A ciklusok egyik leggyakrabban használt típusa a for ciklus (számlálós
+                ciklus), ahol a ciklusmagról előre tudjuk, hogy hányszor fog lefutni. Klasszikus példák, ha
                 például ki akarjuk írni a számokat egytől tízig.</p>
 
             <p>
@@ -302,7 +305,7 @@ Ez a második sorba fog kerülni</pre>
             egyszer ki szeretnénk írni.</p>
 
         <p>
-            Írd meg az a cilust, ami a szavakat az alábbi formában írja ki:</p>
+            Írd meg az a ciklust, ami a szavakat az alábbi formában írja ki:</p>
 
         <p>
             <em>magyar,angol</em></p>
@@ -315,9 +318,11 @@ Ez a második sorba fog kerülni</pre>
             <pre>writer.println(szavak.get(i).angol);</pre>
 
         <p>
-            <button data-target="help_serialize_word" class="help-link">Katt a megoldáshoz!</button></p>
+            <button data-target="help_serialize_word" class="help-link">Megoldás. Gondolkozz mielőtt megnézed!</button></p>
         <div class="help-container" id="help_serialize_word">
-            <pre>writer.println(szavak.get(i).angol + "," + szavak.get(i).magyar);</pre>
+            <pre>for (int i = 0; i < szavak.size(); i++) {
+    writer.println(szavak.get(i).magyar + szavak.get(i).angol);
+}</pre>
         </div>
 
         <p>
@@ -326,7 +331,7 @@ Ez a második sorba fog kerülni</pre>
     </section>
 
     <section>
-        <h2>Fájl olvasása</h2>
+        <h2 >Fájl olvasása</h2>
 
         <p>
             Megbirkóztunk a fájl írásának nehéz feladatával. A létező fájl beolvasása ezek után
@@ -420,6 +425,7 @@ Ez a második sorba fog kerülni</pre>
             <p>
                 a <code>sor.split(",")</code> parancs egy olyan tömböt ad vissza, melynek a nulladik eleme
                 (Java 0-tól indexel!) <code>"kutya"</code>, az első eleme <code>"dog"</code>.</p>
+                <p><img src="/static/img/l10/split.png" class="center-block"/></p>
         </div>
 
         <h4 class="task">4. feladat</h4>
@@ -442,7 +448,7 @@ Ez a második sorba fog kerülni</pre>
                 függvényét, még a ciklus előtt!</li>
             <li>
                 Ne felejtsd, babráltál a szavak listáddal. Ahhoz, hogy a változások megjelenjenek a
-                felhasználói felöleten is (ListView), meg kell még hívnod az adapter
+                felhasználói felületen is (ListView), meg kell még hívnod az adapter
                 notifyDataSetChanged(); függvényét. Ezt bárhol megteheted az utolsó szó hozzáadása után,
                 de talán érdemes a fájl lezárása után írni.</li>
         </ul>
@@ -455,8 +461,6 @@ String[] nyelvek = sor.split(",");
     </section>
 
     <section>
-        <h2>Vége!</h2>
-
         <p>
             Ha mindent jól csináltál, akkor a programod mostantól megjegyzi a listában tartott szavakat
             az alkalmazás bezárása után is. A CSV fájlt szerkesztheted a számítógépeden is (ehhez
@@ -467,11 +471,77 @@ String[] nyelvek = sor.split(",");
     </section>
 
     <h2>Szorgalmi</h2>
+    <h3 lass="task">1* Feladat - for each cilkus</h3>
+    <section>
+        <p>A <code>for</code> ciklus segítségével viszonylag könnyen végig tudtuk járni a listánk elemeit. 
+            Elég volt tudnunk, hogy a listák első elemének az idexe <code>0</code>, az elemek száma pedig kinyerhető a <code>size</code> függvénnyel.
+            Ennél azonban létezik egy még egyszerűbb megoldás is, ami a listák és egyéb komplexebb adattárolók elterjedésével vált ismertté.</p>
+            <p>Magyarázkodás helyett nézzünk egy példát.</p>
+            <div class="misc-info">
+                <em>Tegyük fel, hogy van egy <code>nevsor</code> nevű listánk, amiben egy osztály névsorát tároljuk</em>
+                <pre>ArrayList&lt;String&gt; nevsor&#59;</pre>
+                <em>Ha most szeretnénk a tanulók nevét kiírni:</em>
+                <pre>
+for (String nev : nevsor) {
+    Log.i("EZ_EGY_NEV", nev);
+}
+                </pre>
+                <img src="/static/img/l10/forEach.png" class="center-block"/>
 
-    <h3>1* Feladat</h3>
+            </div>
+            <p>Láthatjuk, hogy ennél az új fajta for (for each) ciklusnál elég megadnunk, a lista nevét, és az listában szerepelő elemek típusát.
+            Innentől kezdve a ciklus magától végiglépeget a lista összes elemén. Számokkal, első és utolsó elem indexszel már nem is kell foglalkoznunk.</p>
+            <p>A fenti ciklus végigmegy a <code>névsor</code> lista elemein (melyek <code>String</code> típusúak), az aktuális elemet mindig a <code>nev</code> változóba helyezve.</p>
 
-    <p>
-        <em>for each. Mert a 21. században élünk :)</em>
+            <p>Ezek alapján írd át a fájlba kiírás kódját úgy, hogy ezt az új fajta for each ciklust használja a szavak fájlba kiírásánál!</p>
+        
+        
+    <h3 lass="task">2* Feladat - szavak rendezése</h3>
+        <p>A szótárprogramunk ugyan szépen használható, mégis némi hiányérzete támad az embernek, amikor a szavak hosszú listáját böngészi. 
+            Miért nem ABC rendben jelennek meg a szavaink? Szerencsére a Java nyelvben van egy viszonylag egyzerű módszer listák rendezésére!</p>
+        <p>Első megközelítésnek itt is mutatunk egy példát. Egészen pontosan az előző feladat példáját folytatjuk tovább.</p>
+        <div class="misc-info">                
+            <em>Tehát van egy <code>nevsor</code> nevű lista, amiben egy osztály névsorát tároljuk</em>
+            <pre>ArrayList&lt;String&gt; nevsor&#59;</pre>
+            <em>Ha most szeretnénk a tanulók nevét ABC rendbe rendezni, azt egy sorban megtehetjük:</em>
+            <pre>Collections.sort(nevsor);</pre>
+        </div>
+
+        <p>Ha a listánk beépített típusokat használ, mint például a <code>String</code> vagy <code>Integer</code>, akkor valóban egyetlen paranccsal elvégezhető a rendezés.
+            A mi esetünk egy árnyalatnyival bonyolultabb, hiszen a szótár programunkban a <code>szolista</code> változó <code>Szo</code> típusú elemeket tartalmaz. Miért is gond ez?
+            A Java sajnos nem tudja eldönteni, hogy két <code>Szo</code> típusú változó közül melyik kerüljön előrébb a rendezésben. Az angol vagy a magyar nyelv szerint rendezünk?
+            Ezért nekünk kell megmondani a rendezés előtt, hogy miként történjen az összehasonlítás. Ehhez tekintsük meg az alábbi kódot:</p>
+        <pre>
+Collections.sort(szavak, new Comparator<Szo>() {
+    @Override
+    public int compare(Szo a, Szo b) {
+
+        // TODO: melyik elem a nagyobb?
+        int eredmeny = 0;
+
+        return eredmeny;
+    }
+});</pre>
+        <p>A fenti parancsot írhatjuk például a fájlból történő beolvasás, vagy egy új elem hozzáadása után.</p>
+        <p>Még nem vagyunk készen. Az összehasonlító (<code>compare</code>) függvény befejezését rátok bízzuk!</p>
+        <p>Az <code>eredmeny</code> változóba kell helyeznünk az összehasonlítás eredményét. Pl. az értéket, amit a sazvak magyar formájának összehasonlításakor kapunk.</p>
+        <p>A fenti vizsgálathoz használhatjuk a String típusú változók <code>compareTo()</code> belső függvényét.</p>
+        <p>Pl.</p>
+        <pre>
+String egyik = "kutya";
+String masik = "macska";
+egyik.compareTo(masik);</pre>
+
+        <p>Az <code>a</code> és <code>b</code> változók összehasonlításnál a Java nyelvben az eredmény egy szám:</p>
+        <ul>
+            <li>Negatív (pl. <code>-1</code>), ha az <code>a</code> szó kerül előrébb</li>
+            <li><code>0</code>. ha szerintünk a két szó ugyanaz.</li>
+            <li>Pozitív (pl. <code>+1</code>, ha a <code>b</code> szó kerül előrébb</li>
+        </ul>
+        
+
+    </section>
+    
 
 
 </div>
