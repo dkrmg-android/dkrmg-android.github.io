@@ -69,64 +69,6 @@
             </div>
 		</section>
 
-        <section class="gyik" id="sensorList">
-            <h3>Érzékelők az Android rendszerben <br />(Teljesség igénye nélkül)</h3>
-            <div class="description">
-                <table  class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Érzékelő</th>
-                                    <th>Sensor.<em>KONSTANS</em></th>
-                                </tr>
-                            </thead>
-                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
-                                <tr>
-                                    <td>Közelségérzékelő (5. lecke)</td>
-                                    <td>TYPE_PROXIMITY</td>
-                                </tr>   
-                                <tr>
-                                    <td>Telefon helyzetének érzékelése (6. lecke)</td>
-                                    <td>TYPE_ORIENTATION</td>
-                                </tr>   
-                                <tr>
-                                    <td>Gyorsulásmérő</td>
-                                    <td>TYPE_ACCELEROMETER</td>
-                                </tr>
-                                <tr>
-                                    <td>Hőmérséklet</td>
-                                    <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
-                                </tr> 
-                                <tr>
-                                    <td>Gravitációs erő</td>
-                                    <td>TYPE_GRAVITY</td>
-                                </tr> 
-                                <tr>
-                                    <td>Giroszkóp</td>
-                                    <td>TYPE_GYROSCOPE</td>
-                                </tr>   
-                                <tr>
-                                    <td>Mágneses erőtér </td>
-                                    <td>TYPE_MAGNETIC_FIELD</td>
-                                </tr>  
-                                <tr>
-                                    <td>Mágneses erőtér </td>
-                                    <td>TYPE_MAGNETIC_FIELD</td>
-                                </tr> 
-                                <tr>
-                                    <td>Légnyomás (hPa)</td>
-                                    <td>TYPE_PRESSURE</td>
-                                </tr>           
-                                <tr>
-                                    <td>Relatív páratartalom</td>
-                                    <td>TYPE_RELATIVE_HUMIDITY</td>
-                                </tr>                   
-                             </tbody>
-                        </table>
-                        Nem biztos, hogy a te telefonodban ezek az érzékelők valóban rlérhetőek!
-                       Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
-                    </div><!-- .div.description -->
-		</section>
-
         <section class="gyik" id="javaTypes">
             <h3>Java "egyszerű" változó típusai</h3>
             <div class="description">
@@ -187,6 +129,42 @@
                     </div><!-- .div.description -->
 		</section>
 
+        <section class="gyik" id="Toast">
+            <h3>Toast (felbukkanú üzenet)</h3>
+            <div class="description">
+                <pre>Toast.makeText(this, "Ez a szöveg fog megjelenni", Toast.LENGTH_LONG).show();</pre>
+            </div>
+		</section>
+
+        <section class="gyik" id="Vibrator">
+            <h3>Rezgő motor</h3>
+            <img src="/static/img/gyik/VibratorManifest.png">
+            <div class="caption"> 
+                <p>A manifeszt fájlban engedélyt kell kérnünk a rendszertől a rezgő motor használatához</p>
+                <pre>&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;</pre>
+            </div>
+            
+            <img />
+            <div class="caption">
+                <p>Hozzunk létre egy <code>Vibrator</code> típusú, <code>rezgoMotor</code> nevű változót.</p>
+                <pre>Vibrator rezgoMotor;</pre>
+            </div>
+
+            <img />
+            <div class="caption">
+                <p>Adjunk értéket a <code>rezgoMotor</code> változónak (pl. az <code>onCreate</code> függvényben)</p>
+                <pre>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</pre>
+            </div>
+
+            <img />
+            <div class="caption">
+                <p>rezegtessük a telefont tetszőleges ideig (az időt ezredmásodpercekben adhatjuk meg)</p>
+                <pre>rezgoMotor.vibrate(1000);</pre>
+            </div>
+		</section>
+
+
+
         <section class="gyik" id="LifeCycle">
             <h3>Activity életciklus</h3>
             <img src="/static/img/l04/lifecycleSimplified.png">
@@ -224,6 +202,66 @@ if (<em>feltétel</em>) {
                 </pre>
             </div>
 
+        </section>
+        <section class="gyik" id="ImageTransforms">
+            <h3>Képek mozgatása</h3>
+            <img src="/static/img/l06/06_rot.png" class="center-block">
+            <div class="caption"> 
+                <p>A <code>kep</code> változó elforgatásához (ha annak típusa <code>ImageView</code></p>
+                <pre>kep.setRotation(30); // forgatás 30 fokkal</pre>
+            </div>
+
+            <img/>
+            <div class="caption"> 
+            <p>A <code>kep</code> változó áthelyezéséhez (ha annak típusa <code>ImageView</code></p>
+            <pre>
+kep.setX(0); // vizszintes
+kep.setY(0); // fuggoleges            
+            </pre>
+            </div>
+
+            <div class="description">
+                <p>Ezek a függvények csak az Android API 11-es és annál magasabb verziójában található. A leckék során
+                    öregebb telefonokhoz javasoltuk <a href="/static/files/ImageViewHelper.java" target="_blank">ennek segéd segédosztálynak</a> a használatát. 
+                    Töltsd le a fájlt, és használd az <code>ImageViewHelper.setImageViewPosition</code> és <code>ImageViewHelper.setImageViewRotation</code>
+                    függvényeket.</p>
+            </div>
+		</section>
+
+        <section class="gyik" id="OpenActivity">
+            <h3>Egy új Activity megnyitása</h3>
+            <img/>
+            <div class="caption"> 
+                <p>Az <code>AboutActivity</code> megnyitásához hozzunk létre egy <code>Intent</code> típusú változót, majd indítsuk el a <code>startActivity</code> függvénnyel.</p>
+                <pre>
+Intent intent = new Intent(this, AboutActivity.class);
+startActivity(intent);</pre>
+            </div>
+		</section>
+
+        <section class="gyik" id="List">
+            <h3>Listák használata</h3>
+            <img src="/static/img/l08/listview1.png">
+            <div class="caption"> 
+                <p>Helyezz el egy <code>ListView</code> elemet a layout szerkesztővel</p>
+            </div>
+
+            <img />
+            <div class="caption">
+                Hozz létre egy <code>ListView</code> típusú változót, és adj neki értéket az <strong>id</strong> tulajdonsága alapján.
+                <pre>lista = findViewByID(R.id.<strong>lista</strong>);</pre>
+            </div>
+
+            <img src="/static/img/l08/adapter2.png" >
+            <div class="caption">
+                <p>Jelenítsük meg egy <code>String</code> tömb (<code>String[]</code>) vagy lista (<code>ArrayList&lt;String&gt;</code>) elemeit
+                    egy adapter segítségével.</p>
+                <pre>
+ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
+lista.setAdapter(adapter);</pre>
+            </div>
+
+		</section>
 
         <section class="gyik" id="listener">
             <h3>Feliratkozás egy érzékelőre</h3>
@@ -276,9 +314,66 @@ protected void onPause() {
                 </pre>
             </div>
 		</section>
-
-		</section>
     </div>
+
+    <section class="gyik" id="sensorList">
+            <h3>Érzékelők az Android rendszerben <br />(Teljesség igénye nélkül)</h3>
+            <div class="description">
+                <table  class="table table-bordered table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Érzékelő</th>
+                                    <th>Sensor.<em>KONSTANS</em></th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                <tr>
+                                    <td>Közelségérzékelő (5. lecke)</td>
+                                    <td>TYPE_PROXIMITY</td>
+                                </tr>   
+                                <tr>
+                                    <td>Telefon helyzetének érzékelése (6. lecke)</td>
+                                    <td>TYPE_ORIENTATION</td>
+                                </tr>   
+                                <tr>
+                                    <td>Gyorsulásmérő</td>
+                                    <td>TYPE_ACCELEROMETER</td>
+                                </tr>
+                                <tr>
+                                    <td>Hőmérséklet</td>
+                                    <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
+                                </tr> 
+                                <tr>
+                                    <td>Gravitációs erő</td>
+                                    <td>TYPE_GRAVITY</td>
+                                </tr> 
+                                <tr>
+                                    <td>Giroszkóp</td>
+                                    <td>TYPE_GYROSCOPE</td>
+                                </tr>   
+                                <tr>
+                                    <td>Mágneses erőtér </td>
+                                    <td>TYPE_MAGNETIC_FIELD</td>
+                                </tr>  
+                                <tr>
+                                    <td>Mágneses erőtér </td>
+                                    <td>TYPE_MAGNETIC_FIELD</td>
+                                </tr> 
+                                <tr>
+                                    <td>Légnyomás (hPa)</td>
+                                    <td>TYPE_PRESSURE</td>
+                                </tr>           
+                                <tr>
+                                    <td>Relatív páratartalom</td>
+                                    <td>TYPE_RELATIVE_HUMIDITY</td>
+                                </tr>                   
+                             </tbody>
+                        </table>
+                        Nem biztos, hogy a te telefonodban ezek az érzékelők valóban elérhetőek!
+                       Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
+                    </div><!-- .div.description -->
+		</section>
+
     <footer data-include="/include/footer.html"></footer>
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
 
