@@ -471,9 +471,9 @@ String[] nyelvek = sor.split(",");
     </section>
 
     <h2>Szorgalmi</h2>
-    <h3 lass="task">1* Feladat - for each cilkus</h3>
     <section>
-        <p>A <code>for</code> ciklus segítségével viszonylag könnyen végig tudtuk járni a listánk elemeit. 
+        <h3 class="task">1* Feladat - for each ciklus</h3>
+        <p>A <code>for</code> ciklus segítségével viszonylag könnyen végig tudtuk járni a listánk elemeit.
             Elég volt tudnunk, hogy a listák első elemének az indexe <code>0</code>, az elemek száma pedig kinyerhető a <code>size</code> függvénnyel.
             Ennél azonban létezik egy még egyszerűbb megoldás is, ami a listák és egyéb komplexebb adattárolók elterjedésével vált ismertté.</p>
             <p>Magyarázkodás helyett nézzünk egy példát.</p>
@@ -496,7 +496,7 @@ for (String nev : nevsor) {
             <p>Ezek alapján írd át a fájlba kiírás kódját úgy, hogy ezt az új fajta for each ciklust használja a szavak fájlba kiírásánál!</p>
         
         
-    <h3 lass="task">2* Feladat - szavak rendezése</h3>
+        <h3 class="task">2* Feladat - szavak rendezése</h3>
         <p>A szótárprogramunk ugyan szépen használható, mégis némi hiányérzete támad az embernek, amikor a szavak hosszú listáját böngészi. 
             Miért nem ABC rendben jelennek meg a szavaink? Szerencsére a Java nyelvben van egy viszonylag egyzerű módszer listák rendezésére!</p>
         <p>Első megközelítésnek itt is mutatunk egy példát. Egészen pontosan az előző feladat példáját folytatjuk tovább.</p>
@@ -512,7 +512,7 @@ for (String nev : nevsor) {
             A Java sajnos nem tudja eldönteni, hogy két <code>Szo</code> típusú változó közül melyik kerüljön előrébb a rendezésben. Az angol vagy a magyar nyelv szerint rendezünk?
             Ezért nekünk kell megmondani a rendezés előtt, hogy miként történjen az összehasonlítás. Ehhez tekintsük meg az alábbi kódot:</p>
         <pre>
-Collections.sort(szavak, new Comparator<Szo>() {
+Collections.sort(szavak, new Comparator&lt;Szo&gt;() {
     @Override
     public int compare(Szo a, Szo b) {
 
@@ -540,6 +540,84 @@ egyik.compareTo(masik);</pre>
         </ul>
         
 
+        <h3 class="task">3* feladat - Nelvek szerinti rendezés</h3>
+        <p>A 2*. feladatban láthattad, hogyan tudod a listádat rendezni a magyar nyelvű
+            alak szerint. Mit kéne változtatni, ha inkább az angol alak szerint szeretnénk rendezni?
+            Vagy a harmadik alak (német/francia) szerint? Szerencsére ezt is nagyon egyszerűen megtehetjük.</p>
+        <p>Például létrehozhatunk 3 új gombot mondjuk a ListView alá, és mindegyik onClick-jében a
+            fent megismert módon rendezzük a listát, csak az egyikben a két szó angol alakját, a másikban
+            a németet, magyart, stb. hasonlítjuk össze. Aki szeretné, írja meg!</p>
+        <p>Ez a megoldás azonban kis képernyőn nem a legjobb, mert a gombok elég sok helyet foglalnak.
+            Sokkal felhasználóbarátabb lenne, ha a menüből lehetne változtatni a rendezést. Ez nagyon hasonló lesz
+            a <a href="/lessons/l08.html#starred_about_menu" target="_blank">8. lecke első szorgalmijához</a>,
+            amikor is az About activityt nyitottuk meg menüből. Aki megcsinálta, érdemes lehet gyorsan átfutni,
+            akinek még hiányzik, gyorsan pótolja!.</p>
+        <p>Vázlatosan a szükséges lépések:</p>
+        <ol>
+            <li>Új menü erőforrás (xml fájl) létrehozása az <em>app -> res -> menu</em> mappában</li>
+            <li>Ebbe a két (vagy 3) fajta rendezésnek egy-egy <code>item</code> létrehozása, megfelelő
+                megjelenő szöveggel (title) és értelmes azonosítóval (id).</li>
+            <li>Az <code>onCreateOptionsMenu</code> függvény megírása a Szavak activityben. Tartalma
+                nagyon hasonló a 8. lecke szorgalmijában megismerthez, de az <code>R.menu.menu</code> helyett a
+                frissen létrehozott menü erőforrást kell írni (<code>R.menu.<strong>valami</strong></code>).</li>
+            <li>Az <code>onOptionsItemSelected</code> függvényben meg kell vizsgálni, hogy HA a magyar nyelvhez tartozó
+                menuItem-et nyomta meg a felhasználó, AKKOR a magyar alak szerint kell rendezni; HA az
+                angolhoz tartozót, AKKOR az angol szerint, stb. Az éppen lenyomott menuItem azonosítóját
+                a 8. lecke első szorgalmijának 7. pontjában leírtak szerint éred el.</li>
+        </ol>
+        <p>Ha ellenőrizni szeretnéd a megoldásod, vagy esetleg elakadtál, kattintás után láthatod a
+            <button onclick="$('#three_way_ordering').show();">megoldást</button>.</p>
+        <div id="three_way_ordering" style="display: none;">
+            <h4>Új menü erőforrás</h4>
+            <p>(<em>app -> res -> menu</em> jobbklikk <em>New -> Menu resource file</em>)</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+
+    &lt;item android:id="@+id/order_hun" android:title="Rendezés: magyar" /&gt;
+    &lt;item android:id="@+id/order_eng" android:title="Rendezés: angol" /&gt;
+
+&lt;/menu&gt;
+</pre>
+
+            <h4><code>onCreateOptionsMenu</code></h4>
+<pre>
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.menu_szavak, menu);
+    return super.onCreateOptionsMenu(menu);
+}
+</pre>
+
+            <h4><code>onOptionsItemSelected</code></h4>
+<pre>
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == R.id.order_hun) {
+        // magyar szerint rendezés
+        Collections.sort(szavak, new Comparator&lt;Szo&gt;() {
+            @Override
+            public int compare(Szo a, Szo b) {
+                return a.getMagyar().compareTo(b.getMagyar());
+            }
+        });
+        return true;
+    }
+    if (item.getItemId() == R.id.order_eng) {
+        // angol szerint rendezés
+        Collections.sort(szavak, new Comparator&lt;Szo&gt;() {
+            @Override
+            public int compare(Szo a, Szo b) {
+                return a.getAngol().compareTo(b.getAngol());
+            }
+        });
+        return true;
+    }
+
+    return super.onOptionsItemSelected(item);
+}
+</pre>
+        </div>
     </section>
     
 
