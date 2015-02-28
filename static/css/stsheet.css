@@ -223,15 +223,20 @@ table.comparison td {
     border-top-right-radius: 20px;
 }
 
-.description {
+.gyik .description {
     background-color: white;
     border-radius: 20px;
     padding: 10px;
     margin: 10px;
 }
 
-.description:empty {
+.gyik .description:empty {
     display: none;
+}
+
+.gyik .description pre:last-child {
+    /* To remove unnecessary empty space */
+    margin: 0;
 }
 
 #gyik-template {
@@ -257,7 +262,8 @@ table.comparison td {
     display: inline-block;
 }
 
-.interactive-panel .ih.selected, div.description {
+.interactive-panel .ih.selected,
+.interactive .description {
     -webkit-box-shadow: 0 0 20px 5px rgba(163, 199, 57, 1);
     -moz-box-shadow: 0 0 20px 5px rgba(163, 199, 57, 1);
     box-shadow: 0 0 20px 5px rgba(163, 199, 57, 1);
