@@ -261,7 +261,7 @@ public class Gomb {
 
 	<h4 class="task">2. Feladat</h4>
     <p>
-        Melyik értékadás melyik változóra vonatkozik? Használj színeket/nyilakat!</p>
+        Melyik értékadás/olvasás melyik változóra vonatkozik? Használj színeket/nyilakat!</p>
 
     <p>
 <pre>
@@ -305,9 +305,11 @@ haromszog.nagyit(3);</pre>
 
 	<h4 class="task">3. Feladat</h4>
     <p>
-        Melyik értékadás melyik változóra vonatkozik? Használj színeket/nyilakat! Helyes a program?
+        Melyik értékadás/olvasás melyik változóra vonatkozik? Használj színeket/nyilakat! Helyes a program?
         Mi lesz a globális változó értéke az onSensorChanged függvény futásakor (ne feledd mi
         történik, ha nem inicializálod a változódat!)?</p>
+	<p><em>Ne feledd, a változóink mindig kisbetűvel kezdődnek. Tehát pl. a SensorManager nem változó. 
+		Illetve vigyázz, az inicializálás értékadás is egyben.</em></p>
 
     <p>
 <pre>
@@ -317,29 +319,29 @@ public class GolyoActivity extends ActionBarActivity implements SensorEventListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // setContentView(R.layout.activity_golyo); // Ezzel most nem foglalkozunk
-        ImageView golyoKep = (ImageView) findViewById(R.id.golyo);
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        super.onCreate(<strong>savedInstanceState</strong>);
+        setContentView(R.layout.activity_golyo); // Ezzel most nem foglalkozunk
+        <strong>ImageView golyoKep = </strong>(ImageView) findViewById(R.id.golyo);
+        <strong>sensorManager = </strong>(SensorManager) getSystemService(SENSOR_SERVICE);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+        <strong>Sensor sensor = sensorManager</strong>.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        <strong>sensorManager</strong>.registerListener(this, <strong>sensor</strong>, SensorManager.SENSOR_DELAY_UI); // A this változóval ne foglalkozz!
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
+        <strong>sensorManager</strong>.unregisterListener(this);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        golyoKep.setX(ujX);
-        golyoKep.setY(ujY);
+        <strong>golyoKep</strong>.setX(0);
+        <strong>golyoKep</strong>.setY(0);
     }
 
     @Override
