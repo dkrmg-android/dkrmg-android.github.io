@@ -28,7 +28,7 @@
         }
     </style>
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>
@@ -95,10 +95,10 @@
         <p>Remélhetőleg ismerős az alábbi <strong>függvény</strong>, amely <code>rezegjOnClick</code> névre hallgat.
             A függvény törzse a komment lesz, ahol perjelek mögött a komment
             emlékeztet minket: a függvényünk egyelőre üres.</p>
-        <pre>
+        <pre><code>
 public void rezegjOnClick(View v) {
     // TODO 1.5 Ezt itt még be kell fejezni
-}</pre>
+}</code></pre>
         <p>A függvényt a <span class="todo">TODO 1.2</span> helyére írd be! Figyeld meg, hogy egy szintre került a többi,
             már meglévő függvénnyel (azaz a sor ugyan annyival kezdődik beljebb, mint a függvények). Ezt nyugodtan meg is jegyezhetjük: a Java 
 			nyelvben a függvények <em>mindig</em> egy szinten helyezkednek el.</p>
@@ -120,13 +120,13 @@ public void rezegjOnClick(View v) {
             telefonunkban elhelyezkedő hardverhez. (Emlékezz, a <code>Button</code> típusú változónkhoz
             is hozzárendeltünk egy-egy gombot, megadott <code>id</code> azonosítóval).</p>
         <p>Tehát hozzunk létre egy Vibrator típusú változót <span class="todo">TODO 1.4a</span></p>
-        <pre>Vibrator rezgoMotor;</pre>
+        <pre><code>Vibrator rezgoMotor;</code></pre>
         <p>A hozzárendelést az <code>onCreate</code> függvény utolsó sorában <span class="todo">TODO 1.4b</span>
             az alábbi paranccsal tehetjük meg:</p>
-        <pre>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</pre>
+        <pre><code>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</code></pre>
 		
         <p>Ugye hogy ez mennyire hasonlít ahhoz, amit a gomboknál csináltunk az előző lecke alkalmával?</p>
-		<pre>gomb = (Button) findViewById(R.id.gomb1); // ez a sor csak minta, ne írd be</pre>
+		<pre><code>gomb = (Button) findViewById(R.id.gomb1); // ez a sor csak minta, ne írd be</code></pre>
          <img src="/static/img/l04/03_vibButAnalogy.png" class="center-block" />
         
 
@@ -143,13 +143,13 @@ public void rezegjOnClick(View v) {
 		</div>         
 		<p>Emlékeztetőül: a gombjaink belső függvényeit (mint pl. a <code>setText</code>)
             a következő módon hívhatjuk meg:</p>
-        <pre>&lt;változó&gt;.&lt;függvényNeve&gt;(&lt;paraméterek&gt;);</pre>
+        <pre><code>&lt;változó&gt;.&lt;függvényNeve&gt;(&lt;paraméterek&gt;);</code></pre>
         <p>pl.:</p>
-        <pre>gomb1.setText(“új szöveg”);</pre>
+        <pre><code>gomb1.setText(“új szöveg”);</code></pre>
         
 
         <p>A Vibrator osztály rendelkezik egy igen hasznos függvénnyel:</p>
-        <pre>vibrate(milliszekundum)</pre>
+        <pre><code>vibrate(milliszekundum)</code></pre>
         <p>A zárójelben lévő <strong>paraméter</strong> szabja meg, hogy hány ezredmásodpercig rezegjen a telefonunk.</p>
         <p>Ezek alapján tudnál írni egy parancsot, ami meghívja/elindítja a <code>rezgoMotor</code> <code>vibrate</code>
             eljárását 1 másodperces paraméterrel (1000ms)?
@@ -304,13 +304,13 @@ public void rezegjOnClick(View v) {
             pillanatban, ezzel jelezve az alkalmazásunknak (vagy épp az Activity-nknek),
             hogy bekövetkezett az adott életciklus eseménye ( &#8594; ezért <em>életciklus függvények</em>).</p>
         <p>Például nézzük meg a fenti interaktív példán az <code>onCreate</code> függvényt.</p>
-        <pre>
+        <pre><code>
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);   // a super sor minden örökölt függvénynél kell!
 
     // kiegészítés 
     // ide jön a saját kódunk
-}</pre>
+}</code></pre>
         <p>Az első sor: <code>super.&ltfüggvény neve&gt(&ltesetleges paraméterek&gt)</code> biztosítja, 
 			hogy az a függvény is lefut, amit a Google-nél írtak meg. Ez szükséges ahhoz, 
 			hogy egyáltalán működni tudjon az alkalmazásunk.</p>
@@ -325,12 +325,12 @@ protected void onCreate(Bundle savedInstanceState) {
         <p>Az <code>onPause</code> függvényt akkor hívja a rendszer, amikor az alkalmazásunk futása valamiért felfüggesztésre
             kerül. Ez történik például a programunk bezárásakor (vissza gombbal, vagy a home gombbal).</p>
         <p>A <span class="todo">TODO 3.1</span> helyre írd be az alábbi pár sort!</p>
-        <pre>
+        <pre><code>
 @Override
 protected void onPause() {
     super.onPause();
     // ide írhatjuk a saját kódunkat...
-}</pre>
+}</code></pre>
         <p>Az <code>@Override</code> sort nem muszáj beírnod. Ez csak egy komment-szerű jelzés, hogy az Activity
             egyik függvényét készülünk bővíteni;
             ezért nem is találkoztál még vele a saját (pl. gomb kattintás kezelő) függvényeidnél, hiszen azok a
@@ -342,12 +342,12 @@ protected void onPause() {
         <h4 class="task">3.2 onResume</h4>
         <p>Az <code>onResume</code> függvényt többnyire akkor hívja a rendszer, amikor az alkalmazás visszatér a
             felfüggesztett állapotból, de például lefut az első indulásnál is, az <code>onCreate</code> után (ld. később).</p>
-        <pre>
+        <pre><code>
 @Override
 protected void onResume() {
     super.onResume();
     // ide írhatjuk a saját kódunkat...
-}</pre>
+}</code></pre>
         <p>Például írjuk be saját kódként azt a parancsot, ami elindítja a rezgést 5 percig!</p>
         <p>Ha most elindítjuk a programot, mit tapasztalunk? Mi történik az első indításkor?
             És a program menüből történő újraindításánál?</p>
@@ -386,7 +386,7 @@ protected void onResume() {
             amivel rövid szöveges üzeneteket, értesítéseket tudunk kiíratni úgy, hogy azokat a gépen is láthassuk.</p>
         <img src="/static/img/l04/08_log.png" class="center-block" />
         <p>Az ilyen log-üzenetek kiíratása pofon egyszerű. Annyi a dolgunk, hogy a kérdéses helyekre a java kódban beírjuk a következő parancsot:</p>
-        <pre>Log.e("MainActivity", "...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni...");</pre>
+        <pre><code>Log.e("MainActivity", "...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni...");</code></pre>
         <p>A fenti utasítás a következőképp épül fel: <br/>
             Meghívjuk a <code>Log</code> osztálynak <code>e</code> nevű belső függvényét.
             Az első paraméter (<code>"MainActivity"</code>) egy azonosító, hogy könnyebben megtaláljuk, hogy mi írta ki az üzenetet,
@@ -402,7 +402,7 @@ protected void onResume() {
             <li>Keressük meg az onCreate függvényünk záró kapcsos zárójelét, és elé szúrjunk be egy új sort
                 <span class="todo">TODO 4.1</span>.</li>
             <li>Ebbe a sorba írjuk be a következőt:
-                <pre>Log.e("MainActivity", "onCreate fut");</pre></li>
+                <pre><code>Log.e("MainActivity", "onCreate fut");</code></pre></li>
             <li>Ugyan ezt végezzük el az onPause és az onResume függvényeinkben is, de figyeljünk
                 oda, hogy mindegyikben a megfelelő üzenetet írassuk ki!</li>
         </ol>
@@ -483,9 +483,9 @@ protected void onResume() {
             </li>
             <li>
                 Példaként nézd meg ezt a kódot:
-                <pre>
+                <pre><code>
 long[] minta = MorseCode.encode("hello");  //hello szó morze kóddá alakítása
-rezgoMotor.vibrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát</pre>
+rezgoMotor.vibrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a rezgés mintát</code></pre>
             </li>
             <li>
                 Ha nem sikerül kinyerned az EditText szövegét, akkor nézd meg az L03 azon részét, ahol a tippet kiolvastuk.
@@ -505,5 +505,6 @@ rezgoMotor.vibrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 	<link rel="stylesheet" href="/static/css/stsheet.css">
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

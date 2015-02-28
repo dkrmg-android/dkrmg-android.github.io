@@ -4,25 +4,19 @@
     <meta charset="utf-8">
 
     <title>L01 - Környezeti változó beállítása (DKRMG Android Szakkör)</title>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="/static/css/stsheet.css">
-
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+        type="text/css" rel="stylesheet" title="Featherlight Styles" />
     <!-- bootstrap stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-
-    <script type="text/javascript">
-        function pageInit() {
-
-        }
-    </script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
 <body>
 
-<header></header>
+    <header data-include="/include/header.html"></header>
 
 <div class="container">
 
@@ -58,20 +52,11 @@
 
 </div>
 
-<footer></footer>
+    <footer data-include="/include/footer.html"></footer>
 
-<script type="text/javascript">
-    $(function () {
-        $.get('/include/header.html', function (data) {
-            $('header').html(data);
-        });
-        $.get('/include/footer.html', function (data) {
-            $('footer').html(data);
-        });
-
-        pageInit();
-    });
-</script>
-
+    <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+    <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+	<link rel="stylesheet" href="/static/css/stsheet.css">
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

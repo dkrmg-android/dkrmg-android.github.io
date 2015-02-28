@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>
@@ -192,10 +192,10 @@
                                 <button data-target="smHelp2" class="help-link">Nem sikerül?</button></p>
                                 <div class="help-container" id="smHelp2">
                                     <p>Tényleg megnézted az előző leckét?! Most még itt megadjuk a megoldást, de ezt a két sort vésd a fejedbe!</p>
-<pre>
+<pre><code>
 Sensor orientation = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI);
-</pre>
+</code></pre>
                                 </div>                                 
                         </li>          
                     </ul>
@@ -203,7 +203,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 <li>
                     <p>Ne felejts el leiratkozni sem az üzenetekről az <code>onPause</code> függvényben! Ehhez először meg kell
                         írnod az <code>onPause</code> függvényt (az Android Studio segít).</p>
-                    <pre>sensorManager.unregisterListener(this);</pre>
+                    <pre><code>sensorManager.unregisterListener(this);</code></pre>
                 </li>
             </ol>
             <p>Kész is! Ha elakadtál, vagy nem vagy benne biztos, hogy jól csináltad-e, 
@@ -237,12 +237,12 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 A többi értéket majd a következő leckében használni is fogjuk.</p>
             <div class="misc-info">
                     <p>Az ilyen függvényen belül létrehozott változóknál akár cselesen össze is vonhatjuk ezt a két sort:</p>
-                    <pre>float ertek = event.values[0];</pre>
+                    <pre><code>float ertek = event.values[0];</code></pre>
             </div>
             <p><em>Tehát most az ertek változóban van, hogy hány fokra vagyunk az északi iránytól.
                 Írjuk ezt ki a <code>TextView</code> változónk <code>setText</code> belső függvényével!</em></p>
             <p>Ehhez használd az alábbi parancsot</p>
-            <pre>változó.setText(ertek+"°"); // a ° karakter az AltGr+7 kombinációval érhető el :)</pre>
+            <pre><code>változó.setText(ertek+"°"); // a ° karakter az AltGr+7 kombinációval érhető el :)</code></pre>
             <p>A változó nevét, aminek a feliratát megváltoztatjuk, neked kell beírnod. 
                 Az új felirat pedig nem más, mint az érték egy csinos kis fok jellel.</p>
         </section>
@@ -256,13 +256,13 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 amivel megmondhatjuk, hogy a kép hány fokkal legyen elforgatva eredeti állapotából.</p>
             <p>Például ha van egy <code>kepecske</code> nevű ImageView változóm, akkor a <code>kepecske.setRotation(30)</code>
                 elforgatja harminc fokkal a képemet az óramutató járásával megegyező irányban</p>
-            <pre>kepecske.setRotation(30);</pre>
+            <pre><code>kepecske.setRotation(30);</code></pre>
             <img src="/static/img/l06/06_rot.png" class="center-block" />
             <p>Ha esetleg egy kicsit öregebb telefonod lenne, akkor se csüggedj. Van mód a képek elforgatására így is, bár kicsit bonyolultabb. 
                 Hogy ne érjen hátrány ebben a leckében, így írtunk neked egy segédfüggvényt, 
                 ami elvégzi helyetted  a piszkos munkát.</p>
             <p>A <code>változó.setRotation(fok);</code> parancs helyett használd ezt:</p>
-            <pre>ImageViewHelper.setImageViewRotation(változó, fok);</pre>
+            <pre><code>ImageViewHelper.setImageViewRotation(változó, fok);</code></pre>
             <p>Futtasd le a programot, és ellenőrizd, hogy működik-e az iránytűd! 
                 Forog a kép a telefon kijelzőjéhez képest? És az északi irányhoz képest?</p>
             <div class="misc-info">
@@ -367,5 +367,6 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
     <link rel="stylesheet" href="/static/css/stsheet.css">
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

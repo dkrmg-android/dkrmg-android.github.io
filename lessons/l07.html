@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>
@@ -202,7 +202,7 @@
                 megnézhetik az <code>android:icon</code> vagy épp az <code>android:label</code> tulajdonságokat is)</p>
             <p><strong>Készíts egy új sort az <code>activity</code> pont tulajdonságain belül (pl. <code>android:name=".GolyoActivity"</code> alá),
                 és másold be az alábbi szöveget. Figyelj, hogy a záró <code>&gt;</code> <em>elé</em> írd be!</strong></p>
-            <pre>android:screenOrientation="portrait"</pre>
+            <pre><code>android:screenOrientation="portrait"</code></pre>
             <div class="imgstore">
                 <img src="/static/img/l07/orientation2.png" class="center-block" />
                 <img src="/static/img/l07/orientation3.png" class="center-block" />
@@ -318,10 +318,10 @@
                                 <button data-target="smHelp2" class="help-link">Nem sikerül?</button></p>
                                 <div class="help-container" id="smHelp2">
                                     <p>Tényleg megnézted az előző leckéket?! Most még itt megadjuk a megoldást, de ezt a két sort vésd a fejedbe!</p>
-<pre>
+<pre><code>
 Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
-</pre>
+</code></pre>
                                 </div>                                 
                         </li>          
                     </ul>
@@ -329,7 +329,7 @@ sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
                 <li>
                     <p>Ne felejts el leiratkozni sem az üzenetekről az <code>onPause</code> függvényben! Ehhez először meg kell
                         írnod az <code>onPause</code> függvényt (az Android Studio segít).</p>
-                    <pre>sensorManager.unregisterListener(this);</pre>
+                    <pre><code>sensorManager.unregisterListener(this);</code></pre>
                 </li>
             </ol>
             <p>Kész is! Ha elakadtál, vagy nem vagy benne biztos, hogy jól csináltad-e, 
@@ -361,19 +361,19 @@ sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
              <p>Az összes többi változóhoz hasonlóan a tömbünket is deklarálni kell valahol. 
                  Itt adjuk meg a változó nevét és a típusát. Ezt pedig úgy tehetjük meg, hogy a típus után illesztjük a <code>[]</code> jeleket.</p>
              <p>Pl. egy tömb, amelynek minden eleme int típusú</p>
-             <pre>int[] szamokatTartalmazoTomb;</pre>
+             <pre><code>int[] szamokatTartalmazoTomb;</code></pre>
              <p>Egy másik tömb, melynek minden eleme a Button osztályba tartozik</p>
-             <pre>Button[] gombok;</pre>
+             <pre><code>Button[] gombok;</code></pre>
              <p>Egy létező tömbnek így nyerhetjük ki a harmadik elemét:</p>
-             <pre>int harmadikElem = szamokatTartalmazoTomb[2];</pre>
+             <pre><code>int harmadikElem = szamokatTartalmazoTomb[2];</code></pre>
              <p>De hozzá is rendelhetünk új értéket valamelyik elemhez. Pl.</p>
-             <pre>gombok[1] = findViewById(R.id.button);</pre>
+             <pre><code>gombok[1] = findViewById(R.id.button);</code></pre>
 
              <div class="misc-info">
                 <h5>Megjegyzés:</h5>
                 <p>ha egy teljesen új tömböt szeretnénk használni, akkor azt nem elég deklarálni, létre is kell hoznunk első használat előtt (pl. az <code>onCreate</code> függvényben). 
                 Ilyenkor kell megadnunk a tömb hosszát is, azaz hogy összesen hány elemet tárol. Pl. a <code>szamokatTartalmazoTomb</code> tömb inicializálása úgy, hogy 100 elemet tartalmazzon (0.. 99).</p>
-                <pre>szamokatTartalmazoTomb = new int[100];</pre>
+                <pre><code>szamokatTartalmazoTomb = new int[100];</code></pre>
                 <p>Amikor egy függvény paramétereként kapjuk a tömböt, erre a fenti parancsra nincs szükség, hiszen a tömbünket (remélhetőleg) az Android rendszer már inicializálta / létrehozta és feltöltötte hasznos adatokkal.</p>
              </div>
 
@@ -440,13 +440,13 @@ sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
             <p>Az új pozíció kiszámítása az egyszerűsített modellünkben elég egyszerű. 
                 Mint említettük, egy kis csalással azt feltételezzük, hogy az új pozíció nem más, mint a régi pozíció + a mért gyorsulás.</p>
             <p>Tehát például:</p>
-            <pre>float ujX = xPos + xGyorsulas;</pre>
+            <pre><code>float ujX = xPos + xGyorsulas;</code></pre>
             <img src="/static/img/l07/move4.png" class="center-block" />
             <p>Hasonlóan írd meg az ujY változót is!</p>
             <p>Ha kiszámítottuk az új pozíciót, akkor frissítsük erre az <code>xPos</code> és az <code>yPos</code> változó értékét.</p>
             <p>Óvatosnak kell lennünk, hiszen az <code>xPos</code> és <code>yPos</code> változóink egész számokat tartalmaznak (<code>int</code>), míg <code>ujX</code> és <code>ujY</code> változónk <code>float</code> típusúak. 
                 Tehát könnyedén lehet, hogy a tartalmuk nem egész szám. Az értékadás közben emiatt kerekítenünk is kell egyet! Ezt szerencsére az Android segítségével könnyen megtehetjük.</p>
-            <pre>xPos = Math.round(ujX);</pre>
+            <pre><code>xPos = Math.round(ujX);</code></pre>
             <p>Ez alapján írd meg az yPos értékadását is!</p>
 
             <p><em>A <a href="#starred4">negyedik szorgalmiban</a> megnézzük, hogy ez a modell fizikailag miért nem helyes, és hogyan lehetne javítani.</em></p>
@@ -457,15 +457,15 @@ sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
             <p>Ha a telefonunk  Android 3.0 (API 11), vagy annál újabb rendszert futtat, akkor nagyon egyszerűen megadhatjuk az <code>ImageView</code> komponenseink helyét. 
                 Annyit kell csak tennünk, hogy meghívjuk az <code>ImageView</code> <code>setX</code> és <code>setY</code> függvényeit az x és y ko-ordináta megadásához.</p>
             <p>Tehát például ha például ha azt akarjuk elérni, hogy a golyó a bal felső sarokban legyen (kezdéskor remélhetőleg már ott van), akkor az alábbi két parancsot használjuk:</p>
-<pre>
+<pre><code>
 golyoKep.setX(0); // vizszintes
 golyoKep.setY(0); // fuggoleges
-</pre>
+</code></pre>
 
             <p>Ha esetleg egy kicsit öregebb telefonod lenne, akkor se csüggedj. Van mód a képek áthelyezésére így is, bár kicsit bonyolultabb. 
                 Hogy ne érjen hátrány ebben a leckében, így írtunk neked egy segédfüggvényt, 
                 ami elvégzi helyetted  a piszkos munkát.</p>
-            <pre>ImageViewHelper.setImageViewPosition(imageViewValtozo, xErtek, yErtek);</pre>
+            <pre><code>ImageViewHelper.setImageViewPosition(imageViewValtozo, xErtek, yErtek);</code></pre>
 
             <p><em>(Ez a függvény egy általunk írt osztályban található. Mivel ebben a leckében saját projektet használtok, 
                 ezért <a href="/static/files/ImageViewHelper.java" target="_blank">ezt a java fájlt</a> le kell töltenetek, és be kell másolnotok a MainActivity.java fájl mellé.)</em></p>
@@ -478,7 +478,7 @@ golyoKep.setY(0); // fuggoleges
             <p>Futtasd a programot, és nézd meg, hogy működik-e. Előfordulhat, hogy a golyó a várttal ellentétes irányba indul el (x irányban). Ezt a hibát remélhetőleg könnyedén tudod javítani az előző lecke után ( <code>+</code> helyett <code>-</code> ).</p>
             <p>Ne feledd, a golyó ilyenkor még könnyedén kiléphet a telefon kijelzőjéről. Ezt az <a href="#starred1">első szorgalmiban</a> fogjuk orvosolni. Javasoljuk, hogy mindenki nézze ezt meg</p>
             <p>Ha esetleg úgy érzed, hogy a golyó nem mozog elég gyorsan, akkor próbáld az xGyorsulas változót megszorozni mondjuk 3-al. pl.:</p>
-            <pre>float ujY = yPos+ yGyorsulas * 3;</pre>
+            <pre><code>float ujY = yPos+ yGyorsulas * 3;</code></pre>
 
             <p>Ha végeztél és minden működik, töltsd fel a projektedet tömörített (pl zip) 
                 formátumban a <a href="http://goo.gl/UMyfuL" target="_blank">szakkör feltöltő oldalán</a> keresztül!</p>
@@ -504,24 +504,24 @@ golyoKep.setY(0); // fuggoleges
                 (de még az előtt, hogy az értékeiket tovább adnánk kerekítéssel a <code>posX</code> és <code>posY</code> változóknak), 
                 írunk 4 <code>if</code>-elágazást az alábbi formában</p>
 
-                <pre>
+                <pre><code>
 HA (ujX túl kicsi) {
     ujX = 0;
 }                
-                </pre>
+                </code></pre>
                 pl.:
-                <pre>
+                <pre><code>
 if (ujX < 0) {
   ujX = 0;
 }
-                </pre>
+                </code></pre>
                 A golyoKep méreteit a <code>golyoKep.getWidth()</code> és <code>golyoKep.getHeight()</code> függvényekkel lehet lekérdezni:
-                <pre>
+                <pre><code>
 if (ujX > root.getWidth() - golyoKep.getWidth())
 {
   ujX = root.getWidth() - golyoKep.getWidth();
 }
-                </pre>
+                </code></pre>
                 
                 <p>Most már a golyó nem fog eltűnni a képernyő bal és jobb oldalán.</p>
                 <p>A képernyő magassága ehhez hasonlóan megkapható a <code>root.getHeight()</code> függvénnyel. Ez alapján írjál még két elágazást, ami eléri, hogy a golyó ne tűnjön el a képernyő alján és tetején sem!</p>
@@ -564,7 +564,7 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
             <ul>
                 <li>Nyisd meg ismét az alkalmazás manifeszt fájlát (ezt nyitottuk meg a kijelző elforgatásának megakadályozásakor is a lecke elején). Bal oldalt az <code>app -> manifests -> AndroidManifest.xml</code></li>
                 <li>Az <code>application</code> pont fölé szúrd be az alábbi elemet: 
-                    <pre>&lt;uses-permission android:name="android.permission.VIBRATE"/&gt;</pre>
+                    <pre><code>&lt;uses-permission android:name="android.permission.VIBRATE"/&gt;</code></pre>
                 </li>
             </ul>
             <img src="/static/img/l07/vibrate1.png" class="center-block" />
@@ -592,7 +592,7 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
                         </li>
                         <li>
                             <p>Az eltelt időt a függvényed elején kiszámíthatod az alábbi képlettel:</p>
-                            <pre>float dt = (System.currentTimeMillis() - ido) / 1000.0)</pre>
+                            <pre><code>float dt = (System.currentTimeMillis() - ido) / 1000.0)</code></pre>
                         </li>
                         <li><p>Ne felejtsd el az <code>ido</code> változó kezdeti értékét is megadni. Ezt az <code>onCreate</code> függvényben teheted meg.</p></li>
                     </ul>
@@ -630,5 +630,6 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
     <link rel="stylesheet" href="/static/css/stsheet.css">
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>
@@ -159,9 +159,9 @@
                 <li>
                     Minden gombnak legyen egy saját kattintást kezelő függvénye. A kattintáskor
                     lefutó részt még nem tudjuk megírni, így a függvény törzsét üresen fogjuk hagyni. Pl.
-<pre>public void buttonSzavakOnClick(View v)  {
+<pre><code>public void buttonSzavakOnClick(View v)  {
     // TODO: a SzavakActivity megnyitása
-}</pre>
+}</code></pre>
                 <p>
                     A függvényeinket sorban fejezzük be, ahogy a többi Activity-k készülnek.</p>
             </ul>
@@ -191,9 +191,9 @@
                 <li>
                     <div class="possible-error">
                         Valószínűleg az új activity kódjának az elején ez a sor szerepel:
-                        <pre>public class AboutActivity extends <strong>ActionBarActivity</strong> {</pre>
+                        <pre><code>public class AboutActivity extends <strong>ActionBarActivity</strong> {</code></pre>
                         Ezt javítsd át erre:
-                        <pre>public class AboutActivity extends <strong>Activity</strong> {</pre>
+                        <pre><code>public class AboutActivity extends <strong>Activity</strong> {</code></pre>
                     </div>
                 </li>
                 <li>
@@ -234,18 +234,18 @@
             <p>
                 Most, hogy már többször is beírtátok/bemásoltátok az új activity-t megnyitó kódot,
                 nézzük meg kicsit közelebbről ezt a két sort!</p>
-<pre>public void aboutOnClick(View v) {
+<pre><code>public void aboutOnClick(View v) {
     Intent intent = new Intent(this, ValamiActivity.class);
     startActivity(intent);
-}</pre>
+}</code></pre>
             <p>
                 Az első sorban létrehozott <code>Intent</code> típusú változónk tárolja, hogy melyik Activity-t
                 szeretnénk megnyitni. Írd át úgy a parancsot, hogy SzavakActvity-t nyissa meg!
                 <button data-target="help_open_SzavakActivity" class="help-link">Katt a megoldáshoz!</button></p>
             <div class="help-container" id="help_open_SzavakActivity">
-<pre>
+<pre><code>
 Intent intent = new Intent(this, SzavakActvity.class);
-startActivity(intent);</pre>
+startActivity(intent);</code></pre>
             </div>
             
             <h3>Szavak tárolása</h3>
@@ -253,18 +253,18 @@ startActivity(intent);</pre>
                 Futólagos ismeretséget köthettünk már az előző leckék során a <code>String</code>
                 típussal. Emlékeztetésként: ez egy olyan típus, amely szövegeket tárol. Például
                 nézzük meg az alábbi változót:</p>
-<pre>String szoveg;
-szoveg = "kutya";</pre>
+<pre><code>String szoveg;
+szoveg = "kutya";</code></pre>
             <p>
                 A String típus azonban ennél sokkal többre is képes. A szöveg tartalmazhat szóközöket,
                 illetve akár (végre valahára) ékezetes karaktereket is! Például:</p>
-<pre>String szoveg2;
-szoveg2 = "Ez egy szép kis árvíztűrő tükörfúrógép";</pre>
+<pre><code>String szoveg2;
+szoveg2 = "Ez egy szép kis árvíztűrő tükörfúrógép";</code></pre>
             <p>
                 Innen jön az ötlet: egy magyar-angol szópárt könnyedén eltárolhatunk egy
                 String típusú változóban:</p>
-<pre>szo1 = "kutya = dog";
-szo2 = "macska = cat";</pre>
+<pre><code>szo1 = "kutya = dog";
+szo2 = "macska = cat";</code></pre>
             <p>
                 Azonban a mi programunk remélhetőleg rengeteg szót tárol majd, és mi nem 
                 igazán szeretnénk minden szóhoz új változót létrehozni.
@@ -279,17 +279,17 @@ szo2 = "macska = cat";</pre>
                     változót a <code><strong>SzavakActvity</strong></code>-n belül. Az onCreate függvényben pedig töltsük fel adatokkal.
                     Figyeld meg, hogy a tömbünket első használat előtt a <code>new</code> szóval létrehozzuk,
                     majd kapcsos zárójelek között felsoroljuk, hogy kezdetben milyen Stringek legyenek az elemei.<br/>
-                    <pre>szavak = new String[] {"kutya = dog", "macska = cat", "molylepke = moth"};</pre>
+                    <pre><code>szavak = new String[] {"kutya = dog", "macska = cat", "molylepke = moth"};</code></pre>
             </ul>
             <p>
                 A fentiek alapján akárhány Stringet (szöveget) megadhatunk kettősidézőjelek (<code>"</code>)
                 között, vesszővel elválasztva. Például: </p>
-            <pre>
+            <pre><code>
 szavak = new String[] { "kutya = dog", "macska = cat", "ló = horse", "tehén = cow", "állat = animal",
                         "iskola = school", "osztály = class", "osztályterem = classroom", "ceruza = pencil",
                         "vonalzó = ruler", "gondol = think", "érez = feel", "szeret = like", "ad = give",
                         "kap = get", "ékesszólás = eloquence", "kétkedő = incredulous", "egyszerű = trivial",
-                        "elkeseredés = exasperation", "győzedelmes = triumphant" };</pre>
+                        "elkeseredés = exasperation", "győzedelmes = triumphant" };</code></pre>
             <p>
             Vedd elő a saját szótárfüzetedet, és írj is be néhány olyan szót, amit Neked kell megtanulnod!
             </p>
@@ -332,8 +332,8 @@ szavak = new String[] { "kutya = dog", "macska = cat", "ló = horse", "tehén = 
                 Tehát jelenleg a szavaink egy String tömbben laknak, és ezeket szeretnénk megjeleníteni
                 a ListView komponensünkön. Nézzük meg az alábbi két sort, majd írjuk be az onCreate
                 függvényünk végére.</p>
-<pre>ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
-szolista.setAdapter(adapter);</pre>
+<pre><code>ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
+szolista.setAdapter(adapter);</code></pre>
             <p>
                 Nem kell teljességgel értenünk a fentieket; így is láthatjuk, hogy létrehoztunk egy
                 átalakítót (adaptert), ami segít a tömbünket a szolista (<code>ListView</code>) számára megemészthető
@@ -368,7 +368,7 @@ szolista.setAdapter(adapter);</pre>
             <p>
                 Emlékeztetésként: egy szópárt (magyar-angol) egy String-ben került tárolásra
                 <code>"magyar = angol"</code> formában. Tehát például:</p>
-                <pre>"küklopsz = cyclops", "szem = eye", stb.</pre>
+                <pre><code>"küklopsz = cyclops", "szem = eye", stb.</code></pre>
             <p>
                 Ez egy igen rugalmatlan módszer. Néhány példa, hogy miért <strong>nem</strong> szeretnénk így tárolni a szópárokat:</p>
             <ul>
@@ -461,7 +461,7 @@ szolista.setAdapter(adapter);</pre>
             </div>
             <p>
                 Most pedig másold be az alábbi kódot a <code>package...</code> sor alá, felülírva az Android Studio által írt sorokat:</p>
-<pre>public class Szo {
+<pre><code>public class Szo {
     public String magyar;
     public String angol;
 
@@ -477,7 +477,7 @@ szolista.setAdapter(adapter);</pre>
     }
 
     public Szo() {}
-}</pre>
+}</code></pre>
 
             <div id="interactive-class" class="interactive clearfix">
                 <div id="panels-container">
@@ -529,26 +529,26 @@ szolista.setAdapter(adapter);</pre>
                 <em>csak egy tervrajz</em>! Megmondja, hogy hogyan kell kinéznie egy Szo-nak.
                 Ezzel csak egy új típust hoztunk létre. Ahhoz, hogy igazán használni tudjuk, el kell
                 kezdenünk Szo típusú változókat gyártani. Ez a következő kóddal tehetjük meg:</p>
-<pre>Szo szo1;      // változó deklarálása
-szo1 = new Szo();   // új, üres szó létrehozása</pre>
+<pre><code>Szo szo1;      // változó deklarálása
+szo1 = new Szo();   // új, üres szó létrehozása</code></pre>
             
             <p>
                 Ilyenkor létrejön az új változónk. Ha be szeretnénk írni a szo1 változó magyar és
                 angol megfelelőit, akkor azt könnyedén megtehetjük:</p>
-<pre>szo1.magyar = "kutya";
-szo1.angol = "dog";</pre>
+<pre><code>szo1.magyar = "kutya";
+szo1.angol = "dog";</code></pre>
             <p>
                 Láthatjuk, hogy a szo1 mögé helyezett ponttal a szo1 változónk belső változóinak
                 adhatunk értéket (vagy olvashatjuk ki őket).</p>
             <p>
                 Mi most még ezen felül csalhatunk is egy kicsit, hogy ne kelljen három sort gépelni,
                 beírhatjuk az alábbit is:</p>
-<pre>Szo szo1;                  // változó deklarálása
-szo1 = new Szo("kutya", "dog"); // új szó létrehozása</pre>
+<pre><code>Szo szo1;                  // változó deklarálása
+szo1 = new Szo("kutya", "dog"); // új szó létrehozása</code></pre>
             <p>
                 Vagy ha még messzebb akarunk menni, akkor mindez egy sorba is leírható (a konstruktor miatt)!</p>
             <p>
-<pre>Szo szo1 = new Szo("kutya", "dog"); // változó deklarálása <strong>ÉS</strong> új szó létrehozása</pre>
+<pre><code>Szo szo1 = new Szo("kutya", "dog"); // változó deklarálása <strong>ÉS</strong> új szó létrehozása</code></pre>
 
             <h3>Belső függvény</h3>
             <p>
@@ -577,7 +577,7 @@ szo1 = new Szo("kutya", "dog"); // új szó létrehozása</pre>
                 Ha visszaemlékeztek, a lecke elején csináltunk egy tömböt, ami String-eket tudott tárolni,
                 és ezeket jelenítettük meg a <code>ListView</code>-ban. Ezt a String tömböt így deklaráltuk
                 az Activity kódjának elején.</p>
-<pre>String[] szavak;</pre>
+<pre><code>String[] szavak;</code></pre>
             <p>
                 Figyeld meg, hogy mi mit jelent/jelez! Először leírjuk, hogy milyen típusú objektumokat
                 szeretnénk belerakni, majd a <code>[]</code> karakterekkel megmondjuk, hogy nem egyet,
@@ -589,7 +589,7 @@ szo1 = new Szo("kutya", "dog"); // új szó létrehozása</pre>
                 Ezt hogyan tudnád elérni?
                 <button data-target="help_Szo_array" class="help-link">Segítség</button></p>
             <div class="help-container" id="help_Szo_array">
-                <pre>Szo[] szavak;</pre>
+                <pre><code>Szo[] szavak;</code></pre>
             </div>
             <p>
                 Ha a tömbünk típusát átírtuk, akkor a benne lakó adatokat is meg kell változtatni
@@ -600,24 +600,24 @@ szo1 = new Szo("kutya", "dog"); // új szó létrehozása</pre>
             <ul>
                 <li>
                     Ehhez vagy minden szónak kell csinálni egy új változót. Pl.
-<pre>
+<pre><code>
 Szo szo1 = new Szo("kutya", "dog");
 Szo szo2 = new Szo("cica", "cat");
 …
-szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
+szavak = new Szo[]{szo1, szo2, szo3};</code></pre></li>
                 <li>
                     Vagy az egyszerűség kedvéért írhatjuk ezt is:
-<pre>szavak = new Szo[] { new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("ló", "horse"), new Szo("tehén", "cow"), new Szo("állat", "animal"),
+<pre><code>szavak = new Szo[] { new Szo("kutya", "dog"), new Szo("macska", "cat"), new Szo("ló", "horse"), new Szo("tehén", "cow"), new Szo("állat", "animal"),
                      new Szo("iskola", "school"), new Szo("osztály", "class"), new Szo("osztályterem", "classroom"), new Szo("ceruza", "pencil"),
                      new Szo("vonalzó", "ruler"), new Szo("gondol", "think"), new Szo("érez", "feel"), new Szo("szeret", "like"), new Szo("ad", "give"),
                      new Szo("kap", "get"), new Szo("ékesszólás", "eloquence"), new Szo("kétkedő", "incredulous"), new Szo("egyszerű", "trivial"),
-                     new Szo("elkeseredés", "exasperation"), new Szo("győzedelmes", "triumphant") };</pre></li>
+                     new Szo("elkeseredés", "exasperation"), new Szo("győzedelmes", "triumphant") };</code></pre></li>
             </ul>
             <p>
                 Már csak annyi feladatunk van, hogy az adaptert is átállítsuk, hogy ne String-eket használjon,
                 hanem Szo típusú változókat. Ehhez keresd meg azt a részt, ahova ezt beírtad (onCreate):</p>
             <p>
-<pre>ArrayAdapter&lt;<strong>String</strong>&gt; adapter = new ArrayAdapter&lt;<strong>String</strong>&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
+<pre><code>ArrayAdapter&lt;<strong>String</strong>&gt; adapter = new ArrayAdapter&lt;<strong>String</strong>&gt;(this, android.R.layout.simple_list_item_1, szavak);</code></pre>
             <p>
                 És ahol <strong>String</strong>-et látsz, írd át <strong>Szo</strong>-ra
                 (2 helyen van, ezeket kiemeltük)!</p>
@@ -641,7 +641,7 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
             Futtasd a programot! Minden szónál kötőjel jelenik most már meg?
             </p>
             <div class="help-container" id="help_task1">
-                <pre>String sor =  magyar + " <strong>=</strong> " + angol;</pre>
+                <pre><code>String sor =  magyar + " <strong>=</strong> " + angol;</code></pre>
                 Láthatod, hogy a <code>magyar</code> szót, az <code>=</code> jelet és az <code>angol</code> szót hogyan fűzzük 
                 egymás után a + jelekkel. Nincs más dolgod, mint lecserélni itt az egyenlőségjelet egy kötőjelre!
             </div>
@@ -652,7 +652,7 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
                 angol-magyar sorrendben jelenítse meg!
                 <button data-target="help_task2" class="help-link">Megoldás</button></p>
             <div class="help-container" id="help_task2">
-                <pre>String sor = angol + " <strong>-</strong> " + magyar;</pre>
+                <pre><code>String sor = angol + " <strong>-</strong> " + magyar;</code></pre>
             </div>
         </section>
 
@@ -683,8 +683,8 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
                 <li>
                     Ebben a fájlban az <code>&lt;item</code> és a <code>/&gt;</code> közötti részben fogunk dolgozni.
                     Ezt a részt írd át, hogy pontosan így nézzen ki! (alatta megnézzük, hogy mi micsoda)
-<pre>&lt;item android:id="@+id/open_about" android:title="About"
-      android:orderInCategory="100" app:showAsAction="never" /&gt;</pre>
+<pre><code>&lt;item android:id="@+id/open_about" android:title="About"
+      android:orderInCategory="100" app:showAsAction="never" /&gt;</code></pre>
                     Az <code>android:id="@+id/xxxxxxxx"</code> a menü azonosítója, ugyan úgy, mint ahogy
                     a komponenseknek is van.
                     Az <code>android:title</code> rész tartalma (az idézőjelek között) az a szöveg,
@@ -699,11 +699,11 @@ szavak = new Szo[]{szo1, szo2, szo3};</pre></li>
                     Ahhoz, hogy a 3 pontos gomb megjelenjen, az <code>onCreateOptionsMenu</code> függvényt kell megírnunk
                     a MenuActivityben. Előfordulhat, hogy az AndroidStudio már generált ilyet, akkor azt kell
                     módosítani. A lényeg, hogy a végén így nézzen ki:
-<pre>@Override
+<pre><code>@Override
 public boolean onCreateOptionsMenu(Menu menu) {
     <strong>getMenuInflater().inflate(R.menu.menu, menu);</strong>
     return super.onCreateOptionsMenu(menu);
-}</pre>
+}</code></pre>
                     A kiemelt rész felelős azért, hogy amit megírtunk menu.xml fájl által leírt menü
                     megjelenjen a 3 pont megnyomásakor. (A részletekről szívesen mesélünk, de nem annyira
                     lényeges, ezért most nem mennénk bele a részletekbe.)
@@ -729,10 +729,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     gombnyomás után láthatod a megoldást.
                     <button data-target="help_onOptionsItemSelected" class="help-link">Megoldás</button></p>
                     <div class="help-container" id="help_onOptionsItemSelected">
-<pre>if (item.getItemId() == R.id.open_about) {
+<pre><code>if (item.getItemId() == R.id.open_about) {
     Intent intent = new Intent(this, AboutActivity.class);
     startActivity(intent);
-}</pre>
+}</code></pre>
                     </div></li>
             </ol>
         </section>
@@ -752,28 +752,28 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     Az interaktív részben láthattad, hogy a Szo objektumok <code>public String &lt;nyelv&gt;;</code>
                     belső változókban tárolják az adott nyelvű szavakat. Tehát az első lépés az, hogy felveszünk
                     egy új belső változót, a mi esetünkben így:</p>
-                <pre>public String nemet;</pre>
+                <pre><code>public String nemet;</code></pre>
                 <p class="task">
                     Ezt a már meglévő két nyelv alá írd be!</p>
                 <p>
                     Mostantól a régi módszerrel már megadható a német alakja is a szónak, így:</p>
-<pre>Szo szo1;      // változó deklarálása
+<pre><code>Szo szo1;      // változó deklarálása
 szo1 = new Szo();   // új, üres szó létrehozása
 szo1.angol = "dog";
 szo1.magyar = "kutya";
-<strong>szo1.nemet = "der Hund";</strong></pre>
+<strong>szo1.nemet = "der Hund";</strong></code></pre>
                 <p>
                     Persze jó lenne, ha másik módszer is használható lenne
                     (<code>new Szo("kutya", "dog", <strong>"der Hund"</strong>)</code>). Ehhez a konstruktort is
                     módosítani kell. (Melyik is a konstruktor? Nézd meg az iteraktív részben!)</p>
                 <p class="task">
                     Fel kell venni hozzá egy új paramétert:</p>
-                <pre>public Szo(String magyar, String angol<strong>, String nemet</strong>) { ...</pre>
+                <pre><code>public Szo(String magyar, String angol<strong>, String nemet</strong>) { ...</code></pre>
                 <p class="task">
                     Valamint a konstruktor törzsét is ki kell egészíteni:</p>
-<pre>this.magyar = magyar;
+<pre><code>this.magyar = magyar;
 this.angol = angol;
-this.nemet = nemet;</pre>
+this.nemet = nemet;</code></pre>
                 <p>Szuper, most már németül is el tudjuk tárolni a szavak jelentését (persze ehhez át kell írni
                     a tömb feltöltése rész, hogy a német alak is szerepeljen)! De ha most kipróbálod a programot,
                     akkor nem látsz semmilyen változást. Ahhoz, hogy a listában is megjelenjen a német alak,
@@ -782,7 +782,7 @@ this.nemet = nemet;</pre>
                     megpróbáltad átírni):
                     <button data-target="help_Szo_3rd_language" class="help-link">A Szo osztály új verziója</button></p>
                 <div class="help-container" id="help_Szo_3rd_language">
-<pre>public class Szo {
+<pre><code>public class Szo {
     public String magyar;
     public String angol;
     public String nemet;
@@ -800,7 +800,7 @@ this.nemet = nemet;</pre>
     }
 
     public Szo() {}
-}</pre>
+}</code></pre>
                 </div>
             </div>
         </section>
@@ -811,5 +811,6 @@ this.nemet = nemet;</pre>
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
     <link rel="stylesheet" href="/static/css/stsheet.css" />
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

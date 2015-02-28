@@ -1,12 +1,41 @@
+@import url("prism.css");
 body {
-    background-color: #f3f3f3;
+
+	
+	background: #a4c639;
+	background-image: -webkit-linear-gradient(-90deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png"); /* Chrome 10+, Saf5.1+ */
+	background-image: -moz-linear-gradient(180deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png");
+	background-image: -ms-linear-gradient(180deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png"); /* IE10 */
+	background-image: -o-linear-gradient(180deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png"); /* Opera 11.10+ */
+	background-image: linear-gradient(180deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png");
+
+	background-position: 50% 50%;
+	-webkit-background-origin: padding-box;
+	background-origin: padding-box;
+	-webkit-background-clip: border-box;
+	background-clip: border-box;
+	-webkit-background-size: auto auto;
+	background-size: auto auto;
+
     padding-top: 80px;
     text-align: justify;
 }
+
+
+
+::selection {
+  background: #39a4c6; /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+  background: #39a4c6; /* Gecko Browsers */
+  color: white;
+}
+
 .container {
     margin: 10px auto;
     background-color: white;
-    border-radius: 15px;
+    border-radius: 5px;
     border: 1px solid #aaa;
     padding: 20px 5%;
 
@@ -66,7 +95,7 @@ img.featherlight-image.featherlight-inner
 
 .possible-error {
     /*border: 1px solid #aaaaaa;*/
-    border: 1px solid red;
+    border: 2px solid #c65b39;
     font-style: italic;
     padding: 10px 20px;
     border-radius: 10px;
@@ -103,25 +132,29 @@ section {
 h1 {
 	font-weight: bold;
 	letter-spacing: 3px;
-        text-align: left;
+    text-align: left;
+	color: black;
 }
 
 h2 {
 	padding-top: 40px;
 	font-weight: bold;
 	letter-spacing: 1px;
+	color: black;
 }
 
 h3 {
 	padding-top: 30px;
 	font-weight: bold;
 	letter-spacing: 1px;
+	color: #303030;
 }
 
 h4 {
 	padding-top: 20px;
 	font-weight: bold;
 	letter-spacing: 1px;
+	color: #404040;
 }
 
 .task {
@@ -287,3 +320,66 @@ table.comparison td {
 .interactive .description p.selected {
     display: block;
 }
+
+/* NAVBAR */
+.navbar-default {
+padding-top: 10px;
+  background-color: #39a4c6;
+  border-color: #ffffff;
+}
+.navbar-default .navbar-brand {
+  color: #fbfcfc;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: #000000;
+}
+.navbar-default .navbar-text {
+  color: #fbfcfc;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #fbfcfc;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #000000;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #000000;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  color: #000000;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fbfcfc;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #fbfcfc;
+}
+.navbar-default .navbar-link {
+  color: #fbfcfc;
+}
+.navbar-default .navbar-link:hover {
+  color: #000000;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fbfcfc;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #000000;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #000000;
+    background-color: #ffffff;
+  }
+}
+

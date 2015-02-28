@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>
@@ -208,7 +208,7 @@
                             <p>Talán nézz <a href="/lessons/l04.html#lifecycle-methods" target="_blank">ide vissza</a></p>
                         </div></li>
                     <li><p>Ebben a függvényben rendeld hozzá a <code>sensorManager</code> változóhoz a <code>SENSOR_SERVICE</code> szolgáltatást.</p>
-                        <pre>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</pre></li>
+                        <pre><code>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</code></pre></li>
                 </ol>
 
                 <h4 class="task">2.2. feladat</h4>
@@ -234,7 +234,7 @@
                     <li>
                         A függvény törzsébe a már meglévő <code>super</code>super sor után írjuk be a következő sort, 
                         amivel megkeressük, hogy konkrétan melyik szenzorra szeretnénk feliratkozni:
-                        <pre>Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);</pre>
+                        <pre><code>Sensor proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);</code></pre>
                         <p>Ez talán némi magyarázatra szorulhat:</p>
                         <p>A sensorManager változónk a rendszer azon központi részére mutat, ami az összes szenzorral kapcsolatos dolgot kezeli. 
                             A fenti sorral lehet kérni a managertől egy adott funkciójú (<code>Sensor.TYPE_PROXIMITY</code>) változót, 
@@ -287,7 +287,7 @@
                     </li>
                     <li>
                         Ez alá írjuk meg a feliratkozást elvégző kódot:
-                        <pre>sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_UI);</pre>
+                        <pre><code>sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_UI);</code></pre>
                         <p>Mazarázat: A sensorManager megfelelő függvényét meghívva tudunk feliratkozni (regisztrálni) a szenzor által küldött adatokra. A függvények három paramétere van:</p>
                         <ul>
                             <li>ki szeretne feliratkozni (<code>this</code> – azaz ez az alkalmazás)</li>
@@ -386,7 +386,7 @@
                     tehát ez az Activity.
                     <p>Kell egy kis segítség? <button data-target="help_4" class="help-link">Katt!</button></p>
                     <div class="help-container" id="help_4">
-                        <pre>sensorManager.unregisterListener(this);</pre>
+                        <pre><code>sensorManager.unregisterListener(this);</code></pre>
                     </div>
                     </li>
             </ol>
@@ -490,5 +490,6 @@
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
     <link rel="stylesheet" href="/static/css/stsheet.css">
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

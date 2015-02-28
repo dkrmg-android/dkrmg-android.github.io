@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
 <header data-include="/include/header.html"></header>
 <div class="container">
     <h1>Haladó változók (elfedés)
@@ -106,16 +106,16 @@
     <p>
         Ha a változóink egy kicsit összetettebb típusokat tárolnak, akkor a kiolvasott értékkel akár
         komolyabb dolgokat is véghez vihetünk. Pl.:</p>
-    <pre>rezgoMotor.vibrate(); // végső soron ez is a rezgoMotor változó értékét olvassa ki, majd meghívja az egyik függvényét</pre>
+    <pre><code>rezgoMotor.vibrate(); // végső soron ez is a rezgoMotor változó értékét olvassa ki, majd meghívja az egyik függvényét</code></pre>
 
     <h2>Inicializálás</h2>
 
     <p>
         A változó inicializálása az első értékadás. Tehát pl.</p>
 
-<pre>
+<pre><code>
 int x;
-x = 5; // első értékadás</pre>
+x = 5; // első értékadás</code></pre>
 
     <p>
         <strong>Az inicializálásra mindig figyeljünk!</strong> Amíg nem inicializálunk, a változónk
@@ -128,7 +128,7 @@ x = 5; // első értékadás</pre>
     <p>
         A Java nyelvben a deklarációt és az inicializálást gyakran össze szokás vonni</p>
 
-        <pre>int x = 5;</pre>
+        <pre><code>int x = 5;</code></pre>
 
     <p>
         <strong>Itt azonban óvatosnak kell lennünk!</strong></p>
@@ -193,7 +193,7 @@ x = 5; // első értékadás</pre>
         Nézd meg az alábbi kódot, rajzold be a változók hatókörét, és nézd meg, hogy jól
         használjuk-e a változóinkat:</p>
 
-<pre>
+<pre><code>
 public class Gomb {
     Color szin;
     String felirat;
@@ -218,7 +218,7 @@ public class Gomb {
         }
         int x = 5;
     }
-}</pre>
+}</code></pre>
 
     <h2>Shadowing (elfedés)</h2>
 
@@ -264,7 +264,7 @@ public class Gomb {
         Melyik értékadás/olvasás melyik változóra vonatkozik? Használj színeket/nyilakat!</p>
 
     <p>
-<pre>
+<pre><code>
 public class Haromszog {
     int a;
     int b;
@@ -290,15 +290,15 @@ public class Haromszog {
         int b = 6;
         int c = 7;
     }
-}</pre>
+}</code></pre>
 
     <p>
         A fenti osztályt az alábbi módon használom:</p>
 
-<pre>
+<pre><code>
 haromszog = new Haromszog();
 haromszog.foo2();
-haromszog.nagyit(3);</pre>
+haromszog.nagyit(3);</code></pre>
 
     <p>
         Ezen a ponton a <code>haromszog.kerulet()</code> milyen értéket ad vissza?</p>
@@ -312,7 +312,7 @@ haromszog.nagyit(3);</pre>
 		Illetve vigyázz, az inicializálás értékadás is egyben.</em></p>
 
     <p>
-<pre>
+<pre><code>
 public class GolyoActivity extends ActionBarActivity implements SensorEventListener {
     SensorManager sensorManager;
     ImageView golyoKep;
@@ -347,12 +347,14 @@ public class GolyoActivity extends ActionBarActivity implements SensorEventListe
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
-}</pre>
+}</code></pre>
 
     </div>
 <footer data-include="/include/footer.html"></footer>
 <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
 <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 <link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/include/js/prism.js"></script>
+<script src="/include/js/prism.js"></script>
 </body>
 </html>

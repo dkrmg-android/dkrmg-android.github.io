@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
 <header data-include="/include/header.html"></header>
 <div class="container">
     <h1>9. lecke
@@ -168,20 +168,20 @@
                 alakítani!
                 <button data-target="help_gettext_from_ui" class="help-link">Lustábbaknak itt egy kis segítség</button>
                 <div class="help-container" id="help_gettext_from_ui">
-                    <pre>String magyar = hun.getText().toString();</pre>
+                    <pre><code>String magyar = hun.getText().toString();</code></pre>
                 </div>
             </li>
             <li>Új szó létrehozása: Erre sok példa volt az előző leckében, tessék puskázni!
                 Javasoljuk, hogy az új változód neve legyen <code>ujSzo</code>!
                 <button data-target="help_new_Szo" class="help-link">Segítség</button>
                 <div class="help-container" id="help_new_Szo">
-                    <pre>Szo ujSzo = new Szo(magyar, angol);</pre>
+                    <pre><code>Szo ujSzo = new Szo(magyar, angol);</code></pre>
                 </div>
             </li>
             <li>Új szó hozzáadása a szavak tömbhöz: Sajnos a tömb fix méretű adatszerkezet, ha
                 egyszer létre lett hozva, már nem lehet növelni a méretét. Amikor az onCreate-ben
                 létrehoztuk így:
-                <pre>szavak = new Szo[] {szo1, szo2, szo3};</pre>
+                <pre><code>szavak = new Szo[] {szo1, szo2, szo3};</code></pre>
                 akkor egy <strong>3 egység hosszú</strong> tömböt csináltunk, amibe nem fér bele egy
                 negyedik szó! <br/>
                 Bár ez a probléma áthidalható, az inkább haladóbb feladat. Az
@@ -221,10 +221,10 @@
         <h4>Néhány példa a használatára:</h4>
         <ul>
             <li><strong>Létrehozás:</strong><br/>
-                <pre>ArrayList&lt;Szo&gt; szavak = new ArrayList&lt;Szo&gt;();</pre>
+                <pre><code>ArrayList&lt;Szo&gt; szavak = new ArrayList&lt;Szo&gt;();</code></pre>
                 Ez egy kicsit eltér a tömbök deklarációjától, valószínűleg egy kis magyarázatra
                 szorul. Nézzük meg magát a változódeklarációt:
-                <pre>ArrayList&lt;Szo&gt; szavak;</pre>
+                <pre><code>ArrayList&lt;Szo&gt; szavak;</code></pre>
                 Látszik, hogy a változó neve továbbra is egyszerűen szavak (bármi más is lehetne) a
                 típusa viszont furcsa: két részből áll, az <code>ArrayList</code> megmondja, hogy ez
                 egy lista lesz, utána a <strong>két kacsacsőr között</strong> pedig azt kell
@@ -266,15 +266,15 @@
                 </table>
             </li>
             <li><strong>Hozzáadás:</strong><br/>
-<pre>Szo szo1 = new Szo("kutya”, "dog”);
-szavak.add(szo1); // hozzáadás egyetlen paranccsal!</pre>
+<pre><code>Szo szo1 = new Szo("kutya”, "dog”);
+szavak.add(szo1); // hozzáadás egyetlen paranccsal!</code></pre>
             </li>
             <li><strong>Kiolvasás:</strong><br/>
-                <pre>Szo azOtosIndexuSzo = szavak.get(5);</pre>
+                <pre><code>Szo azOtosIndexuSzo = szavak.get(5);</code></pre>
             </li>
             <li><strong>Törlés:</strong><br/>
-<pre>int index = 0; // így az első elemet fogja törölni. Itt is a nullás indexű elem az első!
-szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</pre>
+<pre><code>int index = 0; // így az első elemet fogja törölni. Itt is a nullás indexű elem az első!
+szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</code></pre>
             </li>
         </ul>
     </section>
@@ -289,14 +289,14 @@ szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</pre>
             <li>Az onCreate-ben most pirossal alá van húzva a szavak létrehozása. Ez azért van,
                 mert már nem tömb típusú a változó, de még úgy szeretnénk inicializálni, mintha tömb
                 lenne. Írjuk át ezt is:
-                <pre>szavak = new ArrayList&lt;Szo&gt;();</pre></li>
+                <pre><code>szavak = new ArrayList&lt;Szo&gt;();</code></pre></li>
             <li>Talán az egyetlen apróbb hátránya a listáknak, hogy nem annyira egyszerű a kezdeti
                 elemeket belepakolni, mint a tömbbe. Ezt a részt a következő leckében, korábbi ígéretünknek
                 megfelelően, átalakítjuk majd, hogy egy csinos kis fájlból olvassa be a szavakat.
                 Addig viszont írd át a kódot, hogy az alábbi mintát kövesse:
-<pre>szavak.add(new Szo("kutya”, "dog”));
+<pre><code>szavak.add(new Szo("kutya”, "dog”));
 szavak.add(new Szo("macska”, "cat”));
-// stb…</pre>
+// stb…</code></pre>
             </li>
             <li>Az adapter létrehozását nem kell módosítani. Hurrá!</li>
             <li>Most már be tudjuk fejezni a <a href="#add-word-steps1">félbehagyott onClick</a>
@@ -307,7 +307,7 @@ szavak.add(new Szo("macska”, "cat”));
                 A 3. pontot most már mindenki meg tudja oldani, ugye?
                 <button data-target="help_add_word_to_list" class="help-link">Segítség</button>
                 <div class="help-container" id="help_add_word_to_list">
-                    <pre>szavak.add(ujSzo);</pre>
+                    <pre><code>szavak.add(ujSzo);</code></pre>
                 </div></li>
             <li>Ha most kipróbálod a programot, azt láthatod, hogy sajnos nem igazán úgy működik,
                 ahogy szeretnénk: <em>gombnyomásra nem jelenik meg az új szó a listában!</em> Ez
@@ -324,7 +324,7 @@ szavak.add(new Szo("macska”, "cat”));
                         változót, aminek típusa <code>ArrayAdapter&lt;Szo&gt;</code>, neve <code>adapter</code>
                         legyen.</li>
                     <li>Az onCreate függvényben keressük meg ezt a sort:
-                        <pre>ArrayAdapter&lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</pre>
+                        <pre><code>ArrayAdapter&lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</code></pre>
                         és töröljük ki az elejéről az <code>ArrayAdapter&lt;Szo&gt;</code> részt.
                         Figyeld meg, hogy megváltozott az "adapter” változó színe! Ez azért van,
                         mert eddig úgynevezett <strong>lokális változó</strong> volt, azaz csak a
@@ -334,11 +334,11 @@ szavak.add(new Szo("macska”, "cat”));
             </li>
             <li>Menjünk vissza az onClick függvénybe, és a végén hívjuk meg a globális adapter
                 <code>notifyDataSetChanged()</code> belső függvényét:
-                <pre>adapter.notifyDataSetChanged();</pre></li>
+                <pre><code>adapter.notifyDataSetChanged();</code></pre></li>
             <li>A még jobb felhasználói élmény eléréséhez érdemes lenne szólni a felhasználónak,
                 hogy sikeresen hozzá lett adva az új szó: <br/>A függvény végén (de még a kapcsos
                 zárójelen belül!) jeleníts meg egy Toast-ot pl. ezzel a felirattal:
-                <pre>"Hozzáadva: <em>&lt;az új szó szöveges formája, mint a listában&gt;</em>"</pre>
+                <pre><code>"Hozzáadva: <em>&lt;az új szó szöveges formája, mint a listában&gt;</em>"</code></pre>
                 Figyelj, hogy itt most neked kell meghívnod az új szó toString függvényét!
 				Ha nem emlékszel a Toastokra, akkor puskázz a 
                 <a href="/gyik.html#Toast" target="_blank"> gyorssegély lapról</a>.
@@ -374,7 +374,7 @@ szavak.add(new Szo("macska”, "cat”));
 
         <p>A <code>SzavakActivity</code> <code>onCreate</code> függvényébe másold be az alábbi kódot:</p>
 
-<pre>lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+<pre><code>lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
     @Override
     public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, int position, long id) {
         // a szavak lista position-adik elemére kattintott a felhasználó
@@ -383,7 +383,7 @@ szavak.add(new Szo("macska”, "cat”));
 
         return true; // ez fontos, ezzel jelezzük a rendszernek, hogy tudomásul vettük a hosszú érintést.
     }
-});</pre>
+});</code></pre>
 
         <p>A fenti sorokból ijesztőnek tűnhetnek, de most elég annyit megérteni belőlük, hogy: 
         <strong>A fenti kód megmondja, hogy a <code>lista</code> változó <code>OnItemLongClick</code> eseményénél mi történjen.</strong>
@@ -406,7 +406,7 @@ szavak.add(new Szo("macska”, "cat”));
                 bele a törlendő szót! (Olvass vissza, hogy hogyan kell a listából kiolvasni egy adott elemet!).
                 <button data-target="help_get_word_to_delete" class="help-link">Segítség</button>
                 <div class="help-container" id="help_get_word_to_delete">
-                    <pre>Szo torlendo = szavak.get(position);</pre>
+                    <pre><code>Szo torlendo = szavak.get(position);</code></pre>
                 </div>
             </li>
             <li>A szó törlését puskázd ki fentebbről
@@ -424,7 +424,7 @@ szavak.add(new Szo("macska”, "cat”));
             <button data-target="help_full_delete_word" class="help-link">Megoldás</button>
         </p>
             <div class="help-container" id="help_full_delete_word">
-<pre>lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+<pre><code>lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
     @Override
     public boolean onItemLongClick(AdapterView&lt;?&gt; parent, View view, int position, long id) {
         // keressük ki a törlendő szót
@@ -440,7 +440,7 @@ szavak.add(new Szo("macska”, "cat”));
 
         return true;
     }
-});</pre>
+});</code></pre>
                 <p>Ne felejtsd el, hogy ezt az onCreate-be kell beírnod!</p>
             </div>
     </section>
@@ -462,5 +462,6 @@ szavak.add(new Szo("macska”, "cat”));
 <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
 <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 <link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/include/js/prism.js"></script>
 </body>
 </html>

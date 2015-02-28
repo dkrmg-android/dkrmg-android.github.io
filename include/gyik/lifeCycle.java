@@ -1,3 +1,4 @@
+<code class="language-java">
 @Override
 protected void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
@@ -21,3 +22,4 @@ protected void onPause() {
 protected void onDestroy() {
   super.onDestroy();
 }
+</code>

@@ -13,7 +13,7 @@
     <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
         type="text/css" rel="stylesheet" title="Featherlight Styles" />
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>
@@ -95,11 +95,11 @@
             </ul>
             <h4>Üres osztály</h4>
             <p>Kezdésként nézzük meg, hogy miként fest egy olyan Java osztály, aminek nincs se tulajdonsága, se cselekvése</p>
-            <pre>
+            <pre><code>
 public class Kutya {
 
 }            
-            </pre>
+            </code></pre>
             <p>Az egész Java fájlodban nincs más, csak ez a néhány sor!
             Nem hiszed, hogy létezik ilyen egyszerű program? Nézd meg, működik ez Android Studioval is:</p>
             <img src="/static/img/oop/03_kutya.png" class="center-block"/>
@@ -113,11 +113,11 @@ public class Kutya {
             <p>De mi ezt le tudjuk írni a már ismert osztály ábrával is!</p>
             <img src="/static/img/oop/04_teglalap.png" class="center-block" />
             <p>A Teglalap osztály a tulajdonságok és cselekvések nélkül így néz ki:</p>
-            <pre>
+            <pre><code>
 public class Teglalap {
 
 }             
-            </pre>
+            </code></pre>
             <h4>Tulajdonságok és cselekvések</h4>
             <p>Most töltsük ki a hiányzó dolgokat! A szabály nagyon egyszerű:</p>
             <ul>
@@ -128,14 +128,14 @@ public class Teglalap {
             <p><strong>Változók</strong></p>
             <p>Ugyebár a változó egy olyan <em>valami, aminek neve és típusa van</em>. Pont mint egy tulajdonság!</p>
             <p>Mik voltak a Teglalap osztály tulajdonságai? A két oldal hossza (a, b). Ha feltételezzük, hogy ezek mindig egész számok (mondjuk milliméterben), akkor a programunk alig változik</p>
-            <pre>
+            <pre><code>
 public class Teglalap {
     
     int a;
     int b;
 
 }              
-            </pre>
+            </code></pre>
             <p>A tulajdonságainknak (változóknak) ott van a típusa és a neve. Ilyen egyszerű!</p>
             <p>Figyeld meg, hogy az osztály első és utolsó sora tényleg nem változott! Gondolhatsz erre úgy, mint egy képkeretre, ami körbe foglalja a munkádat, és igény szerint nő.</p>
             <p><strong>Cselekvések</strong></p>
@@ -149,7 +149,7 @@ public class Teglalap {
             </ul>
             <p>Utóbbira azért van szükség, mert itt mondhatjuk el végre, hogy az adott cselekvés mit is jelent pontosan. Például ha tudjuk, hogy miként lehet kiszámolni a téglalap területét, akkor
             semmi nem tart vissza minket a Teglalap osztály befejezésétől: </p>
-            <pre>
+            <pre><code>
  public class Teglalap {
     
     int a;
@@ -161,7 +161,7 @@ public class Teglalap {
     }
 
 }            
-            </pre>
+            </code></pre>
             <p>
                 Látod, hogy mi történt? A függvény első sora megmutatja, hogy mi a függvény neve (stb.), a kapcsos zárójelek között peidg beírtuk azt a programot, amit az adott cselekvéskor szeretnénk lefuttatni.
                 Tehát ha valaki megkérdezi mostantól bármely téglalp területét, akkor ez a pár sor fog lefutni a programunkból. Se több, se kevesebb.
@@ -181,7 +181,7 @@ public class Teglalap {
                 <li><strong>Függvények.</strong> Csak írd be a függvény nevét, és legyenek zárójelek</li>
             </ul>
             <p>Pl.</p>
-            <pre>
+            <pre><code>
  public class Kutya {
     
     Szöveg név;
@@ -194,7 +194,7 @@ public class Teglalap {
     // stb.
 
 }              
-            </pre>
+            </code></pre>
             <p>Ezt is emailben várjuk! :)</p>
 
             <h4>Figyeljünk a kapcsos zárójelekre. Életet mentenek!</h4>
@@ -206,7 +206,7 @@ public class Teglalap {
                 cselekvést az osztályomba, az osztály első és utolsó sora mindig ugyanaz marad!</p>
             <p>Hasonlóan, írhatok akármilyen bonyolult cselekvéseket, függvényeket. A függvény nyitó és záró kapcsos zárójeleit akkor sem piszkálhatom.</p>
             <p>Tehát például az alábbi is egy szerkezetileg helyes (kissé befejezetlen) program:</p>
-            <pre>
+            <pre><code>
 package hu.dkrmg.android.razor;
 
 public class MorseCode {
@@ -247,7 +247,7 @@ public class MorseCode {
         }
     }
 }          
-            </pre>
+            </code></pre>
             <h4 class="task">4. feladat</h4>
             <p>Vedd az előbb mutatott nagyon bonyolult kódot, és keresd meg benne az ismert részeket.</p>
             <em>Javasoljuk, hogy print screennel fényképezd le az oldalt és jelöld be painttel a megoldásokat. Vagy tedd ét a szöveget Word-be, és ott színezd ki. pl a betűszín átállításával! :)</em>
@@ -265,7 +265,7 @@ public class MorseCode {
             <p>Sikerült megtalálni a változókat és a függvényeket az előző bonyolult kódban? Akkor talán most már láthatod, hogy milyen fontos ez a rendszer. Most mutatunk egy ismerős, hibátlan, 
             ámde rendszerezetlen kódot a negyedik leckéből.</p>
             <p>Hol van az osztály kezdete és vége? Hol vannak a változók (tulajdonságok)? Hol vannak a cselekvések (függvények)? Számold a kapcsos zárójeleket, és ennek alapján válaszolj (emailben)</p>
-            <pre>
+            <pre><code>
 package hu.dkrmg.android.razor;
 
 import android.app.Activity;
@@ -300,11 +300,11 @@ public class MainActivity extends Activity {
                  super.onResume();}
              }
 
-            </pre>
+            </code></pre>
             <p>A gond az, hogy a szép kis kapcsos zárójeles képkeretünk kicsit megrongálódott. Az osztályt lezáró zárójel </p>
             <p>Igazítsd meg úgy a kódot, hogy átláthatóbb legyen! Ne feledd, a függvények és a tulajdonságok függőlegesen mindig egy sorban kezdődnek!</p>
             <p>Egy kis segítség:</p>
-            <pre>
+            <pre><code>
 public class Kutya {
 
     int kor;
@@ -326,7 +326,7 @@ public class Kutya {
     }
 
 }   // az osztály vége
-            </pre>
+            </code></pre>
         <p>
         <h2>És hogy ezt az egészet miért is olvastad el?</h2>
         <p>Remélhetőleg most már érted: az Activity, ami a programunk szíve és lelke. Amiben az eddigi Java kódunkat is írtuk, nem más, mint egy osztály.</p>
@@ -366,5 +366,6 @@ public class Kutya {
     <script src="/include/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 	<link rel="stylesheet" href="/static/css/stsheet.css">
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>

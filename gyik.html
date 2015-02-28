@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
 </head>
-<body>
+<body class="language-java">
     <header data-include="/include/header.html"></header>
     <div class="container">
         <h1>Gyakran ismételt kérdések
@@ -54,18 +54,18 @@
             <img />
             <div class="caption">
                 Hozzál létre egy változót az Activity elején. Például ha egy gombra akarsz hivatkozni:
-                <pre>Button gomb1;</pre>
+                <pre><code>Button gomb1;</code></pre>
             </div>
             <img />
             <div class="caption">
                 Keresd meg a komponensedet az <strong>id</strong> tulajdonsága alapján, majd rendeld hozzá a változódhoz.
                 Például ha a gombunk <strong>id</strong> tulajdonsága <em>button1</em>:
-                <pre>gomb1 = findViewByID(R.id.<strong>button1</strong>);</pre>
+                <pre><code>gomb1 = findViewByID(R.id.<strong>button1</strong>);</code></pre>
             </div>
             <img />
             <div class="caption">
                 Innentől nyugodtan használhatod a változód összes belső függvényét. Például megváltoztathatod a szövegét:
-                <pre>gomb1.setText("Az új szöveg");</pre>
+                <pre><code>gomb1.setText("Az új szöveg");</code></pre>
             </div>
 		</section>
 
@@ -132,7 +132,7 @@
         <section class="gyik" id="Toast">
             <h3>Toast (felbukkanú üzenet)</h3>
             <div class="description">
-                <pre>Toast.makeText(this, "Ez a szöveg fog megjelenni", Toast.LENGTH_LONG).show();</pre>
+                <pre><code>Toast.makeText(this, "Ez a szöveg fog megjelenni", Toast.LENGTH_LONG).show();</code></pre>
             </div>
 		</section>
 
@@ -141,25 +141,25 @@
             <img src="/static/img/gyik/VibratorManifest.png">
             <div class="caption"> 
                 <p>A manifeszt fájlban engedélyt kell kérnünk a rendszertől a rezgő motor használatához</p>
-                <pre>&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;</pre>
+                <pre><code class="language-markup">&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;</code></pre>
             </div>
             
             <img />
             <div class="caption">
                 <p>Hozzunk létre egy <code>Vibrator</code> típusú, <code>rezgoMotor</code> nevű változót.</p>
-                <pre>Vibrator rezgoMotor;</pre>
+                <pre><code>Vibrator rezgoMotor;</code></pre>
             </div>
 
             <img />
             <div class="caption">
                 <p>Adjunk értéket a <code>rezgoMotor</code> változónak (pl. az <code>onCreate</code> függvényben)</p>
-                <pre>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</pre>
+                <pre><code>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</code></pre>
             </div>
 
             <img />
             <div class="caption">
                 <p>rezegtessük a telefont tetszőleges ideig (az időt ezredmásodpercekben adhatjuk meg)</p>
-                <pre>rezgoMotor.vibrate(1000);</pre>
+                <pre><code>rezgoMotor.vibrate(1000);</code></pre>
             </div>
 		</section>
 
@@ -171,7 +171,7 @@
             <div class="caption"> </div>
 
             <div class="description">
-                <pre data-include="/include/gyik/lifeCycle.java"></pre>
+                <pre class="language-java" data-include="/include/gyik/lifeCycle.java"></pre>
             </div>
 		</section>
 
@@ -179,17 +179,17 @@
             <h3>Elágazások (if)</h3>
             <img/>
             <div class="caption">
-                <pre>
+                <pre><code>
 if (<em>feltétel</em>) {
 
   // csinálj valamit ha igaz
 
 }
-                </pre>
+                </code></pre>
             </div>
             <img/>
             <div class="caption">
-                <pre>
+                <pre><code>
 if (<em>feltétel</em>) {
 
   // csinálj valamit ha igaz
@@ -199,7 +199,7 @@ if (<em>feltétel</em>) {
   // egyébként csináld ezt
 
 }
-                </pre>
+                </code></pre>
             </div>
 
         </section>
@@ -208,16 +208,16 @@ if (<em>feltétel</em>) {
             <img src="/static/img/l06/06_rot.png" class="center-block">
             <div class="caption"> 
                 <p>A <code>kep</code> változó elforgatásához (ha annak típusa <code>ImageView</code></p>
-                <pre>kep.setRotation(30); // forgatás 30 fokkal</pre>
+                <pre><code>kep.setRotation(30); // forgatás 30 fokkal</code></pre>
             </div>
 
             <img/>
             <div class="caption"> 
             <p>A <code>kep</code> változó áthelyezéséhez (ha annak típusa <code>ImageView</code></p>
-            <pre>
+            <pre><code>
 kep.setX(0); // vizszintes
 kep.setY(0); // fuggoleges            
-            </pre>
+            </code></pre>
             </div>
 
             <div class="description">
@@ -233,9 +233,9 @@ kep.setY(0); // fuggoleges
             <img/>
             <div class="caption"> 
                 <p>Az <code>AboutActivity</code> megnyitásához hozzunk létre egy <code>Intent</code> típusú változót, majd indítsuk el a <code>startActivity</code> függvénnyel.</p>
-                <pre>
+                <pre><code>
 Intent intent = new Intent(this, AboutActivity.class);
-startActivity(intent);</pre>
+startActivity(intent);</code></pre>
             </div>
 		</section>
 
@@ -249,16 +249,16 @@ startActivity(intent);</pre>
             <img />
             <div class="caption">
                 Hozz létre egy <code>ListView</code> típusú változót, és adj neki értéket az <strong>id</strong> tulajdonsága alapján.
-                <pre>lista = findViewByID(R.id.<strong>lista</strong>);</pre>
+                <pre><code>lista = findViewByID(R.id.<strong>lista</strong>);</code></pre>
             </div>
 
             <img src="/static/img/l08/adapter2.png" >
             <div class="caption">
                 <p>Jelenítsük meg egy <code>String</code> tömb (<code>String[]</code>) vagy lista (<code>ArrayList&lt;String&gt;</code>) elemeit
                     egy adapter segítségével.</p>
-                <pre>
+                <pre><code>
 ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
-lista.setAdapter(adapter);</pre>
+lista.setAdapter(adapter);</code></pre>
             </div>
 
 		</section>
@@ -268,20 +268,20 @@ lista.setAdapter(adapter);</pre>
             <img/>
             <div class="caption"> 
                 Szenzor manager változó deklarálása az osztály elején
-                <pre>SensorManager sensorManager;</pre>
+                <pre><code>SensorManager sensorManager;</code></pre>
             </div>
             <img/>
             <div class="caption"> 
                 Szenzor manager megkeresése és hozzárendelése a változóhoz (onCreate függvényben)
-                <pre>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</pre>
+                <pre><code>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</code></pre>
             </div>
 
             <img src="/static/img/gyik/listener1.png"/>
             <div class="caption">
                 Felkészülés az üzenetek fogadására az Activity kódban:
-                <pre>implements SensorEventListener</pre>
+                <pre><code>implements SensorEventListener</code></pre>
                 új függvények:
-                <pre>
+                <pre><code>
 @Override
 public void onSensorChanged(SensorEvent sensorEvent) {
 
@@ -291,27 +291,27 @@ public void onSensorChanged(SensorEvent sensorEvent) {
 public void onAccuracyChanged(Sensor sensor, int i) {
 
 }
-                </pre>
+                </code></pre>
             </div>
 
             <img/>
             <div class="caption"> 
                 Fel- és leiratkozás. Pl. közelségérzékelő
-                <pre>
+                <pre><code>
 @Override
 protected void onResume() {
   super.onResume();
   Sensor kozelseg = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
   sensorManager.registerListener(this, or, SensorManager.SENSOR_DELAY_UI);
 }
-                </pre>
-                <pre>
+                </code></pre>
+                <pre><code>
 @Override
 protected void onPause() {
   super.onPause();
   manager.unregisterListener(this);
 }
-                </pre>
+                </code></pre>
             </div>
 		</section>
     </div>
@@ -382,5 +382,6 @@ protected void onPause() {
     <script src="/static/js/faqUtils.js"></script>
     <!-- Featherlight needs to be loadad here to automatically discover images. -->
     <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+	<script src="/include/js/prism.js"></script>
 </body>
 </html>
