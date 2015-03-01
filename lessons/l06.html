@@ -165,7 +165,7 @@
                 Javasoljuk, hogy <a href="/lessons/l05.html#task_1" target="_blank">lapozz vissza</a>, ha bizonytalan vagy. 
                 Különben pedig itt a <a href="/gyik.html#listener" target="_blank">Gyorssegély</a> is.</p>
             <ol>
-                <li>írd be a public class IranytuActivity&hellip; sor megfelelő pontjára az implements SensorEventListener szavakat. Így jelezve, hogy képes az Activity-nk üzeneteket fogadni. 
+                <li>írd be a public class IranytuActivity&hellip; sor megfelelő pontjára az implements SensorEventListener szavakat. Így jelezve, hogy képes az Activitynk üzeneteket fogadni. 
                     <span><img src="/static/img/l06/05_implements.png" /></span></li>
                 <li>Írd meg az onSensorChanged és az onAccuracyChanged függvények vázát.
                     <ul>
@@ -280,7 +280,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
         <section id="aboutActivity">
             <h2>About Activity</h2>
             <em>Amikor kilépünk az egy ablakos programok világából.</em>
-            <p>Egészen idáig az alkalmazásaink mindig egyetlen Activity-t használtak. 
+            <p>Egészen idáig az alkalmazásaink mindig egyetlen Activityt használtak. 
                 Egyetlen képernyőt tölthettek meg tartalommal. Sokszor előfordul azonban, 
                 hogy ez a megkötés egyszerűen túl szigorú. Például a programunk beállításait, 
                 vagy további tartalmat érdemes lehet külön ablakokba helyezni.</p>
@@ -296,23 +296,23 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 hogy ki is készítette a programot!</p>
             <img src="/static/img/l06/08_aboutAct.png" class="center-block" />
             <p>Mi is szeretnénk, hogy legyen egy about ablakunk. Az Android világában 
-                az ablakoknak vagy oldalaknak az Activity-k felelnek meg; így hát nincs mit tenni, 
-                létre kell hoznunk egy újabb Activity-t, ami gombnyomásra nyílik meg az iránytűs ablakból.</p>
-            <p>Eddig ugyebár egy darab Activity-vel dolgoztunk, amit ebben a leckében IranytuActivity-nek hívnak.  
+                az ablakoknak vagy oldalaknak az Activityk felelnek meg; így hát nincs mit tenni, 
+                létre kell hoznunk egy újabb Activityt, ami gombnyomásra nyílik meg az iránytűs ablakból.</p>
+            <p>Eddig ugyebár egy darab Activityvel dolgoztunk, amit ebben a leckében IranytuActivitynek hívnak.  
                A terv most az, hogy létrehozunk egy új activityt, amit az <code>IranytuActivity</code>-ből érünk el egy gombnyomással.</p>
             <img src="/static/img/l06/10_actFSM.png" class="center-block" />
         </section>
         
         <section id="newActivity">
             <h3>Új activity létrehozása</h3>
-            <p>Az új Activity-t néhány lépéssel létre lehet hozni. Figyelj, 
+            <p>Az új Activityt néhány lépéssel létre lehet hozni. Figyelj, 
                 nehogy elronts valamit, mert ezen a ponton nehéz utólag javítani a hibákat.</p>
             <ol>
                 <li>Jobb gombbal kattints az app pontra a projektedben
                     <img src="/static/img/l06/act0.png" class="center-block" />
                 </li>
                 <li>Válaszd ki a <code>New->Activity->Blank Activiy</code> pontot. 
-                    Ezzel annyit mondtunk, hogy egy üres Activity-t szeretnénk létrehozni.
+                    Ezzel annyit mondtunk, hogy egy üres Activityt szeretnénk létrehozni.
                     <img src="/static/img/l06/act1.png" class="center-block" />
                 </li>
                 <li>
@@ -325,7 +325,7 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                     <img src="/static/img/l06/act3.png" class="center-block" />
                 </li>
             </ol>
-            <p>Ne is féljünk az új Activity-től (nem harap), nyissuk meg a layout szerkesztőjét, 
+            <p>Ne is féljünk az új Activitytől (nem harap), nyissuk meg a layout szerkesztőjét, 
                 és írjuk át a hello world szöveget valami tartalmasabbra. 
                 Például hogy ki mikor és miért készítette ezt az alkalmazást.</p>
             <img src="/static/img/l06/act4.png" class="center-block" />
