@@ -27,7 +27,7 @@
             <p>
                 Az első hét lecke elkészítése után nem túlzás azt mondani, hogy sikeresen vetted az Android
                 programozás talán legnagyobb akadályait. Feltelepítetted az Android Studiot, megírtad az
-                első önálló alkalmazásaidat, saját Activity-ket hoztál létre, használatba vetted a rezgőmotort
+                első önálló alkalmazásaidat, saját Activityket hoztál létre, használatba vetted a rezgőmotort
                 és három különböző érzékelőt is. Ehhez meg kellett tanulnod a layout szerkesztő használatát és
                 a Java nyelv alapjait. Gratulálunk!</p>
             <p>
@@ -52,13 +52,13 @@
             <p>
                 A mostani leckénk célja nem lesz más, mint egy egyszerű <em>szótárfüzet program</em> megírása.
                 Az applikáció készítése közben megismerkedünk majd a listákkal és azok megjelenítésével,
-                négy Activity-vel zsonglőrködünk egyszerre, ezáltal tényleg megtapasztalva az igazi
+                négy Activityvel zsonglőrködünk egyszerre, ezáltal tényleg megtapasztalva az igazi
                 Android fejlesztés nehézségeit. A végeredmény viszont egy teljes, használható
                 applikáció lesz (puskázó appal kombinálva kéretik tanóra keretein belül nem használni!)</p>
 
             <h3>A program részei</h3>
             <p>
-                Az általunk tervezett program négy Activity-ből fog állni. Ennek a gyorsan
+                Az általunk tervezett program négy Activityből fog állni. Ennek a gyorsan
                 rajzolt (wireframe) terveit itt láthatjátok. Javasoljuk, hogy ismerkedj meg az
                 ábrán szereplő ablakokkal, és vagy másold le, vagy térj vissza ide minden
                 alkalommal, mielőtt munkához látsz. <em>A kép kattintással nagyítható</em></p>
@@ -81,7 +81,7 @@
                     <strong>Menü (MenuActivity)</strong><br/>
                     Egy ekkora programnak kell egy kezdőképernyő, ahonnan a különböző ablakokra
                     navigálhatunk. Pofon egyszerű, három gomb, három click függvény, ami a
-                    megfelelő Activity-t hívja meg.</li>
+                    megfelelő Activityt hívja meg.</li>
             </ul>
             
             <p>
@@ -124,7 +124,7 @@
                 <li>
                     <code>API 19</code> kiválasztása</li>
                 <li>
-                    A varázslóval a kiinduló activity-t is létre kell hozni, ennek neve
+                    A varázslóval a kiinduló activityt is létre kell hozni, ennek neve
                     legyen <code>MenuActivity</code>.</li>
             </ul>
             <p>
@@ -141,7 +141,7 @@
             </p>
             <p>
                 Ez a menü ablak tényleg pofon egyszerű. Összesen három gombra lesz csak szükségünk,
-                melyek a megfelelő Activity-ket nyitják meg. A megnyitás kódját egyelőre nem tudjuk
+                melyek a megfelelő Activityket nyitják meg. A megnyitás kódját egyelőre nem tudjuk
                 megírni (ehhez hiányozik a maradék három Activity).</p>
             <p>
                 Amit már most meg tudunk csinálni:</p>
@@ -163,7 +163,7 @@
     // TODO: a SzavakActivity megnyitása
 }</code></pre>
                 <p>
-                    A függvényeinket sorban fejezzük be, ahogy a többi Activity-k készülnek.</p>
+                    A függvényeinket sorban fejezzük be, ahogy a többi Activityk készülnek.</p>
             </ul>
         </section>
 
@@ -173,7 +173,7 @@
             <p>
                 Ismétlés a tudás anyja, mondták már sokan, és milyen igazuk van! Ismételjünk most mi
                 is egy kicsit. A 6. lecke (Iránytű) <a href="/lessons/l06.html#newActivity" target="_blank">végén</a>
-                létrehoztunk egy második Activity-t, ami a készítő nevét tartalmazta. Csináljunk egy
+                létrehoztunk egy második Activityt, ami a készítő nevét tartalmazta. Csináljunk egy
                 ilyen About Activityt ehhez az alkalmazáshoz is. Annak örülnénk a legjobban, ha minél
                 több eszetekbe jutna, de persze ha elakadtok szabad puskázni a 6. lecke leírásából.</p>
             <p>
@@ -187,7 +187,7 @@
                 <li>
                     Activity neve: AboutActivity</li>
                 <li>
-                    Layout szerkesztővel alakítsuk ki az új activity-t (activity_about.xml) tetszés szerint</li>
+                    Layout szerkesztővel alakítsuk ki az új activityt (activity_about.xml) tetszés szerint</li>
                 <li>
                     <div class="possible-error">
                         Valószínűleg az új activity kódjának az elején ez a sor szerepel:
@@ -198,7 +198,7 @@
                 </li>
                 <li>
                     Írjuk be azt a két soros kódot, ami megnyitja az About ablakunkat. Mivel az
-                    AboutActivity-t a menüből akarjuk megnyitni, ezért ez a menü activitynk Java kódjába
+                    AboutActivityt a menüből akarjuk megnyitni, ezért ez a menü activitynk Java kódjába
                     kell, hogy kerüljön, az egyik gombkattintást kezelő függvénybe azok közül, amit
                     az előző pontban hoztunk létre.</li>
             </ul>
@@ -219,28 +219,28 @@
                 <img src="/static/img/l08/szavak.png" class="center-block" />
             </p>
             <p>
-                Szuper, most már van egy "névjegy" activity-nk (AboutActivity) és egy kiinduló menü
+                Szuper, most már van egy "névjegy" activitynk (AboutActivity) és egy kiinduló menü
                 activitynk, ahonnan az alkalmazás funkciói lesznek elérhetőek. Ideje elkészítenünk
                 az első funkciót, a szavak kilistázását! A cél tehát: egy Activity, ami megjeleníti a
                 program által ismert szavak listáját.</p>
             
             <h3>Üres Activity létrehozása, megnyitása</h3>
             <p>
-                A fentiek mintájára adjunk hozzá a projekthez még egy activity-t (puska
+                A fentiek mintájára adjunk hozzá a projekthez még egy activityt (puska
                 <a href="/lessons/l06.html#newActivity" target="_blank">itt</a>) <code>SzavakActivity</code> néven, aminek
                 a típusa legyen továbbra is <em>Blank Activity</em>!
-                <strong>Figyelj rá, hogy itt is írd át az ActionBarActivity-t sima Activity-re!</strong></p>
+                <strong>Figyelj rá, hogy itt is írd át az ActionBarActivityt sima Activityre!</strong></p>
             
             <p>
-                Most, hogy már többször is beírtátok/bemásoltátok az új activity-t megnyitó kódot,
+                Most, hogy már többször is beírtátok/bemásoltátok az új activityt megnyitó kódot,
                 nézzük meg kicsit közelebbről ezt a két sort!</p>
 <pre><code>public void aboutOnClick(View v) {
     Intent intent = new Intent(this, ValamiActivity.class);
     startActivity(intent);
 }</code></pre>
             <p>
-                Az első sorban létrehozott <code>Intent</code> típusú változónk tárolja, hogy melyik Activity-t
-                szeretnénk megnyitni. Írd át úgy a parancsot, hogy SzavakActvity-t nyissa meg!
+                Az első sorban létrehozott <code>Intent</code> típusú változónk tárolja, hogy melyik Activityt
+                szeretnénk megnyitni. Írd át úgy a parancsot, hogy SzavakActvityt nyissa meg!
                 <button data-target="help_open_SzavakActivity" class="help-link">Katt a megoldáshoz!</button></p>
             <div class="help-container" id="help_open_SzavakActivity">
 <pre><code>
@@ -323,7 +323,7 @@ szavak = new String[] { "kutya = dog", "macska = cat", "ló = horse", "tehén = 
                 Ezeket fogjuk lecserélni a saját szavainkra.</p>
             <p>
                 Mielőtt megnézzük a String tömb megjelenítéséhez szükséges <em>mágikus parancsot</em>, 
-                hozzunk létre egy <code>ListView</code> típusú változót a SzavakActivity-ben, mondjuk <code>szolista</code>
+                hozzunk létre egy <code>ListView</code> típusú változót a SzavakActivityben, mondjuk <code>szolista</code>
                 néven, és rendeljük hozzá a ListView komponensünkhöz (ilyet már sokszor csináltunk a
                 <code>findViewById</code> paranccsal)! <em>Ugye adtál id-t a ListView komponensnek?</em></p>
             
@@ -351,7 +351,7 @@ szolista.setAdapter(adapter);</code></pre>
             </div>
             <p>
                 Futtassuk le a programot. Ha minden igaz, akkor a Menüből a megfelelő gombra kattintva
-                eljutunk a Szavak activity-re, ahol ott sorakoznak a kódban megadott szavak.</p>
+                eljutunk a Szavak activityre, ahol ott sorakoznak a kódban megadott szavak.</p>
         </section>
 
 
@@ -724,7 +724,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     Remélhetőleg erről rögtön az if-szerkezet jut eszedbe. Érdemes átnézni
                     <a href="http://goo.gl/VWkLlk" target="_blank">a harmadik lecke 2. pdf-ének 3. oldalán</a>!</li>
                 <li>Próbáld meg ezek alapján magadtól megírni, hogy ha az open_about id-jű menüsort
-                    nyomták meg, akkor nyissa meg az AboutActivity-t! Kis segítség: a menüsor
+                    nyomták meg, akkor nyissa meg az AboutActivityt! Kis segítség: a menüsor
                     id-ja így kérdezhető le: <code>item.getItemId()</code> Ha elakadsz, vagy ellenőrzésképp
                     gombnyomás után láthatod a megoldást.
                     <button data-target="help_onOptionsItemSelected" class="help-link">Megoldás</button></p>
