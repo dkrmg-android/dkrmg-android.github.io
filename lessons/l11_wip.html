@@ -63,6 +63,7 @@
             <p>
                 Létre kell hoznunk egy új Activityt a kvíz ablaknak, és meg kell írnunk azokat a
                 program sorokat, amik a kikérdezésért felelősek.</p>
+            <img src="/static/img/l11/wireframe2.png" class="center-block" />
         </section>
 
         <section id="brief">
@@ -70,7 +71,9 @@
             <p>
                 Ez a lecke kísértetiesen hasonlít ahhoz a munkához, amit a <a href="http://goo.gl/VWkLlk"
                     target="_blank">harmadik</a> leckében kellett elvégeznünk. Érdemes lehet gyorsan
-                átfutni, hogy ott mi is történt. *** TODO harmadik leckés ábra átrajzolása ***.
+                átfutni, hogy ott mi is történt.</p>
+            <img src="/static/img/l11/sketch.png" class="center-block" />
+            <p>
                 A következő különbségeket észben tartva javasolnánk, hogy próbáld meg először a
                 harmadik lecke alapján megoldani a feladatot, és akkor nézz csak bele a lenti leírásba,
                 ha elakadtál. Az online szakkörök szépségét is mutatja, hogy csak rajtad múlik mennyit
@@ -102,6 +105,7 @@
                 vissza, hogy milyen lépéseket kell elvégezned! <a href="/lessons/l06.html#newActivity"
                     target="_blank">L06</a>, <a href="/lessons/l08.html#about-activity" target="_blank">
                         L08</a>.</p>
+            <img src="/static/img/l06/act1.png" class="center-block">
             <ol>
                 <li>
                     <p>
@@ -112,7 +116,7 @@
                         Ne felejtsd el a <code>MenuActivity</code> megfelelő gombjánál beállítani, hogy
                         kattintásra meg is nyissa a <code>KvizActivity</code> ablakunkat. Ehhez a szükséges
                         parancsot a korábbi leckékben, illetve a <a href="/gyik.html#OpenActivity" target="_blank">
-                            gyorssegély</a> lapon is megtalálod (*** TODO esetleg egy kép?***)</p>
+                            gyorssegély</a> lapon is megtalálod</p>
                 </li>
             </ol>
         </section>
@@ -120,7 +124,7 @@
         <section id="ui">
             <h2>Felhasználói felület</h2>
             <p>
-                *** TODO wireframe és layout ***</p>
+               <img src="/static/img/l11/layout.png" class="center-block"></p>
             <p>
                 Több mint tíz leckével a hátunk mögött amolyan bemelegítő gyakorlatként alakítsuk
                 ki a kvíz ablakunk felhasználói felületet. Iránymutatásként a lépések:</p>
@@ -153,6 +157,8 @@
                 <code>textSize</code>, <code>hint </code>tulajdonságokat. Ezekre példákat a korábbi
                 leckékben is láthattál már!</p>
             <p>
+            <p>Ne feledd, hogy azokhoz a komponensekhez, amikre kódból is hivatkozni szeretnél, létre kell hoznod egy-egy változót is. 
+                Ilyet is sokszor csináltunk már: az értéküket az <code>onCreate</code> függvényben adtuk meg a <code>findViewById</code> segítségével.</p>
                 <strong>Próbáld meg még most önállóan végiggondolni, hogy mi mindennek kell történnie
                     a gomb megnyomásakor (írd le papírra!).</strong></p>
         </section>
@@ -262,9 +268,8 @@
             </ol>
         </section>
 
+        <h2>Kitérő - Két String összehasonlítása</h2>
         <div class="misc-info" id="string_comparison">
-            <p class="lead"><strong>Kitérő - Két String összehasonlítása</strong></p>
-
             <p>
                 A harmadik leckében megtanultuk, hogy a Java nyelvben milyen egyszerűen össze tudunk
                 hasonlítani két számot (pl. <code>a</code> és <code>b</code> változókból)</p>
@@ -566,8 +571,8 @@ SharedPreferences.Editor editor = prefs.edit(); editor.clear(); editor.commit();
             <li>
                 <p>
                     A layout szerkesztőben rakjunk össze egy egyszerű, kétsoros layoutot, valami hasonlót,
-                    mint a képen látható. (*** TODO kép, Drive/8-11. lecke/list_item_szo.png ***) A
-                    TextViewknak adjunk id-t is, pl.: <code>nyelvek</code> és <code>statisztika</code>.</p>
+                    mint a képen látható. A TextViewknak adjunk id-t is, pl.: <code>nyelvek</code> és <code>statisztika</code>.</p>
+                <img src="/static/img/l11/list_item_szo.png" class="center-block" />
             </li>
         </ol>
         <h3>A saját adapter:</h3>
