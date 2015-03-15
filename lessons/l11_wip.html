@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>L10 - Szótár (4) (DKRMG Android Szakkör)</title>
+    <title>L11 - Szótár (4) (DKRMG Android Szakkör)</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -18,436 +18,374 @@
 <body class="language-java">
 <header data-include="/include/header.html"></header>
 <div class="container">
-   
-<h1>
-11. lecke
-</h1>
-*** TODO: NEM TUDTAM KONVERTÁLNI EZT: Szótár - 3. rész. HEADING: Subtitle ***
-<h1>
-Hol tartunk most?
-</h1>
+	<h1>11. lecke
+		<small>Szótár (4)</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p></h1>
+	<hr/>
+<h1>Hol tartunk most?</h1>
 <p>
-Ez a szótárfüzet alkalmazás projekt negyedik - és egyben utolsó - leckéje. Gyorsan összegeznénk, hogy miként fest majd a kész program, mennyit sikerült ebből megvalósítani az előző leckékben, illetve milyen munkát tartogat a mostani segédanyag.
-</p>
-<h3>
-A program részei
-</h3>
+Ez a szótárfüzet alkalmazás projekt negyedik - és egyben utolsó - leckéje. Gyorsan összegeznénk, hogy miként fest majd a kész program, mennyit sikerült ebből megvalósítani az előző leckékben, illetve milyen munkát tartogat a mostani segédanyag.</p>
+
+
+<h3>A program részei</h3>
 <p>
-Az általunk tervezett program négy Activity-ből áll. 
-</p>
-<p>
-***TODO wireframe ***
-</p>
-<ol>
-<li>
-Szavak (SzavakActivity)
-</li>
-<li>
-Kulcsfontosságú része az alkalmazásnak. Itt listáztuk ki az előző leckében is a szavakat
-</li>
-<li>
-Kvíz (KvizActivity)
-</li>
-<li>
-Ez az Activity segít majd minket a nyelvtanulásban. A program véletlenszerűen kérdez tőlünk szavakat.
-</li>
-<li>
-About (AboutActivity)
-</li>
-<li>
-Egyszerű kis Activity, ami rólad, azaz a program készítőjéről ad egy kicsit több információt. Ezzel már készen vagyunk
-</li>
-<li>
-Menü (MenuActivity)
-</li>
-<li>
-Egy ekkora programnak kell egy kezdőképernyő, ahonnan a különböző ablakokra navigálhatunk. Az előző leckében ezzel is majdnem teljesen elkészültünk.
-</li>
-</ol>
-<h3>
-Emlékeztetésként
-</h3>
+Az általunk tervezett program négy Activity-ből áll.</p>
+
+
+<p><img src="/static/img/l08/wireframe.png" class="center-block"/></p>
+        <ul>
+            <li><strong>Szavak (SzavakActivity)</strong><br/>
+                Kulcsfontosságú része az
+                alkalmazásnak. Itt listáztuk ki az előző leckében is a szavakat</li>
+            <li><strong>Kvíz (KvizActivity)</strong><br/>
+                Ez az Activity segít majd minket a
+                nyelvtanulásban. A program véletlenszerűen kérdez tőlünk szavakat</li>
+            <li><strong>About (AboutActivity)</strong><br/>
+                A 6. leckéhez hasonlóan egy egyszerű kis
+                Activity, ami rólad, azaz a program készítőjéről ad egy kicsit több információt (pl.
+                név, email cím stb.)</li>
+            <li><strong>Menü (MenuActivity)</strong><br/>
+                Egy ekkora programnak kell egy
+                kezdőképernyő, ahonnan a különböző ablakokra navigálhatunk. Pofon egyszerű, három
+                gomb, három click függvény, ami a megfelelő Activityt hívja meg.</li>
+        </ul>
+		
+<h3>Emlékeztetésként</h3>
 <p>
 Az előző leckékben  írtunk egy névjegy (about) activityt, illetve teljesen elkészítettük a menünket és a SzavakActivityt. A szavakat egy külső fájlból olvassuk be az SD kártyáról, amit a programunk szépen kilistáz, ráadásul újabb szavakat is hozzáadhatunk / a 
-nem kívánatos szavakat kitörölhetjük menet közben.
-</p>
-<h3>
-Tehát mi maradt a mai napra?
-</h3>
+nem kívánatos szavakat kitörölhetjük menet közben.</p>
+
+
+<h3>Tehát mi maradt a mai napra?</h3>
 <p>
-Létre kell hoznunk egy új Activityt a kvíz ablaknak, és meg kell írnunk azokat a program sorokat, amik a kikérdezésért felelősek.
-</p>
-<h3>
-Nem csináltunk mi már valami hasonlót?
-</h3>
+Létre kell hoznunk egy új Activityt a kvíz ablaknak, és meg kell írnunk azokat a program sorokat, amik a kikérdezésért felelősek.</p>
+
+
+<h3>Nem csináltunk mi már valami hasonlót?</h3>
 <p>
-Ez a lecke kísértetiesen hasonlít ahhoz a munkához, amit a <a href="http://goo.gl/VWkLlk">harmadik</a> leckében kellett elvégeznünk. Érdemes lehet gyorsan átfutni, hogy ott mi is történt.  *** TODO harmadik leckés ábra átrajzolása ***. A következő 
+Ez a lecke kísértetiesen hasonlít ahhoz a munkához, amit a <a href="http://goo.gl/VWkLlk" target="_blank">harmadik</a> leckében kellett elvégeznünk. Érdemes lehet gyorsan átfutni, hogy ott mi is történt.  *** TODO harmadik leckés ábra átrajzolása ***. A következő 
 különbségeket észben tartva javasolnánk, hogy próbáld meg először a harmadik lecke alapján megoldani a feladatot, és akkor nézz csak bele a lenti leírásba, ha elakadtál. Az online szakkörök szépségét is mutatja, hogy csak rajtad múlik mennyit tanulsz a lecke 
-elvégzése közben:
-</p>
+elvégzése közben:</p>
+
+
 <ol>
 <li>
-Az Activity indulásakor (onCreate) be kell olvasnunk a szólistát. Ezt egy az egyben ugyanúgy tehetjük meg, mint a SzavakActivityben,
-</li>
+Az Activity indulásakor (onCreate) be kell olvasnunk a szólistát. Ezt egy az egyben ugyanúgy tehetjük meg, mint a SzavakActivityben,</li>
 <li>
-A telefon most nem egy számra gondol, hanem egy szóra. Ennek a generálásához használjuk a listánk get és size belső függvényeit és a véletlenszám-generátort.
-</li>
+A telefon most nem egy számra gondol, hanem egy szóra. Ennek a generálásához használjuk a listánk get és size belső függvényeit és a véletlenszám-generátort.</li>
 <li>
-A szó helyességének ellenőrzésekor ne használjuk az egyenlőség jelet. Két String összehasonlításához a Java nyelvben sajnos más módszerhez kell folyamodnunk (equals belső függvény). Erről részletesebben itt ***TODO link a lecke megfelelő pontjára***
-</li>
+A szó helyességének ellenőrzésekor ne használjuk az egyenlőség jelet. Két String összehasonlításához a Java nyelvben sajnos más módszerhez kell folyamodnunk (equals belső függvény). Erről részletesebben itt ***TODO link a lecke megfelelő pontjára***</li>
 </ol>
-<h2>
-Új Activity
-</h2>
+<h2>Új Activity</h2>
 <p>
-A program folyamán többször is létre kellett már hoznunk új Activityket. Olvass kicsit vissza, hogy milyen lépéseket kell elvégezned! <a href="http://dkrmg-android.github.io/lessons/l06.html#newActivity">L06</a>, <a href=
-"http://dkrmg-android.github.io/lessons/l08.html#about-activity">L08</a>.
-</p>
+A program folyamán többször is létre kellett már hoznunk új Activityket. Olvass kicsit vissza, hogy milyen lépéseket kell elvégezned! <a href="/lessons/l06.html#newActivity" target="_blank">L06</a>,
+<a href="/lessons/l08.html#about-activity" target="_blank">L08</a>.</p>
+
+
 <ol>
 <li>
-Az activity neve legyen KvizActivity.
-</li>
+Az activity neve legyen KvizActivity.</li>
 <li>
-Ne felejtsd el a MenuActivity megfelelő gombjánál beállítani, hogy kattintásra meg is nyissa a KvizActivity ablakunkat. Ehhez a szükséges parancsot a korábbi leckékben, illetve a gyorssegély lapon is megtalálod (*** TODO esetleg egy kép?***)
-</li>
+Ne felejtsd el a MenuActivity megfelelő gombjánál beállítani, hogy kattintásra meg is nyissa a KvizActivity ablakunkat. Ehhez a szükséges parancsot a korábbi leckékben, illetve a gyorssegély lapon is megtalálod (*** TODO esetleg egy kép?***)</li>
 </ol>
-<h2>
-Felhasználói felület
-</h2>
+<h2>Felhasználói felület</h2>
 <p>
-*** TODO wireframe és layout ***
-</p>
+*** TODO wireframe és layout ***</p>
+
+
 <p>
-Több mint tíz leckével a hátunk mögött amolyan bemelegítő gyakorlatként alakítsuk ki a kvíz ablakunk felhasználói felületet. Iránymutatásként a lépések:
-</p>
+Több mint tíz leckével a hátunk mögött amolyan bemelegítő gyakorlatként alakítsuk ki a kvíz ablakunk felhasználói felületet. Iránymutatásként a lépések:</p>
+
+
 <ol>
 <li>
-Helyezz el egy szöveget (TextView), ami a szó magyar formáját írja majd ki! Ne felejtsd el beállítani a szöveg id tulajdonságát, hogy menet közben le tudjuk cseréni!
-</li>
+Helyezz el egy szöveget (TextView), ami a szó magyar formáját írja majd ki! Ne felejtsd el beállítani a szöveg id tulajdonságát, hogy menet közben le tudjuk cseréni!</li>
 <li>
-Alá rakj egy szövegdobozt (EditText). Ide kell majd a szavunkat beírni angolul. Ennek is legyen id azonosítója, hogy a beírt szót könnyedén ki tudjuk nyerni.
-</li>
+Alá rakj egy szövegdobozt (EditText). Ide kell majd a szavunkat beírni angolul. Ennek is legyen id azonosítója, hogy a beírt szót könnyedén ki tudjuk nyerni.</li>
 <li>
-Hozz létre egy gombot, ami majd ellenőrzi a megoldást. 
-</li>
+Hozz létre egy gombot, ami majd ellenőrzi a megoldást.</li>
 <li>
-Alulra pedig tegyél egy újabb TextView-t, ahol gombnyomásra kiírjuk, hogy helyes volt-e az előző válaszunk!
-</li>
+Alulra pedig tegyél egy újabb TextView-t, ahol gombnyomásra kiírjuk, hogy helyes volt-e az előző válaszunk!</li>
 </ol>
 <p>
 Az így elkészült Activity elég primitíven néz ki. Próbáld meg egy kicsit kicsinosítani különböző színek és képek használatával. Használd például a <code>background</code>, <code>textSize</code>, <code>hint </code>tulajdonságokat. Ezekre példákat a korábbi 
-leckékben is láthattál már!
-</p>
+leckékben is láthattál már!</p>
+
+
 <p>
-<strong>Próbáld meg még most önállóan végiggondolni, hogy mi mindennek kell történnie a gomb megnyomásakor (írd le papírra!).</strong> 
-</p>
-<h2>
-Szavak beolvasása
-</h2>
+<strong>Próbáld meg még most önállóan végiggondolni, hogy mi mindennek kell történnie a gomb megnyomásakor (írd le papírra!).</strong></p>
+
+
+<h2>Szavak beolvasása</h2>
 <p>
-Ez a rész pont ugyanúgy működik, mint az <a href="http://dkrmg-android.github.io/lessons/l10.html#readFile">előző leckében</a>. A kódot nem is fogjuk itt teljes egészében újra megadni. Amire figyelj:
-</p>
+Ez a rész pont ugyanúgy működik, mint az <a href="/lessons/l10.html#readFile" target="_blank">előző leckében</a>. A kódot nem is fogjuk itt teljes egészében újra megadni. Amire figyelj:</p>
+
+
 <ol>
 <li>
-Szükséged lesz egy ArrayList változóra, ahova a szavakat be tudod olvasni
-</li>
+Szükséged lesz egy ArrayList változóra, ahova a szavakat be tudod olvasni</li>
 <li>
-Az ArrayListedet első használat előtt létre kell hoznod a new szó használatával.
-</li>
+Az ArrayListedet első használat előtt létre kell hoznod a new szó használatával.</li>
 <li>
-Nyitsd meg a fájlt, majd soronként dolgozd fel a tartalmát (mint az előző leckében)
-</li>
+Nyitsd meg a fájlt, majd soronként dolgozd fel a tartalmát (mint az előző leckében)</li>
 <li>
-Az egész szólistát nem jeleníted meg sehol, így nem lesz szükséged Adapter-re.
-</li>
+Az egész szólistát nem jeleníted meg sehol, így nem lesz szükséged Adapter-re.</li>
 </ol>
-<h2>
-Szó kiválasztása
-</h2>
+<h2>Szó kiválasztása</h2>
 <p>
 Ahhoz, hogy a program véletlenszerűen kérdezhessen tőlünk szavakat, szükségünk van egy véletlenszám generátorra. A harmadik leckében rendelkezésünkre állt egy randomGenerator nevű változó (ha nem emlékszel, lapozz vissza!). Akkor ezt a változót az előkészített 
-projektben találtad. Nyolc lecke elteltével viszont azt reméljük, hogy te magad is létre tudod hozni!
-</p>
+projektben találtad. Nyolc lecke elteltével viszont azt reméljük, hogy te magad is létre tudod hozni!</p>
+
+
 <ol>
 <li>
-Készíts egy Random típusú változót randomGenerator néven (a KvizActivity osztályodban). 
-</li>
+Készíts egy Random típusú változót randomGenerator néven (a KvizActivity osztályodban).</li>
 <li>
-Az onCreate függvényben értéket kell adnunk a változónknak. randomGenerator = new Random();
-</li>
+Az onCreate függvényben értéket kell adnunk a változónknak. randomGenerator = new Random();</li>
 <li>
-Emlékszel, hogy a randomGenerator  változó ezt követően hogyan adott nekünk újabb és újabb véletlen számokat? 
-</li>
+Emlékszel, hogy a randomGenerator  változó ezt követően hogyan adott nekünk újabb és újabb véletlen számokat?</li>
 </ol>
 <p>
-A kvíz ablakunktól elvárnánk, hogy rögtön egy magyar szóval fogadja a felhasználót az ablak tetején. Ehhez az <code>onCreate</code>-ben, miután beolvastuk a fájlból a szavakat, meg kell írni, hogy:
-</p>
+A kvíz ablakunktól elvárnánk, hogy rögtön egy magyar szóval fogadja a felhasználót az ablak tetején. Ehhez az <code>onCreate</code>-ben, miután beolvastuk a fájlból a szavakat, meg kell írni, hogy:</p>
+
+
 <ol>
 <li>
-Válasszon ki egy véletlen szót a listából. Véletlen szavakat a randomGenerator nem tud létrehozni, ő csak a számokat ismeri. Ezért:
-</li>
+Válasszon ki egy véletlen szót a listából. Véletlen szavakat a randomGenerator nem tud létrehozni, ő csak a számokat ismeri. Ezért:</li>
 <li>
-használd a listád size() függvényét, hogy megtudd hány szó közül választhatsz.
-</li>
+használd a listád size() függvényét, hogy megtudd hány szó közül választhatsz.</li>
 <li>
-Emlékszel? ez a parancs létre hozott neked egy véletlen számot, ami ***gte*** 0 és ***lt*** 100: int gondoltSzam = randomGenerator.nextInt(100); 
-</li>
+Emlékszel? ez a parancs létre hozott neked egy véletlen számot, ahol <code>0 &le; szám &lt; 100</code>: int gondoltSzam = randomGenerator.nextInt(100);</li>
 <li>
-Most készíts egy véletlen számot, ami ***gte*** 0 és ***lt*** a lista mérete. 
-</li>
+Most készíts egy véletlen számot, ami ***gte*** 0 és ***lt*** a lista mérete.</li>
 <li>
-Ha sikerült a megfelelő tartományban létrehoznod egy számot, akkor kérd le a lista megfelelő elemét. Ehhez használd a lista get(gondoltSzam) parancsát!
-</li>
+Ha sikerült a megfelelő tartományban létrehoznod egy számot, akkor kérd le a lista megfelelő elemét. Ehhez használd a lista get(gondoltSzam) parancsát!</li>
 <li>
-Létrehoztál egy véletlen szót! Most ezt mentsd el egy globális változóba. Ezt a változót is a KvizActivityben hozd létre, mondjuk gondoltSzo néven.*** TODO segítség popupban ***
-</li>
+Létrehoztál egy véletlen szót! Most ezt mentsd el egy globális változóba. Ezt a változót is a KvizActivityben hozd létre, mondjuk gondoltSzo néven.*** TODO segítség popupban ***</li>
 <li>
-Végül írd ki a gondolt szó magyar alakját a kijelzőre (készítettünk erre egy TextView-t).
-</li>
+Végül írd ki a gondolt szó magyar alakját a kijelzőre (készítettünk erre egy TextView-t).</li>
 </ol>
-<h2>
-Két String összehasonlítása
-</h2>
+<h2>Két String összehasonlítása</h2>
 <p>
-*** KITÉRŐ***
-</p>
+*** KITÉRŐ***</p>
+
+
 <p>
-A harmadik leckében megtanultuk, hogy a Java nyelvben milyen egyszerűen össze tudunk hasonlítani két számot (pl. <code>a</code> és <code>b</code> változókból)
-</p>
+A harmadik leckében megtanultuk, hogy a Java nyelvben milyen egyszerűen össze tudunk hasonlítani két számot (pl. <code>a</code> és <code>b</code> változókból)</p>
+
+
+<p><pre>
+<code>if (a == b) {
+    // ez történik, ha a két szám egyenlő
+} else {
+    //ez a rész akkor fut le, ha a két szám nem egyenlő
+}</pre></code></p>
+
+
 <p>
-<code>if (a == b) {</code>
-</p>
-<p>
-<code>    // ez történik, ha a két szám egyenlő</code>
-</p>
-<p>
-<code>} else {</code>
-</p>
-<p>
-<code>    //ez a rész akkor fut le, ha a két szám nem egyenlő</code>
-</p>
-<p>
-<code>}</code>
-</p>
-<p>
-Tehát két szám egyenlőségét a <code>==</code> jellel tudtuk ellenőrizni.
-</p>
+Tehát két szám egyenlőségét a <code>==</code> jellel tudtuk ellenőrizni.</p>
+
+
 <p>
 A rossz hír az, hogy a Java nyelvben a kicsit összetettebb típusok (osztályok) egyenlőségét már nem ússzuk meg ilyen egyszerűen. Még rosszabb hír az, hogy a szövegek (<code>String</code>) is összetettnek számítanak ebből a szempontból. Ha meg akarjuk nézni, 
-hogy két String egyenlő-e, akkor ehhez az egyik változónk <code>equals </code>belső függvényét kell használnunk. Pl.
-</p>
-<p>
-<code>String egyik = “kutya”;</code>
-</p>
-<p>
-<code>String masik = “macska”;</code>
-</p>
-<p>
-<code>if (egyik.equals(masik)) {</code>
-</p>
-<p>
-<code>    // ez történne, ha a két szó egyenlő lenne</code>
-</p>
-<p>
-<code>} else {</code>
-</p>
-<p>
-<code>    // ez történik, ha a két szó nem egyenlő. Mégpedig kutya nem egyenlő macska :)</code>
-</p>
-<p>
-<code>}</code>
-</p>
+hogy két String egyenlő-e, akkor ehhez az egyik változónk <code>equals </code>belső függvényét kell használnunk. Pl.</p>
+
+
+<p><pre>
+<code>String egyik = "kutya";
+String masik = "macska";
+if (egyik.equals(masik)) {
+    // ez történne, ha a két szó egyenlő lenne
+} else {
+    // ez történik, ha a két szó nem egyenlő. Mégpedig kutya nem egyenlő macska :)
+}</code></pre></p>
+
+
 <p>
 <em>Érdemes megjegyezni a következő trükköt: csak olyan változóknál használhatjuk a == jelet, ahol a változók típusának neve kisbetűvel kezdődik. pl. int, long, float. Ha a típus nagybetűvel kezdődik, akkor az <code>equals</code> belső függvényre kell 
-hagyatkoznunk.</em>
-</p>
-<h2>
-Tipp ellenőrzése (gombnyomásra)
-</h2>
+hagyatkoznunk.</em></p>
+
+
+<h2>Tipp ellenőrzése (gombnyomásra)</h2>
 <p>
 Korábban összeszedted, hogy minek is kell történnie, amikor a felhasználó megnyomja a gombot. Most próbáld meg a saját leírásod alapján (a <code>String</code> összehasonlításra vonatkozó részt felhasználva) megírni a gomb <code>onClick</code> függvényét. ***  
-Itt megnézheted, hogy mi mire gondoltunk!  - alapból elrejtve, kattintásra megjelenik ***
-</p>
+Itt megnézheted, hogy mi mire gondoltunk!  - alapból elrejtve, kattintásra megjelenik ***</p>
+
+
 <ol>
 <li>
-beírt tipp kiolvasása az EditTextből a getText függvénnyel. **** gombnyomásra: Ha a tipp szövegmezőjét a tippMezo változóban taartjuk, akkor String tipp = tippMezo.getText();***
-</li>
+beírt tipp kiolvasása az EditTextből a getText függvénnyel. **** gombnyomásra: Ha a tipp szövegmezőjét a tippMezo változóban taartjuk, akkor String tipp = tippMezo.getText();***</li>
 <li>
-A korábban kiválasztott szó angol alakjának és a beírt tippnek az összehasonlítása
-</li>
+A korábban kiválasztott szó angol alakjának és a beírt tippnek az összehasonlítása</li>
 <li>
-eredmény kijelzése (háttér átszínezése, “helyes” megoldás kiírása, vagy  egy újabb TextView komponensre)
-</li>
+eredmény kijelzése (háttér átszínezése, "helyes" megoldás kiírása, vagy  egy újabb TextView komponensre)</li>
 <li>
-új szó kiválasztása a listából, elmentése külön változóba és a magyar alak kiírása a TextView-ra. Ez ugyanaz, mint az az onCreate függvénybe beírt kódunk.
-</li>
+új szó kiválasztása a listából, elmentése külön változóba és a magyar alak kiírása a TextView-ra. Ez ugyanaz, mint az az onCreate függvénybe beírt kódunk.</li>
 </ol>
 <p>
-*** TODO gomb, benne a kész függvénytörzs ***
-</p>
-<h2>
-Vége. Vagy mégsem?
-</h2>
+*** TODO gomb, benne a kész függvénytörzs ***</p>
+
+
+<h2>Vége. Vagy mégsem?</h2>
 <p>
-Ha idáig eljutottál, akkor már van egy használható digitális szótárfüzeted, ami ráadásul ki is tudja kérdezni a szavakat! Gratulálunk!
-</p>
+Ha idáig eljutottál, akkor már van egy használható digitális szótárfüzeted, ami ráadásul ki is tudja kérdezni a szavakat! Gratulálunk!</p>
+
+
 <p>
 Ha jobban belegondolunk, akkor azért ez még elég messze van a jól, és élvezetesen használható, alkalmazástól. Alább összeszedtünk jó pár ötletet, amik közül tetszés szerint lehet válogatni, mindegyik kicsit jobbá teszi az appot. Természetesen egyéb ötleteket 
-is bele lehet írni, sőt, ha jó ötleted van, és megírod nekünk, akkor hozzáadjuk a listához, hogy mások is beleírhassák az alkalmazásukba.
-</p>
+is bele lehet írni, sőt, ha jó ötleted van, és megírod nekünk, akkor hozzáadjuk a listához, hogy mások is beleírhassák az alkalmazásukba.</p>
+
+
 <p>
-Az elkészült műveket küldjétek el nekünk a <a href="http://goo.gl/UMyfuL">feltöltő oldalon</a> keresztül, akár többször is, ha közben újabb ötletek kerültek bele. Szívesen átnézzük, javítjuk ha szükséges, illetve természetesen ha bármi kérdés felmerül közben, 
-írjatok (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!
-</p>
-<h1>
-Ötletek - szorgalmik
-</h1>
+Az elkészült műveket küldjétek el nekünk a <a href="http://goo.gl/UMyfuL" target="_blank">feltöltő oldalon</a> keresztül, akár többször is, ha közben újabb ötletek kerültek bele. Szívesen átnézzük, javítjuk ha szükséges, illetve természetesen ha bármi kérdés felmerül közben, 
+írjatok (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
+
+
+<h1>Ötletek - szorgalmik</h1>
 *** TODO: NEM TUDTAM KONVERTÁLNI EZT: A feladatok többnyire függetlenek egymástól, de van melyik épít egy másikra, de ez egyértelmű lesz. A feladatok sorrendje igyekszik a nehézségüket követni, ezért érdemes lehet sorban haladni velük, de nem kötelező.. 
 HEADING: Subtitle ***
-<h2>
-1. Számláló, statisztika
-</h2>
+<h2>1. Számláló, statisztika</h2>
 <p>
-Sokkal informatívabb lenne a program, ha kikérdezés közben folyamatosan visszajelzést adna a teljesítményről. Például számolhatnánk a helyes válaszok számát, majd kiírhatnánk a helyes/összes szó arányt, %-os eredmény, esetleg ez alapján az érdemjegyet.
-</p>
+Sokkal informatívabb lenne a program, ha kikérdezés közben folyamatosan visszajelzést adna a teljesítményről. Például számolhatnánk a helyes válaszok számát, majd kiírhatnánk a helyes/összes szó arányt, %-os eredmény, esetleg ez alapján az érdemjegyet.</p>
+
+
 <p>
-Ehhez be kell vezetni pár új (globális) változót, ami tárolja a megkérdezett és a helyesen megválaszolt szavakat számát.
-</p>
+Ehhez be kell vezetni pár új (globális) változót, ami tárolja a megkérdezett és a helyesen megválaszolt szavakat számát.</p>
+
+
 <p>
-Szükség lesz még egy (vagy több) TextView-ra, ami megjeleníti a statisztikát, valamint arra, hogy tippeléskor újra számoljuk és meg is jelenítsük a statiszitkát.
-</p>
+Szükség lesz még egy (vagy több) TextView-ra, ami megjeleníti a statisztikát, valamint arra, hogy tippeléskor újra számoljuk és meg is jelenítsük a statiszitkát.</p>
+
+
 <p>
 Amire vigyáznod kell: ha a helyes és megkérdezett számokat <code>int</code> típusú változóban tárolod, akkor az osztás művelet közöttük a Java <em>maradékos osztásként értelmezi</em>. Tehát például <code>8/10=0</code>. Az ebből származó hibák elkerüléséhez 
-előbb megszorozhatod a helyes válaszok számát százzal, így a százalékos eredményt kapva végül. Pl. <code>100 * 8 / 10 = 80</code> (%). Elegánsabb megoldás ennél, ha valamelyik számot <code>float</code> típusúvá alakítod.
-</p>
-<h2>
-2. Highscores
-</h2>
+előbb megszorozhatod a helyes válaszok számát százzal, így a százalékos eredményt kapva végül. Pl. <code>100 * 8 / 10 = 80</code> (%). Elegánsabb megoldás ennél, ha valamelyik számot <code>float</code> típusúvá alakítod.</p>
+
+
+<h2>2. Highscores</h2>
 <p>
-Jó motiváció lenne, ha elmentenénk a felhasználó rekordját (hány kérdésből mennyit tudott, százalékosan), és miközben válaszolgat a szavakra, folyamatosan látná, hogy hogy áll a rekordhoz képest.
-</p>
+Jó motiváció lenne, ha elmentenénk a felhasználó rekordját (hány kérdésből mennyit tudott, százalékosan), és miközben válaszolgat a szavakra, folyamatosan látná, hogy hogy áll a rekordhoz képest.</p>
+
+
 <p>
 Erre használhatnánk egy külön fájlt a már ismert módon, de rövidebb adatok tárolására az Android rendszer nyújt egy sokkal jobb lehetőséget is: <strong>SharedPreferences</strong>-t (így tárolódik pl. az is, hogy mi a háttérképed, rezegjen vagy ne a telefon, 
-stb.).
-</p>
-<h3>
-Szám mentése
-</h3>
+stb.).</p>
+
+
+<h3>Szám mentése</h3>
 <ol>
 <li>
 A beállításokat kezelő objektum megszerzése:
-SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-</li>
+SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);</li>
 <li>
 A szerkesztéshez kell egy szerkesztő is hozzá:
-SharedPreferences.Editor editor = prefs.edit();
-</li>
+SharedPreferences.Editor editor = prefs.edit();</li>
 <li>
 Bele kell írni az adatot (pl. az eltalált szavak számát):
-editor.putInt(“kulcs, pl.: maxTalalatokSzama”, eltalaltSzavakSzama);
-Természetesen több ehhez hasonló utasítással több mindent is bele lehet írni, csak a kulcs legyen különböző!
-</li>
+editor.putInt("kulcs, pl.: maxTalalatokSzama", eltalaltSzavakSzama);
+Természetesen több ehhez hasonló utasítással több mindent is bele lehet írni, csak a kulcs legyen különböző!</li>
 <li>
 Végül be kell fejezni a szerkesztést:
-editor.commit();
-</li>
+editor.commit();</li>
 </ol>
-<h3>
-Az olvasás…
-</h3>
+<h3>Az olvasás…</h3>
 <p>
-... kicsit egyszerűbb, ahhoz nem kell külön “olvasó” objektum:
-</p>
+... kicsit egyszerűbb, ahhoz nem kell külön "olvasó" objektum:</p>
+
+
 <ol>
 <li>
 A beállításokat kezelő objektum megszerzése:
-SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this)
-</li>
+SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this)</li>
 <li>
 Az adott kulcsú érték kiolvasása egy változóba:
-int legtobbEltalaltSzo = prefs.getInt(“maxTalalatokSzama”, 0);
-A végén a 0 egy alapértelmezett érték, azért kell, hogy ha esetleg nincs az adott kulcshoz tartozó érték (pl első induláskor), akkor se legyen baj.
-</li>
+int legtobbEltalaltSzo = prefs.getInt("maxTalalatokSzama", 0);
+A végén a 0 egy alapértelmezett érték, azért kell, hogy ha esetleg nincs az adott kulcshoz tartozó érték (pl első induláskor), akkor se legyen baj.</li>
 </ol>
 <p>
-Törtszámot és szöveget is lehet benne tárolni, akkor a <code>getInt</code> és <code>putInt</code> függvények helyett a <code>getFloat</code>/<code>putFloat</code>, Stringek esetén pedig a <code>getString</code>/<code>putString</code> használható.
-</p>
-<h3>
-Törlés
-</h3>
+Törtszámot és szöveget is lehet benne tárolni, akkor a <code>getInt</code> és <code>putInt</code> függvények helyett a <code>getFloat</code>/<code>putFloat</code>, Stringek esetén pedig a <code>getString</code>/<code>putString</code> használható.</p>
+
+
+<h3>Törlés</h3>
 <p>
-Ha minden statisztikát törölni szeretnél, akkor (pl. menünyomás hatására) azt így tudod:
-</p>
-<p>
+Ha minden statisztikát törölni szeretnél, akkor (pl. menünyomás hatására) azt így tudod:</p>
+
+
+<p><pre>
 <code>SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 SharedPreferences.Editor editor = prefs.edit();
 editor.clear();
-editor.commit();</code>
-</p>
-<h2>
-3. Rontott szavak kiírása a végén
-</h2>
+editor.commit();</code></pre></p>
+
+
+<h2>3. Rontott szavak kiírása a végén</h2>
 <p>
-Nagyban elősegítené a tanulást, ha a kikérdezés végén megjelennének az elrontott szavak.
-</p>
+Nagyban elősegítené a tanulást, ha a kikérdezés végén megjelennének az elrontott szavak.</p>
+
+
 <p>
-Ehhez kelleni fog egy újabb lista, amihez minden rontáskor hozzáadjuk az aktuális szót. A megjelenítéshez adjunk hozzá a <code>layout</code>hoz egy <code>ListView</code>-t, de állítsuk be a <code>visibility </code>tulajdonságát (jobboldalt, a lista legalján) “
-<code>gone</code>” értékre, hogy amíg a kikérdezés zajlik, ne legyen látható.
-</p>
+Ehhez kelleni fog egy újabb lista, amihez minden rontáskor hozzáadjuk az aktuális szót. A megjelenítéshez adjunk hozzá a <code>layout</code>hoz egy <code>ListView</code>-t, de állítsuk be a <code>visibility </code>tulajdonságát (jobboldalt, a lista legalján) "
+<code>gone</code>" értékre, hogy amíg a kikérdezés zajlik, ne legyen látható.</p>
+
+
 <p>
 Valahogy jelezni is kéne a programnak, hogy nem kérünk több szót, viszont szeretnénk látni a statisztikánkat és a hibáinkat. Erre például tökéletes lenne egy menü. Menü hozzáadására és használatára már láthattál példát a korábbi leckékben (pl <a href=
-"http://dkrmg-android.github.io/lessons/l08.html#starred_about_menu">L08</a>).
-</p>
+"http://dkrmg-android.github.io/lessons/l08.html#starred_about_menu">L08</a>).</p>
+
+
 <p>
 Ha a felhasználó megnyomja a menüt, a következőket kell csinálni: El kell rejteni a kikérdezéshez használt komponenseket (<code>EditText</code>, <code>Button</code>, <code>TextView</code>), amire mindegyiknek a <code>setVisibility(View.GONE)</code> belső 
-függvénye használható, majd meg kell jeleníteni az elrejtett ListView-t a <code>setVisibility(View.VISIBLE)</code> belső függvényével.
-</p>
+függvénye használható, majd meg kell jeleníteni az elrejtett ListView-t a <code>setVisibility(View.VISIBLE)</code> belső függvényével.</p>
+
+
 <p>
-Léte kell hozni egy adaptert is (pl. <a href="http://dkrmg-android.github.io/lessons/l08.html#list-adapter2">L08</a>) a rontott szavakat gyűjtő listánkkal és be kell állítani a <code>ListView</code>nak (<code>setAdapter</code>(...) belső függvény).
-</p>
-<h2>
-4. Szó találati arányának mentése fájlba
-</h2>
+Léte kell hozni egy adaptert is (pl. <a href="/lessons/l08.html#list-adapter2" target="_blank">L08</a>) a rontott szavakat gyűjtő listánkkal és be kell állítani a <code>ListView</code>nak (<code>setAdapter</code>(...) belső függvény).</p>
+
+
+<h2>4. Szó találati arányának mentése fájlba</h2>
 <p>
-Érdekes dolgok derülhetnek ki, ha az egyes kikérdezések között meg tudjuk őrizni, hogy melyik szó hányszor lett megkérdezve, és ebből hányszor sikerült eltalálnia a felhasználónak.
-</p>
+Érdekes dolgok derülhetnek ki, ha az egyes kikérdezések között meg tudjuk őrizni, hogy melyik szó hányszor lett megkérdezve, és ebből hányszor sikerült eltalálnia a felhasználónak.</p>
+
+
 <p>
-Ezt az információt talán a legkézenfekvőbb a szavakkal együtt a fájlban tárolni, de ez azzal jár, hogy mind a <code>Szo</code> osztályt, mind a beolvasás és (fájlba) kiírás kódját módosítani kell.
-</p>
-<h3>
-Szo.java:
-</h3>
+Ezt az információt talán a legkézenfekvőbb a szavakkal együtt a fájlban tárolni, de ez azzal jár, hogy mind a <code>Szo</code> osztályt, mind a beolvasás és (fájlba) kiírás kódját módosítani kell.</p>
+
+
+<h3>Szo.java:</h3>
 <p>
 Fel kell venni két új, <code><strong>public int</code></strong> típusú belső változót, egyet az összes megkérdezés nyilvántartására, egy másikat pedig a helyes válaszok számolására (én <code>osszes</code> és <code>helyes</code> néven fogok hivatkozni rájuk). 
-Mást nem kell módosítani itt.
-</p>
-<h3>
-Kiírás kódja:
-</h3>
+Mást nem kell módosítani itt.</p>
+
+
+<h3>Kiírás kódja:</h3>
 <p>
 Minden marad a régi, kivíve a  <code>writer.println(...)</code> sor. Ide bele kell még venni, hogy a szó <code>osszes</code> és <code>helyes</code> belső változóinak értékét is kiírja, <em>vesszővel elválasztva</em>. Felmerülhet a kérdés, hogy melyiket írjuk 
 ki előbb. Igazából mindegy, csak az a fontos, hogy következetesek legyünk, azaz beolvasásnál is azt keressük először, amit kiírtunk (fura lenne, ha ezt írnánk ki <code>…,25,20</code> vagyis 25 kérdezésből 20szor találtuk el, míg beolvasásnál a találatokat 
-vennénk előre, és azt találnánk, hogy 20 kérdezésből 25ször talált…). <em>Egyezzünk meg abban, hogy mindenki az összes kérdezést írja előre, és utána a helyes válaszok számát!</em> 
-</p>
-<h3>
-Beolvasás kódja:
-</h3>
+vennénk előre, és azt találnánk, hogy 20 kérdezésből 25ször talált…). <em>Egyezzünk meg abban, hogy mindenki az összes kérdezést írja előre, és utána a helyes válaszok számát!</em></p>
+
+
+<h3>Beolvasás kódja:</h3>
 <p>
-A beolvasás egy icipicit bonyolultabb lesz. Eddig így nézett ki:
-</p>
-<p>
+A beolvasás egy icipicit bonyolultabb lesz. Eddig így nézett ki:</p>
+
+
+<p><pre>
 <code>while (reader.ready()) {
     String sor = reader.readLine();
     // a kiolvasott sor most a sor változóban lakik.
     String[] nyelvek = sor.split(",");
     Szo ujSzo = new Szo(nyelvek[0], nyelvek[1]);
     szolista.add(ujSzo);
-}</code>
-</p>
+}</code></pre></p>
+
+
 <p>
-Ezt módosítani kell erre:
-</p>
-<p>
+Ezt módosítani kell erre:</p>
+
+
+<p><pre>
 <code>while (reader.ready()) {
     String sor = reader.readLine();
     // a kiolvasott sor most a sor változóban lakik.
@@ -456,47 +394,44 @@ Ezt módosítani kell erre:
     <strong>ujSzo.osszes = Integer.parseInt(nyelvek[2]);
     ujSzo.helyes = Integer.parseInt(nyelvek[3]);</strong>
     szolista.add(ujSzo);
-}</code>
-</p>
+}</code></pre></p>
+
+
 <p>
-Erre azért van szükség, mert a fájlból Sztring-ként érkezik az adat, de a két belső változónk int típusú. Vagyis a stringet át kell alakítani int-té.
-</p>
+Erre azért van szükség, mert a fájlból Sztring-ként érkezik az adat, de a két belső változónk int típusú. Vagyis a stringet át kell alakítani int-té.</p>
+
+
 <p>
-<strong>Vigyázz!</strong> Ha a fájl még régi, és nincs a szavakhoz statisztika, akkor bizony a beolvasás hibát fog jelezni (<em>“Az alkalmazás váratlanul leállt”</em>). Ezt a legegyszerűbb úgy megkerülni, hogy törlöd a fájl <em>tartalmát</em>, vagyis egy sort 
-sem olvasol be. Miután egyszer az új verzióval kiírtad a szavakat, minden működni fog. 
-</p>
+<strong>Vigyázz!</strong> Ha a fájl még régi, és nincs a szavakhoz statisztika, akkor bizony a beolvasás hibát fog jelezni (<em>"Az alkalmazás váratlanul leállt"</em>). Ezt a legegyszerűbb úgy megkerülni, hogy törlöd a fájl <em>tartalmát</em>, vagyis egy sort 
+sem olvasol be. Miután egyszer az új verzióval kiírtad a szavakat, minden működni fog.</p>
+
+
 <p>
-Ennél elegánsabb, ha berakod az új részletet egy elágazásba, ami csak akkor fut, ha a <code>nyelvek</code> tömbben van 2. és 3. elem (feltételezzük, hogy csak 2 nyelvet tárolsz).
-</p>
+Ennél elegánsabb, ha berakod az új részletet egy elágazásba, ami csak akkor fut, ha a <code>nyelvek</code> tömbben van 2. és 3. elem (feltételezzük, hogy csak 2 nyelvet tárolsz).</p>
+
+
 <p>
 Végezetül ne felejtsd el a számokat frissíteni a <code>KvizActivity</code>ben! Most már tényleg csak rajtad múlik, hogy milyen messze mész el a programoddal. Rendezheted például a szavakat nehézségi sorrendbe, vagy ráveheted a kvíz ablakot, hogy csak az új, 
-könnyű, vagy épp a nehéz szavak közül kérdezzen!
-</p>
-<h2>
-5. Statisztika megjelenítése a SzavakActivity listában
-</h2>
+könnyű, vagy épp a nehéz szavak közül kérdezzen!</p>
+
+
+<h2>5. Statisztika megjelenítése a SzavakActivity listában</h2>
 <p>
 Szuper, van statisztikánk, ami meg is marad az újraindítások között, de jó lenne, ha nem csak számítógépen, a fájlt megnyitva látnánk azt. Készítsünk egy saját <code>Adapter</code>-t és egy új <code>layout</code>-ot, amiben leírjuk, hogy hogy nézzen ki a <code>
-ListView</code> egy-egy sora.
-</p>
-<h3>
-Kezdjük a layouttal: 
-</h3>
+ListView</code> egy-egy sora.</p>
+
+
+<h3>Kezdjük a layouttal: </h3>
 <ol>
 <li>
-jobbklikk az app -> res -> layout mappán, New -> Layout resource file
-</li>
+jobbklikk az app -> res -> layout mappán, New -> Layout resource file</li>
 <li>
-A neve legyen list_item_szo, a Root element-et pedig írjuk át RelativeLayout-ra. Minden más maradhat úgy, ahogy van.
-</li>
+A neve legyen list_item_szo, a Root element-et pedig írjuk át RelativeLayout-ra. Minden más maradhat úgy, ahogy van.</li>
 <li>
 A layout szerkesztőben rakjunk össze egy egyszerű, kétsoros layoutot, valami hasonlót, mint a képen látható. (*** TODO kép, Drive/8-11. lecke/list_item_szo.png ***)
-A TextViewknak adjunk id-t is, pl.: nyelvek és statisztika.
-</li>
+A TextViewknak adjunk id-t is, pl.: nyelvek és statisztika.</li>
 </ol>
-<h3>
-A saját adapter:
-</h3>
+<h3>A saját adapter:</h3>
 <ol>
 <li>
 A SzavakActivity legaljára, de még a legutolsó záró kapcsos zárójelen belülre másold be ezt: *** TODO interactive, részletek lejjebb ***
@@ -529,15 +464,11 @@ függvényét. Ez nekünk kevés, ezért lecseréljük egy saját megoldásra.
 4: Először csinálunk egy új View-t (minden komponens egy View, így a list_item_szo layoutben Root element-ként megadott RelativeLayout is) a layoutunk alapján.
 5: Aztán megkeressük benne a két TextView-t.
 6: Kiírjuk rá a szöveget, amit szeretnénk
-7: végül visszaadjuk az így elkészített View-t, hogy a rendszer hozzáadja a ListView-hoz.
-</li>
+7: végül visszaadjuk az így elkészített View-t, hogy a rendszer hozzáadja a ListView-hoz.</li>
 <li>
-Az onCreate-ben, ahol az adaptert létrehozod, ne new ArrayAdapter<Szo>(...)-t hozz létre, hanem new SajatAdapter(...)-t! Valamint ugyanitt az android.R.layout.simple_list_item_1-et cseréld le R.layout.list_item_szo-ra! Minden más maradhat a régiben.
-</li>
+Az onCreate-ben, ahol az adaptert létrehozod, ne new ArrayAdapter<Szo>(...)-t hozz létre, hanem new SajatAdapter(...)-t! Valamint ugyanitt az android.R.layout.simple_list_item_1-et cseréld le R.layout.list_item_szo-ra! Minden más maradhat a régiben.</li>
 <li>
-A fenti kódrészletben a (6) részt nyugodtan írd át ahogy Te szeretnéd, hogy megjelenjen a listában a szó, ez csak egy példa megoldás!
-
-</li>
+A fenti kódrészletben a (6) részt nyugodtan írd át ahogy Te szeretnéd, hogy megjelenjen a listában a szó, ez csak egy példa megoldás!</li>
 </ol>
 </div>
 <footer data-include="/include/footer.html"></footer>
