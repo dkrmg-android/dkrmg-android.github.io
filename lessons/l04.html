@@ -204,7 +204,7 @@ public void rezegjOnClick(View v) {
         <h2>Az Activity életciklusa</h2>
 
         <h3 id="intro">Bevezetés</h3>
-        <p>Ezen a ponton kénytelenek vagyunk kicsit jobban belemászni az alkalmazásunk és az activity-nk életciklusába.
+        <p>Ezen a ponton kénytelenek vagyunk kicsit jobban belemászni az alkalmazásunk és az activitynk életciklusába.
             <button data-target="help_lifecycle" class="help-link">Mi is az az <em>életciklus</em>?</button>
         </p>
         <p>
@@ -231,18 +231,18 @@ public void rezegjOnClick(View v) {
         <p>Az Androidos alkalmazásaink alapvető építőköve az <strong>Activity</strong>. Az Activity biztosítja a
             kapcsolatot az Android rendszer és a felhasználók között. Kicsit olyan, mint egy
             Windows ablak, vagy egy Lazarus Form.</p>
-        <p>Mi is dolgoztunk már Activity-kkel, amikor az alkalmazásunk képernyőjének
+        <p>Mi is dolgoztunk már Activitykkel, amikor az alkalmazásunk képernyőjének
             kinézetét szerkesztettük a Layout szerkesztővel, illetve amikor a mögötte rejlő Java kódot írtuk
-            (pl. az onClick függvények). Az activity-nk neve <em>Main</em> volt, ezért is hívták a Java
+            (pl. az onClick függvények). Az activitynk neve <em>Main</em> volt, ezért is hívták a Java
             fájlunkat <code>MainActivity.java</code>-nak, a layoutot pedig <code>activity_main.xml</code>-nek.
             Fontos megérteni, hogy ez a kettő szorosan összefügg: layout nélkül nincs mi
             <em>megjelenjen</em>, és a Java kód nélkül nem <em>csinál</em> semmit az alkalmazásunk.</p>
         <div class="thumbnail with-caption" style="border: 2px double red;">
             <img src="/static/img/l03/13_JavaVsXML.png" class="center-block" />
-            <p style="font-size: x-large;">Ez a kettő <strong>együtt</strong> alkotja a mi MainActivity-nket!</p>
+            <p style="font-size: x-large;">Ez a kettő <strong>együtt</strong> alkotja a mi MainActivitynket!</p>
         </div>
         <p>Azt is fontos tudnunk, hogy a mi MainActivity ablakunk nem működne rendesen, ha nem venne kölcsön néhány
-        sornyi programot a Google által írt általános, unalmas, üres Activity-től. Egészen pontosan a projektünk
+        sornyi programot a Google által írt általános, unalmas, üres Activitytől. Egészen pontosan a projektünk
         létrehozásakor a MainActivity épp úgy viselkedik, mint egy áltagos Activity, de nekünk lehetőségünk van
         a működését (java) és kinézetét (layout) egy kicsit kibővíteni. </p>
         <p>Erre szép példa az onCreate függvényünk, ami eddig mágikus módon minden projektünkben benne volt.</p>
@@ -263,7 +263,7 @@ public void rezegjOnClick(View v) {
                 <p data-iid="other-import">Az Android Studio ide sorolja fel, hogy hol találhatók a
                     különböző osztályok, amiket használunk az alkalmazásunkban. Többnyire ezzel sem kell foglalkoznunk.
                 </p>
-                <p data-iid="activity-name">Ez az activity-nk neve. Meg kell, hogy egyezzen a fájl nevével.</p>
+                <p data-iid="activity-name">Ez az activitynk neve. Meg kell, hogy egyezzen a fájl nevével.</p>
 				<p data-iid="activity-name">Az "extends Activity" rész garantálja, hogy megörököljük a Google által megírt
 				általános Activity osztály összes kódját</p>
                 <p data-iid="component-declarations">A komponenseinket (Button - gombok, TextView - feliratok, stb) érdemes rögön (az osztály elején) deklarálni, bemutatni. 
@@ -301,7 +301,7 @@ public void rezegjOnClick(View v) {
         <p>Az eredeti Activity osztálynak van pár érdekes függvénye, amivel eddig nem is találkoztunk, vagy csak nagyon
             érintőlegesen használtunk.
             Ezek olyan függvények, amit az Android rendszer automatikusan indít el adott
-            pillanatban, ezzel jelezve az alkalmazásunknak (vagy épp az Activity-nknek),
+            pillanatban, ezzel jelezve az alkalmazásunknak (vagy épp az Activitynknek),
             hogy bekövetkezett az adott életciklus eseménye ( &#8594; ezért <em>életciklus függvények</em>).</p>
         <p>Például nézzük meg a fenti interaktív példán az <code>onCreate</code> függvényt.</p>
         <pre><code>
@@ -314,11 +314,11 @@ protected void onCreate(Bundle savedInstanceState) {
         <p>Az első sor: <code>super.&ltfüggvény neve&gt(&ltesetleges paraméterek&gt)</code> biztosítja, 
 			hogy az a függvény is lefut, amit a Google-nél írtak meg. Ez szükséges ahhoz, 
 			hogy egyáltalán működni tudjon az alkalmazásunk.</p>
-        <p>Az Activity-nk onCreate függvényét akkor futtatja a rendszer, amikor frissen elindítjuk az alkalmazást.
+        <p>Az Activitynk onCreate függvényét akkor futtatja a rendszer, amikor frissen elindítjuk az alkalmazást.
             Ez a legkorábbi pont, ahol bármit tudunk csinálni az alkalmazás futása során. Érdemes ide rakni a
             változóink értékadását (pl.: layout komponensek: gombok, TextView-k, stb. illetve egyéb rendszerkomponensek:
             rezgő motor).</p>
-        <p>Az elindulás (születés) nagyon fontos esemény, de koránt sem az egyetlen az Activity-nk futása (élete) során.
+        <p>Az elindulás (születés) nagyon fontos esemény, de koránt sem az egyetlen az Activitynk futása (élete) során.
             Nézzünk meg még kettőt, és rögtön használjuk is fel őket!</p>
 
         <h4 class="task">3.1 onPause</h4>
