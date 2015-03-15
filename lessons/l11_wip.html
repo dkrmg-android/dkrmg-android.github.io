@@ -421,9 +421,9 @@ A TextViewknak adjunk id-t is, pl.: <code>nyelvek</code> és <code>statisztika</
 <ol>
 <li><p>
 A SzavakActivity legaljára, de még a legutolsó záró kapcsos zárójelen belülre másold be ezt: *** TODO interactive, részletek lejjebb ***
-<code>class SajatAdapter <strong>extends ArrayAdapter<Szo></strong> { // (1)
+<pre><code>class SajatAdapter <strong>extends ArrayAdapter&lt;Szo&gt;</strong> { // (1)
     
-    <em>SajatAdapter(Context context, int resource, List<Szo> objects) { // (2)
+    <em>SajatAdapter(Context context, int resource, List&lt;Szo&gt; objects) { // (2)
         super(context, resource, objects);
     }</em>
     
@@ -443,15 +443,16 @@ A SzavakActivity legaljára, de még a legutolsó záró kapcsos zárójelen bel
         return v; // (7)
     }
 }
-</code>1: extends ArrayAdapter<Szo>, azaz mindent megkap, amit az ArrayAdapter<Szo> tud, de kibővíthetjük illetve bizonyos tulajdonságait módosíthatjuk.
-2: Konstruktor. Semmi extrát nem csinál, csak továbbadja a paramétereit az ArrayAdapter<Szo>-nak.
-3: Az adapterek getView belső függvénye felelős az egyes listaelemek tartalmának meghatározásáért. Az alap ArrayList<Szo> csak egy sornyi szöveget tud megjeleníteni, azt is csak úgy, hogy az adott sorhoz tartozó objektumnak meghívja a toString belső függvényét. Ez nekünk kevés, ezért lecseréljük egy saját megoldásra.
+</code></pre>
+1: extends ArrayAdapter&lt;Szo&gt;, azaz mindent megkap, amit az ArrayAdapter&lt;Szo&gt; tud, de kibővíthetjük illetve bizonyos tulajdonságait módosíthatjuk.
+2: Konstruktor. Semmi extrát nem csinál, csak továbbadja a paramétereit az ArrayAdapter&lt;Szo&gt;-nak.
+3: Az adapterek getView belső függvénye felelős az egyes listaelemek tartalmának meghatározásáért. Az alap ArrayList&lt;Szo&gt; csak egy sornyi szöveget tud megjeleníteni, azt is csak úgy, hogy az adott sorhoz tartozó objektumnak meghívja a toString belső függvényét. Ez nekünk kevés, ezért lecseréljük egy saját megoldásra.
 4: Először csinálunk egy új View-t (minden komponens egy View, így a list_item_szo layoutben Root element-ként megadott RelativeLayout is) a layoutunk alapján.
 5: Aztán megkeressük benne a két TextView-t.
 6: Kiírjuk rá a szöveget, amit szeretnénk
 7: végül visszaadjuk az így elkészített View-t, hogy a rendszer hozzáadja a ListView-hoz.</p></li>
 <li><p>
-Az onCreate-ben, ahol az adaptert létrehozod, ne <code>new <strong>ArrayAdapter<Szo></strong>(...)</code>-t hozz létre, hanem <code>new <strong>SajatAdapter</strong>(...)</code>-t! Valamint ugyanitt az <code>android.R.layout.simple_list_item_1</code>-et cseréld le <code>R.layout.list_item_szo</code>-ra! Minden más maradhat a régiben.</p></li>
+Az onCreate-ben, ahol az adaptert létrehozod, ne <code>new <strong>ArrayAdapter&lt;Szo&gt;</strong>(...)</code>-t hozz létre, hanem <code>new <strong>SajatAdapter</strong>(...)</code>-t! Valamint ugyanitt az <code>android.R.layout.simple_list_item_1</code>-et cseréld le <code>R.layout.list_item_szo</code>-ra! Minden más maradhat a régiben.</p></li>
 <li><p>
 A fenti kódrészletben a (6) részt nyugodtan írd át ahogy Te szeretnéd, hogy megjelenjen a listában a szó, ez csak egy példa megoldás!</p></li>
 </ol>
