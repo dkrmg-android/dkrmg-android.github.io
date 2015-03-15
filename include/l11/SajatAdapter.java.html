@@ -1,0 +1,22 @@
+class SajatAdapter <span class="ih" data-iid="extends">extends ArrayAdapter&lt;Szo&gt;</span> { // (1)
+
+    <span class="ih" data-iid="ctor">SajatAdapter(Context context, int resource, List&lt;Szo&gt; objects) { // (2)
+        super(context, resource, objects);
+    }</span>
+
+    @Override
+    <span class="ih" data-iid="get_view">public View getView(int position, View convertView, ViewGroup parent)</span> { // (3)
+        <span class="ih" data-iid="inflate">View v = LayoutInflater.from(getContext()).inflate(R.layout.list_item_szo, parent, false);</span> // (4)
+
+        <span class="ih" data-iid="find_views">TextView nyelvek = (TextView) v.findViewById(R.id.nyelvek); // (5)
+        TextView statiszitka = (TextView) v.findViewById(R.id.statisztika);</span>
+
+        Szo aktualisSzo = getItem(position);
+
+        <span class="ih" data-iid="write_texts">nyelvek.setText(aktualisSzo.toString()); // (6)
+        double szazalek = aktualisSzo.helyes / aktualisSzo.osszes * 100;
+        statiszitka.setText(aktualisSzo.helyes + "/" + aktualisSzo.osszes + " - " + szazalek + "%");</span>
+
+        <span class="ih" data-iid="return">return v; // (7)</span>
+    }
+}
