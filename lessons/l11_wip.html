@@ -133,7 +133,7 @@
                     <p>
                         Helyezz el egy szöveget (<code>TextView</code>), ami a szó magyar formáját írja
                         majd ki! Ne felejtsd el beállítani a szöveg <code>id</code> tulajdonságát, hogy
-                        menet közben le tudjuk cseréni!</p>
+                        menet közben le tudjuk cserélni!</p>
                 </li>
                 <li>
                     <p>
@@ -181,7 +181,7 @@
                 </li>
                 <li>
                     <p>
-                        Nyitsd meg a fájlt, majd soronként dolgozd fel a tartalmát (mint az előző leckében)</p>
+                        Nyisd meg a fájlt, majd soronként dolgozd fel a tartalmát (mint az előző leckében)</p>
                 </li>
                 <li>
                     <p>
@@ -392,7 +392,7 @@ gondoltSzo = szolista.get(gondoltSzam);
             a helyesen megválaszolt szavakat számát.</p>
         <p>
             Szükség lesz még egy (vagy több) TextView-ra, ami megjeleníti a statisztikát, valamint
-            arra, hogy tippeléskor újra számoljuk és meg is jelenítsük a statiszitkát.</p>
+            arra, hogy tippeléskor újra számoljuk és meg is jelenítsük a statisztikát.</p>
         <p>
             Amire vigyáznod kell: ha a helyes és megkérdezett számokat <code>int</code> típusú
             változóban tárolod, akkor az osztás művelet közöttük a Java <em>maradékos osztásként
@@ -499,12 +499,12 @@ SharedPreferences.Editor editor = prefs.edit(); editor.clear(); editor.commit();
         <p>
             Fel kell venni két új, <code><strong>public int</strong></code> típusú belső változót,
             egyet az összes megkérdezés nyilvántartására, egy másikat pedig a helyes válaszok
-            számolására (én <code>osszes</code> és <code>helyes</code> néven fogok hivatkozni
+            számolására (mi <code>osszes</code> és <code>helyes</code> néven fogokunk hivatkozni
             rájuk). Mást nem kell módosítani itt.</p>
         <h3>
             Kiírás kódja:</h3>
         <p>
-            Minden marad a régi, kivíve a <code>writer.println(...)</code> sor. Ide bele kell
+            Minden marad a régi, kivéve a <code>writer.println(...)</code> sor. Ide bele kell
             még venni, hogy a szó <code>osszes</code> és <code>helyes</code> belső változóinak
             értékét is kiírja, <em>vesszővel elválasztva</em>. Felmerülhet a kérdés, hogy melyiket
             írjuk ki előbb. Igazából mindegy, csak az a fontos, hogy következetesek legyünk,
@@ -555,7 +555,7 @@ SharedPreferences.Editor editor = prefs.edit(); editor.clear(); editor.commit();
         <p>
             Szuper, van statisztikánk, ami meg is marad az újraindítások között, de jó lenne,
             ha nem csak számítógépen, a fájlt megnyitva látnánk azt. Készítsünk egy saját <code>
-                Adapter</code>-t és egy új <code>layout</code>-ot, amiben leírjuk, hogy hogy
+                Adapter</code>-t és egy új <code>layout</code>-ot, amiben leírjuk, hogy hogyan
             nézzen ki a <code>ListView</code> egy-egy sora.</p>
         <h3>Kezdjük a layouttal:</h3>
         <ol>
