@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Haladó változók - elfedés (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body class="language-java">
+<header data-include="/include/header.html"></header>
+<div class="container">
+    <h1>Haladó változók (elfedés)
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p></h1>
+    <hr/>
+
+    <h2>Egy kis ismétlés</h2>
+
+    <p>
+        A harmadik leckében már találkoztunk a változók fogalmával, és azóta is folyamatosan
+        használjuk őket. A változót akkor úgy határoztuk meg, mint egy <strong>tárolót
+        (adatot)</strong>, amelynek <strong>neve</strong> és <strong>típusa</strong> van.</p>
+
+    <p>
+        Pl.<br/>
+        <strong>gondoltSzam</strong> nevű változó az első leckéből, ami <strong>int</strong> típusú.</p>
+
+    <h3>Változó neve</h3>
+
+    <p>
+        A változó neve Javában a CamelCase írásmódot követi. Kisbetűvel kezdünk, az összetett
+        szavakat pedig szóköz nélkül fűzzük egymáshoz úgy, hogy minden egyes elem kezdőbetűjét nagy
+        betűvel írjuk. A név ezen kívül tartalmazhat számokat (de nem kezdődhet számmal!), illetve
+        <code>_</code> karaktereket is.</p>
+	<img src="/static/img/var2/camelCase.png" class="center-block" />
+
+    <h3>Változó értéke</h3>
+
+    <p>
+        A változóinknak van értéke is, amely lehet pl. <code>3</code>, <code>"kutya"</code>, vagy
+        <code>3.14</code>. Az érték természetesen függ a változó típusától is (egész szám nem fog
+        szöveges értékeket tárolni).</p>
+
+    <h2>Változók használata</h2>
+
+    <p>
+        A deklaráció és értékadás fogalma sem ismeretlen a korábbi leckék elvégzése után. Itt most
+        egy kicsit kiegészítjük a tanultakat.</p>
+
+    <h3>Deklaráció</h3>
+
+    <p>
+        A deklaráció a változó bemutatása. Itt mutatjuk meg a Java fordítónak, hogy szükségünk van
+        egy új változóra, és ekkor egyszersmind el kell kötelezünk magunkat a változó neve és típusa
+        mellett is. Bizonyos nyelvek kevésbé szigorúak ezen a téren (JavaScript, PHP), de a Java
+        fordító nem engedi, hogy olyan változóra hivatkozzunk, amit a kódban korábban még nem
+        mutattunk be!</p>
+
+    <p>
+        A Java nyelv abból a szempontból rugalmas (ellentétben pl. a Pascal nyelvvel), hogy szinte
+        bárhol bemutathatjuk az új változóinkat.</p>
+
+    <p>
+        Amit azonban fontos megjegyeznünk:</p>
+    <ul>
+        <li>
+            Egy változót csak egyszer kell bemutatnunk.</li>
+        <li>
+            Ha egy változót a program ugyanazon részén belül többször is megpróbálnánk deklarálni,
+            akkor a fordító hibát fog jelezni.</li>
+        <li>
+            Egy változót csak akkor használhatunk (értékadás, érték kiolvasása) ha korábban (előtte)
+            bemutattuk azt.</li>
+    </ul>
+    <p>
+        Egy helyes példa:
+        <img src="/static/img/var2/decl2.png" class="center-block" />
+    </p>
+
+    <p>
+        Duplán bemutatott változó:
+        <img src="/static/img/var2/decl.png" class="center-block" />
+    </p>
+
+    <p>
+        Be nem mutatott változó:
+        <img src="/static/img/var2/undef.png" class="center-block" />
+    </p>
+
+    <h3>Értékadás/olvasás</h3>
+
+    <p>
+        <strong>Miután</strong> bemutattuk az új változónkat, elkezdhetjük használni is. Ez azt
+        jelenti, hogy <strong>kiolvashatjuk, vagy felülírhatjuk</strong> a tárolt értékét. Pl.:<br/>
+        <img src="/static/img/var2/def.png" class="center-block" /></p>
+    <p>
+        Ha a változóink egy kicsit összetettebb típusokat tárolnak, akkor a kiolvasott értékkel akár
+        komolyabb dolgokat is véghez vihetünk. Pl.:</p>
+    <pre><code>rezgoMotor.vibrate(); // végső soron ez is a rezgoMotor változó értékét olvassa ki, majd meghívja az egyik függvényét</code></pre>
+
+    <h2>Inicializálás</h2>
+
+    <p>
+        A változó inicializálása az első értékadás. Tehát pl.</p>
+
+<pre><code>
+int x;
+x = 5; // első értékadás</code></pre>
+
+    <p>
+        <strong>Az inicializálásra mindig figyeljünk!</strong> Amíg nem inicializálunk, a változónk
+        a Java vagy nem engedi használni őket, vagy feltölti őket valamilyen alapértelmezett
+        értékkel (pl. 0, false, null). Utóbbi elég nagy probléma lehet, hiszen pl. ha a fenti
+        példánkban a rezgoMotor változónk értéke null, akkor a rezgoMotor.vibrate() hívás a program
+        futása közben hibát fog okozni (null reference exception). A Java nem tud függvényeket hívni
+        egy egy null változóból, és ezért megállítja a program futását.</p>
+
+    <p>
+        A Java nyelvben a deklarációt és az inicializálást gyakran össze szokás vonni</p>
+
+        <pre><code>int x = 5;</code></pre>
+
+    <p>
+        <strong>Itt azonban óvatosnak kell lennünk!</strong></p>
+
+    <p>
+        A fenti sor ugyanis nem csak értéket ad a változónknak, de deklarálja is azt!</p>
+
+    <p>
+        Pl. az alábbi program HIBÁS:
+        <img src="/static/img/var2/redef.png" class="center-block" />
+    </p>
+
+
+    <p>
+        Hiszen ez lebontva:
+        <img src="/static/img/var2/redef2.png" class="center-block" />
+    </p>
+
+    <p>
+        <strong>tehát használhatjuk az összevont formát (int x = 5;), hiszen rövidebb és elegánsabb
+            lesz tőle a kódunk, de mindig tartsuk észben, hogy ezzel egy új változót próbálunk
+            bemutatni. Ha a változót már máshol bemutattuk, akkor használjunk egyszerű értékadást (
+            <code>x = 5;</code>)</strong></p>
+
+    <h2>Scope / hatókör (azaz hol használható a változónk)</h2>
+
+    <p>
+        Tegyük fel, hogy a programunk egy pontján bemutatjuk az x változót. Jogosan merül fel a
+        kérdés: innentől kezdve az x változó hol használható?</p>
+
+    <p>
+        A Java nyelvben a szabály viszonylag egyszerű:</p>
+
+    <p>
+        A változóink abban a <strong>kód blokkban</strong> használhatóak, ahol deklaráltuk őket. A
+        kód blokk elsőre kicsit ijesztően hangzik talán, de maga az ötlet igen egyszerű: a kód blokk
+        két összetartozó kapcsos zárójel közötti rész.
+        <img src="/static/img/var2/block0.png" class="center-block" />
+        <img src="/static/img/var2/block1.png" class="center-block" />
+    </p>
+
+    <p>
+        Ezek alapján szokás kiemelni az alábbi három esetet:</p>
+    <ul>
+        <li>
+            Osztály szintű változók: időnként globális változóként is nevezzük őket a leckékben.
+            Ezek azok a változók, amiket az osztály bármelyik pontján használhatsz.
+            <img src="/static/img/var2/scope1.png" class="center-block" />
+        </li>
+        <li>
+            Függvény változók: időnként lokális változóként is nevezzük őket. Ezek azok a változók,
+            amiket a függvényeinkben mutatunk be.
+            <img src="/static/img/var2/scope2.png" class="center-block" />
+        </li>
+        <li>
+            ciklus változók: egy igen érdekes, ám gyakran előkerülő eset.
+            <img src="/static/img/var2/scope3.png" class="center-block" />
+        </li>
+    </ul>
+	<h4 class="task">1. Feladat</h4>
+    <p>
+        Nézd meg az alábbi kódot, rajzold be a változók hatókörét, és nézd meg, hogy jól
+        használjuk-e a változóinkat:</p>
+
+<pre><code>
+public class Gomb {
+    Color szin;
+    String felirat;
+
+    public void torol() {
+        felirat = "";
+    }
+
+    public void foo() {
+        int y = 3;
+    }
+
+    public void foo2() {
+        int x = 42;
+        y = x + 5;
+    }
+
+    public void foo3() {
+        int x = 36;
+        for (int i = 0; i < 36; i++) {
+            x = x + i;
+        }
+        int x = 5;
+    }
+}</code></pre>
+
+    <h2>Shadowing (elfedés)</h2>
+
+    <p>
+        Ezzel el is érkeztünk a lecke címében szereplő <em>elfedés</em> szóhoz. Ha idáig eljutottál,
+        akkor remélhetőleg megértetted a <em>deklaráció</em>, <em>inicializáció </em>és <em>scope/hatókör</em>
+        fogalmát.</p>
+
+    <p>
+        Akkor lássuk a rendszer egyik legizgalmasabb pontját: a változó elfedést.
+        <img src="/static/img/var2/shadow1.png" class="center-block" /></p>
+
+    <p>
+        A lecke korábbi fejezeteinek ismeretében remélhetőleg rögtön kiszúrtad, hogy két x nevű
+        változónk is van. Ha most berajzoljuk a a változóink hatóköreit, akkor érdekes felfedezést
+        tehetünk: a hatókörök között átfedés látható:
+        <img src="/static/img/var2/shadow2.png" class="center-block" /></p>
+
+    <p>
+        <em>megjegyzésként: ha ugyanazon a néven bemutatnánk két változót <strong>egy blokkon
+            belül</strong>, akkor hibaüzenetet kapnánk. Ebben az esetben azonban egymásba ágyazott
+            blokkokról beszélünk. A Java fordító ezt nem utasítja el.</em></p>
+
+    <p>
+        Mit jelent ez?</p>
+
+    <p>
+        Ha a foo nevű függvényünkben megpróbálunk értéket adni az x változónak, akkor a Java fordító
+        dilemma elé kerül: melyik x változónak adjon értéket?</p>
+
+    <p>
+        <strong>A Java nyelv ilyenkor mindig a legbelső változót használja. Tehát előnyben részesíti
+            a lokális változókat a globális változókkal szemben.</strong>
+        <img src="/static/img/var2/shadow3.png" class="center-block" /></p>
+
+    <p>
+        Például ebben a programban az x nevű <em>osztály szintű változónk</em> értéke végig 0 marad,
+        így az y változó sem kaphat más értéket
+        <img src="/static/img/var2/shadow4.png" class="center-block" /></p>
+
+	<h4 class="task">2. Feladat</h4>
+    <p>
+        Melyik értékadás/olvasás melyik változóra vonatkozik? Használj színeket/nyilakat!</p>
+
+    <p>
+<pre><code>
+public class Haromszog {
+    int a;
+    int b;
+    int c;
+
+    public int kerulet() {
+        return a + b + c;
+    }
+
+    public int nagyit(int f) {
+        a = a * f;
+        b = b * f;
+        c = c * f;
+    }
+
+    public void foo() {
+        int a = b + c;
+        b = a + c;
+    }
+
+    public void foo2() {
+        int a = 5;
+        int b = 6;
+        int c = 7;
+    }
+}</code></pre>
+
+    <p>
+        A fenti osztályt az alábbi módon használom:</p>
+
+<pre><code>
+haromszog = new Haromszog();
+haromszog.foo2();
+haromszog.nagyit(3);</code></pre>
+
+    <p>
+        Ezen a ponton a <code>haromszog.kerulet()</code> milyen értéket ad vissza?</p>
+
+	<h4 class="task">3. Feladat</h4>
+    <p>
+        Melyik értékadás/olvasás melyik változóra vonatkozik? Használj színeket/nyilakat! Helyes a program?
+        Mi lesz a globális változó értéke az onSensorChanged függvény futásakor (ne feledd mi
+        történik, ha nem inicializálod a változódat!)?</p>
+	<p><em>Ne feledd, a változóink mindig kisbetűvel kezdődnek. Tehát pl. a SensorManager nem változó. 
+		Illetve vigyázz, az inicializálás értékadás is egyben.</em></p>
+
+    <p>
+<pre><code>
+public class GolyoActivity extends ActionBarActivity implements SensorEventListener {
+    SensorManager sensorManager;
+    ImageView golyoKep;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(<strong>savedInstanceState</strong>);
+        setContentView(R.layout.activity_golyo); // Ezzel most nem foglalkozunk
+        <strong>ImageView golyoKep = </strong>(ImageView) findViewById(R.id.golyo);
+        <strong>sensorManager = </strong>(SensorManager) getSystemService(SENSOR_SERVICE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        <strong>Sensor sensor = sensorManager</strong>.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        <strong>sensorManager</strong>.registerListener(this, <strong>sensor</strong>, SensorManager.SENSOR_DELAY_UI); // A this változóval ne foglalkozz!
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        <strong>sensorManager</strong>.unregisterListener(this);
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        <strong>golyoKep</strong>.setX(0);
+        <strong>golyoKep</strong>.setY(0);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+}</code></pre>
+
+    </div>
+<footer data-include="/include/footer.html"></footer>
+<script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
