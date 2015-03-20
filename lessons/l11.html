@@ -64,6 +64,11 @@
             <p>
                 Létre kell hoznunk egy új Activityt a kvíz ablaknak, és meg kell írnunk azokat a
                 program sorokat, amik a kikérdezésért felelősek.</p>
+            <p>
+                Azt szeretnénk, ha először annyit tudna a program, hogy kiválaszt egy szót, kiírja
+                a magyar nyelvű alakját, és bekéri az angol nyelvűt. Ez után gombnyomásra eldönti, hogy
+                jó e a megoldás, ezt jelzi, és kérdez egy újabbat.
+            </p>
             <img src="/static/img/l11/wireframe2.png" class="center-block" />
         </section>
 
@@ -75,15 +80,20 @@
                 átfutni, hogy ott mi is történt.</p>
             <img src="/static/img/l11/sketch.png" class="center-block" />
             <p>
-                A következő különbségeket észben tartva javasolnánk, hogy próbáld meg először a
-                harmadik lecke alapján megoldani a feladatot, és akkor nézz csak bele a lenti leírásba,
+                A következő különbségeket észben tartva javasolnánk, hogy próbáld meg először önállóan
+                megoldani a feladatot, puskázva a harmadik lecke leírásából, és akkor nézz csak bele a lenti leírásba,
                 ha elakadtál. Az online szakkörök szépségét is mutatja, hogy csak rajtad múlik mennyit
                 tanulsz a lecke elvégzése közben:</p>
             <ol>
                 <li>
                     <p>
+                        Ha még nincs a projektedben KvizActivity, akkor létre kell hozni. Ilyet már csináltunk sokat,
+                        például a <a href="/lessons/l06.html#newActivity">6. leckében</a>.</p>
+                </li>
+                <li>
+                    <p>
                         Az Activity indulásakor (onCreate) be kell olvasnunk a szólistát. Ezt egy az egyben
-                        ugyanúgy tehetjük meg, mint a SzavakActivityben,</p>
+                        ugyanúgy tehetjük meg, mint a SzavakActivityben.</p>
                 </li>
                 <li>
                     <p>
@@ -98,6 +108,14 @@
                 </li>
             </ol>
         </section>
+
+        <p style="margin-top: 100px;"><small>A továbbiakban lépésről lépésre végigmegyünk a lecke
+            elkészítésén, de az lenne az igazi,
+            ha először <strong>önállóan</strong> próbálnátok megcsinálni, kitalálni a szükséges lépéseket.</small></p>
+        <p><small>Ha végeztél, vagy ha elakadtál, érdemes átfutni leírásunkat, megnézni mit csinálnánk
+            mi másként, illetve a lecke végén találhattok sok szorgalmi feladatot illetve ötletet,
+            .</small></p>
+        <hr/>
 
         <section id="new-activity">
             <h2>Új Activity</h2>
@@ -157,10 +175,9 @@
                 különböző színek és képek használatával. Használd például a <code>background</code>,
                 <code>textSize</code>, <code>hint </code>tulajdonságokat. Ezekre példákat a korábbi
                 leckékben is láthattál már!</p>
-            <p>
             <p>Ne feledd, hogy azokhoz a komponensekhez, amikre kódból is hivatkozni szeretnél, létre kell hoznod egy-egy változót is. 
                 Ilyet is sokszor csináltunk már: az értéküket az <code>onCreate</code> függvényben adtuk meg a <code>findViewById</code> segítségével.</p>
-                <strong>Próbáld meg még most önállóan végiggondolni, hogy mi mindennek kell történnie
+            <p><strong>Próbáld meg még most önállóan végiggondolni, hogy mi mindennek kell történnie
                     a gomb megnyomásakor (írd le papírra!).</strong></p>
         </section>
 
@@ -269,8 +286,9 @@
             </ol>
         </section>
 
-        <h2>Kitérő - Két String összehasonlítása</h2>
         <div class="misc-info" id="string_comparison">
+            <p class="lead"><strong>Kitérő - Két String összehasonlítása</strong></p>
+
             <p>
                 A harmadik leckében megtanultuk, hogy a Java nyelvben milyen egyszerűen össze tudunk
                 hasonlítani két számot (pl. <code>a</code> és <code>b</code> változókból)</p>
@@ -383,6 +401,20 @@ gondoltSzo = szolista.get(gondoltSzam);
                 a nehézségüket követni, ezért érdemes lehet sorban haladni velük, de nem kötelező.</em>
         </section>
 
+        <h2>0. Ismétlődő kérdések megszüntetése, beírt szó előfeldolgozása</h2>
+        <p>
+            Egy bemelegítő feladat, azt kéne megoldani, hogy egy "játék" alatt ne kérdezze meg
+            kétszer ugyan azt a szót. Ehhez használd az <code>ArrayList</code> <code>remove()</code> függvényét!</p>
+        <p>
+            Aki használ valamilyen szókiegészítés billentyűzetet, annak valószínűleg kis kellemetlenséget
+            fog okozni, hogy azok általában egy szóközt is beírnak a kiegészített szó után, ami
+            így már nem ugyan az, mint a fájlban tárolt szó <br/>
+            Hogy ne kelljen ezt mindig kézzel törölni, használjuk a <code>String</code> osztály
+            <code>trim()</code> metódusát! Ez egy új stringet ad vissza, de nem muszáj új változót
+            is létrehozni neki, felülírhatjuk vele a beolvasott szavat tároló változót (nálunk tipp nevű változó):
+            <code>tipp = tipp.trim();</code><br/>
+            Az igényesebbek megcsinálhatják ugyan ezt a SzavakActivityben, új szó hozzáadásakor is.</p>
+
         <h2>1. Számláló, statisztika</h2>
         <p>
             Sokkal informatívabb lenne a program, ha kikérdezés közben folyamatosan visszajelzést
@@ -459,7 +491,9 @@ gondoltSzo = szolista.get(gondoltSzam);
             Ha minden statisztikát törölni szeretnél, akkor (pl. menünyomás hatására) azt így
             tudod:</p>
 <pre><code>SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-SharedPreferences.Editor editor = prefs.edit(); editor.clear(); editor.commit();</code></pre>
+SharedPreferences.Editor editor = prefs.edit();
+editor.clear();
+editor.commit();</code></pre>
 
         <h2>3. Rontott szavak kiírása a végén</h2>
         <p>
