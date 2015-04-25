@@ -71,13 +71,17 @@
             szereznünk egy Androdi Certificate-t és egy Google Maps API key-t. Ezek ugyan ingyenesen
             elérhetőek, ebben a leckében most úgy döntöttünk, hogy megkíméljük az olvasót ettől a
             kényelmetlenségtől, és a könnyebb utat választva inkább az Open Street Map térképeit
-            használjuk.***TODO link a google tutorialra?***</p>
+            használjuk.
+            <a href="https://developers.google.com/maps/documentation/android/start" target="_blank">
+                Az érdeklődők itt megnézhetik a Google Maps használatát is, az sem ördöngősség...
+            </a></p>
 
         <h3>Külső API hozzáadása</h3>
         <p>
             Az Open Street Map használatához először is szükségünk van egy új alkalmazásra. Ezt
-            hozzuk létre most a szokásos módon. ***ide jó lenne egy kis emlékeztető pl. az API 19
-            miatt***</p>
+            hozzuk létre most a szokásos módon. Remélhetőleg ez már mindenkinek kisujjból megy,
+            de ha esetleg mégsem (régen volt rá utoljára szükség), akkor pl. a
+            <a href="/lessons/l07.html#new-project" target="_blank">7. lecke</a> leírásából lehet puskázni.</p>
 
         <p>
             Ha kész az új projektünk, akkor nyissuk meg a <code>build.gradle</code> fájlunkat.
@@ -156,14 +160,7 @@
         <p>
             *** TODO IMG***</p>
 
-        <h3>Gombok</h3>
-        <p>
-            A fenti felhasználó felület gombjainak elkészítése remélhetőleg nem okoz nagyobb
-            problémát ezen sorok olvasóinak. Ne felejtsük el <code>id</code> tulajdonságokkal
-            ellátni a gombokat és a RelativeLayout gyökérelemet sem.</p>
-
-
-        <h3>Térkép?</h3>
+        <h3>Térkép</h3>
         <p>
             A térkép megjelenítésére egy ún. MapView típusú komponenst fogunk használni. Hiába
             nézegetjük azonban a baloldali palettát, ott a szokásos komponenseinken
@@ -232,13 +229,16 @@
             Induláskor a térképünk jelenleg az egész földet mutatja kilapítva (esetenként több
             példányban egymás mellett). Manuálisan lehetőségünk van nagyítani és mozgatni a
             térképet, így megkeresve a számunkra épp érdekes részletet, ám mennyivel hasznosabb
-            lenne, ha a térkép gombnyomásra egy általunk érdekesnek tartott helyre ugrana.</p>
+            lenne, ha a térkép gombnyomásra egy általunk érdekesnek tartott helyre ugrana!</p>
 
         <p>
             Az alábbi kód alkalmas ennek elérésére:</p>
 
-        <p>
-            <code>***TODO kód***</code></p>
+<pre><code>
+IMapController mapController = map.getController();
+mapController.setZoom(17);
+GeoPoint startPoint = new GeoPoint(47.632594, 19.131786);
+mapController.setCenter(startPoint);</code></pre>
 
         <p>
             A térképen a pozíciót a földrajzi szélesség és hosszúság segítségével határozhatjuk meg</p>
@@ -248,8 +248,8 @@
                 href="http://en.wikipedia.org/wiki/Latitude#/media/File:Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg">http://en.wikipedia.org/wiki/Latitude#/media/File:Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg</a>***</p>
 
         <p>
-            Azt szeretnénk elérni, hogy a felhasználói felületen található 5 gomb mind más-más
-            helyre repítsen el minket a térképen. Ehhez megtehetnénk, hogy a fenti kódot öt
+            Azt szeretnénk elérni, hogy a felhasználói felületen legyen 5 gomb, ami mind más-más
+            helyre repít el minket a térképen. Ehhez megtehetnénk, hogy a fenti kódot öt
             példányban bemásoljuk a gombjaink kattintását kezelő onClick függvényeibe. Másolgatás
             helyett azonban ezúttal inkább készítünk egy saját függvényt</p>
 
@@ -415,6 +415,14 @@ void navigalj(double szelesseg, double hosszusag) {
         <h3>Függvény hívása</h3>
 
         <p>
+            A layouthoz adj hozzá 5 gombot. Ha kell, méretezd át a térkép komponenst, és az alá/fölé
+            rakd le a gombokat. Ne felejtsük el <code>id</code> tulajdonságokkal ellátni a gombokat
+            és a RelativeLayout gyökérelemet sem. Akik megcsinálták a
+            <a href="/lessons/l08.html#starred_about_menu" target="_blank">korábbi szorgalmit</a>,
+            amiban a menükezelést mutattuk be, azt is használhatják, és úgy megmaradhat teljes
+            képernyősnek a térkép.</p>
+
+        <p>
             Most készíts minden gombnak egy onClick függvényt. Ehhez segítséget a <a
                 href="http://dkrmg-android.github.io/gyik.html#buttonNClick">gyorssegély</a> lapon
             találsz. Ezek a függvények pedig hívják meg a <code>navigalj</code> függvényt az alábbi
@@ -422,19 +430,19 @@ void navigalj(double szelesseg, double hosszusag) {
         <ol>
             <li>
                 <p>
-                    gomb: 47.632485, 19.131230 ***TODO remove this hint: dkrmg***</p></li>
+                    gomb: 47.632485, 19.131230</p></li>
             <li>
                 <p>
-                    gomb: 47.496122, 19.039881 ***budai vár***</p></li>
+                    gomb: 47.496122, 19.039881</p></li>
             <li>
                 <p>
-                    gomb: 51.500695, -0.124534 ***Big Ben***</p></li>
+                    gomb: 51.500695, -0.124534</p></li>
             <li>
                 <p>
-                    gomb: 40.783217, -73.966429 ***Manhattan, New York***</p></li>
+                    gomb: 40.783217, -73.966429</p></li>
             <li>
                 <p>
-                    gomb: 48.858225, 2.294386 ***Eiffel torony***</p></li>
+                    gomb: 48.858225, 2.294386</p></li>
         </ol>
         <p>
             Futtasd az alkalmazást, és nézd meg, hogy melyik gomb hova visz a térképen! Ennek
