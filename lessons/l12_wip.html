@@ -84,34 +84,39 @@
             <a href="/lessons/l07.html#new-project" target="_blank">7. lecke</a> leírásából lehet puskázni.</p>
 
         <p>
-            Ha kész az új projektünk, akkor nyissuk meg a <code>build.gradle</code> fájlunkat.
-            ***TODO pic***.</p>
+            Ha kész az új projektünk, akkor nyissuk meg a <code>build.gradle</code> fájlunkat.</p>
+		<img src="/static/img/l12/gradle1.png" class="center-block" />
 
         <p>
             Ez a fájl mondja meg az Android Studio-nak, hogy miként fordítsa le a programunkat. Épp
             az imént itt módosítottuk például, hogy milyen SDK-val rendelkező telefonokat
             támogassunk. Most azonban a figyelmünket fordítsuk inkább a <code>dependecies</code>
             rész felé.</p>
+		<img src="/static/img/l12/gradle2.png" class="center-block" />	
 
         <p>
-            *** TODO image***</p>
-
-        <p>
-            A gradle fájl dependencies részlete tartalmazza azon kódcsomagok listáját, amik nem
-            részei se az Android rendszernek, se a Java nyelvnek. Ide kell hozzáadnunk az Open
-            Street Map-et is, ezáltal jelezve az Android Studio-nak, hogy mostantól tekintsen úgy a
-            térkép API-ra, mint bármilyen más belső kódra.</p>
-
+            A gradle fájl <code>dependencies</code> részlete tartalmazza azon kódcsomagok listáját, amik nem
+            részei se az Android rendszernek, se a Java nyelvnek. A lista már most sem feltétlenül üres,
+            az Android Studio esetenként például már hozzáadta az appcompat könyvtárat. Ha a te dependencies listád
+            más elemeket tartalmaz mint a képen láthatóak, akkor sem kell aggódnod. A lényeg az, hogy 
+            a lista végére oda kerüljenek az Open Street Map könyvtárai, ezáltal jelezve az Android Studio-nak, 
+			hogy mostantól tekintsen úgy a térkép API-ra, mint bármilyen más belső kódra.</p>
+			
         <p>
             Ehhez másoljuk be az alábbi két sort a dependencies blokk végére:</p>
 <pre>
 <code>compile 'org.slf4j:slf4j-android:1.6.1-RC1'</code>
 <code>compile 'org.osmdroid:osmdroid-android:4.3'</code></pre>
+		<img src="/static/img/l12/gradle3.png" class="center-block" />	
         <p>
             Most pedig kattintsunk a sarokban felugró <code>Sync now</code> feliratra!</p>
 
-        <p>
-            ***TODO final screenshot***</p>
+        <img src="/static/img/l12/gradle4.png" class="center-block" />	
+		
+		<p>Ha valami oknál fogva a <code>Sync now</code> sáv nem ugrik fel magától, akkor sem történik
+		    semmi probléma. A gradle fájl változtatása után nyojuk meg a fenti sávban található
+			<code>Sync Project with Gradle Files</code> gombot (lenti képen pirossal keretezve).</p>
+		<img src="/static/img/l12/gradle5.png" class="center-block" />		
 
     </section>
 
@@ -121,7 +126,7 @@
         <p>
             Korábban a rezgőmotor használatakor is láthattuk már, hogy az Android rendszer bizonyos
             hardverelemek használatát külön engedélyhez köti. Emlékeztetőként nézd meg a <a
-                href="http://dkrmg-android.github.io/gyik.html#Vibrator">gyorssegély</a> lapot!</p>
+                href="/gyik.html#Vibrator">gyorssegély</a> lapot!</p>
 
         <p>
             Az alkalmazásunk a szükséges engedélyek listját az <code>AndroidManifest.xml</code>
@@ -129,10 +134,11 @@
         <ol>
             <li>
                 <p>
-                    Nyissuk meg a manifeszt fájlt ***IMG***</p></li>
+                    Nyissuk meg a manifeszt fájlt </p>
+					<img src="/static/img/l12/manifest1.png" class="center-block" />	</li>
             <li>
                 <p>
-                    Adjuk hozzá az OSM projekt által ajánlott engedélyeket az application sor fölé</p>
+                    Adjuk hozzá az OSM projekt által ajánlott engedélyeket az <code>application</code> sor fölé</p>
 <pre>
 <code>&lt;uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/&gt;</code>
 <code>&lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/&gt;</code>
@@ -143,8 +149,7 @@
 </pre>
             </li>
         </ol>
-        <p>
-            ***TODO finished file as image (dolgozzanak csak egy kicsit) ***</p>
+        <img src="/static/img/l12/manifest2.png" class="center-block" />	
 
         <p>
             A fenti engedélyek listája az OSM honlapjáról származik, és közülük néhányra a mi
@@ -157,8 +162,7 @@
 
     <section id="layout">
         <h2>Layout &ndash; felhasználói felület</h2>
-        <p>
-            *** TODO IMG***</p>
+        <img src="/static/img/l12/layout1.png" class="center-block" />
 
         <h3>Térkép</h3>
         <p>
@@ -170,19 +174,25 @@
         <ol>
             <li>
                 <p>
-                    Kattintsunk A <code>Custom</code> pont alatt a <code>CustomView</code>-ra.</p></li>
+                    Kattintsunk A <code>Custom</code> pont alatt a <code>CustomView</code>-ra.</p>
+					<img src="/static/img/l12/layout2.png" class="center-block" />	</li>
+
             <li>
                 <p>
                     A felbukkanó ablak kiegészítő komponensek egész hadát rejti. Itt válasszuk ki a
-                    MapView (org.osmdroid.views) komponenst, majd a layout szerkesztőben a telefonra
+                    <code>MapView (org.osmdroid.views)</code> komponenst, majd a layout szerkesztőben a telefonra
                     kattintva helyezzük el a képernyő közepén. A térkép helyén ilyenkor egy szürke
-                    rácsos mintát látunk csak.</p></li>
+                    rácsos mintát látunk csak.</p>
+					<img src="/static/img/l12/layout3.png" class="center-block" /></li>
+			<li>
+			<p>Előfordulhat, hogy elsőre a layout szerkesztő még panaszkodik az ismeretlennek tűnő komponens miatt 
+			<code>The following classes could not be found...</code>. A probléma megoldható a bal felső sarokban található 
+			frissítés gomb megnyomásával.</p>
+			<img src="/static/img/l12/layout4.png" class="center-block" />
+			</li>
             <li>
                 <p>
-                    *** TODO images***</p></li>
-            <li>
-                <p>
-                    Ne felejtük el a térkép <code>id</code> tulajdonságát beállítani!</p></li>
+                    Ne felejtsük el a térkép <code>id</code> tulajdonságát beállítani!</p></li>
         </ol>
     </section>
 
@@ -424,7 +434,7 @@ void navigalj(double szelesseg, double hosszusag) {
 
         <p>
             Most készíts minden gombnak egy onClick függvényt. Ehhez segítséget a <a
-                href="http://dkrmg-android.github.io/gyik.html#buttonNClick">gyorssegély</a> lapon
+                href="/gyik.html#buttonNClick">gyorssegély</a> lapon
             találsz. Ezek a függvények pedig hívják meg a <code>navigalj</code> függvényt az alábbi
             paraméterekkel:</p>
         <ol>
