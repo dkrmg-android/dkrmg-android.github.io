@@ -75,6 +75,12 @@
             <a href="https://developers.google.com/maps/documentation/android/start" target="_blank">
                 Az érdeklődők itt megnézhetik a Google Maps használatát is, az sem ördöngősség...
             </a></p>
+        <p class="possible-error"><strong>Fontos</strong> megjegyezni, hogy ennek a leckének a sikeres teljesítéséhez (illetve az
+            elkészült program használatához) szükség lesz a telefonon <strong>internetelérésre</strong>.
+            A program működik mobilneten keresztül is, de nagyon változó, hogy éppen mennyi
+            adatot szeretne letölteni, ami lehet sok, így drága is. Ezért azt javasoljuk, hogy
+            mindenképp az otthoni <strong>WiFi</strong>-re legyetek felcsatlakozva, miközben használjátok a
+            programot! Reméljük ez nem okoz gondot senkinek.</p>
 
         <h3>Külső API hozzáadása</h3>
         <p>
@@ -186,7 +192,7 @@
 					<img src="/static/img/l12/layout3.png" class="center-block" /></li>
 			<li>
 			<p>Előfordulhat, hogy elsőre a layout szerkesztő még panaszkodik az ismeretlennek tűnő komponens miatt 
-			<code>The following classes could not be found...</code>. A probléma megoldható a bal felső sarokban található 
+			<code>The following classes could not be found...</code>. A probléma megoldható a jobb felső sarokban található
 			frissítés gomb megnyomásával.</p>
 			<img src="/static/img/l12/layout4.png" class="center-block" />
 			</li>
@@ -208,21 +214,21 @@
         <ol>
             <li>
                 <p>
-                    Hozzunk létre az Activityben egy új <code>MapView</code> típusú változót
+                    Hozzunk létre az Activity elején egy új <code>MapView</code> típusú változót
                     (mondjuk <code>terkep</code> néven)</p></li>
             <li>
                 <p>
-                    Rendeljük hozzá a <code>terkep</code> változóhoz a térkép komponensünket
-                    (<em><code>findViewById</code></em>)</p></li>
+                    Rendeljük hozzá a <code>terkep</code> változóhoz a térkép komponensünket az onCeate-ben
+                    (<em><code>findViewById</code></em>).</p></li>
         </ol>
         <p>
             A térképünk tulajdonságait praktikus módon rögtön az <code>onCreate</code> függvényben
             be is állíthatjuk:</p>
 
 <pre>
-<code>map.setTileSource(TileSourceFactory.MAPNIK); // térkép forrása</code>
-<code>map.setBuiltInZoomControls(true); //nagyitás/kicsinyítés látszik</code>
-<code>map.setMultiTouchControls(true); // kétujjas nagyítás/kicsinyítés engedélyezése</code>
+<code>terkep.setTileSource(TileSourceFactory.MAPNIK); // térkép forrása</code>
+<code>terkep.setBuiltInZoomControls(true); //nagyitás/kicsinyítés látszik</code>
+<code>terkep.setMultiTouchControls(true); // kétujjas nagyítás/kicsinyítés engedélyezése</code>
 </pre>
 
 
@@ -245,7 +251,7 @@
             Az alábbi kód alkalmas ennek elérésére:</p>
 
 <pre><code>
-IMapController mapController = map.getController();
+IMapController mapController = terkep.getController();
 mapController.setZoom(17);
 GeoPoint startPoint = new GeoPoint(47.632485, 19.131230);
 mapController.setCenter(startPoint);</code></pre>
@@ -333,7 +339,7 @@ mapController.setCenter(startPoint);</code></pre>
                 </p>
 
                 <p>
-                    Most nézzük meg, hogy tudjuk használni:
+                    Most nézzük meg, hogy tudjuk használni (azaz meghívni):
                     <img src="/static/img/l12/java_fgv_hasznalat.svg" class="center-block" />
                 </p>
 
@@ -371,7 +377,7 @@ mapController.setCenter(startPoint);</code></pre>
                 </ol>
 				
 				<p>Nézzük meg most kicsit közelebbről a szorzógép függvény törzsét</p>
-				<pre><code>{
+<pre><code>{
     int eredmeny = a * b * c;
 	return eredmeny;
 }</code></pre>
@@ -385,12 +391,13 @@ mapController.setCenter(startPoint);</code></pre>
                 <h4>Mi van, ha nincs mit visszaadni?</h4>
                 <p>
 				    Nem szabad megijedni a függvényektől! Hiszen már a harmadik lecke eleje óta használjuk őket.
-					Nézzük meg egy gomb kattintását kezelő egyszerű <code>onClick</code> függvényét.
+					Nézzük meg egy gomb kattintását kezelő egyszerű <code>onClick</code> függvényét.</p>
 					
 					<pre><code>public void button1Click(View v) {
     // itt csinálunk valami hasznosat. Pl. felirat frissítése, vagy térkép mozgatása
 }</code></pre>
-					A <code>button1Click</code> függvénynek van egy bemeneti
+				<p>
+                    A <code>button1Click</code> függvénynek van egy bemeneti
                     paramétere (View v), ami mögött valójában a megnyomott gomb rejtőzik.
 					De mi potyog ki a függvény végén? Semmi, hiszen a gombnyomásra csak frissítünk egy feliratot,
 					vagy elmozdítjuk a térképet, hogy mást mutasson. Nem számolunk ki semmit,
