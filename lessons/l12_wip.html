@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>L12 - Térkép (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body class="language-java">
+<header data-include="/include/header.html"></header>
+<div class="container">
+    <h1>
+        12. lecke
+        <small>Térkép</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p>
+    </h1>
+    <hr/>
+
+    <section id="intro">
+        <p>
+            Ebben a leckében végre ismét egy olyan programot készítünk, ami kevés kóddal is
+            látványos eredményt ér el! A célunk egy térkép megjelenítése az androidos okostelefonunk
+            kijelzőjén, ami gombynomásra tetszőleges helyre ugrik.</p>
+
+        <!-- TODO image/video teaser? -->
+
+        <p>
+            Joggal kérdezhetnénk: hány száz sor kódot kell megírnunk ahhoz, hogy egy olyan térképet
+            jelenítsünk meg, ami a világ bármely pontjára elrepít minket, követve az ismert ujj
+            mozdulatokat (mozgatás, nagyítás)? Pedig nem lesz szükségünk másra, mint pár layout
+            elemre, és körülbelül tíz sor új Java kódra.</p>
+    </section>
+
+    <section id="api">
+        <h2>API</h2>
+        <p>
+            A programozás hőskorában nem ment ritkaságszámba az, hogy minden fejlesztő (vagy cég) a
+            legapróbb problémák megoldására is saját kódrészletek írásába kezdett. A Java nyelv
+            kellő ismeretével mi is megtehetnénk ezt, ám kérdés, hogy miért vesztegetnénk az időnket
+            és erőnket már rég megoldott feladatokra. Kissé közhelyesen: ne akarjuk újra feltalálni
+            a spanyol viaszt! Rengeteg népszerű programozási problémára léteznek szabadon elérhető,
+            nyilvános és sokszor ingyenes kódcsomagok, amikhez a fejlesztőjük (vagy
+            fejlesztőcsoportjuk) úgynevezett API-kon keresztül hozzáférést biztosít számunkra.</p>
+
+        <p>
+            A helyzet talán nem is teljesen ismeretlen számunkra. Az Android beépített függvénytára
+            már most is rengeteg munkát vesz le a vállunkról (ablakok kirajzolása, Activity-k
+            megnyitása, kezelése, szenzorok használata stb). Ezúttal egy újabb nyilvános API-val
+            ismerkedünk meg, amely kifejezetten térképek megjelenítésére alkalmas.</p>
+
+        <h3>Miért Open Street Map (OSM) és nem Google Maps?</h3>
+        <p>
+            Több ingyenesen elérhető térkép API is elérhető jelenleg az interneten. Az
+            <a href="http://www.openstreetmap.hu/">Open Street Map projekt</a> egy közösségalapú
+            térkép. Az adatokat magánemberek szolgáltatják, akár Te is hozzáadhatsz új elemeket! A
+            projekthez kapcsolódó osmdroid pedig a világtérképet elérhetővé teszi az Android
+            kódunkból is. A Google Maps is nyújt hasonló API-t, azonban ennek használatát a Google
+            szigorúbb ellenőrzés alatt tartja. A Google Maps API első használata előtt be kell
+            szereznünk egy Androdi Certificate-t és egy Google Maps API key-t. Ezek ugyan ingyenesen
+            elérhetőek, ebben a leckében most úgy döntöttünk, hogy megkíméljük az olvasót ettől a
+            kényelmetlenségtől, és a könnyebb utat választva inkább az Open Street Map térképeit
+            használjuk.***TODO link a google tutorialra?***</p>
+
+        <h3>Külső API hozzáadása</h3>
+        <p>
+            Az Open Street Map használatához először is szükségünk van egy új alkalmazásra. Ezt
+            hozzuk létre most a szokásos módon. ***ide jó lenne egy kis emlékeztető pl. az API 19
+            miatt***</p>
+
+        <p>
+            Ha kész az új projektünk, akkor nyissuk meg a <code>build.gradle</code> fájlunkat.
+            ***TODO pic***.</p>
+
+        <p>
+            Ez a fájl mondja meg az Android Studio-nak, hogy miként fordítsa le a programunkat. Épp
+            az imént itt módosítottuk például, hogy milyen SDK-val rendelkező telefonokat
+            támogassunk. Most azonban a figyelmünket fordítsuk inkább a <code>dependecies</code>
+            rész felé.</p>
+
+        <p>
+            *** TODO image***</p>
+
+        <p>
+            A gradle fájl dependencies részlete tartalmazza azon kódcsomagok listáját, amik nem
+            részei se az Android rendszernek, se a Java nyelvnek. Ide kell hozzáadnunk az Open
+            Street Map-et is, ezáltal jelezve az Android Studio-nak, hogy mostantól tekintsen úgy a
+            térkép API-ra, mint bármilyen más belső kódra.</p>
+
+        <p>
+            Ehhez másoljuk be az alábbi két sort a dependencies blokk végére:</p>
+<pre>
+<code>compile 'org.slf4j:slf4j-android:1.6.1-RC1'</code>
+<code>compile 'org.osmdroid:osmdroid-android:4.3'</code></pre>
+        <p>
+            Most pedig kattintsunk a sarokban felugró <code>Sync now</code> feliratra!</p>
+
+        <p>
+            ***TODO final screenshot***</p>
+
+    </section>
+
+    <section id="permissions">
+        <h2>Engedélyek</h2>
+
+        <p>
+            Korábban a rezgőmotor használatakor is láthattuk már, hogy az Android rendszer bizonyos
+            hardverelemek használatát külön engedélyhez köti. Emlékeztetőként nézd meg a <a
+                href="http://dkrmg-android.github.io/gyik.html#Vibrator">gyorssegély</a> lapot!</p>
+
+        <p>
+            Az alkalmazásunk a szükséges engedélyek listját az <code>AndroidManifest.xml</code>
+            fájlban tárolja.</p>
+        <ol>
+            <li>
+                <p>
+                    Nyissuk meg a manifeszt fájlt ***IMG***</p></li>
+            <li>
+                <p>
+                    Adjuk hozzá az OSM projekt által ajánlott engedélyeket az application sor fölé</p>
+<pre>
+<code>&lt;uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/&gt;</code>
+<code>&lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/&gt;</code>
+<code>&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/&gt;</code>
+<code>&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;</code>
+<code>&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</code>
+<code>&lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/&gt;</code>
+</pre>
+            </li>
+        </ol>
+        <p>
+            ***TODO finished file as image (dolgozzanak csak egy kicsit) ***</p>
+
+        <p>
+            A fenti engedélyek listája az OSM honlapjáról származik, és közülük néhányra a mi
+            alkalmazásunknak szigorúan véve nem lesz szüksége (pl. <code>FINE_LOCATION</code>). Az
+            Android programozás világában sajnos elfogadott szokás ilyenkor is kikérni az engedélyt
+            amolyan "ártani nem árt" alapon. Azonban komolyabb alkalmazások készítésekor
+            javasolnánk, hogy igyekezz a lehető legkevesebb engedélyre szorítkozni.</p>
+
+    </section>
+
+    <section id="layout">
+        <h2>Layout &ndash; felhasználói felület</h2>
+        <p>
+            *** TODO IMG***</p>
+
+        <h3>Gombok</h3>
+        <p>
+            A fenti felhasználó felület gombjainak elkészítése remélhetőleg nem okoz nagyobb
+            problémát ezen sorok olvasóinak. Ne felejtsük el <code>id</code> tulajdonságokkal
+            ellátni a gombokat és a RelativeLayout gyökérelemet sem.</p>
+
+
+        <h3>Térkép?</h3>
+        <p>
+            A térkép megjelenítésére egy ún. MapView típusú komponenst fogunk használni. Hiába
+            nézegetjük azonban a baloldali palettát, ott a szokásos komponenseinken
+            (<code>Button</code>, <code>TextView</code>, <code>EditText</code>,
+            <code>ListView</code>) túl nem találunk semmi újat. A Layout szerkesztő a külső
+            kiegészítő komponenseket a <code>Custom</code> pont alatt rejti el.</p>
+        <ol>
+            <li>
+                <p>
+                    Kattintsunk A <code>Custom</code> pont alatt a <code>CustomView</code>-ra.</p></li>
+            <li>
+                <p>
+                    A felbukkanó ablak kiegészítő komponensek egész hadát rejti. Itt válasszuk ki a
+                    MapView (org.osmdroid.views) komponenst, majd a layout szerkesztőben a telefonra
+                    kattintva helyezzük el a képernyő közepén. A térkép helyén ilyenkor egy szürke
+                    rácsos mintát látunk csak.</p></li>
+            <li>
+                <p>
+                    *** TODO images***</p></li>
+            <li>
+                <p>
+                    Ne felejtük el a térkép <code>id</code> tulajdonságát beállítani!</p></li>
+        </ol>
+    </section>
+
+    <section id="java_code">
+        <h2>Java kód</h2>
+        <p>
+            A felhasználói felület kialakításával már csak egy lépés maradt hátra a térkép
+            megjelenítéséhez: az Activitynk indulásakor be kell állítanunk a térképünk pár fontos
+            tulajdonságát.</p>
+
+        <p>
+            Először is:</p>
+        <ol>
+            <li>
+                <p>
+                    Hozzunk létre az Activityben egy új <code>MapView</code> típusú változót
+                    (mondjuk <code>terkep</code> néven)</p></li>
+            <li>
+                <p>
+                    Rendeljük hozzá a terkep változóhoz a térkép komponensünket
+                    (<em><code>findViewById</code></em>)</p></li>
+        </ol>
+        <p>
+            A térképünk tulajdonságait praktikus módon rögtön az <code>onCreate</code> függvényben
+            be is állíthatjuk:</p>
+
+<pre>
+<code>map.setTileSource(TileSourceFactory.MAPNIK); // térkép forrása</code>
+<code>map.setBuiltInZoomControls(true); //nagyitás/kicsinyítés látszik</code>
+<code>map.setMultiTouchControls(true); // kétujjas nagyítás/kicsinyítés engedélyezése</code>
+</pre>
+
+
+        <h3>Ennyi?</h3>
+        <p>
+            Igen! Indítsd el a programot, és ha pontosan követted a fenti leírást, egy csinos kis
+            világtérképnek kell várnia a telefonod kijelzőjén.</p>
+
+    </section>
+
+    <section id="map_animation">
+        <h2>Térkép mozgatása</h2>
+        <p>
+            Induláskor a térképünk jelenleg az egész földet mutatja kilapítva (esetenként több
+            példányban egymás mellett). Manuálisan lehetőségünk van nagyítani és mozgatni a
+            térképet, így megkeresve a számunkra épp érdekes részletet, ám mennyivel hasznosabb
+            lenne, ha a térkép gombnyomásra egy általunk érdekesnek tartott helyre ugrana.</p>
+
+        <p>
+            Az alábbi kód alkalmas ennek elérésére:</p>
+
+        <p>
+            <code>***TODO kód***</code></p>
+
+        <p>
+            A térképen a pozíciót a földrajzi szélesség és hosszúság segítségével határozhatjuk meg</p>
+
+        <p>
+            *** TODO kép <a
+                href="http://en.wikipedia.org/wiki/Latitude#/media/File:Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg">http://en.wikipedia.org/wiki/Latitude#/media/File:Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg</a>***</p>
+
+        <p>
+            Azt szeretnénk elérni, hogy a felhasználói felületen található 5 gomb mind más-más
+            helyre repítsen el minket a térképen. Ehhez megtehetnénk, hogy a fenti kódot öt
+            példányban bemásoljuk a gombjaink kattintását kezelő onClick függvényeibe. Másolgatás
+            helyett azonban ezúttal inkább készítünk egy saját függvényt</p>
+
+        <p>
+            *** IDE A függvényes kitérőt, ami elmagyarázza a nevet, visszatérési típust,
+            paraméter/argumentum****</p>
+
+        <h3>Új függvény</h3>
+        <p>
+            Most készítsünk egy új függvényt az Activitynkben, mondjuk <code>navigalj</code> néven!
+            A <code>navigalj</code> függvénynek két argumentum kell: a szélesség és a hosszúság,
+            ahová menni szeretnénk.</p>
+
+<pre><code>
+void navigalj(double szelesseg, double hosszusag) {
+    //...
+}</code></pre>
+
+        <p>
+            A függvény törzsét neked kell befejezned a térkép mozgatására vonatkozó kód
+            segítségével.</p>
+
+
+        <h3>Függvény hívása</h3>
+
+        <p>
+            Most készíts minden gombnak egy onClick függvényt. Ehhez segítséget a <a
+                href="http://dkrmg-android.github.io/gyik.html#buttonNClick">gyorssegély</a> lapon
+            találsz. Ezek a függvények pedig hívják meg a <code>navigalj</code> függvényt az alábbi
+            paraméterekkel:</p>
+        <ol>
+            <li>
+                <p>
+                    gomb: 47.632485, 19.131230 ***TODO remove this hint: dkrmg***</p></li>
+            <li>
+                <p>
+                    gomb: 47.496122, 19.039881 ***budai vár***</p></li>
+            <li>
+                <p>
+                    gomb: 51.500695, -0.124534 ***Big Ben***</p></li>
+            <li>
+                <p>
+                    gomb: 40.783217, -73.966429 ***Manhattan, New York***</p></li>
+            <li>
+                <p>
+                    gomb: 48.858225, 2.294386 ***Eiffel torony***</p></li>
+        </ol>
+        <p>
+            Futtasd az alkalmazást, és nézd meg, hogy melyik gomb hova visz a térképen! Ennek
+            megfelelően írd át a gombok feliratát!</p>
+    </section>
+</div>
+<footer data-include="/include/footer.html"></footer>
+<script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
