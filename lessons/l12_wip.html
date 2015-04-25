@@ -32,7 +32,7 @@
         <p>
             Ebben a leckében végre ismét egy olyan programot készítünk, ami kevés kóddal is
             látványos eredményt ér el! A célunk egy térkép megjelenítése az androidos okostelefonunk
-            kijelzőjén, ami gombynomásra tetszőleges helyre ugrik.</p>
+            kijelzőjén, ami gombnyomásra tetszőleges helyre ugrik.</p>
 
 			<img src="/static/img/l12/intro.png" class="center-block noZoom" />
 
@@ -50,14 +50,14 @@
             legapróbb problémák megoldására is saját kódrészletek írásába kezdett. A Java nyelv
             kellő ismeretével mi is megtehetnénk ezt, ám kérdés, hogy miért vesztegetnénk az időnket
             és erőnket már rég megoldott feladatokra. Kissé közhelyesen: ne akarjuk újra feltalálni
-            a spanyol viaszt! Rengeteg népszerű programozási problémára léteznek szabadon elérhető,
+            a spanyolviaszt! Rengeteg népszerű programozási problémára léteznek szabadon elérhető,
             nyilvános és sokszor ingyenes kódcsomagok, amikhez a fejlesztőjük (vagy
             fejlesztőcsoportjuk) úgynevezett API-kon keresztül hozzáférést biztosít számunkra.</p>
 
         <p>
             A helyzet talán nem is teljesen ismeretlen számunkra. Az Android beépített függvénytára
-            már most is rengeteg munkát vesz le a vállunkról (ablakok kirajzolása, Activity-k
-            megnyitása, kezelése, szenzorok használata stb). Ezúttal egy újabb nyilvános API-val
+            már most is rengeteg munkát vesz le a vállunkról (ablakok kirajzolása, Activityk
+            megnyitása, kezelése, szenzorok használata stb.). Ezúttal egy újabb nyilvános API-val
             ismerkedünk meg, amely kifejezetten térképek megjelenítésére alkalmas.</p>
 
         <h3>Miért Open Street Map (OSM) és nem Google Maps?</h3>
@@ -68,7 +68,7 @@
             projekthez kapcsolódó osmdroid pedig a világtérképet elérhetővé teszi az Android
             kódunkból is. A Google Maps is nyújt hasonló API-t, azonban ennek használatát a Google
             szigorúbb ellenőrzés alatt tartja. A Google Maps API első használata előtt be kell
-            szereznünk egy Androdi Certificate-t és egy Google Maps API key-t. Ezek ugyan ingyenesen
+            szereznünk egy Androdi Certificate-t és egy Google Maps API keyt. Ezek ugyan ingyenesen
             elérhetőek, ebben a leckében most úgy döntöttünk, hogy megkíméljük az olvasót ettől a
             kényelmetlenségtől, és a könnyebb utat választva inkább az Open Street Map térképeit
             használjuk.
@@ -129,7 +129,7 @@
                 href="/gyik.html#Vibrator">gyorssegély</a> lapot!</p>
 
         <p>
-            Az alkalmazásunk a szükséges engedélyek listját az <code>AndroidManifest.xml</code>
+            Az alkalmazásunk a szükséges engedélyek listáját az <code>AndroidManifest.xml</code>
             fájlban tárolja.</p>
         <ol>
             <li>
@@ -212,7 +212,7 @@
                     (mondjuk <code>terkep</code> néven)</p></li>
             <li>
                 <p>
-                    Rendeljük hozzá a terkep változóhoz a térkép komponensünket
+                    Rendeljük hozzá a <code>terkep</code> változóhoz a térkép komponensünket
                     (<em><code>findViewById</code></em>)</p></li>
         </ol>
         <p>
@@ -385,14 +385,14 @@ mapController.setCenter(startPoint);</code></pre>
 
                 <h4>Mi van, ha nincs mit visszaadni?</h4>
                 <p>
-                    Kanyarodjunk kicsit vissza a leckéhez. a navigalj függvénynek van két bemeneti
+                    Kanyarodjunk kicsit vissza a leckéhez. A <code>navigalj</code> függvénynek van két bemeneti
                     paramétere (szélesség, hosszúság), de mi potyog ki belőle? Semmi, hiszen csak
                     megpiszkálja a térképet, hogy mást mutasson, de lényegében nem számol ki semmit,
-                    nincs mit felhasználni utána. Lazarus/Pascal környezetben ezeket eljárásank
+                    nincs mit felhasználni utána. Lazarus/Pascal környezetben ezeket eljárásnak
                     (procedure) hívtuk, míg a valamit visszaadó függvényeket függvények (function).
                     Java-ban nincs ilyen megkülönböztetés, hanem egy speciális típust adunk meg
                     visszatérési típusnak: a <strong><code>void</code></strong>-ot. (Void angolul:
-                    semmi, üresség) Ilyenkor a <code>return</code>kulcsszó is
+                    semmi, üresség) Ilyenkor a <code>return</code> kulcsszó is
                     elhagyható.</p>
 
                 <p>
@@ -427,7 +427,7 @@ void navigalj(double szelesseg, double hosszusag) {
             rakd le a gombokat. Ne felejtsük el <code>id</code> tulajdonságokkal ellátni a gombokat
             és a RelativeLayout gyökérelemet sem. Akik megcsinálták a
             <a href="/lessons/l08.html#starred_about_menu" target="_blank">korábbi szorgalmit</a>,
-            amiban a menükezelést mutattuk be, azt is használhatják, és úgy megmaradhat teljes
+            amiben a menükezelést mutattuk be, azt is használhatják, és úgy megmaradhat teljes
             képernyősnek a térkép.</p>
 
         <p>
@@ -458,7 +458,7 @@ void navigalj(double szelesseg, double hosszusag) {
 			
 		<h3>Finomabb mozgatás</h3>
 		<p>A <code>mapController.setCenter(startPoint);</code> szemmel láthatóan áthelyezi a térkép
-		középpontját. A MapView osztály viszont tartalmaz egy másik függvényz is, ami ezt az ugrás-szerű
+		középpontját. A MapView osztály viszont tartalmaz egy másik függvényt is, ami ezt az ugrás-szerű
 		lépést kicsit finomabbá teszi.</p>
 		<pre><code>mapController.animateTo(startPoint);</code></pre>
 		<p>Írd át a programodat, hogy ezt az új függvényt használja a <code>setCenter</code> helyett.
