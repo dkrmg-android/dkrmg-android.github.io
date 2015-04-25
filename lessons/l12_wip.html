@@ -34,7 +34,7 @@
             látványos eredményt ér el! A célunk egy térkép megjelenítése az androidos okostelefonunk
             kijelzőjén, ami gombynomásra tetszőleges helyre ugrik.</p>
 
-        <!-- TODO image/video teaser? -->
+			<img src="/static/img/l12/intro.png" class="center-block noZoom" />
 
         <p>
             Joggal kérdezhetnénk: hány száz sor kódot kell megírnunk ahhoz, hogy egy olyan térképet
@@ -247,15 +247,13 @@
 <pre><code>
 IMapController mapController = map.getController();
 mapController.setZoom(17);
-GeoPoint startPoint = new GeoPoint(47.632594, 19.131786);
+GeoPoint startPoint = new GeoPoint(47.632485, 19.131230);
 mapController.setCenter(startPoint);</code></pre>
 
         <p>
             A térképen a pozíciót a földrajzi szélesség és hosszúság segítségével határozhatjuk meg</p>
 
-        <p>
-            *** TODO kép <a
-                href="http://en.wikipedia.org/wiki/Latitude#/media/File:Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg">http://en.wikipedia.org/wiki/Latitude#/media/File:Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg</a>***</p>
+ 			<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg/2000px-Division_of_the_Earth_into_Gauss-Krueger_zones_-_Globe.svg.png" class="center-block">
 
         <p>
             Azt szeretnénk elérni, hogy a felhasználói felületen legyen 5 gomb, ami mind más-más
@@ -457,6 +455,18 @@ void navigalj(double szelesseg, double hosszusag) {
         <p>
             Futtasd az alkalmazást, és nézd meg, hogy melyik gomb hova visz a térképen! Ennek
             megfelelően írd át a gombok feliratát!</p>
+			
+		<h3>Finomabb mozgatás</h3>
+		<p>A <code>mapController.setCenter(startPoint);</code> szemmel láthatóan áthelyezi a térkép
+		középpontját. A MapView osztály viszont tartalmaz egy másik függvényz is, ami ezt az ugrás-szerű
+		lépést kicsit finomabbá teszi.</p>
+		<pre><code>mapController.animateTo(startPoint);</code></pre>
+		<p>Írd át a programodat, hogy ezt az új függvényt használja a <code>setCenter</code> helyett.
+		Milyen szerencse, hogy megírtuk a <code>navigalj</code> függvényt, így csak egyetlen helyen változik 
+		a program kódja (öt helyett).</p>
+		
+		<p>Az elkészült műveket küldjétek el nekünk a <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalon keresztül!</p>
+		
     </section>
 </div>
 <footer data-include="/include/footer.html"></footer>
