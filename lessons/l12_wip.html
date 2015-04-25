@@ -281,7 +281,7 @@ mapController.setCenter(startPoint);</code></pre>
                 </p>
 
                 <p>
-                    Azaz beledobunk pár dolgot, és kipotyog belőle valami, ami általában attól függ,
+                    Azaz beledobunk pár dolgot, és kipotyog belőle egz bizonyos valami (eredmény), ami általában attól függ,
                     hogy miket dobtunk bele. Jelen esetben három egész számot dobunk bele, és egy másik
                     szám potyog ki alul. Azt, hogy adott bemenetre mit dob ki, a gép leírásából, esetleg
                     nevéből tudhatjuk meg. Ez a gép a beledobott három szám <em>szorzatát</em> adja
@@ -315,7 +315,7 @@ mapController.setCenter(startPoint);</code></pre>
                     <li>
                         <p>
                             Bemenet <br/>
-                            A konkrét dolgok (számok) amiket bedobunk a gépbe. Mindig változik.</p></li>
+                            A konkrét dolgok (számok) amiket bedobunk a gépbe. Ezek a függvény szemszögéből nézve változók.</p></li>
                     <li>
                         <p>
                             Kimenet <br/>
@@ -369,38 +369,61 @@ mapController.setCenter(startPoint);</code></pre>
                             Ha megvan a "keret", nekiállhatunk megcsinálni a működést, azaz megírni a
                             függvény törzsét.</p></li>
                 </ol>
-                <p>
-                    A függvény törzsének írásakor három dologra kell figyelni. Az első, hogy nem szabad
-                    megijedni tőle, eddig is függvénytörzseket írtunk, amikor a gombok onClick-jét, vagy
-                    az onSensorChanged függvényeket írtuk.</p>
-
-                <p>
-                    A második, hogy a függvény paramétereit ugyan úgy használhatjuk, mint a függvényen
-                    belül létrehozott változókat.</p>
-
-                <p>
-                    A harmadik, hogy ha sikerült kiszámolnunk (általánosságban: létrehoznunk) az
-                    eredményt, akkor azt a <code>return</code> kulcsszó használatával adhatjuk vissza.
-                    Itt arra kell még figyelni, hogy bármi, amit ez után írunk, az nem fog lefutni!</p>
+				
+				<p>Nézzük meg most kicsit közelebbről a szorzógép függvény törzsét</p>
+				<pre><code>{
+    int eredmeny = a * b * c;
+	return eredmeny;
+}</code></pre>
+				<ul>
+					<li>Figyeljük meg, hogy a függvény paramétereit (<code>a,b,c</code>) ugyan úgy használhatjuk,
+					mint bármilyen mezei változót.</li>
+					<li>A függvény végén a kiszámolt eredményt a <code>return</code> kulcsszó 
+					használatával adjuk vissza.</li>
+				</ul>
 
                 <h4>Mi van, ha nincs mit visszaadni?</h4>
                 <p>
-                    Kanyarodjunk kicsit vissza a leckéhez. A <code>navigalj</code> függvénynek van két bemeneti
-                    paramétere (szélesség, hosszúság), de mi potyog ki belőle? Semmi, hiszen csak
-                    megpiszkálja a térképet, hogy mást mutasson, de lényegében nem számol ki semmit,
-                    nincs mit felhasználni utána. Lazarus/Pascal környezetben ezeket eljárásnak
+				    Nem szabad megijedni a függvényektől! Hiszen már a harmadik lecke eleje óta használjuk őket.
+					Nézzük meg egy gomb kattintását kezelő egyszerű <code>onClick</code> függvényét.
+					
+					<pre><code>public void button1Click(View v) {
+    // itt csinálunk valami hasznosat. Pl. felirat frissítése, vagy térkép mozgatása
+}</code></pre>
+					A <code>button1Click</code> függvénynek van egy bemeneti
+                    paramétere (View v), ami mögött valójában a megnyomott gomb rejtőzik.
+					De mi potyog ki a függvény végén? Semmi, hiszen a gombnyomásra csak frissítünk egy feliratot,
+					vagy elmozdítjuk a térképet, hogy mást mutasson. Nem számolunk ki semmit,
+                    nincs eredménye a függvényünknek. Lazarus/Pascal környezetben ezeket eljárásnak
                     (procedure) hívtuk, míg a valamit visszaadó függvényeket függvények (function).
                     Java-ban nincs ilyen megkülönböztetés, hanem egy speciális típust adunk meg
-                    visszatérési típusnak: a <strong><code>void</code></strong>-ot. (Void angolul:
+                    visszatérési típusnak: a <code>void</code>-ot. (Void angolul:
                     semmi, üresség) Ilyenkor a <code>return</code> kulcsszó is
                     elhagyható.</p>
 
                 <p>
                     Pl. így:</p>
+<pre><code>public void button1Click(View v) {
+    valamiTextView.setText("Helló");
+}</code></pre>
+
+
+				<p>Érdemes megemlíteni, hogy a gombok <code>onClick</code> függvényeit az Android rendszer automatikusan
+				meghívja, amikor a társított gombot a felhasználó lenyomja. A való életben a függvényeink többségét nekünk kell 
+				meghívnunk (elindítanunk). Pl.</p>
 <pre><code>
-void kiir(String szoveg) {
+void kiir(String szoveg) { // új függvény
     valamiTextView.setText(szoveg);
 }</code></pre>
+
+<pre><code>
+...
+// pl. Activity onResume függvényében
+kiir("Helló!");
+...
+</code></pre>
+			<p>Szerencsére függvények hívásában is nagy tapasztalatunk van már. Például <code>findViewById(R.id.button1)</code>, vagy
+			<code>mapController.setZoom(17);</code> stb.</p>
             </div> <!-- endof #functions_details -->
         </div>
 
