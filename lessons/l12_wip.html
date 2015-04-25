@@ -253,9 +253,148 @@
             példányban bemásoljuk a gombjaink kattintását kezelő onClick függvényeibe. Másolgatás
             helyett azonban ezúttal inkább készítünk egy saját függvényt</p>
 
-        <p>
-            *** IDE A függvényes kitérőt, ami elmagyarázza a nevet, visszatérési típust,
-            paraméter/argumentum****</p>
+        <div class="misc-info" id="functions_intro">
+            <h3>Kitérő &ndash; Mi fán terem a függvény?</h3>
+            <p>
+                A korábbi leckék során már sokszor emlegettük a függvényeket, de úgy igazán nem
+                néztük meg, hogy mik is azok pontosan. Ezt most pótolnánk. Ha úgy érzed, hogy
+                Te már ismered a függvények lelkivilágát, nyugodtan ugord át ezt a részt.
+                Természetesen bármikor vissztérhetsz. <br/>
+                Akik kevésbé magabiztosak a függvényeket illetően, vagy csak Javaul nem ismerik őket,
+                nekik érdemes átolvasni a kattintás után megjelenő kitérőt.</p>
+            <p><button onclick="$('#functions_details').show('fast');">Kattints a részletekért!</button></p>
+
+            <div id="functions_details" style="display: none;">
+                <h4>A függvényekről általában</h4>
+                <p>
+                    A függvényeket úgy a legegyszerűbb elképzelni, mint régen (3-4. osztályban?) a
+                    gépeket:
+                    <img src="/static/img/l12/fuggveny_gep.svg" class="center-block" />
+                </p>
+
+                <p>
+                    Azaz beledobunk pár dolgot, és kipotyog belőle valami, ami általában attól függ,
+                    hogy miket dobtunk bele. Jelen esetben három egész számot dobunk bele, és egy másik
+                    szám potyog ki alul. Azt, hogy adott bemenetre mit dob ki, a gép leírásából, esetleg
+                    nevéből tudhatjuk meg. Ez a gép a beledobott három szám <em>szorzatát</em> adja
+                    eredményül. Viszont – és ez egy nagyon fontos tulajdonságuk a függvényeknek – azt
+                    nem tudjuk, és mint a függvényt/gépet <em>használó</em>knak <strong>nem is kell
+                    tudnunk</strong>, hogy hogyan működik belül a gép. Ha megbízunk a készítőben, akkor
+                    elég azt tudnunk, hogy bármely három számot bedobva, azok szorzatát kapjuk
+                    eredményül.</p>
+
+                <h4>A gép részei</h4>
+                <p>
+                    Nézzük meg milyen jellegzetes részei vannak a gépünknek:
+                    <img src="/static/img/l12/fuggveny_gep_feliratokkal.svg" class="center-block" />
+                </p>
+
+                <p>
+                    Láthatjuk, hogy négy fő része van:</p>
+                <ol>
+                    <li>
+                        <p>
+                            Kinézet <br/>
+                            Ezt látjuk a gépből mi, felhasználók. Van 3 bedobónyílása, ami számokat vár,
+                            és van egy kidobónyílása, ami szintén számot dob ki.</p></li>
+                    <li>
+                        <p>
+                            Működés <br/>
+                            Ez kicsit olyan, mint a mai modern autók motorháza. Tudjuk, hogy ott van a
+                            motor, és azt is tudjuk, hogy nagyjából mit csinál, de a részletek általában
+                            túl bonyolultak egy átlag halandó számára, és ezért az autógyárak
+                            előrelátóan el is takarják egy nagy műanyag fedéllel.</p></li>
+                    <li>
+                        <p>
+                            Bemenet <br/>
+                            A konkrét dolgok (számok) amiket bedobunk a gépbe. Mindig változik.</p></li>
+                    <li>
+                        <p>
+                            Kimenet <br/>
+                            A konkrét eredmény, ami függ a bemenettől.</p></li>
+                </ol>
+
+                <h4>A Java függvények</h4>
+                <p>
+                    Rendben, de a Java kódunkba mégsem rajzolhatunk ilyen gépeket… Mi a gép Java-s
+                    megfelelője? A <em><strong>függvény</strong></em>.</p>
+
+                <p>
+                    A fenti példánál maradva, a szorzógép Java-ba átírva így nézne ki:
+                    <img src="/static/img/l12/java_fgv.svg" class="center-block" />
+                </p>
+
+                <p>
+                    Most nézzük meg, hogy tudjuk használni:
+                    <img src="/static/img/l12/java_fgv_hasznalat.svg" class="center-block" />
+                </p>
+
+                <h4>Függvény készítése</h4>
+                <p>
+                    Oké, most már felismerjük a függvényeket, és használni is tudjuk őket. Jó lenne, ha
+                    mi magunk is tudnánk készíteni, hiszen ez a programozás lényege!</p>
+
+                <p>
+                    Ez sem bonyolult, fentebb már láttuk, hogy néz ki egy függvény, de menjünk lépésről
+                    lépésre:</p>
+                <ol>
+                    <li>
+                        <p>
+                            Találjuk ki az új függvény <strong>nevét</strong>. Ez lehetőleg legyen
+                            egyszerű, frappáns, de utaljon arra, hogy mi csinál a függvény. Ugyan azok a
+                            szabályok vonatkoznak rá, mint a változónevekre: kis- és nagybetűk, számok,
+                            <code>_</code> (aláhúzás) lehet benne, és nem szabad két ugyan olyannak lenni egy
+                            fájlban.</p></li>
+                    <li>
+                        <p>
+                            Határozzuk meg, hogy milyen <strong>típus</strong>ú lesz az
+                            <strong>eredmény</strong>e. Ez bármi lehet, a beépített típusoktól (int,
+                            double, String, stb.) kezdve tetszőleges saját típusig (pl.: Szo). Sőt, ezek
+                            tömbje (int[], Szo[]) illetve listája (ArrayList&lt;Szo&gt;) is lehet!</p></li>
+                    <li>
+                        <p>
+                            Szedjük össze, hogy mennyi és milyen típusú bemenete lesz, és ezeket
+                            nevezzük is el (mintha változók lennének)! Érdemes beszédes neveket adni a
+                            paramétereknek, hogy később is tudjuk, hogy mire jók.</p></li>
+                    <li>
+                        <p>
+                            Ha megvan a "keret", nekiállhatunk megcsinálni a működést, azaz megírni a
+                            függvény törzsét.</p></li>
+                </ol>
+                <p>
+                    A függvény törzsének írásakor három dologra kell figyelni. Az első, hogy nem szabad
+                    megijedni tőle, eddig is függvénytörzseket írtunk, amikor a gombok onClick-jét, vagy
+                    az onSensorChanged függvényeket írtuk.</p>
+
+                <p>
+                    A második, hogy a függvény paramétereit ugyan úgy használhatjuk, mint a függvényen
+                    belül létrehozott változókat.</p>
+
+                <p>
+                    A harmadik, hogy ha sikerült kiszámolnunk (általánosságban: létrehoznunk) az
+                    eredményt, akkor azt a <code>return</code> kulcsszó használatával adhatjuk vissza.
+                    Itt arra kell még figyelni, hogy bármi, amit ez után írunk, az nem fog lefutni!</p>
+
+                <h4>Mi van, ha nincs mit visszaadni?</h4>
+                <p>
+                    Kanyarodjunk kicsit vissza a leckéhez. a navigalj függvénynek van két bemeneti
+                    paramétere (szélesség, hosszúság), de mi potyog ki belőle? Semmi, hiszen csak
+                    megpiszkálja a térképet, hogy mást mutasson, de lényegében nem számol ki semmit,
+                    nincs mit felhasználni utána. Lazarus/Pascal környezetben ezeket eljárásank
+                    (procedure) hívtuk, míg a valamit visszaadó függvényeket függvények (function).
+                    Java-ban nincs ilyen megkülönböztetés, hanem egy speciális típust adunk meg
+                    visszatérési típusnak: a <strong><code>void</code></strong>-ot. (Void angolul:
+                    semmi, üresség) Ilyenkor a <code>return</code>kulcsszó is
+                    elhagyható.</p>
+
+                <p>
+                    Pl. így:</p>
+<pre><code>
+void kiir(String szoveg) {
+    valamiTextView.setText(szoveg);
+}</code></pre>
+            </div> <!-- endof #functions_details -->
+        </div>
 
         <h3>Új függvény</h3>
         <p>
