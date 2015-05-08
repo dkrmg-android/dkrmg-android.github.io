@@ -13,7 +13,7 @@ $(function() {
                     .append($('<p>').append("<strong>" + item.felado + "</strong>")
 						.append($('<span>')
 						.attr('style','float:right; font-style: italic;')
-						.append(item.__createdAt)))
+						.append(dateToString(item.__createdAt))))
 					.append($('<p>').append(item.szoveg))
 					.append($('<hr/>'));
             });
@@ -21,19 +21,15 @@ $(function() {
             $('#uzenet-items').empty().append(listItems).toggle(listItems.length > 0);
             $('#summary').html('<strong>' + todoItems.length + '</strong> üzenet');
         }, handleError);
-		
+    }
+    
+    // take a date object and covert it to a neat string with hu loc.
+    function dateToString(dateToConvert) {
+    	var text = dateToConvert.getFullYear() + "." + dateToConvert.getMonth()+1 + "." + dateToConvert.getDate() + ". ";
+        text +=  dateToConvert.getHours() + ":" + dateToConvert.getMinutes() + ":" + dateToConvert.getSeconds();
+        return text;
     }
 
-	/*
-	return $('<div>')
-                    .attr('data-todoitem-id', item.id)
-                    .append($('<p>').append(item.felado)
-						.append($('<span>')
-						.attr("style=\"float:right;\"")
-						.append(item.__createdAt)))
-					.append($('<p>').append(item.szoveg))
-					.append($('<hr/>'));
-	*/
     function handleError(error) {
         var text = error + (error.request ? ' - ' + error.request.status : '');
         $('#errorlog').append($('<li>').text(text));
