@@ -25,7 +25,7 @@ $(function() {
     
     // take a date object and covert it to a neat string with hu loc.
     function dateToString(dateToConvert) {
-    	var text = dateToConvert.getFullYear() + "." + dateToConvert.getMonth()+1 + "." + dateToConvert.getDate() + ". ";
+    	var text = dateToConvert.getFullYear() + "." + (dateToConvert.getMonth()+1) + "." + dateToConvert.getDate() + ". ";
         text +=  dateToConvert.getHours() + ":" + dateToConvert.getMinutes() + ":" + dateToConvert.getSeconds();
         return text;
     }
