@@ -1,0 +1,15 @@
+public class Uzenet {
+
+    public String id;
+
+    public String szoveg;
+
+    public String felado;
+
+    public Date __createdAt;
+
+    @Override
+    public String toString() {
+        return felado + " wrote on \n" +  __createdAt.toString() + ":\n"+ szoveg;
+    }
+}

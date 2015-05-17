@@ -78,7 +78,7 @@
             ***TODO IMG***</p>
 
         <p>
-            Készítsük elő a fenti felhasználói felületet.</p>
+            Készítsük el a fenti felhasználói felületet.</p>
         <ul>
             <li>
                 <p>
@@ -135,8 +135,8 @@
 
         <p>
             Az, hogy az üzeneteink nem egyszerű típusok, az egyértelműen látható az <a
-                href="http://dkrmg-android.github.io/lessons/uzenofal.html">üzenőfal honlapján </a>is.
-            ***TODO ide jó lenne egy kép róla, bekarikázni az adatokat****.</p>
+                href="http://dkrmg-android.github.io/lessons/uzenofal.html">üzenőfal honlapján </a>is.</p>
+        <img src="/static/img/l13/message_parts_web.png" class="center-block" />
 
         <p>
             Ahogy azt írtuk, az üzeneteink három fontos dolgot tartalmaznak: <strong>ki</strong>,
@@ -172,8 +172,10 @@
             A 8. leckéhez hasonlóan hozzunk létre egy új Java osztályt (<code>class</code>), ezúttal
             <code>Uzenet</code> néven!</p>
 
-        <p>
-            *** TODO IMGs***</p>
+        <div class="imgstore">
+            <img src="/static/img/l13/newClass1.png" class="center-block" />
+            <img src="/static/img/l13/newClass2.png" class="center-block" />
+        </div>
 
         <p>
             Az <code>Uzenet</code> osztályba írjuk be a fenti mezőket/változókat.</p>
@@ -194,7 +196,14 @@ public String toString() {
 </pre>
 
         <p>
-            ***GOMBNYOMÁSRA egy váz?***</p>
+            Ha elakadtatok volna, vagy ellenőrzésképp kattintás után láthatod a kész osztályt.
+            De arra kérünk, hogy tényleg csak akkor nézd meg, ha már magadtól, kézzel
+            megpróbálkoztál elkészíteni, úgy tudod csak megtanulni!
+            <button data-target="help_uzenet_class" class="help-link">Mutasd!</button>
+            </p>
+        <div class="help-container" id="help_uzenet_class">
+            <pre><code data-include="/include/l13/Uzenet.java.html">ujUzenet.szoveg = szovegdoboz.getText().toString();</code></pre>
+        </div>
     </section>
 
     <section id="listview">
@@ -206,8 +215,7 @@ public String toString() {
             raknunk egy <code>ArrayList&lt;Uzenet&gt;</code> változót, ami az üzeneteink listáját tárolja. A
             rendszerünk úgy lesz teljes, ha a változót és a layout komponenst egy adapterrel össze
             is kapcsoljuk!</p>
-        <p>
-            *** TODO kép az adapterről***</p>
+        <img src="/static/img/l13/adapter1.png" class="center-block" />
         <ol>
             <li>
                 <p>
@@ -349,9 +357,10 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
             Ehhez nyissuk meg a <code>build.gradle</code> fájlunkat, és nézzük meg a
             <code>dependecies</code> részt.</p>
 
-        <p>
-            *** TODO image***</p>
-
+        <div class="imgstore">
+            <img src="/static/img/l13/gradle1.png" class="center-block" />
+            <img src="/static/img/l13/gradle2.png" class="center-block" />
+        </div>
         <p>
             Emlékeztetésként, a gradle fájl dependencies részlete tartalmazza azon külső kódcsomagok
             listáját, amik nem részei se az Android rendszernek, se a Java nyelvnek. Ide kell
@@ -369,8 +378,10 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
         <p>
             ***TODO final screenshot***</p>
 
-        <p>
-            ***TODO: ha nincs Sync Now!***</p>
+        <p>Ha valami oknál fogva a <code>Sync now</code> sáv nem ugrik fel magától, akkor sem történik
+            semmi probléma. A gradle fájl változtatása után nyojuk meg a fenti sávban található
+            <code>Sync Project with Gradle Files</code> gombot (lenti képen pirossal keretezve).</p>
+        <img src="/static/img/l13/gradle5.png" class="center-block" />
     </section>
 
     <section id="azure_permission">
