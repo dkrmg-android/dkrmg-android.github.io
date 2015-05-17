@@ -487,15 +487,100 @@ kozosUzenetek.insert(uzenet);
         <a href="http://dkrmg-android.github.io/lessons/uzenofal.html">a webes felületünkön</a>,
         hogy megjelenik-e az üzenet.</p>
 
-    <p>
-        ***SZORGALMI***</p>
+    <section id="extra_compound_layout">
+        <h2>Szorgalmi &ndash; Ismerkedés a különböző layout-gyökérelemekkel</h2>
+        <h3>RelativeLayout?</h3>
 
-    <p>
-        <strong>Esetleg elmehetnénk kicsit bonyolultabb layout irányába is: LinearLayout (vertical)
-            a gyökér, benne egy ListView-el (weight=1), alatta egy újabb LinearLayout (de ez már
-            horizontal), benne egy EditText (weight=1) és egy Button (küldés). Nem vészesen
-            bonyolult, és szerintem lényeges része. És stabilan működik valószínűleg GUIból is, nem
-            úgy mint a RelativeLayout néha.</strong></p>
+        <p>
+            Android platformon a layout komponensek elrendezésnek több módja is létezik. Mi eddig
+            mindenhol a RelativeLayout-ot használtuk, mint gyökér komponens, ez határozta meg, hogy
+            hogyan helyezhetjük el az egyéb komponenseinket benne.</p>
+
+        <p>
+            A RelativeLayout miatt tudtunk olyan tulajdonságokat megadni, hogy pl.: ez a TextView
+            igazodjon a tetejével a másik Button aljához, stb. Aki 9. leckében megpróbálkozott saját
+            maga módosítani a layoutot (hozzáadni a új szó beviteléhez szükséges komponenseket), az
+            tapasztalhatta, hogy a grafikus layout tervező és a RelativeLayout nem mindig csinálja
+            azt, amit szeretnénk.</p>
+
+        <p>
+            Ez azért van így, mert a RelatveLayout egy nagyon rugalmas gyökérelem, nagyon sok
+            mindent tud, ám ezt elég nehéz grafikusan szerkeszteni. Egyszerűen túl okos még a
+            legjobb grafikus szerkesztőnek is.</p>
+
+        <p>
+            Felmerülhet a kérdés, hogy ha ez ennyire macerás, akkor a komolyabb alkalmazásokat hogy
+            csinálják? Erre két módszer kínálkozik, mi a (talán) egyszerűbbet fogjuk most
+            kipróbálni: az <em>összetett layout</em>-ot.</p>
+
+        <h3>LinearLayout!</h3>
+
+        <p>
+            Ehhez ismerkedjünk meg egy másik gyökérelemként használható komponenssel, a
+            LinearLayouttal. Ez egy jóval egyszerűbb komponens, ugyanis a RelativeLayout
+            összevissza, rugalmas pakolhatóságával szemben a LinearLayoutba csak egy sorba (vagy
+            oszlopba), egymás mellé (vagy alá) lehet berakni a komponenseket. Ez a két mód szigorúan
+            <em>kizáró vagy</em> kapcsolatban van egymással, egyszerre egymás mellé és egymás alá
+            nem lehet pakolni. Az elején meg kell adni az <code>orientation</code> tulajdonságában,
+            hogy melyik verziót szeretnénk: a horizontálisat (egymás mellé) vagy a vertikálisat
+            (egymás alá).</p>
+
+        <div class="imgstore">
+            <img src="/static/img/l13/linlay_horizontal.png" class="center-block" />
+            <img src="/static/img/l13/linlay_vertical.png" class="center-block" />
+        </div>
+
+        <h3>Layoutban layout?</h3>
+
+        <p>
+            Jogos a kérdés, hogy ha egyszerre csak az egyik irányban rakhatjuk egymás után a
+            komponenseket, hogy tudjuk előállítani a leckében használt kinézetet? Szerencsére nagyon
+            egyszerűen, ugyanis a LinearLayout is csak egy komponens, pont mint egy gomb, vagy
+            TextView. azzal a különbséggel, hogy tartalmazhat más komponenseket is. Vagyis semmi nem
+            akadályoz meg minket abban, hogy mondjuk egy <strong>függőleges</strong> LinearLayoutba (zölddel)
+            belerakjuk a ListView-t felülre, <strong>alá</strong> pedig egy <em>másik</em>
+            LinearLayoutot (sárgával), ezúttal <strong>vízszinteset</strong>, bele pedig egy EditTextet és
+            <strong>mellé</strong> egy gombot.</p>
+
+        <img src="/static/img/l13/compound.png" class="center-block" />
+
+        <h3>Méretezés</h3>
+
+        <p>
+            Már csak egy dolog maradt hátra: mi mekkora legyen. Ránézésre azt mondanánk, hogy a
+            lista magassága legyen pontosan a (telefon magassága - az alsó rész magassága). Tudjuk
+            pontosan mekkora a telefonunk? Csak-csak. És az alsó rész? Leszámolhatjuk pixelenként,
+            de sosem lesz igazán pontos. És mi van, ha ezek változnak?</p>
+
+        <p>
+            Erre való a <em>súlyozás</em>: a LinearLayout lehetőséget ad arra, hogy az egyes
+            komponensek ne mondják meg konkrétan az egyik méretüket (vízszintesnél a szélességet,
+            függőlegesnél a magasságot), hanem csak annyit, hogy a többi komponenshez képest
+            arányosan mekkorák szeretnének lenni. Ehhez a komponensek <code>layout:weight</code>
+            tulajdonságát kell állítani, az értéke pedig közös nevezőre hozás után a számláló értéke
+            legyen. Pl. így:</p>
+
+        <img src="/static/img/l13/linlay_weights.png" class="center-block" />
+
+        <p>
+            Ehhez hasonló layoutra viszonylag ritkán van szükség, viszont a súlyozás jó még
+            valamire: Ha van egy (vagy több) fix méretű komponensünk, és szeretnénk egy olyat, ami
+            kitölti a maradék tere, legyen az bármekkora, akkor beállítjuk a
+            <code>layout:weight</code> tulajdonságát <code>1</code>-re, és már kész is vagyunk.
+            Érdemes ezt tenni a ListView-ek és a belső LinearLayoutban az EditText-tel. Így
+            bármekkora is legyen az alsó komponens, a lista kitölti az összes maradék helyet, és a
+            Küldés gombunkra is írhatunk hosszabb-rövidebb szöveget, az EditText kitölti a
+            maradékot. Pl.:</p>
+
+        <div class="imgstore">
+            <img src="/static/img/l13/linlay_weights_oneline.png" class="center-block" />
+            <img src="/static/img/l13/linlay_weights_multiline.png" class="center-block" />
+            <img src="/static/img/l13/linlay_weights_longbuttontext.png" class="center-block" />
+        </div>
+
+        <p>
+            Érdemes eljátszogatni a különböző kombinációkkal!</p>
+    </section>
 
 
 </div>
