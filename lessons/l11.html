@@ -586,120 +586,122 @@ editor.commit();</code></pre>
             például a szavakat nehézségi sorrendbe, vagy ráveheted a kvíz ablakot, hogy csak
             az új, könnyű, vagy épp a nehéz szavak közül kérdezzen!</p>
 
-        <h2>5. Statisztika megjelenítése a SzavakActivity listában</h2>
-        <p>
-            Szuper, van statisztikánk, ami meg is marad az újraindítások között, de jó lenne,
-            ha nem csak számítógépen, a fájlt megnyitva látnánk azt. Készítsünk egy saját <code>
-                Adapter</code>-t és egy új <code>layout</code>-ot, amiben leírjuk, hogy hogyan
-            nézzen ki a <code>ListView</code> egy-egy sora.</p>
-        <h3>Kezdjük a layouttal:</h3>
-        <ol>
-            <li>
-                <p>
-                    jobbklikk az app -> res -> layout mappán, New -> Layout resource file</p>
-            </li>
-            <li>
-                <p>
-                    A neve legyen <code>list_item_szo</code>, a Root element-et pedig írjuk át <code>RelativeLayout</code>-ra.
-                    Minden más maradhat úgy, ahogy van.</p>
-            </li>
-            <li>
-                <p>
-                    A layout szerkesztőben rakjunk össze egy egyszerű, kétsoros layoutot, valami hasonlót,
-                    mint a képen látható. A TextViewknak adjunk id-t is, pl.: <code>nyelvek</code> és <code>statisztika</code>.</p>
-                <img src="/static/img/l11/list_item_szo.png" class="center-block" />
-            </li>
-        </ol>
-        <h3>A saját adapter:</h3>
-        <ol>
-            <li>
-                <p>
-                    A SzavakActivity legaljára, de még a legutolsó záró kapcsos zárójelen belülre másold
-                    be a következő kódot. Alatta találsz egy kis magyarázatot az egyes részeihez, érdemes
-                    elolvasni, hogy mi mire jó / miért kell.</p>
-<pre><code>class SajatAdapter <strong>extends ArrayAdapter&lt;Szo&gt;</strong> { // (1)
-    
-    <em>SajatAdapter(Context context, int resource, List&lt;Szo&gt; objects) { // (2)
-        super(context, resource, objects);
-    }</em>
-    
-    @Override
-    <em>public View getView(int position, View convertView, ViewGroup parent)</em> { // (3)
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.list_item_szo, parent, false); // (4)
-    
-        TextView nyelvek = (TextView) v.findViewById(R.id.nyelvek); // (5)
-        TextView statiszitka = (TextView) v.findViewById(R.id.statisztika);
-    
-        Szo aktualisSzo = getItem(position);
+        <section id="extra_custom_list_item">
+            <h2>5. Statisztika megjelenítése a SzavakActivity listában</h2>
+            <p>
+                Szuper, van statisztikánk, ami meg is marad az újraindítások között, de jó lenne,
+                ha nem csak számítógépen, a fájlt megnyitva látnánk azt. Készítsünk egy saját
+                <code>Adapter</code>-t és egy új <code>layout</code>-ot, amiben leírjuk, hogy hogyan
+                nézzen ki a <code>ListView</code> egy-egy sora.</p>
+            <h3>Kezdjük a layouttal:</h3>
+            <ol>
+                <li>
+                    <p>
+                        jobbklikk az app -> res -> layout mappán, New -> Layout resource file</p>
+                </li>
+                <li>
+                    <p>
+                        A neve legyen <code>list_item_szo</code>, a Root element-et pedig írjuk át <code>RelativeLayout</code>-ra.
+                        Minden más maradhat úgy, ahogy van.</p>
+                </li>
+                <li>
+                    <p>
+                        A layout szerkesztőben rakjunk össze egy egyszerű, kétsoros layoutot, valami hasonlót,
+                        mint a képen látható. A TextViewknak adjunk id-t is, pl.: <code>nyelvek</code> és <code>statisztika</code>.</p>
+                    <img src="/static/img/l11/list_item_szo.png" class="center-block" />
+                </li>
+            </ol>
+            <h3>A saját adapter:</h3>
+            <ol>
+                <li>
+                    <p>
+                        A SzavakActivity legaljára, de még a legutolsó záró kapcsos zárójelen belülre másold
+                        be a következő kódot. Alatta találsz egy kis magyarázatot az egyes részeihez, érdemes
+                        elolvasni, hogy mi mire jó / miért kell.</p>
+    <pre><code>class SajatAdapter <strong>extends ArrayAdapter&lt;Szo&gt;</strong> { // (1)
 
-        nyelvek.setText(aktualisSzo.toString()); // (6)
-        double szazalek = aktualisSzo.helyes / aktualisSzo.osszes * 100;
-        statiszitka.setText(aktualisSzo.helyes + "/" + aktualisSzo.osszes + " - " + szazalek + "%");
-    
-        return v; // (7)
-    }
-}</code></pre>
-                <div id="interactive-class" class="interactive clearfix">
-                    <div id="description" class="description">
-                        <p class="selected" data-iid="default">Kattints rá alul a zöld keretes
-                            részekre, hogy megtudd, mire valók!</p>
+        <em>SajatAdapter(Context context, int resource, List&lt;Szo&gt; objects) { // (2)
+            super(context, resource, objects);
+        }</em>
 
-                        <p data-iid="extends">1: extends ArrayAdapter&lt;Szo&gt;, azaz mindent
-                            megkap, amit az ArrayAdapter&lt;Szo&gt; tud, de kibővíthetjük illetve
-                            bizonyos tulajdonságait módosíthatjuk.</p>
+        @Override
+        <em>public View getView(int position, View convertView, ViewGroup parent)</em> { // (3)
+            View v = LayoutInflater.from(getContext()).inflate(R.layout.list_item_szo, parent, false); // (4)
 
-                        <p data-iid="ctor">2: Konstruktor. Semmi extrát nem csinál, csak továbbadja
-                            a paramétereit az ArrayAdapter&lt;Szo&gt;-nak.</p>
+            TextView nyelvek = (TextView) v.findViewById(R.id.nyelvek); // (5)
+            TextView statiszitka = (TextView) v.findViewById(R.id.statisztika);
 
-                        <p data-iid="get_view">3: Az adapterek getView belső függvénye felelős az
-                            egyes listaelemek tartalmának meghatározásáért. Az alap ArrayList&lt;Szo&gt;
-                            csak egy sornyi szöveget tud megjeleníteni, azt is csak úgy, hogy az
-                            adott sorhoz tartozó objektumnak meghívja a toString belső függvényét.
-                            Ez nekünk kevés, ezért lecseréljük egy saját megoldásra.</p>
+            Szo aktualisSzo = getItem(position);
 
-                        <p data-iid="inflate">4: Először csinálunk egy új View-t (minden komponens
-                            egy View, így a list_item_szo layoutben Root element-ként megadott
-                            RelativeLayout is) a layoutunk alapján.</p>
+            nyelvek.setText(aktualisSzo.toString()); // (6)
+            double szazalek = aktualisSzo.helyes / aktualisSzo.osszes * 100;
+            statiszitka.setText(aktualisSzo.helyes + "/" + aktualisSzo.osszes + " - " + szazalek + "%");
 
-                        <p data-iid="find_views">5: Aztán megkeressük benne a két TextView-t.</p>
+            return v; // (7)
+        }
+    }</code></pre>
+                    <div id="interactive-class" class="interactive clearfix">
+                        <div id="description" class="description">
+                            <p class="selected" data-iid="default">Kattints rá alul a zöld keretes
+                                részekre, hogy megtudd, mire valók!</p>
 
-                        <p data-iid="write_texts">6: Kiírjuk rá a szöveget, amit szeretnénk</p>
+                            <p data-iid="extends">1: extends ArrayAdapter&lt;Szo&gt;, azaz mindent
+                                megkap, amit az ArrayAdapter&lt;Szo&gt; tud, de kibővíthetjük illetve
+                                bizonyos tulajdonságait módosíthatjuk.</p>
 
-                        <p data-iid="return">7: végül visszaadjuk az így elkészített View-t, hogy a
-                            rendszer hozzáadja a ListView-hoz.</p>
+                            <p data-iid="ctor">2: Konstruktor. Semmi extrát nem csinál, csak továbbadja
+                                a paramétereit az ArrayAdapter&lt;Szo&gt;-nak.</p>
 
-                    </div>
-                    <div id="panels-container">
-                        <div class="interactive-panel" style="width: 100%;">
-                            <pre data-include="/include/l11/SajatAdapter.java.html"></pre>
+                            <p data-iid="get_view">3: Az adapterek getView belső függvénye felelős az
+                                egyes listaelemek tartalmának meghatározásáért. Az alap ArrayList&lt;Szo&gt;
+                                csak egy sornyi szöveget tud megjeleníteni, azt is csak úgy, hogy az
+                                adott sorhoz tartozó objektumnak meghívja a toString belső függvényét.
+                                Ez nekünk kevés, ezért lecseréljük egy saját megoldásra.</p>
+
+                            <p data-iid="inflate">4: Először csinálunk egy új View-t (minden komponens
+                                egy View, így a list_item_szo layoutben Root element-ként megadott
+                                RelativeLayout is) a layoutunk alapján.</p>
+
+                            <p data-iid="find_views">5: Aztán megkeressük benne a két TextView-t.</p>
+
+                            <p data-iid="write_texts">6: Kiírjuk rá a szöveget, amit szeretnénk</p>
+
+                            <p data-iid="return">7: végül visszaadjuk az így elkészített View-t, hogy a
+                                rendszer hozzáadja a ListView-hoz.</p>
+
                         </div>
+                        <div id="panels-container">
+                            <div class="interactive-panel" style="width: 100%;">
+                                <pre data-include="/include/l11/SajatAdapter.java.html"></pre>
+                            </div>
+                        </div>
+
+                        <script type="application/javascript">
+                            $('#panels-container').on('click', 'span.ih', function () {
+                                var iid = $(this).data('iid');
+                                $('span.ih').removeClass('selected');
+                                $('span.ih[data-iid="' + iid + '"]').addClass('selected');
+
+                                $('.interactive #description p').hide();
+                                $('.interactive #description p[data-iid="' + iid + '"]').show();
+                            });
+                        </script>
                     </div>
-
-                    <script type="application/javascript">
-                        $('#panels-container').on('click', 'span.ih', function () {
-                            var iid = $(this).data('iid');
-                            $('span.ih').removeClass('selected');
-                            $('span.ih[data-iid="' + iid + '"]').addClass('selected');
-
-                            $('.interactive #description p').hide();
-                            $('.interactive #description p[data-iid="' + iid + '"]').show();
-                        });
-                    </script>
-                </div>
-            </li>
-            <li>
-                <p>
-                    Az onCreate-ben, ahol az adaptert létrehozod, ne <code>new <strong>ArrayAdapter&lt;Szo&gt;</strong>(...)</code>-t
-                    hozz létre, hanem <code>new <strong>SajatAdapter</strong>(...)</code>-t! Valamint
-                    ugyanitt az <code>android.R.layout.simple_list_item_1</code>-et cseréld le <code>R.layout.list_item_szo</code>-ra!
-                    Minden más maradhat a régiben.</p>
-            </li>
-            <li>
-                <p>
-                    A fenti kódrészletben a (6) részt nyugodtan írd át ahogy Te szeretnéd, hogy megjelenjen
-                    a listában a szó, ez csak egy példa megoldás!</p>
-            </li>
-        </ol>
+                </li>
+                <li>
+                    <p>
+                        Az onCreate-ben, ahol az adaptert létrehozod, ne <code>new <strong>ArrayAdapter&lt;Szo&gt;</strong>(...)</code>-t
+                        hozz létre, hanem <code>new <strong>SajatAdapter</strong>(...)</code>-t! Valamint
+                        ugyanitt az <code>android.R.layout.simple_list_item_1</code>-et cseréld le <code>R.layout.list_item_szo</code>-ra!
+                        Minden más maradhat a régiben.</p>
+                </li>
+                <li>
+                    <p>
+                        A fenti kódrészletben a (6) részt nyugodtan írd át ahogy Te szeretnéd, hogy megjelenjen
+                        a listában a szó, ez csak egy példa megoldás!</p>
+                </li>
+            </ol>
+        </section>
     </div>
     <footer data-include="/include/footer.html"></footer>
     <script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>

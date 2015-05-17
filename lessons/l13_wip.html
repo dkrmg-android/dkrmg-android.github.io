@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>L13 - Üzenőfal (1) (DKRMG Android Szakkör)</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body class="language-java">
+<header data-include="/include/header.html"></header>
+<div class="container">
+    <h1>
+        13. lecke
+        <small>Üzenőfal (1)</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p>
+    </h1>
+    <hr/>
+
+    <section id="lesson_intro">
+        <p>
+            Elérkeztünk az Android szakkör utolsó alkalmazásához. Erre az neves alkalomra egy különleges
+            programot tartogattunk: két leckében elkészítünk egy közös üzenőfal alkalmazást. Az
+            üzenőfalunk egy webes szolgáltatás lesz, ahová az okostelefonunkról küldhetünk üzeneteket,
+            illetve kilistázhatjuk a korábban általunk és mások által írt bejegyzéseket.</p>
+
+        <p>
+            A feladatot annyival megkönnyítettük, hogy az eddig beérkezett üzeneteket megtekinthetitek a
+            szakkör honlapján <a href="http://dkrmg-android.github.io/lessons/uzenofal.html">ezen</a> a
+            linken.</p>
+
+        <p>
+            A mai lecke végén első nekifutásra a programunk csak a saját üzeneteinket fogja kilistázni,
+            viszont már képesek leszünk új üzeneteket küldeni a közös honlapra. A következő (utolsó)
+            leckében már a teljes előzmény megjelenik az okostelefonunk kijelzőjén, és a program
+            hibatűrésén is javítunk egy kicsit.</p>
+
+        <h4>Első nekifutás</h4>
+        <p>
+            Jó programozóként nem próbálunk ajtóstul rontani be a házba, a feladatot több lépésben
+            oldjuk meg. Az első nekifutás remélhetőleg sokak számára ismerősnek tűnik majd; az alábbi
+            lépések mindegyikét elvégeztük már a 8. leckében is.</p>
+    </section>
+
+    <h2>Első célunk</h2>
+    <p>
+        A cél, hogy a telefon képernyőjén megjelenjen egy szövegmező, egy gomb és egy lista. A gomb
+        lenyomásakor a szövegmezőben tartalmat egy üzenetté alakítjuk át, és gyorsan beillesztjük a
+        listába. Ehhez szükségünk lesz egy egyszerű felhasználói felületre, egy <code>Uzenet</code>
+        osztályra, és némi kódra, ami beilleszti az új elemeket, majd egy adapter segítségével meg
+        is jeleníti őket.</p>
+
+    <section id="new_project">
+        <h3>Új projekt</h3>
+
+        <p>
+            Hozzunk létre egy új projektet <code>Uzenofal</code> néven. Ilyet már rengetegszer
+            csináltunk. Ha mégis bizonytalan volnál a pontos lépésekben, akkor pl. a <a
+                href="http://dkrmg-android.github.io/lessons/l07.html#new-project">7. lecke</a>
+            leírásából lehet puskázni!</p>
+    </section>
+
+    <section id="layout">
+        <h3>Layout - felhasználói felület</h3>
+
+        <p>
+            ***TODO IMG***</p>
+
+        <p>
+            Készítsük elő a fenti felhasználói felületet.</p>
+        <ul>
+            <li>
+                <p>
+                    Szükségünk lesz az alábbi komponensekre:</p>
+                <ul>
+                    <li>
+                        <p>
+                            <code>EditText</code></p></li>
+                    <li>
+                        <p>
+                            <code>Button</code></p></li>
+                    <li>
+                        <p>
+                            <code>ListView</code></p></li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    Ne felejtsünk el minden komponenst (gyökér komponenst is) <code>id</code>
+                    tulajdonsággal ellátni.</p></li>
+            <li>
+                <p>
+                    Indítsuk el a programot, és ellenőrizzük a munkánkat!</p></li>
+        </ul>
+        <p>
+            A fenti felhaszálói felület természetesen csupán egy egyszerű vázlat. A korábbi leckékhez
+            hasonlóan javasolnánk, hogy csinosítsátok és színesítsétek ki!</p>
+    </section>
+
+
+    <section id="new_class_intro">
+        <h2><code>Uzenet</code> osztály</h2>
+        <p>
+            Emlékezhetünk a szótárfüzet programból, hogy amikor komplexebb, összetettebb adatot kell
+            ábrázolnunk egy egyszerű számnál vagy szövegnél, akkor gyakran saját osztályokra kell
+            hagyatkoznunk. Ha egy egész számot akarunk tárolni, arra ott az <code>int</code> típus.
+            Szövegekhez használhatunk <code>String</code>eket. Azonban a Java nyelv ahogy magától azt
+            sem tudja, hogy a két nyelven jegyzett Szo osztályt hogyan kezelje, úgy az üzenetek
+            tárolásához is egy kis segítséget kell neki adnunk.</p>
+
+        <p>
+            Ha az üzenetünk egy egyszerű szöveg lenne, használhatnánk itt is a <code>String</code>
+            típust. Mi viszont szeretnénk tudni, hogy <strong>ki</strong>, <strong>mikor</strong> és
+            <strong>mit</strong> írt.</p>
+
+        <p>
+            Az osztály megírásával létre hozunk a Java nyelvben egy új típust; felvázoljuk a változóink
+            tervrajzát, hogy az <code>Uzenet</code> típusú változóknak milyen adatokat kell tárolnia,
+            illetve milyen belső függvényekkel rendelkezik.</p>
+    </section>
+
+    <section id="new_class_design">
+        <h3>Mi legyen az <code>Uzenet</code> osztályban</h3>
+
+        <p>
+            Az, hogy az üzeneteink nem egyszerű típusok, az egyértelműen látható az <a
+                href="http://dkrmg-android.github.io/lessons/uzenofal.html">üzenőfal honlapján </a>is.
+            ***TODO ide jó lenne egy kép róla, bekarikázni az adatokat****.</p>
+
+        <p>
+            Ahogy azt írtuk, az üzeneteink három fontos dolgot tartalmaznak: <strong>ki</strong>,
+            <strong>mikor</strong> és <strong>mit</strong> írt. Ezeken túl még egy azonosítót is adunk
+            az üzenetünknek, ami a közös üzenőfalhoz lesz majd elengedhetetlen.</p>
+
+        <p>
+            **** TODO class diagram ***</p>
+        <ol>
+            <li>
+                <p>
+                    <code>public String felado;</code> &mdash; Ki küldte?</p></li>
+            <li>
+                <p>
+                    <code>public String szoveg;</code> &mdash; Mit küldött?</p></li>
+            <li>
+                <p>
+                    <code>public Date __createdAt;</code> &mdash; Mikor küldte?</p></li>
+            <li>
+                <p>
+                    <code>public String id;</code> &mdash; egy azonosító.</p></li>
+        </ol>
+        <p>
+            Ahhoz, hogy az üzenőfalat közösen tudjuk használni, <strong>fontos</strong>, hogy a fenti
+            neveket <strong>pontosan ugyanígy</strong> használja mindenki! Az <code>id</code>
+            tulajdonságra is csak a közös web szolgáltatás miatt lesz szükségünk.</p>
+    </section>
+
+    <section id="new_class_creation">
+        <h3>Osztály létrehozása</h3>
+
+        <p>
+            A 8. leckéhez hasonlóan hozzunk létre egy új Java osztályt (<code>class</code>), ezúttal
+            <code>Uzenet</code> néven!</p>
+
+        <p>
+            *** TODO IMGs***</p>
+
+        <p>
+            Az <code>Uzenet</code> osztályba írjuk be a fenti mezőket/változókat.</p>
+
+        <p>
+            Végezetül még mindig az <code>Uzenet</code> osztályon belül hozzunk létre egy <code>toString()</code>
+            függvényt is. Ez a függvény mindig hasznos segítőtársunk, és az üzenet listában való
+            megjelenítésekor is szükségünk lehet rá.</p>
+
+        <p>
+            Például:</p>
+
+<pre><code>
+@Override
+public String toString() {
+    return felado + " írta ekkor: " + __createdAt.toString() + ":\n " + szoveg;
+}</code>
+</pre>
+
+        <p>
+            ***GOMBNYOMÁSRA egy váz?***</p>
+    </section>
+
+    <section id="listview">
+        <h2>Lista létrehozása (kód)</h2>
+
+        <p>
+            Nem győzzük felemlegetni a 8-9. leckét, ahol ezeket a lépéseket mind elvégeztük már egyszer.
+            Emlékeztetésként: a <code>ListView</code> komponensünk önmagában nem sokat ér, kell alá
+            raknunk egy <code>ArrayList&lt;Uzenet&gt;</code> változót, ami az üzeneteink listáját tárolja. A
+            rendszerünk úgy lesz teljes, ha a változót és a layout komponenst egy adapterrel össze
+            is kapcsoljuk!</p>
+        <p>
+            *** TODO kép az adapterről***</p>
+        <ol>
+            <li>
+                <p>
+                    Hozz létre a <code>MainActivity</code>ben egy új változót:
+                    <code>ArrayList&lt;Uzenet&gt; uzenetek;</code>
+                    Ez a változó képes üzenetek listáját tárolni.</p></li>
+            <li>
+                <p>
+                    Az <code>onCreate</code> függvényünk adjon értéket a változónknak. Ez legyen egy új
+                    üres lista: <code>uzenetek = new ArrayList&lt;Uzenet&gt;();</code></p></li>
+            <li>
+                <p>
+                    Ha szeretnénk, akkor még az <code>onCreate</code> függvény végén adjunk hozzá az
+                    üzenetek listájához egy új elemet, amolyan üdvözlésként. Szegény felhasználót mégse
+                    egy üres lista fogadja! Hozz létre egy új üzenetet, majd add hozzá a listához az
+                    <code>uzenetek.add</code> belső függvénnyel.</p>
+<pre><code>
+Uzenet udv = new Uzenet();      // létrehoz egy új Uzenet típusú objektumot
+udv.felado = "Én";              // Beállítja a feladóját
+udv.szoveg = "Szia!";           // és a szövegét
+udv.__createdAt = new Date();   // Valamint a létrehozási idejét beállítja a jelenlegi (amikor a kód fut) időpontra
+uzenetek.add(udv);              // végül hozzáadjuk a listához
+</code></pre>
+            </li>
+            <li>
+                <p>
+                    A listánk attól lesz igazán hasznos, hogy gombnyomásra új elemeket illeszthetünk a
+                    végére. Írj egy <code>onClick</code> függvényt a gombnak, ami lenyomáskor létrehoz
+                    egy új üzenetet, és a fentiekhez hasonlóan beilleszti a listába! Az üzenet feladója
+                    legyen a te neved (vagy legalábbis legyen némileg ötletesebb, mint az "Én" szócska),
+                    a szövege származzon a szövegmezőből (<button data-target="help_get_text"
+                                                                  class="help-link">segítség</button>),
+                    a <code>__createdAt</code> pedig az <code>onCreate</code>-beli kódhoz hasonlan legyen <code>new Date();</code>.
+                    Ez biztosítja, hogy a <code>__createdAt</code>
+                    értéke a jelenlegi dátum/idő legyen.</p>
+                <div class="help-container" id="help_get_text">
+                    <pre><code>ujUzenet.szoveg = szovegdoboz.getText().toString();</code></pre>
+                    <p>Feltéve, hogy az EditText-hez tartozó változónak <code>szovegdboz</code> a neve.</p>
+                </div>
+            </li>
+        </ol>
+    </section>
+
+    <section id="listadapter">
+        <h2>Adapter</h2>
+
+        <p>
+            Amint arra korábban is utaltunk, a <code>ListView</code> komponenst és az
+            <code>ArrayList</code> változónkat össze is kell kapcsolni valamilyen módon. Erre használtuk
+            a korábbi leckékben az adaptereket.</p>
+
+        <p>
+            Az egyszerű megoldás:</p>
+        <ol>
+            <li>
+                <p>
+                    Hozzunk létre egy új változót az <code>Activity</code>ben.</p>
+                <pre><code>ArrayAdapter&lt;Uzenet&gt; adapter;</code></pre>
+            </li>
+            <li>
+                <p>
+                    Az <code>onCreate</code> függvényben adjunk értéket az adapternek</p>
+                <pre><code>adapter = new ArrayAdapter&lt;Uzenet&gt;(this, android.R.layout.simple_list_item_1, uzenetek);</code></pre>
+            </li>
+            <li>
+                <p>
+                    Amikor gombnyomásra új elemet adunk a listához, ne felejtsünk el szólni az
+                    adapternek: frissítse a listát</p>
+                <pre><code>adapter.notifyDataSetChanged();</code></pre>
+            </li>
+        </ol>
+
+        <p>
+            A fenti megoldás az <code>Uzenet</code> osztály <code>toString</code> függvényét használva
+            egy egyszerű szöveggé alakítja az üzeneteket. Ennél láttunk már sokkal elegánsabb
+            lehetőséget is a 11. lecke szorgalmijai között, ahol minden lista elem kap egy saját kis
+            layoutot. <a href="/lessons/l11.html#extra_custom_list_item" target="_blank">Itt találod.</a>
+            *** TODO kép ***. Javasolnánk, hogy alakítsd át a listádat az ott
+            leírt módon!</p>
+
+        <p>
+            Most futtasd a programodat, és győződj meg róla, hogy gombnyomásra hozzá tudsz adni új
+            elemeket a listához.</p>
+    </section>
+
+    <section id="azure_intro">
+        <h2>Közös üzenőfal</h2>
+
+        <div class="possible-error">
+            <p>Fontos megjegyezni, hogy a lecke folytatásának a sikeres teljesítéséhez (illetve
+                az elkészült program használatához) szükség lesz a telefonon internetelérésre. A program
+                működik mobilneten keresztül is, de nagyon változó, hogy éppen mennyi adatot szeretne
+                letölteni, ami lehet sok, így drága is. Ezért azt javasoljuk, hogy mindenképp az <strong>otthoni
+                WiFi</strong>-re legyetek felcsatlakozva, miközben használjátok a programot! Reméljük ez nem okoz
+                gondot senkinek.</p>
+        </div>
+
+        <p>
+            Eddig a programunk ugyan igen csinos, valójában elég haszontalan. Az általunk írt üzeneteket
+            nem hogy a többi szakkörös nem látja, de még akkor is eltűnnek, ha újraindítjuk a programot,
+            vagy csak egy merész mozdulattal elforgatjuk a telefon kijelzőjét. A szótárfüzet leckében
+            ezen <em>feledékenység</em> orvoslására a program bezárása előtt gyorsan egy külső fájlba
+            mentettük el a szavainkat; azonban itt ez sem megoldás számunkra, hiszen az SD kártyára
+            mentett üzeneteket rajtunk kívül soha senki nem fogja látni. Ahhoz, hogy <em>közös</em>
+            üzenőfalunk legyen, szükségünk van egy közös pontra az interneten, ahol összegyűlnek az
+            üzenetek.</p>
+
+        <p>
+            ***TODO egy nagyon primitív sematikus ábra arról, hogy a felhőben találkozik a sok-sok
+            eszköz. A felhőben pedig ott a mi Azure szolgáltatásunk/web szolgáltatás)</p>
+    </section>
+
+    <section id="azure_init">
+        <h3>Egy újabb API</h3>
+
+        <p>
+            Az üzenőfal megvalósításához az <a
+                href="http://azure.microsoft.com/hu-hu/services/app-service/mobile/">Azure Mobile
+            App</a> szolgáltatást használjuk. Amikor a lecke ezen sorait olvassátok, már az interneten
+            vár rátok egy kész üzenőfal szolgáltatás, ami a megfelelő kérésekre válaszolva képes a fenti
+            módon létrehozott üzenetek tárolására, illetve a korábbi üzenetek lehívására. Az
+            adatbázisunk jelenleg egy távoli szerveren várakozik. Ahhoz pedig, hogy kapcsolatba
+            léphessünk vele az okostelefonunkon keresztül, meg kell gyorsan ismerkednünk egy újabb
+            API-val: az Azure Mobile Services API-val. Az Open Street Map térkép API-hoz hasonlóan ez is
+            egy külső Java könyvtár, ami nagyban leegyszerűsíti az életünket. A lecke végéig láthatjuk,
+            hogy csupán pár sor programmal hozzá is adhatunk egy új üzenetet az adatbázishoz - ez a
+            művelet egyébként a háttérben olyan összetett hálózati hókusz-pókuszt rejt, amitől az
+            olvasót szeretnénk megkímélni. Az Azure Mobile App szolgáltatásairól ebben a leckében nem
+            fogunk részletesen beszélni, kizárólag az API használatát tűzzük ki célunknak. Az itt
+            előkerülő munka pedig kísértetiesen fog hasonlítani az előző (12.) leckében látottakhoz.</p>
+
+        <h3>Külső API hozzáadása</h3>
+
+        <p>
+            Az Azure Mobile App Service használatához jeleznünk kell az új külső kódcsomagot
+            (függőséget)</p>
+
+        <p>
+            Ehhez nyissuk meg a <code>build.gradle</code> fájlunkat, és nézzük meg a
+            <code>dependecies</code> részt.</p>
+
+        <p>
+            *** TODO image***</p>
+
+        <p>
+            Emlékeztetésként, a gradle fájl dependencies részlete tartalmazza azon külső kódcsomagok
+            listáját, amik nem részei se az Android rendszernek, se a Java nyelvnek. Ide kell
+            hozzáadnunk az Azure Mobile App Service-t is, ezáltal jelezve az Android Studio-nak, hogy
+            mostantól tekintsen úgy az Azure API-ra, mint bármilyen más belső kódra.</p>
+
+        <p>
+            Ehhez másoljuk be az alábbi sort a dependencies blokk végére:</p>
+
+        <pre><code>compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.2-beta+'</code></pre>
+
+        <p>
+            Most pedig kattintsunk a sarokban felugró <em>Sync now</em> feliratra!</p>
+
+        <p>
+            ***TODO final screenshot***</p>
+
+        <p>
+            ***TODO: ha nincs Sync Now!***</p>
+    </section>
+
+    <section id="azure_permission">
+        <h3>Engedélyek</h3>
+
+        <p>
+            Emlékeztetőként nézd meg a <a href="http://dkrmg-android.github.io/gyik.html#Vibrator">gyorssegély</a>
+            lapot!</p>
+
+        <p>
+            Az alkalmazásunknak egyetlen különleges engedélyre lesz szüksége: az üzenetek küldéséhez és
+            lehívásához csatlakoznunk kell az internetre.</p>
+
+        <p>
+            Az alkalmazásunk a szükséges engedélyek listját az <code>AndroidManifest.xml</code> fájlban
+            tárolja.</p>
+        <ol>
+            <li>
+                <p>
+                    Nyissuk meg a manifeszt fájlt ***IMG***</p></li>
+            <li>
+                <p>
+                    Adjuk hozzá a szükséges engedélyt az application sor fölé</p>
+                <pre><code>&ltuses-permission android:name="android.permission.INTERNET"/&gt;</code></pre>
+            </li>
+            <li>
+                <p>
+                    ***TODO finished file as image (dolgozzanak csak egy kicsit) ***</p></li>
+        </ol>
+    </section>
+
+    <section id="azure_java_code">
+        <h3>Néhány új változó</h3>
+
+        <p>
+            A térképpel szemben az Azure API nem ad új látványos layout komponenseket. A kapcsolatot az
+            adatbázissal a Java kódból néhány változónkon keresztül fogjuk tartani. Ehhez hozzuk létre
+            az alábbi két változót az Activityben:</p>
+<pre><code>
+private MobileServiceClient azureClient;
+private MobileServiceTable&lt;Uzenet&gt; kozosUzenetek; //az uzenetek adattáblája
+</code></pre>
+        
+        <h4>Értékadás</h4>
+        <p>
+            Az onCreate függvényünkben adjunk is értéket az új változóinknak. Az alábbi pár sor fogja
+            megnyitni a kapcsoaltot az internetes szolgáltatással. A sorok pontos jelentésének részletes
+            magyarázatától eltekintenénk. Nagy vonalaiban azonban látható, hogy létrehozunk egy új
+            <code>MobileServiceClient</code> objektumot, megadva a webes szolgáltatásunk nevét és
+            kulcsát. A try-catch szerkezettel is találkoztunk már egészen pontosan a fájlok
+            megnyitásánál. Ebben az esetben a catch a hibásan beírt URL-t kapja el (a mi általunk
+            használt URL szerencsére hibátlan:
+            <a href="https://dkrmg-szakkor-uzenofal.azure-mobile.net/" target="_blank">
+                https://dkrmg-szakkor-uzenofal.azure-mobile.net/</a>)</p>
+
+<pre><code>
+try {
+    azureClient = new MobileServiceClient(
+            "https://dkrmg-szakkor-uzenofal.azure-mobile.net/",
+            "kZkkgmDCeseSiEjjJrwRgKKFKNjPAq13",
+            this);
+} catch (MalformedURLException e) {
+    Log.e("AzureClient", "Hibás URL");
+}
+kozosUzenetek = azureClient.getTable(Uzenet.class);
+</code></pre>
+
+        <p>
+            A kód utolsó sora pedig megkéri a webes szolgáltatást: legyen szíves kapcsolja össze az
+            <code>kozosUzenetek</code> változónkat azzal az adattáblával, amiben az összes közös üzenet
+            lakik. Innentől válik igazán fontossá, hogy az <code>Uzenet</code> osztály mindenkinél
+            pontosan ugyanazokat a mezőket tartalmazza! Erre a <code>kozosUzenetek</code> adattáblára
+            gondolhatunk úgy, mint egy furcsa listára, ami az interneten lakik valahol.</p>
+    </section>
+
+    <section id="send_new_message">
+        <h2>Új üzenet küldése a közös Üzenőfalra</h2>
+
+        <p>
+            Most pedig villámgyorsan demonstráljuk is, hogy a fenti körülbelül tíz soros előkészületek
+            után mennyire is egyszerűvé válik a közös üzenőfalunk használata. Ehhez egészen pontosan az
+            új üzeneteinket nem csak a saját kis listánkhoz fogjuk hozzáadni, hanem a <code>kozosUzenetek</code>be
+            is elküldjük.</p>
+
+        <h3>Ki kell valamit törölni az eddigi kódból?</h3>
+        <p>
+            Egyelőre ne töröljünk ki a korábbi kódból semmit! Ezt az élvezetet hagyjuk meg a következő
+            leckére.</p>
+
+        <h3>Üzenet küldése</h3>
+        <p>
+            A gombunk lenyomásakor jelenleg létrehozunk egy új <code>Uzenet</code> típusú helyi
+            változót, és gyorsan értéket is adunk a különböző tulajdonságainak (<code>felado</code>,
+            <code>szoveg</code>). Nincs más dolgunk, mint a listához hozzáadás után beillesztjük az
+            alábbi sort:</p>
+
+<pre><code>
+// feltéve, hogy az új üzenetet az uzenet változóba tettük. Ha nem, akkor ezt át kell írni!
+kozosUzenetek.insert(uzenet);
+</code></pre>
+
+        <p>
+            A fenti kód fogja a <code>kozosUzenetek</code> adattáblát és beilleszt egy új elemet. Mint
+            említettük, a <code>kozosUzenetek</code> adattáblára tekinthetünk úgy, mint egy furcsa
+            listára, ami az interneten lakik valahol. A különbség egyelőre annyi, hogy az <code>add(uzenet)</code>
+            parancs helyén az <code>insert(uzenet)</code> áll. Ezzel a beillesztéssel az új
+            üzenetünket hozzáadjuk a közös adatbázishoz.</p>
+
+        <h3>Próbáld ki!</h3>
+    </section>
+
+    <p>
+        Miután beírtad a fenti kódot, futtasd a programot, adj hozzá 1-2 üzenetet, és nézd meg
+        <a href="http://dkrmg-android.github.io/lessons/uzenofal.html">a webes felületünkön</a>,
+        hogy megjelenik-e az üzenet.</p>
+
+    <p>
+        ***SZORGALMI***</p>
+
+    <p>
+        <strong>Esetleg elmehetnénk kicsit bonyolultabb layout irányába is: LinearLayout (vertical)
+            a gyökér, benne egy ListView-el (weight=1), alatta egy újabb LinearLayout (de ez már
+            horizontal), benne egy EditText (weight=1) és egy Button (küldés). Nem vészesen
+            bonyolult, és szerintem lényeges része. És stabilan működik valószínűleg GUIból is, nem
+            úgy mint a RelativeLayout néha.</strong></p>
+
+
+</div>
+<footer data-include="/include/footer.html"></footer>
+<script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
