@@ -12,6 +12,7 @@ function loadIncludes() {
 
         $.get(path, function (data) {
             $container.html(data);
+            Prism.highlightElement($container[0]);
         });
     });
 }
