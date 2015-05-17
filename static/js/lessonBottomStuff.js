@@ -8,11 +8,14 @@ $(function () {
 function loadIncludes() {
     $('[data-include]').each(function () {
         var $container = $(this);
+
         var path = $container.data('include');
 
         $.get(path, function (data) {
             $container.html(data);
-            Prism.highlightElement($container[0]);
+            if ($container.is('pre, code')) {
+                Prism.highlightElement($container[0]);
+            }
         });
     });
 }
