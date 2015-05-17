@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <title>L12 - Térkép (DKRMG Android Szakkör)</title>
+    <title>L13 - Üzenőfal (DKRMG Android Szakkör)</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -16,6 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>
+    <script src="/static/js/azureUzenet2.js"></script>
 </head>
 <body class="language-java">
 <header data-include="/include/header.html"></header>
@@ -29,7 +30,40 @@
     <hr/>
 	
 	<h3 id='summary'>Betöltés...</h3>
-    <ul id='uzenet-items'></ul>
+    <p id="loading">Sajnos az első lekérdezés általában elég sokáig tart (akárfél perc is lehet).
+        Kérlek légy türelemmel! A többi már gyorsan fog menni!</p>
+    <div id="empty_message" style="display: none">
+        <p>Nincs elérhető üzenet.</p>
+    </div>
+    <div id='uzenet-items'></div>
+
+    <div id="message_template_container" style="display: none;">
+        <div class="message" data-message-id="076F6538-3743-4713-B5FC-80E21CC21245">
+            <p>
+                <strong class="sender">DKRMG test</strong>
+                <span class="timestamp" style="float:right; font-style: italic;">2015.4.14. 11:26:57</span>
+            </p>
+
+            <p class="text">Ping... Hello!</p>
+            <hr>
+        </div>
+    </div>
+
+    <script type="application/javascript">
+        $(function () {
+            $messageTemplate = $('#message_template_container').children().eq(0);
+            $messageList = $('#uzenet-items');
+            $emptyMessage = $('#empty_message');
+            $loadingMessage = $('#loading');
+
+            uzenetClient.init(
+                    'https://dkrmg-szakkor-uzenofal.azure-mobile.net/',
+                    'kZkkgmDCeseSiEjjJrwRgKKFKNjPAq13'
+            );
+
+            uzenetClient.fetchMessages(10, displayMessages);
+        });
+    </script>
 	
 	
 </div>
@@ -38,6 +72,6 @@
 <script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
 <link rel="stylesheet" href="/static/css/stsheet.css"/>
 <script src="/static/js/prism.js"></script>
-<script src="/static/js/azureUzenet.js"></script>
+<!--<script src="/static/js/azureUzenet.js"></script>-->
 </body>
 </html>
