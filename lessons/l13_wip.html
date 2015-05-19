@@ -45,15 +45,12 @@
             viszont már képesek leszünk új üzeneteket küldeni a közös honlapra. A következő (utolsó)
             leckében már a teljes előzmény megjelenik az okostelefonunk kijelzőjén, és a program
             hibatűrésén is javítunk egy kicsit.</p>
-
-        <h4>Első nekifutás</h4>
-        <p>
-            Jó programozóként nem próbálunk ajtóstul rontani be a házba, a feladatot több lépésben
-            oldjuk meg. Az első nekifutás remélhetőleg sokak számára ismerősnek tűnik majd; az alábbi
-            lépések mindegyikét elvégeztük már a 8. leckében is.</p>
     </section>
-
-    <h2>Első célunk</h2>
+    <h1>Első nekifutás</h1>
+	<p>
+		Jó programozóként nem próbálunk ajtóstul rontani be a házba, a feladatot több lépésben
+		oldjuk meg. Az első nekifutás remélhetőleg sokak számára ismerősnek tűnik majd; az alábbi
+		lépések mindegyikét elvégeztük már a 8. leckében is.</p>
     <p>
         A cél, hogy a telefon képernyőjén megjelenjen egy szövegmező, egy gomb és egy lista. A gomb
         lenyomásakor a szövegmezőben tartalmat egy üzenetté alakítjuk át, és gyorsan beillesztjük a
@@ -67,7 +64,7 @@
         <p>
             Hozzunk létre egy új projektet <code>Uzenofal</code> néven. Ilyet már rengetegszer
             csináltunk. Ha mégis bizonytalan volnál a pontos lépésekben, akkor pl. a <a
-                href="http://dkrmg-android.github.io/lessons/l07.html#new-project">7. lecke</a>
+                href="http://dkrmg-android.github.io/lessons/l07.html#new-project" target="_blank">7. lecke</a>
             leírásából lehet puskázni!</p>
     </section>
 
@@ -75,7 +72,7 @@
         <h3>Layout - felhasználói felület</h3>
 
         <p>
-            ***TODO IMG***</p>
+            <img src="/static/img/l13/layout_1.png" class="center-block" />
 
         <p>
             Készítsük el a fenti felhasználói felületet.</p>
@@ -93,12 +90,17 @@
                     <li>
                         <p>
                             <code>ListView</code></p></li>
+					<img src="/static/img/l13/layout_3.png" class="center-block" /></li>
                 </ul>
             </li>
             <li>
                 <p>
                     Ne felejtsünk el minden komponenst (gyökér komponenst is) <code>id</code>
-                    tulajdonsággal ellátni.</p></li>
+                    tulajdonsággal ellátni.</p>
+					<img src="/static/img/l13/layout_2.png" class="center-block" /></li>
+			<li>
+				A szövegmező magassága a <code>layout:height</code> segítségével állíthatjuk be. Pl. <code>100dp</code>
+			</li>
             <li>
                 <p>
                     Indítsuk el a programot, és ellenőrizzük a munkánkat!</p></li>
@@ -106,6 +108,7 @@
         <p>
             A fenti felhaszálói felület természetesen csupán egy egyszerű vázlat. A korábbi leckékhez
             hasonlóan javasolnánk, hogy csinosítsátok és színesítsétek ki!</p>
+		
     </section>
 
 
@@ -144,7 +147,7 @@
             az üzenetünknek, ami a közös üzenőfalhoz lesz majd elengedhetetlen.</p>
 
         <p>
-            **** TODO class diagram ***</p>
+            <img src="/static/img/l13/class_1.png" class="center-block" /></p>
         <ol>
             <li>
                 <p>
@@ -255,6 +258,8 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
                     <pre><code>ujUzenet.szoveg = szovegdoboz.getText().toString();</code></pre>
                     <p>Feltéve, hogy az EditText-hez tartozó változónak <code>szovegdboz</code> a neve.</p>
                 </div>
+				<p>Az üzenet hozzáadása után ne felejtsük el kitörölni a szövegmező tartalmát a <code>setText("");</code> segítségével.
+				</p>
             </li>
         </ol>
     </section>
@@ -280,6 +285,13 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
                     Az <code>onCreate</code> függvényben adjunk értéket az adapternek</p>
                 <pre><code>adapter = new ArrayAdapter&lt;Uzenet&gt;(this, android.R.layout.simple_list_item_1, uzenetek);</code></pre>
             </li>
+			<li>
+				<p>
+					Az <code>onCreate</code> függvény végén állítsuk be, hogy a <code>ListView</code> komponensünk az új adapter használja.</p>
+				<p><em>Ha a <code>ListView</code> komponensre mutató változónk még nincs, akkor hozzuk létre, és adjunk neki 
+				értéket a szokásos módon a <code>findViewById(R.id...)</code> segítségével</em></p>
+				<pre><code>lista.setAdapter(adapter);</code></pre>
+			</li>
             <li>
                 <p>
                     Amikor gombnyomásra új elemet adunk a listához, ne felejtsünk el szólni az
@@ -293,8 +305,8 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
             egy egyszerű szöveggé alakítja az üzeneteket. Ennél láttunk már sokkal elegánsabb
             lehetőséget is a 11. lecke szorgalmijai között, ahol minden lista elem kap egy saját kis
             layoutot. <a href="/lessons/l11.html#extra_custom_list_item" target="_blank">Itt találod.</a>
-            *** TODO kép ***. Javasolnánk, hogy alakítsd át a listádat az ott
-            leírt módon!</p>
+            Javasolnánk, hogy alakítsd át a listádat az ott leírt módon!</p>
+			<img src="/static/img/l13/custom_adapter.png" class="center-block" />
 
         <p>
             Most futtasd a programodat, és győződj meg róla, hogy gombnyomásra hozzá tudsz adni új
@@ -324,8 +336,7 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
             üzenetek.</p>
 
         <p>
-            ***TODO egy nagyon primitív sematikus ábra arról, hogy a felhőben találkozik a sok-sok
-            eszköz. A felhőben pedig ott a mi Azure szolgáltatásunk/web szolgáltatás)</p>
+            <img src="/static/img/l13/cloud.png" class="center-block" /></p>
     </section>
 
     <section id="azure_init">
@@ -339,7 +350,11 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
             módon létrehozott üzenetek tárolására, illetve a korábbi üzenetek lehívására. Az
             adatbázisunk jelenleg egy távoli szerveren várakozik. Ahhoz pedig, hogy kapcsolatba
             léphessünk vele az okostelefonunkon keresztül, meg kell gyorsan ismerkednünk egy újabb
-            API-val: az Azure Mobile Services API-val. Az Open Street Map térkép API-hoz hasonlóan ez is
+            API-val: az Azure Mobile Services API-val. </p>
+			<img src="/static/img/l13/cloud2.png" class="center-block" />
+		
+		<p>
+			Az Open Street Map térkép API-hoz hasonlóan ez is
             egy külső Java könyvtár, ami nagyban leegyszerűsíti az életünket. A lecke végéig láthatjuk,
             hogy csupán pár sor programmal hozzá is adhatunk egy új üzenetet az adatbázishoz - ez a
             művelet egyébként a háttérben olyan összetett hálózati hókusz-pókuszt rejt, amitől az
@@ -371,12 +386,11 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
             Ehhez másoljuk be az alábbi sort a dependencies blokk végére:</p>
 
         <pre><code>compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.2-beta+'</code></pre>
+		
+		<p><img src="/static/img/l13/dep.png" class="center-block" /> </p>
 
         <p>
             Most pedig kattintsunk a sarokban felugró <em>Sync now</em> feliratra!</p>
-
-        <p>
-            ***TODO final screenshot***</p>
 
         <p>Ha valami oknál fogva a <code>Sync now</code> sáv nem ugrik fel magától, akkor sem történik
             semmi probléma. A gradle fájl változtatása után nyojuk meg a fenti sávban található
@@ -401,15 +415,15 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
         <ol>
             <li>
                 <p>
-                    Nyissuk meg a manifeszt fájlt ***IMG***</p></li>
+                    Nyissuk meg a manifeszt fájlt</p></li>
             <li>
                 <p>
                     Adjuk hozzá a szükséges engedélyt az application sor fölé</p>
-                <pre><code>&ltuses-permission android:name="android.permission.INTERNET"/&gt;</code></pre>
+                <pre><code class=" language-markup">&ltuses-permission android:name="android.permission.INTERNET"/&gt;</code></pre>
             </li>
             <li>
                 <p>
-                    ***TODO finished file as image (dolgozzanak csak egy kicsit) ***</p></li>
+                    <img src="/static/img/l13/manifest.png" class="center-block" /></p></li>
         </ol>
     </section>
 
@@ -489,14 +503,17 @@ kozosUzenetek.insert(uzenet);
             listára, ami az interneten lakik valahol. A különbség egyelőre annyi, hogy az <code>add(uzenet)</code>
             parancs helyén az <code>insert(uzenet)</code> áll. Ezzel a beillesztéssel az új
             üzenetünket hozzáadjuk a közös adatbázishoz.</p>
-
-        <h3>Próbáld ki!</h3>
-    </section>
-
+	</section>
+    
+	<h3>Próbáld ki!</h3>
     <p>
         Miután beírtad a fenti kódot, futtasd a programot, adj hozzá 1-2 üzenetet, és nézd meg
-        <a href="http://dkrmg-android.github.io/lessons/uzenofal.html">a webes felületünkön</a>,
+        <a href="http://dkrmg-android.github.io/lessons/uzenofal.html" target="_blank">a webes felületünkön</a>,
         hogy megjelenik-e az üzenet.</p>
+		<div class="imgstore">
+            <img src="/static/img/l13/test1.png" class="center-block" />
+            <img src="/static/img/l13/test2.png" class="center-block" />
+        </div>
 
     <section id="extra_compound_layout">
         <h2>Szorgalmi &ndash; Ismerkedés a különböző layout-gyökérelemekkel</h2>
