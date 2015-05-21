@@ -88,10 +88,10 @@
             <li>Nyissuk meg az Android Studio-t.</li>
             <li>Egy idő után valószínűleg ugyanaz az ablak fogad minket, mint amivel bezártuk az előző lecke végén, azaz
                 újra megnyitotta a Hello World! projektet.</li>
-            <li>Nekünk másik projektre lesz szükségünk, ezért zárjuk be a projektet a <em>File -> Close</em> project menüponttal.
+            <li>Nekünk másik projektre lesz szükségünk, ezért zárjuk be a projektet a <code>File -> Close</code> project menüponttal.
                 <img src="/static/img/l03/03_closeProject.png" class="center-block" />
             </li>
-            <li>Az így megjelenő kis ablakban nyomjuk meg az <em>Import project</em> sort.
+            <li>Az így megjelenő kis ablakban nyomjuk meg az <code>Import project</code> sort.
                 <img src="/static/img/l03/04_importProject.png" class="center-block" />
             </li>
             <li>A megjelenő dialógusablakban keressük meg, és válasszuk ki az 1. lépésben kicsomagolt L03-GuessGame
@@ -108,7 +108,7 @@
 
     <section>
         <h2 id="settings">Beállítások</h2>
-        <p>Mielőtt belekezdünk a fejlesztésbe, érdemes a <em>File -> Settings</em> menüben beállítani pár dolgot,
+        <p>Mielőtt belekezdünk a fejlesztésbe, érdemes a <code>File -> Settings</code> menüben beállítani pár dolgot,
             ami megkönnyíti majd a munkát.</p>
         <ul>
             <li>Az <code>Editor -> Appearance</code> oldalon a <code>Show line numbers</code> legyen kipipálva. Így sokkal könnyebb lesz hivatkozni
@@ -130,14 +130,14 @@
             programozás szakkörön találkoztál már a Lazarus-szal, némi előnnyel indulhatsz neki ennek a fejezetnek. Ha nem,
             akkor se csüggedj, ez az applikáció készítés egyik legegyszerűbb része!</p>
         <ol>
-            <li>Győződjünk meg arról, hogy a "Tool Buttons" látszik (<em>View -> Tool</em> Buttons legyen pipálva)
+            <li>Győződjünk meg arról, hogy a "Tool Buttons" látszik (<code>View -> Tool</code> Buttons legyen pipálva)
                 <img src="/static/img/l03/10_showToolButtons.png" class="center-block" />
             </li>
             <li>Nézzük meg, hogy mi is van egész pontosan a projektünkben. Ehhez kattintsunk a <code>Project</code> gombra a bal
                 szélen megjelent sávon.
                 <img src="/static/img/l03/11_AndroidView.png" class="center-block" />
             </li>
-            <li>Nyissuk meg az <em>app -> res -> layout -> activity_main.xml</em> fájlt
+            <li>Nyissuk meg az <code>app -> res -> layout -> activity_main.xml</code> fájlt
                 <img src="/static/img/l03/12_openLayoutEditor.png" class="center-block" />
             </li>
             <li>Győződjünk meg arról, hogy a <code>Design</code> fül van az ablak alján kiválasztva.</li>
@@ -199,7 +199,43 @@
         </ul>
         <p>Ezen kívül kipróbálhatod még óvatosan a <code>background</code>, <code>textStyle</code> tulajdonságokat is.</p>
     </section>
-
+	<section>
+		<h2>Új komponens hozzáadása</h2>
+		<p>Ha minden igaz, akkor jelenleg van egy tetszőlegesen átszínezhető és méretezhető feliratunk. A feliratok nagyon
+			hasznosak, de térjünk át egy kicsit izgalmasabb komponensre: a gombokra (<code>Button</code>).</p>
+		<p>Helyezzünk el egy gombot a felirat alá!</p>
+		<ol>
+			<li>
+				<p>Baloldalt a <code>Widget</code> kategóriában megtaláljuk a <code>Button</code> komponenst.</p>
+				****TODO IMG***
+			</li>
+			<li>
+				<p>Kattintsunk rá, majd az egérgombot lenyomva tartva húzzuk át a telefon kijelzőjére. Ahogy a kijelző
+						különböző pontjaira mozgatjuk a gombot, láthatjuk, hogy a tervező megpróbálja a gombot a létező 
+						komponensekhez illetve a képernyő széleihez igazítani.</p>
+				****TODO IMG***
+			</li>
+			<li>
+				<p>Tegyük le a gombot pontosan középre, valahol a képernyő alsó felén. 
+					Ekkor felengedhetjük az egér bal gombját.</p>
+				<p>Az új komponensünk hasonló tulajdonságokkal rendelkezik, mint a felirat.</p>
+			</li>
+			<li>
+				<p>Írjuk át a megjelenő szöveget (text) erre: "<code>kattints rám!</code>"</p>
+				****TODO IMG***
+			</li>
+			<li>
+				<p>nézzük meg a gomb <code>id</code> tulajdonságát, mert később szükségünk lesz még rá! Ez nem más, mint <code>button</code>.</p>
+				****TODO IMG***
+			</li>
+			<li>
+				<p>Próbáljuk ki, hogy amit eddig csináltunk, hogy néz ki igazi telefonon/emulátoron! Futtassuk a projektet!</p>
+			</li>
+		</ol>
+	</section>
+	<section>
+		<h2>Interaktivtás</h2>
+	</section>
 </div>
 
 <footer data-include="/include/footer.html"></footer>
