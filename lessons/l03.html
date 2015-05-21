@@ -310,6 +310,62 @@
 			<li>Próbáljuk meg újra futtatni az alkalmazást!</li>
 		</ol>
 	</section>
+	<section>
+		***KITÉRŐ***
+		<h3>Kitérő: változók<h3>
+		<p>A layout nézetben egyszerűen ki tudunk választani egy gombot, csak rá kell kattintanunk! Mi a helyzet, ha a Java
+			programunkból szeretnénk hivatkozni egy komponensre? Nincs más dolgunk mint létrehozni egy változót, elnevezni 
+			mondjuk <code>gomb1</code>-nek és közölni a számítógéppel, hogy mostantól a "gomb1" változó nem más, mint az általunk 
+			meghatározott gomb a layout szerkesztőben. De mi is az a változó?</p>
+		<p>A változó a programozásban egy <em>tároló</em>, aminek van:</p>
+		<ul>
+			<li>típusa</li>
+			<li>neve</li>
+		</ul>
+		<p>Például létrehozhatunk egy-egy változót (<code>a</code> és <code>b</code>), amiben egy téglalap oldalainak hosszát tároljuk</p>
+		<pre><code>int a; // az a oldal. int: egész szám pl. 0,1,2,3
+int b; // a b oldal. int
+a = 10; // az a oldal hossza legyen 10 (pl. cm)
+b = 15; // a b oldal hossza legyen 15 (pl. cm)</code></pre>
+		<p>Az első két sor a változók deklarációja (létrehozása, bemutatása), az alsó két sor pedig bemutatja, hogy miként
+			tárolhatunk el új értéket a változóinkban.</p>
+		<pre><code>int x;
+x = 5; // x értéke legyen 5</code></pre>
+		<p>Az értékadás (<code>=</code>) után a régi érték elveszik.</p>
+		<pre><code>x = 6;			// x értéke mostantól 6!</code></pre>
+		<p>Miért is jó, hogy vannak változóink? Például most könnyedén kiszámíthatjuk a téglalapunk területét</p>
+		<pre><code>int terulet;
+terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
+		<p>Más <strong>típusú</strong> változó kell, ha egy számot szeretnénk eltárolni benne, megint más, ha szöveget, vagy ha mondjuk egy
+			gombot.</p>
+		<ul>
+			<li>egy <code>szam</code> nevű, egész számot tároló változót így deklarálhatunk: <code>int szam;</code></li>
+			<li>egy <code>szoveg</code> nevű, szöveget tárolót így: <code>String szoveg;</code></li>
+			<li>egy <code>leiras</code> nevű, TextView-ra hivatkozó változót pedig így: <code>TextView leiras;</code></li>
+		</ul>
+		<p>Figyelni kell, hogy az, amit bele szeretnénk rakni a változóba, belepasszoljon, azaz ugyan olyan típusú legyen, mint a változó.</p>
+		<ul>
+			<li>A <code>szam</code> változóba rakjuk bele a 42 értéket: <code>szam = 42;</code></li>
+			<li>A <code>szoveg</code> változóba rakjuk bele a "Halihó!" értéket: <code>szoveg = "Halihó!"</code></li>
+			<li>A <code>leiras</code> rakjuk bele a leírást megjelenítő komponenst: <code>leiras = (TextView) findViewById(R.id.leiras);</code></li>
+		</ul>
+		<p>Hohó! Ez az utolsó kicsit más, mint az előzőek! Nézzük meg közelebbről. Nagyjából stimmel, van baloldalt egy 
+			változó (leiras), utána az <code>=</code>. De ami utána következik, az egy kicsit más.</p>
+		
+		<p>A <strong><code>findViewById</code></strong> egy beépített függvény, ami meg tudja keresni a kért komponenst, 
+			és a fenti módszerrel el tudjuk
+			azt menteni egy változóba. Azt, hogy melyik komponenst kérjük, a második pár zárójel között kell megadni. 
+			Emlékeztek? Az Új komponens hozzáadása *** TODO LINK*** rész előtt közvetlenül megnéztük, hogy a leírást tartalmazó szöveg-
+			komponensnek mi az azonosítója. Ugyan az, mint ami itt az <code>R.id.</code> után szerepel. Ezt majd később megnézzük, hogy 
+			miért van így, most fogadjuk el, hogy komponenst megkeresni így lehet: <code>findViewById(R.id.&le;komponens 
+			azonosítója&gt;);</code> Már csak egy dologról nem tudjuk, hogy micsoda: a "(TextView)” rész. Mivel komponensből 
+			nagyon sok féle lehet, meg kell mondanunk, hogy a változóba milyen típus passzol. Mivel a változónk típusa 
+			<code>TextView</code>, így ilyen típusú komponenst kérünk.</p>
+		<p></p>
+		<p></p>
+		<p></p>
+		<p></p>
+	</section>
 </div>
 
 <footer data-include="/include/footer.html"></footer>
