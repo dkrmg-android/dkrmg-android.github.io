@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <title>L13 - Üzenőfal (1) (DKRMG Android Szakkör)</title>
+    <title>L03 - Számkitalálós játék</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet"
@@ -52,7 +52,9 @@
 
     <section>
         <h2 id="how-does-it-look-like">Hogyan néz ez ki a telefonunkon?</h2>
-        <img src="/static/img/l03/02_finalLayout.png" style="float: right; height: 400px;" class="center-block" />
+		<p>
+			<img src="/static/img/l03/02_finalLayout.png" class="center-block" />
+		</p>
         <p>A programozás szépsége, hogy ezt az egyszerű játékot is rengeteg
             különböző módon lehetne elkészíteni. Mivel ez az első komolyabb
             programunk, mi most maradjunk a felhasználói felület legegyszerűbb
@@ -80,7 +82,7 @@
             segítségként némi útmutatást helyeztünk el.</p>
         <p>Ahhoz, hogy a projektet használni tudjuk, importálni kell az Android Studio-ba:</p>
         <ol>
-            <li>Töltsük le a L03-GuessGame.zip fájlt (az emailben kapott linken elérhető), és csomagoljuk ki a Hello World
+            <li>Töltsük le a <a href="/static/files/NewIde/L03-GuessGame.zip">L03-GuessGame.zip</a> fájlt, és csomagoljuk ki a Hello World
                 projekt mappája <strong>mellé</strong>. (Tehát a Hello World mappa mellett legyen egy L03-GuessGame mappa, amely
                 tartalmazza az app, gradle mappákat)</li>
             <li>Nyissuk meg az Android Studio-t.</li>
@@ -106,16 +108,16 @@
 
     <section>
         <h2 id="settings">Beállítások</h2>
-        <p>Mielőtt belekezdünk a fejlesztésbe, érdemes a File -> Settings menüben beállítani pár dolgot,
+        <p>Mielőtt belekezdünk a fejlesztésbe, érdemes a <em>File -> Settings</em> menüben beállítani pár dolgot,
             ami megkönnyíti majd a munkát.</p>
         <ul>
-            <li>Az <em>Editor -> Appearance</em> oldalon a „Show line numbers” legyen kipipálva. Így sokkal könnyebb lesz hivatkozni
+            <li>Az <code>Editor -> Appearance</code> oldalon a <code>Show line numbers</code> legyen kipipálva. Így sokkal könnyebb lesz hivatkozni
                 a kód egyes részeire.</li>
-            <li>Az <em>Editor -> Code completion</em> oldalon a „Case sensitive completion” értéke legyen None. Így kis- és
+            <li>Az <code>Editor -> Code completion</code> oldalon a <code>Case sensitive completion</code> értéke legyen None. Így kis- és
                 nagybetűvel is elkezdheted majd írni a metódus és objektumneveket, a fejlesztőkörnyezet mindenképp tud
                 majd segíteni.</li>
-            <li><strong>Az <em>Editor -> Auto</em> import oldalon az „Optimize imports on the fly” és az „Add unambigous imports on the
-                fly” is legyen kipipálva.</strong></li>
+            <li><strong>Az <code>Editor -> Auto import</code> oldalon az <code>Optimize imports on the fly</code> és az <code>Add unambigous imports on the
+                fly</code> is legyen kipipálva.</strong></li>
             <li>A <em>Keymap</em> oldalon fent érdemes a Keymaps: Default helyett az Eclipse-t kiválasztani.</li>
         </ul>
         <p>A végén a beállításokat az OK gomb megnyomásával mentsd el!</p>
@@ -131,14 +133,14 @@
             <li>Győződjünk meg arról, hogy a "Tool Buttons" látszik (<em>View -> Tool</em> Buttons legyen pipálva)
                 <img src="/static/img/l03/10_showToolButtons.png" class="center-block" />
             </li>
-            <li>Nézzük meg, hogy mi is van egész pontosan a projektünkben. Ehhez kattintsunk a „Project” gombra a bal
+            <li>Nézzük meg, hogy mi is van egész pontosan a projektünkben. Ehhez kattintsunk a <code>Project</code> gombra a bal
                 szélen megjelent sávon.
                 <img src="/static/img/l03/11_AndroidView.png" class="center-block" />
             </li>
             <li>Nyissuk meg az <em>app -> res -> layout -> activity_main.xml</em> fájlt
                 <img src="/static/img/l03/12_openLayoutEditor.png" class="center-block" />
             </li>
-            <li>Győződjünk meg arról, hogy a „Design” fül van az ablak alján kiválasztva.</li>
+            <li>Győződjünk meg arról, hogy a <code>Design</code> fül van az ablak alján kiválasztva.</li>
         </ol>
         <p>A második és a harmadik lépés talán némi magyarázatra szorulhat. Miért van egy szinte üres projektben ennyi
             mappa és fájl? Ezt a kérdést most nem is fogjuk megválaszolni, nem akarunk senkit oldalakon keresztül az Android
@@ -158,30 +160,31 @@
             megmutatja nekünk: mi is fogadna bennünket, ha az alkalmazásunkat most egy igazi készüléken/emulátorban
             elindítanánk.</p>
         <div class="possible-error">
-            <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
-                verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
-                apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
+            <p>Előfordulhat, hogy a felület használata során hibába ütközöl. Ilyenkor ellenőrizd, hogy az ablak tetején 
+			   milyen API van kiválasztva. A legfrissebb változat sokszor hibás lehet még.
+			    Ilyenkor a legördülő listából válassz ki egy régebbi
+                verziót, és vedd ki a pipát az <code>Automatically Pick Best</code> mellől. </p>
             <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
         </div>
         <p>Amikor a layout üres, a telefon képernyője is üres marad. Ebből bizonyára rájöttél, hogy máris van egy
-            komponensünk, egy úgynevezett TextView, amelyen az általunk begépelt szellemes szöveg látható.</p>
+            komponensünk, egy úgynevezett <code>TextView</code>, amelyen az általunk begépelt szellemes szöveg látható.</p>
         <p>A komponenseinknek vannak tulajdonságai is, mivel mégsem nézhet ki minden felirat ugyanúgy! Jobb oldalt a
-            „Properties” részen találjátok az épp kijelölt komponens összes tulajdonságát.</p>
-        <p>Próbaként kattints rá egyszer a <strong>TextView</strong> komponensünkre („Ez itt egy szöveg!”), és nézd meg a tulajdonságait.</p>
+            <code>Properties</code> részen találjátok az épp kijelölt komponens összes tulajdonságát.</p>
+        <p>Próbaként kattints rá egyszer a <code>TextView</code> komponensünkre (<code>Ez itt egy szöveg!</code>), és nézd meg a tulajdonságait.</p>
         <ul>
-            <li>Elsőként nézd meg a <strong>text</strong> (szöveg) tulajdonságot, kattints a mezőre, amely a jelenlegi szöveget tartalmazza
+            <li>Elsőként nézd meg a <code>text</code> (szöveg) tulajdonságot, kattints a mezőre, amely a jelenlegi szöveget tartalmazza
                 és írd át valami másra! Az Enter leütése után a képernyőn is változik a felirat!
-                Próbálj meg ne a mező jobb szélén lévő [&hellip;] gombra kattintani. Ha a „Resources” ablak mégis véletlenül
+                Próbálj meg ne a mező jobb szélén lévő [&hellip;] gombra kattintani. Ha a <code>Resources</code> ablak mégis véletlenül
                 felugrik, zárd nyugodtan be.
                 <img src="/static/img/l03/15_componentProperties.png" class="center-block" />
             </li>
-            <li>Most következzen a <strong>textSize</strong> (szöveg méret). Itt megadhatod, hogy a felirat milyen méretben jelenjen meg a
+            <li>Most következzen a <code>textSize</code> (szöveg méret). Itt megadhatod, hogy a felirat milyen méretben jelenjen meg a
                 kijelzőn. Próbának írd be az <code>50sp</code> értéket. Természetesen minél nagyobb számot adsz meg, a szöveg annál
                 nagyobb lesz, nyugodtan kísérletezhetsz kedvedre! Az <strong>sp</strong> utótagot (mértékegységet) azért kell beírnunk,
                 hogy különböző telefonokon is nagyjából hasonló látványt nyújtson az alkalmazásunk.
                 <img src="/static/img/l03/16_textSizeProperty.png" class="center-block" />
             </li>
-            <li>Érdemes még megtekinteni a <strong>textColor</strong> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
+            <li>Érdemes még megtekinteni a <code>textColor</code> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
                 meghatározni. A mezőbe beírhatjuk közvetlenül az általunk választott szín kódját (<code>#RRGGBB</code>) kettőskereszt
                 után tizenhatos számrendszerben (pl. <code>#ff0000</code> piros, <code>#00ff00</code> zöld, <code>#0000ff</code> kék, <code>#00ffff</code> türkiz stb.)
                 Nem igazodsz ki a színkódokon? Ne aggódj, az Android Studio nem is várja el ezt tőled. Ha a sor végén
@@ -189,12 +192,12 @@
                 Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és keverj ki bármilyen tetszőleges színt.
                 <img src="/static/img/l03/18_colorChooser.png" class="center-block" />
             </li>
-            <li>Végül fontos még megemlíteni az <strong>id</strong> tulajdonságot. Ez az érték segít a komponensünk megtalálásában, ez a
-                komponensünk neve, azonosítója. Ezt a feliratot „leiras”-nak neveztük el, ékezetek nélkül.
+            <li>Végül fontos még megemlíteni az <code>id</code> tulajdonságot. Ez az érték segít a komponensünk megtalálásában, ez a
+                komponensünk neve, azonosítója. Ezt a feliratot <code>leiras</code>-nak neveztük el, ékezetek nélkül.
                 <img src="/static/img/l03/19_id_inline.png" class="center-block" />
             </li>
         </ul>
-        <p>Ezen kívül kipróbálhatod még óvatosan a <strong>background</strong>, <strong>textStyle</strong> tulajdonságokat is.</p>
+        <p>Ezen kívül kipróbálhatod még óvatosan a <code>background</code>, <code>textStyle</code> tulajdonságokat is.</p>
     </section>
 
 </div>
