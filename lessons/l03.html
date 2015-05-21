@@ -200,7 +200,7 @@
         <p>Ezen kívül kipróbálhatod még óvatosan a <code>background</code>, <code>textStyle</code> tulajdonságokat is.</p>
     </section>
 	<section>
-		<h2>Új komponens hozzáadása</h2>
+		<h3>Új komponens hozzáadása</h2>
 		<p>Ha minden igaz, akkor jelenleg van egy tetszőlegesen átszínezhető és méretezhető feliratunk. A feliratok nagyon
 			hasznosak, de térjünk át egy kicsit izgalmasabb komponensre: a gombokra (<code>Button</code>).</p>
 		<p>Helyezzünk el egy gombot a felirat alá!</p>
@@ -235,6 +235,80 @@
 	</section>
 	<section>
 		<h2>Interaktivtás</h2>
+		<p>Van egy csinosan kinéző alkalmazásunk, csak sajnos még nem használható semmire. Nem reagál a gombnyomásra,
+				nem gondol semmilyen számra. Leheljünk életet bele!</p>
+		<p>Eddig az <code>activity_main.xml</code> fájlban dolgoztunk, ami azt tartalmazta, hogy hogy nézzen ki az alkalmazásunk. Azt, hogy
+			mit csináljon, Java nyelven kell megírnunk, az <code>app -> java -> hu.dkrmg.android.guessgame -> MainActivity</code> fájlban. 
+			Nyissuk is meg és próbáljunk meg egy pillanatig megbarátkozni a kóddal.</p>
+		*** IMG ***
+		<p>Ha eddig nem találkoztál még a Java nyelvvel, elsőre talán kissé sokkoló lehet a látvány. Ne félj, a többnyire angol 
+			szavakból, rövidítésekből és szimbólumokból álló kavalkád szépen lassan értelmet nyer! Mielőtt elkezdenéd az első 
+			feladatot, szeretnénk csak egy-két dolgot elmagyarázni.</p>
+			
+		<ul>
+			<li>
+				<p>Bizonyára látod, hogy a sorok nem mindig egy vonalban kezdődnek. Ennek fontos szerepe van, hogy
+					programozóként könnyen tudjuk felismerni a program szerkezetét. Azok a sorok, amik egy vonalba vannak
+					behúzva, azonos szinten helyezkednek el a programban. Ennek segítségével könnyen azonosíthatjuk a
+					függvényeket, illetve az egyes függvényekben lakó kódot.</p>
+				***IMG***
+			</li>
+			<li>
+				<p>A programban elég sokszor találkozol // kezdetű sorokkal (szürke sorok a képen). Ezek a sorok kommentek,
+					melyeket a számítógép figyelmen kívül hagy. Csak azért vannak a programban, hogy ti (és mi is) jobban
+					átlássuk azt.</p>
+			</li>
+			<li>
+				<p>A kommentek egy speciális típusa a <code>TODO</code>, ami a feladatok helyét jelöli (kék betűvel).</p>
+				***IMG***
+			</li>
+		</ul>
+		<h4 class="task">1. feladat</h4>
+		<em>Írjunk meg egy új függvényt, és állítsuk be a gombunk <code>onClick</code> tulajdonságával, hogy ez a függvény fusson le amikor 
+			megnyomjuk a gombot.</em>
+			
+		<p>Először keressük meg az első feladatot <code>[TODO 1] (37.sor)</code>, és hozzunk létre ezen a helyen egy új függvényt! Ehhez 
+			másoljuk be a TODO sor helyére az alábbi sorokat:</p>
+			
+		<pre><code>
+		public void buttonClicked(View v) {
+
+}
+		</code></pre>
+		<p>Fontos, hogy mindent pontosan írj be! A kis-/nagybetűk, vesszők, zárójelek, idézőjelek és a sorvégi pontosvessző – mind számít!</p>
+		<ul>
+			<li><p>Az 1. sor jelöli a függvényünk kezdetét: <code>public void buttonClicked(View v) {</code></p>
+				<p>Amit érdemes tudni, hogy a „buttonClicked” a függvényünk neve, amit akár másra is megváltoztathatnánk.</p></li>
+			<li><p>A két kapcsos zárójel közötti rész írja le a függvény viselkedését, azaz mi történjen, ha ezt a függvényt
+					elindítja valaki. Ez a függvény törzse. Android programozás során többnyire a függvények törzsében fogunk
+					dolgozni.</p>
+				<p>Esetünkben ez egy felbukkanó üzenetet (<code>Toast</code>) jelenít meg a telefon képernyőjén, 
+					a <code>"Megnyomtad a gombot!"</code>" felirattal, majd pár másodperc után el is tünteti.</p>	
+			</li>
+		</ul>
+		<p>Tehát például ez is egy helyes függvény lenne:</p>
+		<pre><code>
+		public void enEgyFuggvenyVagyok(View v) {
+	// bla-bla
+	// bla-bla
+	// és most jöjjön egy Toast
+	Toast.makeText(this, "Szia!", Toast.LENGTH_SHORT).show();
+}</code></pre>
+
+		<p>Próbáljuk is ki (***IMG***)! Mi történik, ha megnyomjuk a telefonon a gombot? Ha pontosan követted a leírást,
+			akkor az a <em>jó</em> működés, hogy nem történik semmi :-) ! Ugyanis mi csak megírtuk a függvényünket, de nem kötöttük 
+			össze a <strong>gombot</strong> a <strong>kóddal</strong>.</p>
+		<p>A gomb <code>onClick</code> tulajdonságban megadhatjuk, hogy a gomb megnyomásakor melyik függvény fusson le.</p>
+		
+		<ol>
+			<li>Nyissuk meg újra az <code>activity_main.xml</code> fájlt. (layout)</li>
+			<li>Kattintsunk egyszer a gombunkra, és jobboldalt a <code>Properties</code> ablakban keressük meg az <code>onClick</code> sort.</li>
+			<li>Ha a mellette lévő üres mezőre kattintunk, megjelenik egy legördülő lista, amit ha lenyitunk, megtaláljuk
+					annak az eljárásnak a nevét (<code>buttonClicked</code>), ahova kódot írtuk. Válasszuk ki!
+				***IMG***
+				</li>
+			<li>Próbáljuk meg újra futtatni az alkalmazást!</li>
+		</ol>
 	</section>
 </div>
 
