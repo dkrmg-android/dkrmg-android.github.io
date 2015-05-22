@@ -181,7 +181,38 @@
         </div>
 
         <p>
-            Az <code>Uzenet</code> osztályba írjuk be a fenti mezőket/változókat.</p>
+            Az <code>Uzenet</code> osztályba írjuk be a fenti mezőket/változókat. </p>
+
+        <div class="misc-info">
+            <p>Amikor a <code>public Date __createdAt;</code> sort beírod, a <code>Date</code>
+                szócskát bepirosítja, és valószínűleg megjelenik egy kis buborék is felette. Ettől
+                nem kell megijedni, de érdemes megérteni, hogy miért történik.</p>
+
+            <p>A <code>Date</code> egy ugyan olyan típus, mint a saját <code>Uzenet</code>, vagy
+                korábban a <code>Szo</code> típusunk, vagy a beépített <code>EditText</code>, <code>Button</code>,
+                stb. A <code>Date</code> egy dátumot (és időpontot) képes tárolni és pár dolgot
+                csinálni vele. A probléma az, hogy az AndroidStudio <em>két</em> ilyen nevű típust
+                ismer és nem tudja, hogy te melyiket szeretnéd használni. Az egyik a
+                <code>java.util</code> csomagban lévő <code>Date</code> (teljes neve: <code>java.util.Date</code>),
+                mi ezt fogjuk használni, és általában mindig mindenki ezt használja. De bizonyos
+                speciális helyzetekben szükség lehet a másikra is: a <code>java.sql</code> csomagban
+                lévő <code>Date</code> típusra (teljes nevét biztos kitaláltátok már, de álljon itt
+                a teljesség kedvéért: <code>java.sql.Date</code>).</p>
+
+            <p>Már csak az a kérdés, hogy hogyan mondjuk meg, hogy melyiket szeretnénk használni. Ez
+                egyszerű: <br/>
+                Kattints rá a piros <code>Date</code> szóra, nyomd meg az <code>Alt+Enter</code>
+                billentyűkombinációt, válaszd ki a <code>java.util.Date</code> sort és kész is!</p>
+
+            <div class="imgstore">
+                <img src="/static/img/l13/import_Date_1.png" class="center-block"/>
+                <img src="/static/img/l13/import_Date_2.png" class="center-block"/>
+            </div>
+
+            <p>Le is ellenőrizheted: A fájl legtetején a <code>package ...</code> sor alatt
+                megjelent egy <code>import java.util.Date;</code> sor is, ezzel jelezve, hogy ebben
+                a fájlban a <code>Date</code> típus melyiket jelenti pontosan.</p>
+        </div>
 
         <p>
             Végezetül még mindig az <code>Uzenet</code> osztályon belül hozzunk létre egy <code>toString()</code>
@@ -243,24 +274,6 @@ udv.__createdAt = new Date();   // Valamint a létrehozási idejét beállítja 
 uzenetek.add(udv);              // végül hozzáadjuk a listához
 </code></pre>
             </li>
-            <li>
-                <p>
-                    A listánk attól lesz igazán hasznos, hogy gombnyomásra új elemeket illeszthetünk a
-                    végére. Írj egy <code>onClick</code> függvényt a gombnak, ami lenyomáskor létrehoz
-                    egy új üzenetet, és a fentiekhez hasonlóan beilleszti a listába! Az üzenet feladója
-                    legyen a te neved (vagy legalábbis legyen némileg ötletesebb, mint az "Én" szócska),
-                    a szövege származzon a szövegmezőből (<button data-target="help_get_text"
-                                                                  class="help-link">segítség</button>),
-                    a <code>__createdAt</code> pedig az <code>onCreate</code>-beli kódhoz hasonlan legyen <code>new Date();</code>.
-                    Ez biztosítja, hogy a <code>__createdAt</code>
-                    értéke a jelenlegi dátum/idő legyen.</p>
-                <div class="help-container" id="help_get_text">
-                    <pre><code>ujUzenet.szoveg = szovegdoboz.getText().toString();</code></pre>
-                    <p>Feltéve, hogy az EditText-hez tartozó változónak <code>szovegdboz</code> a neve.</p>
-                </div>
-				<p>Az üzenet hozzáadása után ne felejtsük el kitörölni a szövegmező tartalmát a <code>setText("");</code> segítségével.
-				</p>
-            </li>
         </ol>
     </section>
 
@@ -294,9 +307,23 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
 			</li>
             <li>
                 <p>
-                    Amikor gombnyomásra új elemet adunk a listához, ne felejtsünk el szólni az
-                    adapternek: frissítse a listát</p>
+                    A listánk attól lesz igazán hasznos, hogy gombnyomásra új elemeket illeszthetünk a
+                    végére. Írj egy <code>onClick</code> függvényt a gombnak, ami lenyomáskor &ndash;
+                    az <code>onCreate</code>-ben megírt üdvözléshez hasonlóan &ndash; létrehoz
+                    egy új üzenetet, és a fentiekhez hasonlóan beilleszti a listába! Az üzenet feladója
+                    legyen a te neved (vagy legalábbis legyen némileg ötletesebb, mint az "Én" szócska),
+                    a szövege származzon a szövegmezőből (<button data-target="help_get_text"
+                                                                  class="help-link">segítség</button>),
+                    a <code>__createdAt</code> pedig az <code>onCreate</code>-beli kódhoz hasonlan legyen <code>new Date();</code>.
+                    Ez biztosítja, hogy a <code>__createdAt</code> értéke a jelenlegi dátum/idő legyen.</p>
+                <div class="help-container" id="help_get_text">
+                    <pre><code>ujUzenet.szoveg = szovegdoboz.getText().toString();</code></pre>
+                    <p>Feltéve, hogy az EditText-hez tartozó változónak <code>szovegdoboz</code> a neve.</p>
+                </div>
+                <p>
+                    Az üzenet hozzáadása után ne felejtsünk el szólni az adapternek: frissítse a listát</p>
                 <pre><code>adapter.notifyDataSetChanged();</code></pre>
+                <p>Végül ne felejtsük el kitörölni a szövegmező tartalmát a <code>setText("");</code> segítségével.</p>
             </li>
         </ol>
 
@@ -510,10 +537,65 @@ kozosUzenetek.insert(uzenet);
         Miután beírtad a fenti kódot, futtasd a programot, adj hozzá 1-2 üzenetet, és nézd meg
         <a href="http://dkrmg-android.github.io/lessons/uzenofal.html" target="_blank">a webes felületünkön</a>,
         hogy megjelenik-e az üzenet.</p>
-		<div class="imgstore">
-            <img src="/static/img/l13/test1.png" class="center-block" />
-            <img src="/static/img/l13/test2.png" class="center-block" />
+    <div class="imgstore">
+        <img src="/static/img/l13/test1.png" class="center-block" />
+        <img src="/static/img/l13/test2.png" class="center-block" />
+    </div>
+
+    <section id="extra_no_empty_messages">
+        <h2>Szorgalmi &ndash; üres üzenetet ne küldjünk el!</h2>
+        <p>Jelenleg a Küldés gomb megnyomására az EditText teljes tartalmát, ellenőrzés nélkül
+            elküldjük a szerverre. Akkor is, ha az üres, ez pedig nem szép dolog. Javítsd!</p>
+        <p><em>Használhatod a String típus length() belső függvényét, ez a string hosszát adja meg. Vagy
+            használhatod a TextUtils.isEmpty() függvént is, igaz értékű ha nincs a stringben semmi.</em></p>
+        <p><button data-target="help_no_empty_message" class="help-link">Megoldás</button>
+            <em>(Ha megoldottad, utána mindenképp nézd meg, van benne egy érdekesség!)</em></p>
+
+        <div class="help-container" id="help_no_empty_message">
+<pre><code>
+// beírt szöveg kiolvasása a messageText változóba
+
+if (TextUtils.isEmpty(messageText)) { // ha üres
+    Toast.makeText(this, "Üres üzenetet nem küldünk el.", Toast.LENGTH_SHORT).show(); // feldobunk egy Toast-ot
+    Log.w("MainActivity", "Üres üzenet küldése megszakítva."); // és logolunk is
+    return; // majd idő előtt kilépünk a függvényből (magyarázat lejjebb)
+}
+
+// nem üres --> üzenet létrehozása, hozzáadása, szerverre küldése
+</code></pre>
+            <p>Ezt a pár sor kell a gomb onClick függvényének az elejére beszúrni (de már az után,
+                hogy kiolvastad a beírt szöveget az EditTextből).</p>
+
+            <p>Nézzük meg jobban: miért nem tesszük az egész üzenet létrehozást és küldést
+                egy nagy <strong>if</strong>-be? <br/>
+                Igazából annak sem lenne semmi akadálya, de így talán könnyebben követhető a kód.
+                Van aki ezt, van aki azt szereti használni, a végeredményt tekintve teljesen jó mindkét megoldás.</p>
         </div>
+    </section>
+
+    <section id="extra_date_formatting">
+        <h2>Szorgalmi &ndash; Dátum formázása</h2>
+        <p>Ha eddig mindent jól csináltál, akkor azt tapasztalhatod, hogy még a legrövidebb üzenet
+            is általában két sort foglala el, mert egy igencsak hosszú, csúnya szöveg van kiírva
+            a dátum helyére. Nézzük meg hogy lehet ezen csinosítani!</p>
+
+        <p><em>Jelenleg vagy az <code>Uzenet</code> osztály <code>toString</code> metódusában, vagy
+            (ha megcsináltad a linkelt szorgalmit) egy saját adapterben mondod meg, hogy hogyan 
+            nézzen ki egy üzenet a képernyőn. A továbbiak szempontjából ez lényegtelen, csak arra 
+            figyelj, hogy a megfelelő osztályban dolgozz. Ha csináltál szorgalmit, akkor a saját 
+            adapterben, ha nem, akkor az <code>Uzenet</code> osztályban.</em></p>
+
+        <p>A <code>Date</code> típus egyedül nem tudja magát szépen megformázni, segíteni kell neki. Erre van a
+            <strong><code>SimpleDateFormat</code></strong> típus. Az osztályod elején (de a kapcsos zárójelei között!)
+            hozz létre egy <code>SimpleDateFormat</code> változót modjuk <strong><code>format</code></strong> névvel. A konstruktorában add meg,
+            hogy milyen formátumban írja ki a dátumot: <code>"yyyy-MM-dd HH:mm"</code>. Azaz:</p>
+        <pre><code>SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");</code></pre>
+
+        <p>Ezután ahol eddig <code>__createdAt.toString()</code>-et használtál írd át erre:</p>
+        <pre><code>format.format(__createdAt)</code></pre>
+        <p>Vagy ha az adapterben vagy, akkor ezt: <code>uzenet.__createdAt.toString()</code> erre:</p>
+        <pre><code>format.format(uzenet.__createdAt)</code></pre>
+    </section>
 
     <section id="extra_compound_layout">
         <h2>Szorgalmi &ndash; Ismerkedés a különböző layout-gyökérelemekkel</h2>
