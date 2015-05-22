@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>L03 - Számkitalálós játék</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body class="language-java">
+<header data-include="/include/header.html"></header>
+
+<div class="container">
+	<h1>
+        3. lecke
+        <small>Számkitalálós játék</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p>
+    </h1>
+    <hr/>
+
+    <section>
+        <h2>Most jön az igazi felhasználói felület</h2>
+        <p>Az előzőekben mindent megtanultunk, ami ahhoz kell, hogy eltudjuk készíteni az alkalmazást! Lássunk hozzá!</p>
+        <h3 class="task">3. feladat</h3>
+        *** TODO IMG ***
+        <p>
+            Először készítsük el a terven szereplő layout-ot: Nyissuk meg újra az <code>activity_main.xml</code>
+            fájlt, figyeljünk rá, hogy alul a <code>Design</code> fül legyen aktív, és a fent megtanult módszerrel
+            töltsük fel a képernyőt a szükséges komponensekkel.
+        </p>
+        <ol>
+            <li>
+                A képernyő tetején legyen a már korábban létrehozott leírás. Módosítjuk a
+                szövegét, hogy röviden tájékoztassa a felhasználót, mit is várunk tőle. Pl. „Írd
+                be a tippedet!”.
+            </li>
+            <li>
+                Alatta, középen legyen egy szövegdoboz. A szövegdobozokat a Text Fields
+                kategóriában találjuk, innen a <em>Number</em> komponenst válasszuk ki, amelyik csak
+                számokat enged beírni.
+                <ol>
+                    <li>
+                        Amikor lerakod a szövegdobozt, észre fogod venni, hogy igen keskeny
+                        lett és nem engedi a szélességét átméretezni. Ezen segíthetsz, ha a
+                        <code>layout:width</code> tulajdonságát átállítod <code>match_parent</code>-re. Ez
+                        meghatározza, hogy a komponens ne a beírt szöveghez méretezze
+                        magát, hanem töltse ki a rendelkezésére álló helyet
+                    </li>
+                    <li>
+                        A <code>hint</code> tulajdonságba megadhatjuk, hogy milyen szöveg jelenjen meg mielőtt a felhasználó elkezd
+                        gépelni. pl. <code>"ide írd a számot!"</code>, vagy <code>"(szám 1 és 100 között)"</code>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                Közvetlen ez alá, középre, helyezzünk el egy újabb gombot, ami segítségével tippelni tudunk majd! Ne
+                felejtsük el átírni a <code>text</code> tulajdonságát!
+            </li>
+            <li>Az alsó gombunk lesz az újrakezdés gombja, írjuk is át a feliratát ennek megfelelően!</li>
+            <li>
+                A két gomb közé rakjunk le egy nagy szöveget (<code>TextView</code>, a <code>Widget</code> kategóriában találod). Itt fog megjelenni a
+                tipp eredménye.
+            </li>
+        </ol>
+        <p>A komponensek egyéb tulajdonságait (szöveg mérete, színe stb.) ezek után formázd kedved és ízlésed szerint :-)</p>
+    </section>
+</div>
+
+<footer data-include="/include/footer.html"></footer>
+<script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/static/js/prism.js"></script>
+</body>
+</html>

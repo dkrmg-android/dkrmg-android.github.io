@@ -207,13 +207,17 @@
 		<ol>
 			<li>
 				<p>Baloldalt a <code>Widget</code> kategóriában megtaláljuk a <code>Button</code> komponenst.</p>
-				****TODO IMG***
+				<img src="/static/img/l03/20_addButton.png" class="center-block" />
 			</li>
 			<li>
 				<p>Kattintsunk rá, majd az egérgombot lenyomva tartva húzzuk át a telefon kijelzőjére. Ahogy a kijelző
 						különböző pontjaira mozgatjuk a gombot, láthatjuk, hogy a tervező megpróbálja a gombot a létező 
 						komponensekhez illetve a képernyő széleihez igazítani.</p>
-				****TODO IMG***
+				<div class="imgstore">
+                        <img src="/static/img/l03/21a_componentAlignment.png" class="center-block" />
+                        <img src="/static/img/l03/21b_componentAlignment.png" class="center-block" />
+                        <img src="/static/img/l03/21c_componentAlignment.png" class="center-block" />
+                    </div>
 			</li>
 			<li>
 				<p>Tegyük le a gombot pontosan középre, valahol a képernyő alsó felén. 
@@ -222,11 +226,11 @@
 			</li>
 			<li>
 				<p>Írjuk át a megjelenő szöveget (text) erre: "<code>kattints rám!</code>"</p>
-				****TODO IMG***
+				<img src="/static/img/l03/22_buttonProperties.png" class="center-block" />
 			</li>
 			<li>
 				<p>nézzük meg a gomb <code>id</code> tulajdonságát, mert később szükségünk lesz még rá! Ez nem más, mint <code>button</code>.</p>
-				****TODO IMG***
+				<img src="/static/img/l03/23_buttonId_inline.png" class="center-block" />
 			</li>
 			<li>
 				<p>Próbáljuk ki, hogy amit eddig csináltunk, hogy néz ki igazi telefonon/emulátoron! Futtassuk a projektet!</p>
@@ -240,7 +244,7 @@
 		<p>Eddig az <code>activity_main.xml</code> fájlban dolgoztunk, ami azt tartalmazta, hogy hogy nézzen ki az alkalmazásunk. Azt, hogy
 			mit csináljon, Java nyelven kell megírnunk, az <code>app -> java -> hu.dkrmg.android.guessgame -> MainActivity</code> fájlban. 
 			Nyissuk is meg és próbáljunk meg egy pillanatig megbarátkozni a kóddal.</p>
-		*** IMG ***
+		<img src="/static/img/l03/24_openMainActivity.png" class="center-block" />
 		<p>Ha eddig nem találkoztál még a Java nyelvvel, elsőre talán kissé sokkoló lehet a látvány. Ne félj, a többnyire angol 
 			szavakból, rövidítésekből és szimbólumokból álló kavalkád szépen lassan értelmet nyer! Mielőtt elkezdenéd az első 
 			feladatot, szeretnénk csak egy-két dolgot elmagyarázni.</p>
@@ -251,7 +255,7 @@
 					programozóként könnyen tudjuk felismerni a program szerkezetét. Azok a sorok, amik egy vonalba vannak
 					behúzva, azonos szinten helyezkednek el a programban. Ennek segítségével könnyen azonosíthatjuk a
 					függvényeket, illetve az egyes függvényekben lakó kódot.</p>
-				***IMG***
+				<img src="/static/img/l03/25_indentation.png" class="center-block" />
 			</li>
 			<li>
 				<p>A programban elég sokszor találkozol // kezdetű sorokkal (szürke sorok a képen). Ezek a sorok kommentek,
@@ -260,7 +264,7 @@
 			</li>
 			<li>
 				<p>A kommentek egy speciális típusa a <code>TODO</code>, ami a feladatok helyét jelöli (kék betűvel).</p>
-				***IMG***
+				<img src="/static/img/l03/26_comments.png" class="center-block" />
 			</li>
 		</ul>
 		<h4 class="task">1. feladat</h4>
@@ -293,7 +297,7 @@
 	Toast.makeText(this, "Szia!", Toast.LENGTH_SHORT).show();
 }</code></pre>
 
-		<p>Próbáljuk is ki (***IMG***)! Mi történik, ha megnyomjuk a telefonon a gombot? Ha pontosan követted a leírást,
+		<p>Próbáljuk is ki (<img src="/static/img/l03/07_inlineRun.png"/>)! Mi történik, ha megnyomjuk a telefonon a gombot? Ha pontosan követted a leírást,
 			akkor az a <em>jó</em> működés, hogy nem történik semmi :-) ! Ugyanis mi csak megírtuk a függvényünket, de nem kötöttük 
 			össze a <strong>gombot</strong> a <strong>kóddal</strong>.</p>
 		<p>A gomb <code>onClick</code> tulajdonságban megadhatjuk, hogy a gomb megnyomásakor melyik függvény fusson le.</p>
@@ -303,7 +307,7 @@
 			<li>Kattintsunk egyszer a gombunkra, és jobboldalt a <code>Properties</code> ablakban keressük meg az <code>onClick</code> sort.</li>
 			<li>Ha a mellette lévő üres mezőre kattintunk, megjelenik egy legördülő lista, amit ha lenyitunk, megtaláljuk
 					annak az eljárásnak a nevét (<code>buttonClicked</code>), ahova kódot írtuk. Válasszuk ki!
-				***IMG***
+				<img src="/static/img/l03/27_chooseOnclickListener.png" class="center-block" />
 				</li>
 			<li>Próbáljuk meg újra futtatni az alkalmazást!</li>
 		</ol>
@@ -427,8 +431,8 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
             <li>Majd alá <code>button.setTextColor(color.GREEN);</code>. Ezzel pedig a gomb szövegének színét állítottuk be.</li>
         </ul>***
 
-        <p><em>Csak a függvény nevét figyeld egyelőre! A zárójelben lévő dolgokkal egyelőre ne foglalkozz!</em></p>
-        ***IMG**
+        <p><em>Csak a függvény nevét figyeld egyelőre! A zárójelben lévő dolgokkal még ne foglalkozz!</em></p>
+        <img src="/static/img/l03/28_codeCompletion.png" class="center-block" />
         <p>Reméljük, te is a „<code>setText</code>” nevű függvényre gondoltál. Ezzel a függvénnyel lehet módosítani minden olyan
             komponens feliratát/szövegét, amin van valami szöveg. A gombnak például így módosíthatjuk a feliratát:
             „<code>gomb1.setText("Új felirat");</code>”. Fontos, hogy a szövegeket <code>" "</code> (kettős idézőjelek, Shift+2) közé kell tenni, és a
