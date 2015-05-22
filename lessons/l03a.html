@@ -199,7 +199,7 @@
         </ul>
         <p>Ezen kívül kipróbálhatod még óvatosan a <code>background</code>, <code>textStyle</code> tulajdonságokat is.</p>
     </section>
-	<section>
+	<section id="new-component">
 		<h3>Új komponens hozzáadása</h2>
 		<p>Ha minden igaz, akkor jelenleg van egy tetszőlegesen átszínezhető és méretezhető feliratunk. A feliratok nagyon
 			hasznosak, de térjünk át egy kicsit izgalmasabb komponensre: a gombokra (<code>Button</code>).</p>
@@ -366,7 +366,7 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
                 A <strong><code>findViewById</code></strong> egy beépített függvény, ami meg tudja keresni a kért komponenst,
                 és a fenti módszerrel el tudjuk
                 azt menteni egy változóba. Azt, hogy melyik komponenst kérjük, a második pár zárójel között kell megadni.
-                Emlékeztek? Az Új komponens hozzáadása *** TODO LINK*** rész előtt közvetlenül megnéztük, hogy a leírást tartalmazó szöveg-
+                Emlékeztek? Az <a href="#new-component">Új komponens hozzáadása</a> rész előtt közvetlenül megnéztük, hogy a leírást tartalmazó szöveg-
                 komponensnek mi az azonosítója. Ugyan az, mint ami itt az <code>R.id.</code> után szerepel. Ezt majd később megnézzük, hogy
                 miért van így, most fogadjuk el, hogy komponenst megkeresni így lehet:
                 <code>findViewById(R.id.&le;komponens azonosítója&gt;);</code> Már csak egy dologról nem tudjuk, hogy micsoda: a "<code>(TextView)</code>” rész. Mivel komponensből
@@ -422,14 +422,18 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
             sor alá kezd el újra beírni, hogy <code>gomb1.set</code>, és a felbukkanó függvények közül próbáld 
             meg kitalálni, hogy melyik lehet az, amelyik a gomb szövegét módosítja!
         </p>
-        *** TODO BUTTON TO GET HELP: 
-        <ul>
-            <li>A MainActivity.java fájl 21. sora környékén található „<code>TextView leiras;</code>” 
-                sor alá írd be ezt: <code>Button button;</code>. Ezzel készítettünk egy új változót.</li>
-            <li>A 34.sor környékén található „<code>description.setTextColor(Color.BLUE);</code>” sor alá írd be ezt:
-                <code>button = (Button) findViewById(R.id.button);</code>. Most értéket adtunk a változónak.</li>
-            <li>Majd alá <code>button.setTextColor(color.GREEN);</code>. Ezzel pedig a gomb szövegének színét állítottuk be.</li>
-        </ul>***
+		<p>
+			<button data-target="help_task_2" class="help-link">Kell egy kis segítség?</button>
+        </p>
+        <div class="help-container" id="help_task_2">
+            <ul>
+				<li>A MainActivity.java fájl 21. sora környékén található „<code>TextView leiras;</code>” 
+					sor alá írd be ezt: <code>Button button;</code>. Ezzel készítettünk egy új változót.</li>
+				<li>A 34.sor környékén található „<code>description.setTextColor(Color.BLUE);</code>” sor alá írd be ezt:
+					<code>button = (Button) findViewById(R.id.button);</code>. Most értéket adtunk a változónak.</li>
+				<li>Majd alá <code>button.setTextColor(color.GREEN);</code>. Ezzel pedig a gomb szövegének színét állítottuk be.</li>
+			</ul>
+        </div>
 
         <p><em>Csak a függvény nevét figyeld egyelőre! A zárójelben lévő dolgokkal még ne foglalkozz!</em></p>
         <img src="/static/img/l03/28_codeCompletion.png" class="center-block" />
@@ -439,7 +443,7 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
             sorvégi pontosvessző se maradjon le!</p>
         <p>Ezt az új működést is ellenőrizzük egy futtatással!</p>
 
-        <p>A lecke folytatása ***TODO LINK*** itt található.</p>
+        <p>A lecke folytatása <a href="/lessons/l03b.html">itt</a> található.</p>
     </section>
 </div>
 
