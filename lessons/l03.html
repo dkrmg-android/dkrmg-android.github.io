@@ -103,6 +103,10 @@
                 pár percig is (Indexing...)
                 <img src="/static/img/l03/06_importInProgress.png" class="center-block" />
             </li>
+			<li>
+				Az Android Studio egyes verziói az importálás közben az alábbi üzenettel fogadnak minket. Ilyenkor a <code>Yes</code> gombot nyomva lépjünk tovább
+				<img src="/static/img/l03/06b_dialogue.png" class="center-block" />
+			</li>
         </ol>
     </section>
 
@@ -130,19 +134,26 @@
             programozás szakkörön találkoztál már a Lazarus-szal, némi előnnyel indulhatsz neki ennek a fejezetnek. Ha nem,
             akkor se csüggedj, ez az applikáció készítés egyik legegyszerűbb része!</p>
         <ol>
-            <li>Győződjünk meg arról, hogy a "Tool Buttons" látszik (<code>View -> Tool</code> Buttons legyen pipálva)
-                <img src="/static/img/l03/10_showToolButtons.png" class="center-block" />
-            </li>
-            <li>Nézzük meg, hogy mi is van egész pontosan a projektünkben. Ehhez kattintsunk a <code>Project</code> gombra a bal
-                szélen megjelent sávon.
-                <img src="/static/img/l03/11_AndroidView.png" class="center-block" />
-            </li>
-            <li>Nyissuk meg az <code>app -> res -> layout -> activity_main.xml</code> fájlt
+			<li><p>Nézd meg, hogy az ablak bal oldalán megjelenik-e a projekted tartalma az alábbi módon:</p>
+				<img src="/static/img/l03/10b_exp.png" class="center-block" />
+				<p>Ha nem, akkor:</p>
+				<ul>
+					<li>Győződjünk meg arról, hogy a "Tool Buttons" látszik (<code>View -> Tool</code> Buttons legyen pipálva)
+						<img src="/static/img/l03/10_showToolButtons.png" class="center-block" />
+					</li>
+					<li>Nézzük meg, hogy mi is van egész pontosan a projektünkben. Ehhez kattintsunk a <code>Project</code> gombra a bal
+						szélen megjelent sávon.
+						<img src="/static/img/l03/11_AndroidView.png" class="center-block" />
+					</li>
+				</ul>
+			</li>
+            <li>Most, hogy látjuk a projekt tartalmát, nyissuk meg az <code>app -> res -> layout -> activity_main.xml</code> fájlt.
                 <img src="/static/img/l03/12_openLayoutEditor.png" class="center-block" />
             </li>
-            <li>Győződjünk meg arról, hogy a <code>Design</code> fül van az ablak alján kiválasztva.</li>
+            <li>Győződjünk meg arról, hogy a <code>Design</code> fül van az ablak alján kiválasztva. Ilyekor mefjelenik a layout szerkesztő
+				összetett, ám igen hasznos ablaka.</li>
         </ol>
-        <p>A második és a harmadik lépés talán némi magyarázatra szorulhat. Miért van egy szinte üres projektben ennyi
+        <p>Miért van egy szinte üres projektben ennyi
             mappa és fájl? Ezt a kérdést most nem is fogjuk megválaszolni, nem akarunk senkit oldalakon keresztül az Android
             azon részével untatni, amit „mezei” programozóknak ismernie sem kell. A hasznos dolgokkal a szakkör folyamán meg
             fogunk ismerkedni, egyelőre el kell fogadni, hogy ez így van!</p>
@@ -271,11 +282,11 @@
 		<em>Írjunk meg egy új függvényt, és állítsuk be a gombunk <code>onClick</code> tulajdonságával, hogy ez a függvény fusson le amikor 
 			megnyomjuk a gombot.</em>
 			
-		<p>Először keressük meg az első feladatot <code>[TODO 1] (37.sor)</code>, és hozzunk létre ezen a helyen egy új függvényt! Ehhez 
+		<p>Először keressük meg az első feladatot <code>[TODO 1] (44.sor)</code>, és hozzunk létre ezen a helyen egy új függvényt! Ehhez 
 			másoljuk be a TODO sor helyére az alábbi sorokat:</p>
 			
 		<pre><code>public void buttonClicked(View v) {
-
+    Toast.makeText(this, "Megnyomtad a gombot!", Toast.LENGTH_SHORT).show();
 }
 		</code></pre>
 		<p>Fontos, hogy mindent pontosan írj be! A kis-/nagybetűk, vesszők, zárójelek, idézőjelek és a sorvégi pontosvessző – mind számít!</p>
@@ -416,6 +427,19 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
             alapján remélhetőleg nem nagy feladat, ha mondjuk pirosra kéne állítani a szöveg színét!
         </p>
         <p>Ellenőrizzük le, hogy tényleg az történik-e, mint amit szeretnénk, futtassunk egyet!</p>
+		<p>
+			<button data-target="help_task_2" class="help-link">Kell egy kis segítség?</button>
+        </p>
+		<div class="help-container" id="help_task_2">
+            <ul>
+				<li>A MainActivity.java fájl 21. sora környékén található „<code>TextView leiras;</code>” 
+					sor alá írd be ezt: <code>Button gomb1;</code>. Ezzel készítettünk egy új változót.</li>
+				<li>A 34.sor környékén található <code>leiras = (TextView) findViewById(R.id.leiras);</code> sor alá írd be ezt:
+					<code>gomb1 = (Button) findViewById(R.id.button);</code>. Most értéket adtunk a változónak.</li>
+				<li>A gombnyomást kezelő kódba pedig: <code>gomb1.setTextColor(color.GREEN);</code>. Ezzel pedig a gomb szövegének színét állítottuk be.</li>
+			</ul>
+        </div>
+		
         <p>Szuper, már nagyon szép színes szövegeket és gombokat tudunk csinálni, de elég unalmasak,
              mert a szövegük nem változik. Ha figyelmesen dolgoztál, akkor láthattad, hogy amikor a fenti
             <code>gomb1.setTextColor(Color.GREEN);</code> sort írtad, a pont leütése után megjelent egy 
@@ -423,18 +447,6 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
             sor alá kezd el újra beírni, hogy <code>gomb1.set</code>, és a felbukkanó függvények közül próbáld 
             meg kitalálni, hogy melyik lehet az, amelyik a gomb szövegét módosítja!
         </p>
-		<p>
-			<button data-target="help_task_2" class="help-link">Kell egy kis segítség?</button>
-        </p>
-        <div class="help-container" id="help_task_2">
-            <ul>
-				<li>A MainActivity.java fájl 21. sora környékén található „<code>TextView leiras;</code>” 
-					sor alá írd be ezt: <code>Button button;</code>. Ezzel készítettünk egy új változót.</li>
-				<li>A 34.sor környékén található „<code>description.setTextColor(Color.BLUE);</code>” sor alá írd be ezt:
-					<code>button = (Button) findViewById(R.id.button);</code>. Most értéket adtunk a változónak.</li>
-				<li>Majd alá <code>button.setTextColor(color.GREEN);</code>. Ezzel pedig a gomb szövegének színét állítottuk be.</li>
-			</ul>
-        </div>
 
         <p><em>Csak a függvény nevét figyeld egyelőre! A zárójelben lévő dolgokkal még ne foglalkozz!</em></p>
         <img src="/static/img/l03/28_codeCompletion.png" class="center-block" />
@@ -482,8 +494,7 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
                     <li>
                         A <code>hint</code> tulajdonságba megadhatjuk, hogy milyen szöveg jelenjen
                         meg mielőtt a felhasználó elkezd
-                        gépelni. pl. <code>"ide írd a számot!"</code>, vagy <code>"(szám 1 és 100
-                        között)"</code>
+                        gépelni. pl. <code>"ide írd a számot!"</code>, vagy <code>"(szám 1 és 100 között)"</code>
                     </li>
                 </ol>
             </li>
@@ -545,8 +556,8 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
 
         <p>A felhasználó visszajelzése egy picit hosszabb lesz ennél!</p>
 
-        <p><em>Ahhoz, hogy megtudjuk, hogy mit tippelt a játékos, először szükségünk lesz két
-            változóra.</em></p>
+        <p><em>Ahhoz, hogy megtudjuk, hogy mit tippelt a játékos, először szükségünk lesz <strong>két
+            változóra</strong>.</em></p>
         <ul>
             <li>Szövegdoboz, ahova a játékos beírta a tippet (nevezzük mondjuk
                 <code>tippDoboz</code>-nak)
@@ -559,7 +570,7 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
 
         <p>Ha megvannak a változóink, adjunk nekik értéket is. Ehhez meg kell keresni a belevaló
             komponenst. Ilyet is csináltunk már, szintén a 2.1. feladatban. (nézd meg a komponenseid
-            azonosítóját – <code>id</code> – azután használd a <code>findViewById</code> függvényt) [TODO 4.2 helyére]</p>
+            azonosítóját – <code>id</code> – azután használd a <code>findViewById</code> függvényt) [TODO 4.2 helyére. 4x!]</p>
 
         <h4 class="task">4.3. feladat</h4>
 
