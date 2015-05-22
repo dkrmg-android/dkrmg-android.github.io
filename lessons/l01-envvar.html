@@ -27,29 +27,59 @@
     <p>Ha az Android Studio első indításánál hiányzik a JAVA_PATH környezeti változó, akkor sajnos a Java JDK
         telepítése folyamán elmulasztotta megmondani a Windowsnak, hogy merre találja legfontosabb fájljait.
         Ezt a mulasztást most nekünk kell jóvá tennünk.</p>
-        <ol>
+	<div id="os_select">
+		<p>Milyen operációs rendszer fut a gépeden?</p>
+		<button onclick="$('#xp').show(); $('#os_select').remove();">Windows XP</button>
+		<button onclick="$('#seven-eight').show(); $('#os_select').remove();">Windows 7/8</button>
+		<button onclick="$('#ten').show(); $('#os_select').remove();">Windows 10</button>
+	</div>
+	<div id="xp" style="display: none;">
+	    <ol>
             <li>Start menü</li>
-            <li><strong>jobb gombbal</strong> Számítógép</li>
-            <li>tulajdonságok
-                <div class="imgstore">
-                    <img src="/static/img/l01/javaPath/seven1.png" />
-                    <img src="/static/img/l01/javaPath/XP1.png" />
-                </div>
+            <li><strong>jobb gombbal</strong> Sajátgép</li>
+            <li><p>tulajdonságok</p>
+				<img src="/static/img/l01/javaPath/XP1.png" class="center-block" />
             </li>
-            <li><em>Csak Windows 7/8 alatt:</em> Speciális rendszerbeállítások (baloldalt keresd!)</li>
             <li>A megjelenő ablakban a Speciális fül legyen kiválasztva</li>
-            <li>Alul Környezeti változók gomb, majd az alsó Új… gombra kattintva meg kell mondani,
-                hogy hol található a feltelepített java fejlesztői kit (JDK): <br/>
-                A „Változó neve” legyen JAVA_HOME a „Változó értéke” pedig ahova a JDK-t telepítetted
-                (ez valószínűleg a következő: C:\Program Files\Java\jdk1.8.0_25).
+            <li><p>Alul Környezeti változók gomb, majd az alsó Új… gombra kattintva meg kell mondani,
+                hogy hol található a feltelepített java fejlesztői kit (JDK): </p>
+				<ul>
+					<li>A „Változó neve” legyen <code>JAVA_HOME</code></li>
+					<li>a „Változó értéke” pedig ahova a JDK-t telepítetted (ez valószínűleg a következő: <code>C:\Program Files\Java\jdk1.8.0_45</code>, de a verzió alapján változhat!).</li>
+				</ul>
+                
                 <div class="imgstore">
-                    <img src="/static/img/l01/javaPath/seven2.png" />
-                    <img src="/static/img/l01/javaPath/XP2.png" />
+                    <img src="/static/img/l01/javaPath/XP2.png" class="center-block"/>
                 </div>
             </li>
             <li>Végül mindegyik ablakot zárd be az OK gombbal, és próbáld meg újra elindítani az Android Studiot!</li>
         </ol>
-
+	</div>
+	
+	<div id="seven-eight" style="display: none;">
+	    <ol>
+            <li>Start menü</li>
+            <li><strong>jobb gombbal</strong> Sajátgép</li>
+            <li><p>tulajdonságok</p>
+				<img src="/static/img/l01/javaPath/seven1.png" class="center-block" />
+            </li>
+			<li>Speciális rendszerbeállítások (baloldalt keresd!)
+				<img src="/static/img/l01/javaPath/seven2.png" class="center-block" /></li>
+            <li>A megjelenő ablakban a Speciális fül legyen kiválasztva</li>
+            <li><p>Alul Környezeti változók gomb</p>
+			<img src="/static/img/l01/javaPath/seven3.png" class="center-block" />
+			</li>
+			 <li><p>majd az alsó Új… gombra kattintva meg kell mondani, hogy hol található a feltelepített java fejlesztői kit (JDK): </p>
+				<img src="/static/img/l01/javaPath/seven4.png" class="center-block" />
+				<ul>
+					<li>A „Változó neve” legyen <code>JAVA_HOME</code></li>
+					<li>a „Változó értéke” pedig ahova a JDK-t telepítetted (ez valószínűleg a következő: <code>C:\Program Files\Java\jdk1.8.0_45</code>, de a verzió alapján változhat!).</li>
+				</ul>
+                <img src="/static/img/l01/javaPath/seven5.png" class="center-block"/>
+            </li>
+            <li>Végül mindegyik ablakot zárd be az OK gombbal, és próbáld meg újra elindítani az Android Studiot!</li>
+        </ol>
+	</div>
 </div>
 
     <footer data-include="/include/footer.html"></footer>
