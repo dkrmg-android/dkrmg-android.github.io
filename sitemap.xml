@@ -7,92 +7,128 @@
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-  <loc>http://dkrmg-android.github.io/index.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <loc>http://dkrmg-android.github.io/</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l01.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l02.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://dkrmg-android.github.io/lessons/l03.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l04.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l05.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l06.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l07.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l08.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l09.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://dkrmg-android.github.io/lessons/l10.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://dkrmg-android.github.io/lessons/l11.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://dkrmg-android.github.io/lessons/l12.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://dkrmg-android.github.io/lessons/l13.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l01_old.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l01-envvar.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://dkrmg-android.github.io/lessons/l03.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <loc>http://dkrmg-android.github.io/lessons/l03_szorgalmi.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/gyik.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://dkrmg-android.github.io/static/files/dict1.txt</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <loc>http://dkrmg-android.github.io/index.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://dkrmg-android.github.io/lessons/l09_szorgalmi.html</loc>
-  <lastmod>2015-02-21T15:52:56+00:00</lastmod>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://dkrmg-android.github.io/lessons/uzenofal.html</loc>
+  <lastmod>2015-05-22T23:32:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.64</priority>
 </url>
