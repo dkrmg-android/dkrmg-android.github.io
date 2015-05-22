@@ -380,6 +380,7 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
   a := 10; // a = 10; Pascalban ":=", nem "=".</code></pre>
         </div>
     </section>
+	
     <section>
         <h4 class="task">2. feladat</h4>
         <p>A következő feladat legyen az, hogy gombnyomásra változzon meg a gomb feliratának színe!</p>
@@ -442,9 +443,213 @@ terulet = a * b; 	// téglalap területe: T=a*b</code></pre>
             „<code>gomb1.setText("Új felirat");</code>”. Fontos, hogy a szövegeket <code>" "</code> (kettős idézőjelek, Shift+2) közé kell tenni, és a
             sorvégi pontosvessző se maradjon le!</p>
         <p>Ezt az új működést is ellenőrizzük egy futtatással!</p>
+		</section>
+        <section>
+        <h2>Most jön az igazi felhasználói felület</h2>
 
-        <p>A lecke folytatása <a href="/lessons/l03b.html">itt</a> található.</p>
+        <p>Az előzőekben mindent megtanultunk, ami ahhoz kell, hogy eltudjuk készíteni az
+            alkalmazást! Lássunk hozzá!</p>
+
+        <h3 class="task">3. feladat</h3>
+        <img src="/static/img/l03/29_finalLayoutWithEditor.png" class="center-block"/>
+
+        <p>
+            Először készítsük el a terven szereplő layout-ot: Nyissuk meg újra az <code>activity_main.xml</code>
+            fájlt, figyeljünk rá, hogy alul a <code>Design</code> fül legyen aktív, és a fent
+            megtanult módszerrel
+            töltsük fel a képernyőt a szükséges komponensekkel.
+        </p>
+        <ol>
+            <li>
+                A képernyő tetején legyen a már korábban létrehozott leírás. Módosítjuk a
+                szövegét, hogy röviden tájékoztassa a felhasználót, mit is várunk tőle. Pl. „Írd
+                be a tippedet!”.
+            </li>
+            <li>
+                Alatta, középen legyen egy szövegdoboz. A szövegdobozokat a <code>Text Fields</code>
+                kategóriában találjuk, innen a <code>Number</code> komponenst válasszuk ki, amelyik
+                csak
+                számokat enged beírni.
+                <ol>
+                    <li>
+                        Amikor lerakod a szövegdobozt, észre fogod venni, hogy igen keskeny
+                        lett és nem engedi a szélességét átméretezni. Ezen segíthetsz, ha a
+                        <code>layout:width</code> tulajdonságát átállítod <code>match_parent</code>-re.
+                        Ez
+                        meghatározza, hogy a komponens ne a beírt szöveghez méretezze
+                        magát, hanem töltse ki a rendelkezésére álló helyet
+                    </li>
+                    <li>
+                        A <code>hint</code> tulajdonságba megadhatjuk, hogy milyen szöveg jelenjen
+                        meg mielőtt a felhasználó elkezd
+                        gépelni. pl. <code>"ide írd a számot!"</code>, vagy <code>"(szám 1 és 100
+                        között)"</code>
+                    </li>
+                </ol>
+            </li>
+            <li>
+                Közvetlen ez alá, középre, helyezzünk el egy újabb gombot, ami segítségével tippelni
+                tudunk majd! Ne
+                felejtsük el átírni a <code>text</code> tulajdonságát!
+            </li>
+            <li>Az alsó gombunk lesz az újrakezdés gombja, írjuk is át a feliratát ennek
+                megfelelően!
+            </li>
+            <li>
+                A két gomb közé rakjunk le egy nagy szöveget (<code>TextView</code>, a
+                <code>Widget</code> kategóriában találod). Itt fog megjelenni a
+                tipp eredménye.
+            </li>
+        </ol>
+        <p>A komponensek egyéb tulajdonságait (szöveg mérete, színe stb.) ezek után formázd kedved
+            és ízlésed szerint :-)</p>
     </section>
+    <section>
+        <h3 class="task">4. feladat</h3>
+
+        <p>Ha sikerült a layout szerkesztőben létrehozni a kívánt felületet, akkor eljött az ideje a
+            Java kód befejezésének
+            (bal oldalt <code>app -> java -> hu.dkrmg.android.guessgame -> MainActivity</code>
+            fájlban).</p>
+
+        <p>Először is gondoljuk végig, hogy milyen eseményekre kell reagálnia a telefonnak:</p>
+        <ul>
+            <li>
+                <p>Felhasználó megnyomja az újrakezdés gombot</p>
+                <ul>
+                    <li>a gomb onClick függvénye indítsa el a játékot</li>
+                </ul>
+            </li>
+            <li>
+                <p>Felhasználó tippel egyet</p>
+                <ul>
+                    <li>jelezzünk vissza, hogy a tipp helyes-e, vagy más számot vártunk</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4 class="task">4.1. feladat</h4>
+
+        <p>Az újrakezdés gombhoz elvileg még megvan az eseménykezelőnk (2. feladatból a <code>buttonClicked</code>
+            függvény, ami a <code>Toast</code> üzenetet dobta).
+            Ezt alakítsuk át, hogy a függvény belsejében csak az alábbi sor legyen:</p>
+        <pre><code>gondoltSzam = randomGenerator.nextInt(100) + 1;</code></pre>
+        <p>Ez garantálja, hogy a <code>gondoltSzam</code> változóban egy véletlen szám legyen. A
+            <code>randomGenerator</code>
+            <code>nextInt(100)</code> függvénye egy véletlen számot ad vissza a (0, 1, 2, 3, ...,
+            99) számok
+            közül. Figyelj, 100 nem lehet, 0 viszont igen! Ezért kell a végén egy +1, hogy
+            mindenképpen az 1, 2, 3, …, 99, 100 számok valamelyikére gondoljon a telefon.</p>
+
+        <h4 class="task">4.2. feladat</h4>
+
+        <p>A felhasználó visszajelzése egy picit hosszabb lesz ennél!</p>
+
+        <p><em>Ahhoz, hogy megtudjuk, hogy mit tippelt a játékos, először szükségünk lesz két
+            változóra.</em></p>
+        <ul>
+            <li>Szövegdoboz, ahova a játékos beírta a tippet (nevezzük mondjuk
+                <code>tippDoboz</code>-nak)
+            </li>
+            <li>Felirat, ami az eredményt jelzi (nevezzük mondjuk <code>eredmenyFelirat</code>-nak)
+            </li>
+        </ul>
+        <p>(Segítség: a szövegdobozt tartalmazó változó típusa <code>EditText</code>, az
+            eredményjelzőé pedig <code>TextView</code>). </p>
+
+        <p>Ha megvannak a változóink, adjunk nekik értéket is. Ehhez meg kell keresni a belevaló
+            komponenst. Ilyet is csináltunk már, szintén a 2.1. feladatban. (nézd meg a komponenseid
+            azonosítóját – <code>id</code> – azután használd a <code>findViewById</code> függvényt) [TODO 4.2 helyére]</p>
+
+        <h4 class="task">4.3. feladat</h4>
+
+        <p>Most, hogy megfelelően elő vannak készítve a komponenseink, már ki tudjuk olvasni a
+            felhasználó által beírt számot. Ez egy kicsit bonyolultabb (hiszen az <code>EdtiText</code> szöveget
+            tartalmaz, nekünk pedig int típusú változóra van szükségünk), ezért megadjuk a kódot,
+            csak be kell másolni a megfelelő helyre [TODO 4.3]:</p>
+<pre><code>// A szövegdoboz nem tudja, hogy a felhasználó számot írt be,
+// mindenképp szövegként adja vissza a tartalmát.
+String szovegesTipp = VÁLTOZÓ_NEVE.getText().toString();
+
+// Ahhoz, hogy a gondolt számot össze tudjuk hasonlítani a tippel,
+// a tippet előbb számmá kell konvertálni.
+int tipp = Integer.parseInt(szovegesTipp);
+</code></pre>
+
+        <p>Ha bemásoltad, láthatod, hogy a „VÁLTOZÓ_NEVE” részt az Android Studio csúnya pirossal
+            írja. Ez azért van, mert nem ismeri ezt a változót, mivel az nincs deklarálva. Annak a
+            helyére kell nektek beírnotok a ti változótok nevét, amiben a szövegdobozt tároljátok
+            (kicsit feljebb csináltuk meg).</p>
+
+        <p>Ezek után a felhasználó tippje a <code>tipp</code> nevű, egész szám (<code>int</code>)
+            típusú változóban lesz benne, készen a további felhasználásra.</p>
+    </section>
+
+    <section class="if-conditional">
+        <div class="misc-info">
+            <h3>Kitérő: elágazások</h3>
+
+            <p> A programunk sokszor egy feltételtől függően több féleképpen is viselkedhet.
+                Esetünkben például:
+                <strong>HA</strong> a <code>gondoltSzam</code> változó értéke egyenlő a
+                <code>tipp</code> változó értékével, <strong>AKKOR</strong> írd át a megfelelő
+                <code>TextView</code> szövegét!
+                Pascal-ban találkozhattál esetleg a következővel:</p>
+            <pre><code>if (gondoltSzam=tipp) then
+begin
+  // valami kód
+end;</code></pre>
+            <p>A Java nyelvben is hasonlóan módunkban áll feltételeket szabni a programban.</p>
+            <pre><code>if (feltétel)
+{
+    // valami kód
+}</code></pre>
+
+            <p>Ha a zárójelben lévő feltétel igaz, akkor a kapcsos zárójelek közötti rész futtatásra
+                kerül. Utána a program fut tovább.</p>
+            <p>Tehát pl.</p>
+            <pre><code>// a feltétel előtti kód mindig lefut
+
+if (gondoltSzam == tipp)
+{
+    // ez a sor beljebb kezdődik
+    // Ami itt van, az csak akkor fut le, ha a gondoltSzam változó értéke egyenlő a tipp értékével
+}
+
+// vége a feltételnek. Ami itt van, az mindig le fog futni</code></pre>
+
+        </div>
+    </section>
+
+    <section>
+        <h4 class="task">4.4. feladat</h4>
+
+        <p><em>Vizsgáljuk meg, hogy a <code>gondoltSzam</code> változó (gép által gondolt szám) és a tipp változó
+            értéke hogyan viszonyul egymáshoz!</em></p>
+        <p>Írj három <code>if</code>-elágazást [TODO 4.4 helyére], ami megvizsgálja</p>
+        <ul>
+            <li><code>gondoltSzam</code> és <code>tipp</code> egyenlő?</li>
+            <li><code>gondoltSzam</code> kisebb, mint <code>tipp</code>?</li>
+            <li><code>gondoltSzam</code> nagyobb, mint <code>tipp</code>?</li>
+        </ul>
+
+        <p>A feltételek belsejében pedig írd át a felirat (eredményjelző) szövegét, illetve állítsd
+            át a színét (pl. pirossal: „kisebbet”, zölddel: „nyertél!”)! Hasonló feladatok már
+            előfordultak korábban :-)</p>
+
+        <p>Ha ezt sikerült megírni, próbáljuk ki újra a programot. Immár lényegében kész van, egy
+            dologra kell odafigyelni: Mielőtt elkezdhetnénk az első játékot, meg kell nyomni az
+            <code>Újrakezdés</code> gombot. A későbbiekben megnézzük majd, hogy hogy lehetne ezt megkerülni, de
+            egyelőre nézzük el ezt a kis kellemetlenséget.</p>
+
+        <p>Az elkészült programokat küldjétek el nekünk tömörítve a szakkör <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> lapján keresztül!</p>
+    </section>
+	<section>
+		<h1>Szorgalmi feladatok</h1>
+		<p>A következő feladatokat is érdemes megnézni! Ne felejtsétek, programozni gyakorlással lehet megtanulni!</p>
+
+		<p>A leckéhez tartozó szorgalmi feladatok <a href="/lessons/l03_szorgalmi.html">ezen a lapon</a> érthetőek el.</p>
+	</section>
 </div>
 
 <footer data-include="/include/footer.html"></footer>

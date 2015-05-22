@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>L03 - Számkitalálós játék</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="/static/css/stsheet.css">
+    <link href="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.css"
+          type="text/css" rel="stylesheet" title="Featherlight Styles"/>
+    <!-- bootstrap stuff -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+</head>
+<body class="language-java">
+<header data-include="/include/header.html"></header>
+
+<div class="container">
+    <h1>
+        3*. lecke
+        <small>Számkitalálós játék - Szorgalmi feladatok</small>
+        <p>
+            <small>Online Android szakkör (DKRMG)</small>
+        <p>
+    </h1>
+    <hr/>
+
+    <section>
+        <p>A megoldásokat feltölthetitek <a target="_blank" href="http://goo.gl/UMyfuL">itt</a>.</p>
+    </section>
+    <section>
+        <h2>Könnyű feladatok</h2>
+        <h3 class="task">1*</h3>
+        <p>Könnyítsük meg a felhasználó dolgát: amint megnyomta a <code>Tippelek</code> gombot, töröljük ki a
+            szövegdoboz tartalmát (<code>EditText</code>), hogy rögtön jöhessen a következő tipp. [TODO 4.5] (Segítség:
+            törlés opció nincs. De az üres szöveg pont úgy néz ki, mintha nem lenne ott semmi.)</p>
+
+        <h3 class="task">2*</h3>
+        <p>Az <code>újrakezdés</code> gomb lenyomásakor jelenjen meg egy <code>Toast</code> üzenet,
+            ami értesíti a felhasználót: kezdődhet a játék.</p>
+
+        <h3 class="task">3*</h3>
+        <p>A játék jelenlegi szabályaival legkevesebb hány lépés alatt lehet biztosan kitalálni,
+            hogy a számítógép melyik számra gondolt? Kezdeti javaslatunk, hogy ha mindig az 1, 2, 3,
+            4, &hellip; számsort, akkor legrosszabb esetben 100 tippre van szükség. Tudsz ennél
+            jobbat?</p>
+    </section>
+
+    <section>
+        <h2>Közepes feladatok</h2>
+        <h3 class="task">4*</h3>
+        <p>Alakítsd át ízlésed szerint a felhasználói felületet. Légy kreatív!</p>
+        <ul>
+            <li>Nézd meg a <code>TextView</code> gravity tulajdonságát</li>
+            <li>Színezd át a szövegeket és a háttereiket (<code>background</code>)</li>
+            <li>Rakj fel egy <code>ImageView</code> komponenst, állítsd a background tulajdonságát
+                az <code>ic_launcher</code> ikonra (<code>Resources</code> ablak)
+            </li>
+        </ul>
+
+        <h3 class="task">5*</h3>
+
+        <p>Alakítsuk át kicsit a szabályokat: nem fair, hogy szegény számítógép nem nyerheti meg a
+            játékot! Legyen egy korlát, hogy hányszor tippelhet a játékos.</p>
+        <ul>
+            <li>Hozzunk létre egy <code>int</code> típusú számláló változót</li>
+            <li>Újraindításkor állítsuk a változót értékét mondjuk <code>15</code>-re</li>
+            <li>Tippeléskor csökkentsük a változó értékét (pl. <code>x = x - 1;</code>)</li>
+            <li>Ellenőrizzük, hogy a változónk nagyobb-e nullánál. Ha nem, akkor írjuk ki: a játékos
+                vesztett!
+            </li>
+        </ul>
+
+        <h3 class="task">6* (hosszú)</h3>
+
+        <p>Írj egy új alkalmazást (az eredetileg letöltött és kitömörített mappát nevezd át pl.
+            <code>L03Szorgalmi</code>-ra, majd másold be a <code>Hello World</code> és az <code>L03-GuessGame</code> mellé, majd
+            importáld a korábban leírtak szerint), ahol a játékos szerepet cserél a géppel!</p>
+        <img src="/static/img/l03/30_extra_reversed.png" class="center-block" />
+        <ul>
+            <li>Játékos gondol egy számra</li>
+            <li>Játékos megnyomja az "<code>Újrakezdés</code>" gombot</li>
+            <li>Számítógép tippel egy számot és kiírja egy TextView komponensre</li>
+            <li>Játékos három gomb közül választhat: "<code>Igen</code>", "<code>kisebb</code>",
+                "<code>nagyobb</code>"
+            </li>
+            <li>A gép a gombok <code>onClick</code> eseményében tippel egy újabb számot.</li>
+        </ul>
+
+    </section>
+
+
+</div>
+
+<footer data-include="/include/footer.html"></footer>
+<script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdn.rawgit.com/noelboss/featherlight/master/release/featherlight.min.js"></script>
+<link rel="stylesheet" href="/static/css/stsheet.css"/>
+<script src="/static/js/prism.js"></script>
+</body>
+</html>
