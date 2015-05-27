@@ -49,7 +49,7 @@
         A válasz sajnos az, hogy a <em>hosszan tartó műveletek</em> kicsit megnehezítik a mai
         programozók életét. Mire is gondolunk itt egészen pontosan? Ha egy bonyolult matematikai
         problémát szeretnénk megoldani (például <a
-            href="http://hu.wikipedia.org/wiki/Pi_(sz%C3%A1m)">a π kiszámítása nagyon pontosan</a>)
+            href="http://hu.wikipedia.org/wiki/Pi_(sz%C3%A1m)" target="_blank">a π kiszámítása nagyon pontosan</a>)
         vagy egy nagy méretű fájlt szeretnénk feldolgozni (például egy komplett nagyszótár), az
         bizony eltarthat jó pár másodpercig. Hasonlóképpen a hálózati kommunikáció (pl. az üzenőfal
         lehívása vagy bármilyen fájl letöltése) is eltarthat pár másodpercig, főként ha mondjuk
@@ -155,7 +155,7 @@
         üzenőfalra. Ez jó esetben működött is, de elég bizonytalan megoldás volt: ha a szerver
         valamiért nem működik például, vagy csak ki volt kapcsolva a wifi, arról mi nem szerzünk
         tudomást, legfeljebb úgy, hogy nem találjuk az üzenetünket a <a
-            href="http://dkrmg-android.github.io/lessons/uzenofal.html">webes változaton</a>. Ezen
+            href="http://dkrmg-android.github.io/lessons/uzenofal.html" target="_blank">webes változaton</a>. Ezen
         jó lenne javítani!</p>
 
     <h3>Mi az az ígéret (avagy ListenableFuture)?</h3>
@@ -347,15 +347,13 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         is el! Az ígéret típusa: <code>ListenableFuture&lt;MobileServiceList&lt;Uzenet&gt;&gt;</code>, neve legyen <code>letoltes</code>!
     </p>
 
-    <p>
-        *** TODO segítség gomb: egyben az első lépés:</p>
-
-    <pre><code>public void letolt() {
+	<button data-target="help_letolt_1" class="help-link">A függvény eddig&hellip;</button>
+            </p>
+        <div class="help-container" id="help_letolt_1">
+            <pre><code>public void letolt() {
     ListenableFuture&lt;MobileServiceList&lt;Uzenet&gt;&gt; letoltes = kozosUzenetek.orderBy("__createdAt",QueryOrder.Descending).top(15).execute();
 }</code></pre>
-
-    <p>
-        ***</p>
+        </div>
 
     <h3>Az ígéret beváltása</h3>
 
@@ -427,9 +425,10 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         kattintás után láthatod egyben a letöltő függvényt.</p>
 
     <p>
-        *** TODO gomb ***</p>
-
-    <pre><code>private void letolt() {
+        <button data-target="help_letolt_2" class="help-link">Katt&hellip;</button>
+            </p>
+        <div class="help-container" id="help_letolt_2">
+            <pre><code>private void letolt() {
     ListenableFuture&lt;MobileServiceList&lt;Uzenet&gt;&gt; letoltes =
             kozosUzenetek
                 .orderBy("__createdAt", QueryOrder.Descending)
@@ -451,8 +450,10 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
             Log.e("MainActivity", "Hiba az üzenetek letöltésekor.", t);
         }
     });
-}
-        </code></pre>
+}</code></pre>
+        </div></p>
+
+    
 
     <h3>Felesleges részek eltávolítása a programból</h3>
 
