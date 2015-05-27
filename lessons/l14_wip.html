@@ -446,7 +446,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         @Override
         public void onFailure(Throwable t) {
             Toast.makeText(MainActivity.this, "Hiba az üzenetek letöltésénél!",
-            Toast.LENGTH_SHORT).show();
+				Toast.LENGTH_SHORT).show();
             Log.e("MainActivity", "Hiba az üzenetek letöltésekor.", t);
         }
     });
