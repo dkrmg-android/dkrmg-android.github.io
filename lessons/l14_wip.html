@@ -29,134 +29,84 @@
     <hr/>
 
 	<p>
-Elérkeztünk az Android szakkör utolsó leckéjéhez. A leírás végéig befejezzük az előző alkalommal megkezdett üzenőfal alkalmazásunkat: végre kilistázzuk a telefon kijelzőjén a közös üzeneteket, illetve kicsit kitupírozzuk a korábbi kódunkat, hogy jobban kezelje a hibákat. Az elkészült programmal már tényleg könnyen lehet használni a webes felület nélkül is a közös üzenőfalat.
-</p>
-<h2>
-Egy kis nehézség
-</h2>
+Elérkeztünk az Android szakkör utolsó leckéjéhez. A leírás végéig befejezzük az előző alkalommal megkezdett üzenőfal alkalmazásunkat: végre kilistázzuk a telefon kijelzőjén a közös üzeneteket, illetve kicsit kitupírozzuk a korábbi kódunkat, hogy jobban kezelje a hibákat. Az elkészült programmal már tényleg könnyen lehet használni a webes felület nélkül is a közös üzenőfalat.</p>
+<h2>Egy kis nehézség</h2>
 <p>
-*** TODO valami kép***
-</p>
+*** TODO valami kép***</p>
 <p>
-Az előző lecke végén jogosan tehettük volna fel a kérdést: ha egyetlen paranccsal tudtunk üzenetet küldeni, akkor miért nem írtuk meg a lista lehívás kódját is? Azért használunk külső API-kat, hogy utána gyorsan és könnyedén tudjunk programokat írni! Miért nem fejeztük be ezt az egész Üzenőfal alkalmazást már akkor?
-</p>
+Az előző lecke végén jogosan tehettük volna fel a kérdést: ha egyetlen paranccsal tudtunk üzenetet küldeni, akkor miért nem írtuk meg a lista lehívás kódját is? Azért használunk külső API-kat, hogy utána gyorsan és könnyedén tudjunk programokat írni! Miért nem fejeztük be ezt az egész Üzenőfal alkalmazást már akkor?</p>
 <p>
-A válasz sajnos az, hogy a <em>hosszan tartó műveletek</em> kicsit megnehezítik a mai programozók életét. Mire is gondolunk itt egészen pontosan? Ha egy bonyolult matematikai problémát szeretnénk megoldani  (például <a href="http://hu.wikipedia.org/wiki/Pi_(sz%C3%A1m)">a π kiszámítása nagyon pontosan</a>) vagy egy nagy méretű fájlt szeretnénk feldolgozni (például egy komplett nagyszótár), az bizony eltarthat jó pár másodpercig. Hasonlóképpen a hálózati kommunikáció (pl. az üzenőfal lehívása vagy bármilyen fájl letöltése) is eltarthat pár másodpercig, főként ha mondjuk akadozik az internet!  Miért is gond ez?
-</p>
-<h3>
-Időutazás
-</h3>
+A válasz sajnos az, hogy a <em>hosszan tartó műveletek</em> kicsit megnehezítik a mai programozók életét. Mire is gondolunk itt egészen pontosan? Ha egy bonyolult matematikai problémát szeretnénk megoldani  (például <a href="http://hu.wikipedia.org/wiki/Pi_(sz%C3%A1m)">a π kiszámítása nagyon pontosan</a>) vagy egy nagy méretű fájlt szeretnénk feldolgozni (például egy komplett nagyszótár), az bizony eltarthat jó pár másodpercig. Hasonlóképpen a hálózati kommunikáció (pl. az üzenőfal lehívása vagy bármilyen fájl letöltése) is eltarthat pár másodpercig, főként ha mondjuk akadozik az internet!  Miért is gond ez?</p>
+<h3>Időutazás</h3>
 <p>
-Tegyünk egy rövid <em>időutazást</em> körülbelül húsz évvel ezelőttre, amikor a modern grafikus operációs rendszerek még gyerekcipőben jártak, és a felhasználók többnyire csak úgynevezett parancssorokat használtak a számítógépük működtetése közben. A parancssorok világában, mint azt az alábbi képek is mutatják, a <strong>számítógépünk egyszerre mindig egy dologgal foglalkozott</strong>. Ha elindítottunk egy játékot, vagy csak megnyitottunk egy dokumentumot, a képernyőről minden mást eltűnt. Nem volt még egér sem, nem hogy több érintést érzékelő LCD képernyő.
-</p>
+Tegyünk egy rövid <em>időutazást</em> körülbelül húsz évvel ezelőttre, amikor a modern grafikus operációs rendszerek még gyerekcipőben jártak, és a felhasználók többnyire csak úgynevezett parancssorokat használtak a számítógépük működtetése közben. A parancssorok világában, mint azt az alábbi képek is mutatják, a <strong>számítógépünk egyszerre mindig egy dologgal foglalkozott</strong>. Ha elindítottunk egy játékot, vagy csak megnyitottunk egy dokumentumot, a képernyőről minden mást eltűnt. Nem volt még egér sem, nem hogy több érintést érzékelő LCD képernyő.</p>
 <p>
-Ebben a világban teljesen normális dolog lett volna írni egy olyan programot, ami az elindulásától kezdve a felhasználó felé se nézve elvégzi a dolgát, majd végeredményként visszadob valami kedves üzenetet (az eredménnyel, vagy valami barátságtalan hibakóddal). Nem kellett más programokkal és a felhasználóval versenyezni, a számítógép ha a mi programunkat futtatta, akkor csak ránk figyelt.
-</p>
+Ebben a világban teljesen normális dolog lett volna írni egy olyan programot, ami az elindulásától kezdve a felhasználó felé se nézve elvégzi a dolgát, majd végeredményként visszadob valami kedves üzenetet (az eredménnyel, vagy valami barátságtalan hibakóddal). Nem kellett más programokkal és a felhasználóval versenyezni, a számítógép ha a mi programunkat futtatta, akkor csak ránk figyelt.</p>
 <p>
-*** TODO KÉPEK***
-</p>
+*** TODO KÉPEK***</p>
 <p>
 *** UNKNOWN NODE TYPE: INLINE_IMAGE ***
-*** UNKNOWN NODE TYPE: INLINE_IMAGE ****** UNKNOWN NODE TYPE: INLINE_IMAGE ***
-</p>
-<h3>
-Ezzel szemben
-</h3>
+*** UNKNOWN NODE TYPE: INLINE_IMAGE ****** UNKNOWN NODE TYPE: INLINE_IMAGE ***</p>
+<h3>Ezzel szemben</h3>
 <p>
-Nem csak a számítógépeink változtak az elmúlt évtizedek folyamán (mind méretben és tudásban), de a felhasználók elvárásai is módosultak. Nézz csak kicsit körül a számítógéped monitorján! Hány program is fut egymás mellett?***IMG***
-</p>
+Nem csak a számítógépeink változtak az elmúlt évtizedek folyamán (mind méretben és tudásban), de a felhasználók elvárásai is módosultak. Nézz csak kicsit körül a számítógéped monitorján! Hány program is fut egymás mellett?***IMG***</p>
 <p>
-Sőt! Nem elég, hogy több programot futtatsz egyszerre, de a programok többségétől elvárod, hogy egyszerre több mindent is csináljon! Képzeld el például, mennyire felháborító volna, ha az egész számítógéped <em>lefagyna,</em> amíg a következő online videót be nem tölti a böngésződ!
-</p>
-<h3>
-A tanulság
-</h3>
+Sőt! Nem elég, hogy több programot futtatsz egyszerre, de a programok többségétől elvárod, hogy egyszerre több mindent is csináljon! Képzeld el például, mennyire felháborító volna, ha az egész számítógéped <em>lefagyna,</em> amíg a következő online videót be nem tölti a böngésződ!</p>
+<h3>A tanulság</h3>
 <p>
-Az egyik legelső leckében leszögeztük: az általunk írt Java program sorok mindig szépen szabályosan futnak le egymás után. Minden parancs megvárja, amíg az előző utasítás el nem végezte a feladatát. Viszont a fenti kitérőből megtanultuk: a mai világban egyszerűen nem szabad hosszú másodpercekig felelőtlenül feltartani a programunk / számítógép / okostelefon futását.
-</p>
+Az egyik legelső leckében leszögeztük: az általunk írt Java program sorok mindig szépen szabályosan futnak le egymás után. Minden parancs megvárja, amíg az előző utasítás el nem végezte a feladatát. Viszont a fenti kitérőből megtanultuk: a mai világban egyszerűen nem szabad hosszú másodpercekig felelőtlenül feltartani a programunk / számítógép / okostelefon futását.</p>
 <p>
-Utolsó próbatételként írjuk be az alábbi sorokat az üzenőfal programunkhoz, a küldés gomb kezelő függvényébe:
-</p>
+Utolsó próbatételként írjuk be az alábbi sorokat az üzenőfal programunkhoz, a küldés gomb kezelő függvényébe:</p>
 <p>
 <code>try {
     Thread.sleep(10000); // aludjunk most itt 10 másodpercet
 } catch (InterruptedException e) {
-}</code>
-</p>
+}</code></p>
 <p>
-Futtasd a programot, és nézd meg, hogy mi történik a gomb lenyomása után! Ha nem tapasztalsz semmi különöset, próbáld meg többször megnyomni a gombot, szerkeszteni az EditText szövegét, stb. Hogy viselkedik a program? Írd meg emailben, hogy mik a tapasztalataid!
-</p>
+Futtasd a programot, és nézd meg, hogy mi történik a gomb lenyomása után! Ha nem tapasztalsz semmi különöset, próbáld meg többször megnyomni a gombot, szerkeszteni az EditText szövegét, stb. Hogy viselkedik a program? Írd meg emailben, hogy mik a tapasztalataid!</p>
 <p>
-<strong>Ha kipróbáltad, utána gyorsan töröld ki a fenti kódot! Nem szeretjük az alvó, lusta programokat!</strong>
-</p>
+<strong>Ha kipróbáltad, utána gyorsan töröld ki a fenti kódot! Nem szeretjük az alvó, lusta programokat!</strong></p>
 <p>
-Nem lelőve a poént a pontos viselkedésről annyit megsúghatunk, hogy se a programunk, se az Android rendszer nem nézi jó szemmel ezt a tíz másodperces akadást! De várjunk csak! Hiszen ebben a függvényben küldjük el az üzenetünket, ami természetesen hálózati kommunikációval jár! Miért nem akadozik a <code>kozosUzenetek.insert(uzenet);</code> parancs?
-</p>
+Nem lelőve a poént a pontos viselkedésről annyit megsúghatunk, hogy se a programunk, se az Android rendszer nem nézi jó szemmel ezt a tíz másodperces akadást! De várjunk csak! Hiszen ebben a függvényben küldjük el az üzenetünket, ami természetesen hálózati kommunikációval jár! Miért nem akadozik a <code>kozosUzenetek.insert(uzenet);</code> parancs?</p>
 <p>
-Az Azure API tudja, hogy a program futását nem szabad megakasztani, ezért a hálózati kommunikációt a háttérben végzi. Az <code>insert</code> utasításunk valójában csak egy ígéretet tesz nekünk, hogy megpróbálja elküldeni az üzenetünket, és tovább engedi a program futását még mielőtt végezne. Az üzenet küldése ilyenkor egy másik program szálon a háttérben történik.
-</p>
+Az Azure API tudja, hogy a program futását nem szabad megakasztani, ezért a hálózati kommunikációt a háttérben végzi. Az <code>insert</code> utasításunk valójában csak egy ígéretet tesz nekünk, hogy megpróbálja elküldeni az üzenetünket, és tovább engedi a program futását még mielőtt végezne. Az üzenet küldése ilyenkor egy másik program szálon a háttérben történik.</p>
 <p>
-És mindez úgy működött az előző leckében, hogy nem is tudtunk róla. Igen ám, de ha a háttérben futó művelet eredményről szeretnénk értesítést kapni, azért már dolgoznunk is kell egy keveset! Ez pedig főként az üzenetek <em>lehívásánál </em>elkerülhetetlen lesz.
-</p>
-<h2>
-Üzenet küldése - visszajelzéssel
-</h2>
+És mindez úgy működött az előző leckében, hogy nem is tudtunk róla. Igen ám, de ha a háttérben futó művelet eredményről szeretnénk értesítést kapni, azért már dolgoznunk is kell egy keveset! Ez pedig főként az üzenetek <em>lehívásánál </em>elkerülhetetlen lesz.</p>
+<h2>Üzenet küldése - visszajelzéssel</h2>
 <p>
-Az előző leckében már megírtuk, hogy a telefonunkról tudjunk üzenetet küldeni a közös üzenőfalra. Ez jó esetben működött is, de elég bizonytalan megoldás volt: ha a szerver valamiért nem működik például, vagy csak ki volt kapcsolva a wifi, arról mi nem szerzünk tudomást, legfeljebb úgy, hogy nem találjuk az üzenetünket a <a href="http://dkrmg-android.github.io/lessons/uzenofal.html">webes változaton</a>. Ezen jó lenne javítani!
-</p>
-<h3>
-Mi az az ígéret (avagy ListenableFuture)?
-</h3>
+Az előző leckében már megírtuk, hogy a telefonunkról tudjunk üzenetet küldeni a közös üzenőfalra. Ez jó esetben működött is, de elég bizonytalan megoldás volt: ha a szerver valamiért nem működik például, vagy csak ki volt kapcsolva a wifi, arról mi nem szerzünk tudomást, legfeljebb úgy, hogy nem találjuk az üzenetünket a <a href="http://dkrmg-android.github.io/lessons/uzenofal.html">webes változaton</a>. Ezen jó lenne javítani!</p>
+<h3>Mi az az ígéret (avagy ListenableFuture)?</h3>
 <p>
-Az előző leckében úgy küldtük el az üzenetet, hogy a közös üzenetek listáját jelképező <code>kozosUzenetek</code> változónak meghívtuk az <code>insert</code> belső függvényét.
-</p>
+Az előző leckében úgy küldtük el az üzenetet, hogy a közös üzenetek listáját jelképező <code>kozosUzenetek</code> változónak meghívtuk az <code>insert</code> belső függvényét.</p>
 <p>
-<code>kozosUzenetek.insert(uzenet);</code>
-</p>
+<code>kozosUzenetek.insert(uzenet);</code></p>
 <p>
-Ennek az eredményével nem foglalkoztunk. Pedig érdemes, ugyanis ez az <code>insert</code> függvény egy <em>ígéretet</em> ad vissza (a változó típusa <code>ListenableFuture<valami></code>). Az ígéretet pedig később számonkérhetjük! De mi is ez az ígéret? Egy sokáig tartó művelet eredményét nem várhatjuk meg, hiszen fentebb megbeszéltük, hogy akkor lefagyna az alkalmazás. Ez az ígéret megoldást nyújt erre, ugyanis rá lehet akasztani<strong> két speciális függvényt</strong>, amik majd <strong>csak akkor fognak lefutni, ha a munka befejeződött</strong>.
-</p>
+Ennek az eredményével nem foglalkoztunk. Pedig érdemes, ugyanis ez az <code>insert</code> függvény egy <em>ígéretet</em> ad vissza (a változó típusa <code>ListenableFuture<valami></code>). Az ígéretet pedig később számonkérhetjük! De mi is ez az ígéret? Egy sokáig tartó művelet eredményét nem várhatjuk meg, hiszen fentebb megbeszéltük, hogy akkor lefagyna az alkalmazás. Ez az ígéret megoldást nyújt erre, ugyanis rá lehet akasztani<strong> két speciális függvényt</strong>, amik majd <strong>csak akkor fognak lefutni, ha a munka befejeződött</strong>.</p>
 <p>
-Mit értünk a munka befejeződésén? Két eshetőséggel kell számolnunk:
-</p>
+Mit értünk a munka befejeződésén? Két eshetőséggel kell számolnunk:</p>
 <ol>
 <li>
 <p>
-<strong>Siker (onSuccess)</strong>: a telefon elküldte az üzenetet a szervernek, az megkapta, feldolgozta, hozzáadta a többihez, és <em>ezt vissza is mondja a telefonnak</em>. Vagyis a munka akkor ért véget, ha a telefon megbizonyosodott róla, hogy az üzenet célbaért.
-</p>
-
-</li>
+<strong>Siker (onSuccess)</strong>: a telefon elküldte az üzenetet a szervernek, az megkapta, feldolgozta, hozzáadta a többihez, és <em>ezt vissza is mondja a telefonnak</em>. Vagyis a munka akkor ért véget, ha a telefon megbizonyosodott róla, hogy az üzenet célbaért.</p></li>
 <li>
 <p>
-<strong>Hiba (onFailure)</strong>: valahol valami <em>hiba</em> miatt nem sikerül a megígért művelet. 
-</p>
-
-</li>
+<strong>Hiba (onFailure)</strong>: valahol valami <em>hiba</em> miatt nem sikerül a megígért művelet.</p></li>
 </ol>
 <p>
-Most mentsük el ezt az ígéretet, hogy később számon kérhessük. Ehhez kell egy változó a küldés gomb lenyomását kezelő függvénybe, aminek a típusa <code>ListenableFuture<Uzenet></code>. Hívjuk mondjuk <code>kuldes</code>-nek. Tehát: a
-</p>
+Most mentsük el ezt az ígéretet, hogy később számon kérhessük. Ehhez kell egy változó a küldés gomb lenyomását kezelő függvénybe, aminek a típusa <code>ListenableFuture<Uzenet></code>. Hívjuk mondjuk <code>kuldes</code>-nek. Tehát: a</p>
 <p>
-<code>kozosUzenetek.insert(uzenet);</code>
-</p>
+<code>kozosUzenetek.insert(uzenet);</code></p>
 <p>
-sor a következőre változik:
-</p>
+sor a következőre változik:</p>
 <p>
-<code>ListenableFuture<Uzenet> kuldes = kozosUzenetek.insert(uzenet);</code>
-</p>
-<h3>
-Az ígéret beváltása
-</h3>
+<code>ListenableFuture<Uzenet> kuldes = kozosUzenetek.insert(uzenet);</code></p>
+<h3>Az ígéret beváltása</h3>
 <p>
-Most már tudjuk, hogy mit ígér nekünk az Azure szolgáltatás, kérjük is számon rajta, hiszen az ígéret szép szó, ha betartják, úgy jó!
-</p>
+Most már tudjuk, hogy mit ígér nekünk az Azure szolgáltatás, kérjük is számon rajta, hiszen az ígéret szép szó, ha betartják, úgy jó!</p>
 <p>
-Ezt úgy tudjuk elérni, ha az alábbi sorokat beillesztjük az insert parancs alá (feltételezzük, hogy az ígéret a <code>kuldes</code> nevű változóban van.):
-</p>
+Ezt úgy tudjuk elérni, ha az alábbi sorokat beillesztjük az insert parancs alá (feltételezzük, hogy az ígéret a <code>kuldes</code> nevű változóban van.):</p>
 <p>
-<code>// kuldes ígéret számonkérése a jövőben</code>
-</p>
+<code>// kuldes ígéret számonkérése a jövőben</code></p>
 <p>
 <code>Futures.addCallback(kuldes, new FutureCallback<Uzenet>() {
     @Override
@@ -169,124 +119,78 @@ Ezt úgy tudjuk elérni, ha az alábbi sorokat beillesztjük az insert parancs a
     public void onFailure(Throwable t) {
         <strong>// {2} Ez az onFailure függvény fut, ha valami hiba történt</strong>
     }
-});</code>
-</p>
+});</code></p>
 <p>
-Nézzük meg részletesebben a két függvényt. Az <code>{1} onSuccess</code> akkor fut le, ha a szerver feldolgozta az üzenetünket, minden rendben volt, nem történt hiba, és ez a válasz vissza is jutott hozzánk. Ide érdemes írni azokat a sorokat, amik pl. értesítik a felhasználót, hogy sikerült elküldeni az üzenetet. Pl. egy kis rezgés (bővebben: szorgalmi ***TODO link***)
-</p>
+Nézzük meg részletesebben a két függvényt. Az <code>{1} onSuccess</code> akkor fut le, ha a szerver feldolgozta az üzenetünket, minden rendben volt, nem történt hiba, és ez a válasz vissza is jutott hozzánk. Ide érdemes írni azokat a sorokat, amik pl. értesítik a felhasználót, hogy sikerült elküldeni az üzenetet. Pl. egy kis rezgés (bővebben: szorgalmi ***TODO link***)</p>
 <p>
-A <code>{2} onFailure</code> akkor fut, ha a szerver valami miatt nem fogadta el az üzenetünket, vagy el se jutott odáig (pl. nincs bekapcsolva a WiFi). Ilyenkor érdemes megjeleníteni egy Toast* üzenetet.
-</p>
+A <code>{2} onFailure</code> akkor fut, ha a szerver valami miatt nem fogadta el az üzenetünket, vagy el se jutott odáig (pl. nincs bekapcsolva a WiFi). Ilyenkor érdemes megjeleníteni egy Toast* üzenetet.</p>
 <p>
-<em>*Itt most a Gyorssegélyben látottaktól eltérően a <code>this</code> helyére <code><activity neve>.this</code>-t kell írni. pl.: <code>MainActivity.this</code>. Ennek okait nem részleteznénk itt a lecke közepén.</em>
-</p>
+<em>*Itt most a Gyorssegélyben látottaktól eltérően a <code>this</code> helyére <code><activity neve>.this</code>-t kell írni. pl.: <code>MainActivity.this</code>. Ennek okait nem részleteznénk itt a lecke közepén.</em></p>
 <p>
-Próbáljuk ki, hogy továbbra is működőképes-e az alkalmazásunk. Teszteljük kikapcsolt WiFivel is (figyelj, hogy a mobilnet se legyen bekapcsolva!), hogy megjelenik-e a Toast.
-</p>
-<h2>
-Üzenetek letöltése
-</h2>
+Próbáljuk ki, hogy továbbra is működőképes-e az alkalmazásunk. Teszteljük kikapcsolt WiFivel is (figyelj, hogy a mobilnet se legyen bekapcsolva!), hogy megjelenik-e a Toast.</p>
+<h2>Üzenetek letöltése</h2>
 <p>
-Az üzenet küldésekor láthattuk, hogyan lehet a hosszan tartó műveletek ígéreteit elmenteni egy változóba, és rögtön megszabni azt is, hogy a sikeres/sikertelen befejeztük után mi történjen. A létező üzenetek lehívásakor gyakorlatilag ugyanezt fogjuk tenni.
-</p>
-<h3>
-Új függvény
-</h3>
+Az üzenet küldésekor láthattuk, hogyan lehet a hosszan tartó műveletek ígéreteit elmenteni egy változóba, és rögtön megszabni azt is, hogy a sikeres/sikertelen befejeztük után mi történjen. A létező üzenetek lehívásakor gyakorlatilag ugyanezt fogjuk tenni.</p>
+<h3>Új függvény</h3>
 <p>
-Mielőtt megírjuk magát a letöltést végző kódunkat, gondoljuk át, hogy <em>mikor, minek hatására</em> szeretnénk majd letölteni az üzeneteket:
-</p>
+Mielőtt megírjuk magát a letöltést végző kódunkat, gondoljuk át, hogy <em>mikor, minek hatására</em> szeretnénk majd letölteni az üzeneteket:</p>
 <ol>
 <li>
 <p>
-Induláskor jó lenne, ha rögtön megjelennének az üzenetek
-</p>
-
-</li>
+Induláskor jó lenne, ha rögtön megjelennének az üzenetek</p></li>
 <li>
 <p>
-Ha új üzenetet küldtünk, újra le kell tölteni az üzenőfal tartalmát, hogy lássuk, megjelent-e az új bejegyzés
-</p>
-
-</li>
+Ha új üzenetet küldtünk, újra le kell tölteni az üzenőfal tartalmát, hogy lássuk, megjelent-e az új bejegyzés</p></li>
 <li>
 <p>
-Felmerülhet az igény manuális frissítésre is (pl. menüből)
-</p>
-
-</li>
+Felmerülhet az igény manuális frissítésre is (pl. menüből)</p></li>
 <li>
 <p>
-Hogyan értesülünk a mások által írt új üzenetekről? Az ügyesebbek akár egy időzítőt is beállíthatnak, ami rendszeresen, pl. percenként frissíti az üzenetek listáját.
-</p>
-
-</li>
+Hogyan értesülünk a mások által írt új üzenetekről? Az ügyesebbek akár egy időzítőt is beállíthatnak, ami rendszeresen, pl. percenként frissíti az üzenetek listáját.</p></li>
 </ol>
 <p>
-Láthatjuk, hogy akár négy különböző helyen is szükségünk van az üzenetek letöltésére és megjelenítésére. Elméletileg működne az is, hogy egy helyen megírjuk, majd az összes többi helyre átmásoljuk a kódot, de ez egyrészt egy nagyon csúnya, és nem hatékony megoldás, másrészt saját magunk ellen dolgoznánk, ugyanis ha kiderül, hogy valamit módosítani kell a letöltést végző kódon (pl. ilyenkor is szeretnénk egy rezgést), akkor azt mind a négy helyen módosítani kell. Szinte biztos, hogy valamelyiket el fogod felejteni, vagy csak simán elrontod… Sokkal előrelátóbb megoldás, ha az üzenetek szerverről történő letöltéséhez írunk egy külön függvényt, és ezt csak meg kell hívni ott, ahol le szeretnénk tölteni az üzeneteket.
-</p>
+Láthatjuk, hogy akár négy különböző helyen is szükségünk van az üzenetek letöltésére és megjelenítésére. Elméletileg működne az is, hogy egy helyen megírjuk, majd az összes többi helyre átmásoljuk a kódot, de ez egyrészt egy nagyon csúnya, és nem hatékony megoldás, másrészt saját magunk ellen dolgoznánk, ugyanis ha kiderül, hogy valamit módosítani kell a letöltést végző kódon (pl. ilyenkor is szeretnénk egy rezgést), akkor azt mind a négy helyen módosítani kell. Szinte biztos, hogy valamelyiket el fogod felejteni, vagy csak simán elrontod… Sokkal előrelátóbb megoldás, ha az üzenetek szerverről történő letöltéséhez írunk egy külön függvényt, és ezt csak meg kell hívni ott, ahol le szeretnénk tölteni az üzeneteket.</p>
 <p>
-Ennek a függvénynek nem lesz se paramétere, sem visszatérési értéke, így kezdetben nagyon egyszerű lesz.
-</p>
+Ennek a függvénynek nem lesz se paramétere, sem visszatérési értéke, így kezdetben nagyon egyszerű lesz.</p>
 <p>
 <code>public void letolt() {
 
-}</code>
-</p>
+}</code></p>
 <p>
-Ezt a függvényt az <code>onCreate</code> és a gomb <code>onClick</code> függvényekkel egy szintre rakd, figyelj, hogy még véletlenül se egy másik függvényen belülre!
-</p>
-<h3>
-Üzenetek szűrése
-</h3>
+Ezt a függvényt az <code>onCreate</code> és a gomb <code>onClick</code> függvényekkel egy szintre rakd, figyelj, hogy még véletlenül se egy másik függvényen belülre!</p>
+<h3>Üzenetek szűrése</h3>
 <p>
-Az üzenetek letöltése hálózati kommunikációval jár, tehát mindaz igaz rá, amit az üzenet küldésénél már láttunk, és ezt is egy <em>ígéret</em> segítségével fogjuk megoldani.
-</p>
+Az üzenetek letöltése hálózati kommunikációval jár, tehát mindaz igaz rá, amit az üzenet küldésénél már láttunk, és ezt is egy <em>ígéret</em> segítségével fogjuk megoldani.</p>
 <p>
-Először nézzük meg, hogyan tudjuk az összes üzenetet elkérni a szervertől:
-</p>
+Először nézzük meg, hogyan tudjuk az összes üzenetet elkérni a szervertől:</p>
 <p>
-<code>kozosUzenetek<strong>.execute();</strong></code>
-</p>
+<code>kozosUzenetek<strong>.execute();</strong></code></p>
 <p>
-Ha jobban belegondolunk, ezzel nem biztos, hogy jól járnánk. Amikor ezt írom 40 üzenet van eltárolva, pedig eddig csak mi küldtünk be teszt-üzeneteket. Ha mindenki elkezdi próbálgatni az alkalmazását, több száz, akár több ezer üzenet is lehet majd a felhőben. Ezt mind letölteni sokáig tarthatna, és a telefon sem feltétlenül tudná hatékonyan megjeleníteni.
-</p>
+Ha jobban belegondolunk, ezzel nem biztos, hogy jól járnánk. Amikor ezt írom 40 üzenet van eltárolva, pedig eddig csak mi küldtünk be teszt-üzeneteket. Ha mindenki elkezdi próbálgatni az alkalmazását, több száz, akár több ezer üzenet is lehet majd a felhőben. Ezt mind letölteni sokáig tarthatna, és a telefon sem feltétlenül tudná hatékonyan megjeleníteni.</p>
 <p>
-Jó lenne lekorlátozni, hogy csak néhány, pl. 15 üzenetet töltődjön le. Erre való a <code>.top(<szám>)</code> belső függvény. Ezt az <code>.execute()</code> elé kell beszúrni, így:
-</p>
+Jó lenne lekorlátozni, hogy csak néhány, pl. 15 üzenetet töltődjön le. Erre való a <code>.top(<szám>)</code> belső függvény. Ezt az <code>.execute()</code> elé kell beszúrni, így:</p>
 <p>
-<code>kozosUzenetek<strong>.top(15)</strong>.execute();</code>
-</p>
+<code>kozosUzenetek<strong>.top(15)</strong>.execute();</code></p>
 <p>
-Most már kezelhető mennyiségű üzenet érkezik majd, de pontosan melyikek? Ezt az Azure felhő dönti el, és nem biztos, hogy ő is arra a tizenöt üzenetre gondol, mint mi. Célszerű lenne a 15 <em>legfrissebbet</em> lekérni. Ehhez először meg kell mondani, hogy rendezetten kérjük az üzeneteket, mégpedig a <code>__createdAt</code> tulajdonságuk alapján csökkenő sorrendben. Erre az <code>.orderBy(<tulajdonság>, <irány>)</code> belső függvény használható, így:
-</p>
+Most már kezelhető mennyiségű üzenet érkezik majd, de pontosan melyikek? Ezt az Azure felhő dönti el, és nem biztos, hogy ő is arra a tizenöt üzenetre gondol, mint mi. Célszerű lenne a 15 <em>legfrissebbet</em> lekérni. Ehhez először meg kell mondani, hogy rendezetten kérjük az üzeneteket, mégpedig a <code>__createdAt</code> tulajdonságuk alapján csökkenő sorrendben. Erre az <code>.orderBy(<tulajdonság>, <irány>)</code> belső függvény használható, így:</p>
 <p>
-<code>kozosUzenetek<strong>.orderBy("__createdAt", QueryOrder.Descending)</strong>.top(15).execute();</code>
-</p>
+<code>kozosUzenetek<strong>.orderBy("__createdAt", QueryOrder.Descending)</strong>.top(15).execute();</code></p>
 <p>
-A fenti sor megkéri a szolgáltatást, hogy először rendezze az üzeneteket, majd az első tizenöt elemet küldje el. <em>Fordítva is működne? Gondold végig!</em>
-</p>
+A fenti sor megkéri a szolgáltatást, hogy először rendezze az üzeneteket, majd az első tizenöt elemet küldje el. <em>Fordítva is működne? Gondold végig!</em></p>
 <p>
-Most már meghatároztuk, hogy melyik üzeneteket és milyen sorrendben kérjük. De fentebb már említettük, az .execute() függvény nem várhatja meg az üzenetek lekérését. Inkább, a korábbi <code>.insert(uzenet)</code>-hez nagyon hasonló <em>ígérettel</em> tér vissza. Ezt mentsük is el! Az ígéret típusa: <code>ListenableFuture<MobileServiceList<Uzenet>></code>, neve legyen <code>letoltes</code>!
-</p>
+Most már meghatároztuk, hogy melyik üzeneteket és milyen sorrendben kérjük. De fentebb már említettük, az .execute() függvény nem várhatja meg az üzenetek lekérését. Inkább, a korábbi <code>.insert(uzenet)</code>-hez nagyon hasonló <em>ígérettel</em> tér vissza. Ezt mentsük is el! Az ígéret típusa: <code>ListenableFuture<MobileServiceList<Uzenet>></code>, neve legyen <code>letoltes</code>!</p>
 <p>
-*** TODO segítség gomb: egyben az első lépés: 
-</p>
+*** TODO segítség gomb: egyben az első lépés:</p>
 <p>
-<code>public void letolt() {</code>
-</p>
+<code>public void letolt() {</code></p>
 <p>
 <code>    ListenableFuture<MobileServiceList<Uzenet>> letoltes = kozosUzenetek.orderBy("__createdAt", QueryOrder.Descending).top(15).execute();</code> <code>
-}</code>
-</p>
+}</code></p>
 <p>
-***
-</p>
-<h3>
-Az ígéret beváltása
-</h3>
+***</p>
+<h3>Az ígéret beváltása</h3>
 <p>
-A letöltés ígéretének beváltása nagyon fog hasonlítani az üzenetküldés ígéretének beváltásához:
-</p>
+A letöltés ígéretének beváltása nagyon fog hasonlítani az üzenetküldés ígéretének beváltásához:</p>
 <p>
 <code>Futures.addCallback(letoltes, new FutureCallback<MobileServiceList<Uzenet>>() {
     @Override
@@ -298,60 +202,39 @@ A letöltés ígéretének beváltása nagyon fog hasonlítani az üzenetküldé
     public void onFailure(Throwable t) {
         <strong>// {2} Ez fut, ha valami hiba történt</strong>
     }
-});</code>
-</p>
+});</code></p>
 <p>
-Nézzük meg mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek észrevehették, hogy hogyan épül fel az ígéret típusa.
-</p>
+Nézzük meg mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek észrevehették, hogy hogyan épül fel az ígéret típusa.</p>
 <p>
-*** UNKNOWN NODE TYPE: INLINE_IMAGE ***
-</p>
+*** UNKNOWN NODE TYPE: INLINE_IMAGE ***</p>
 <ol>
 <li>
 <p>
-Az eleje kötelezően <code>ListenableFuture</code>, ez jelzi, hogy egy ígérettel van dolgunk.
-</p>
-
-</li>
+Az eleje kötelezően <code>ListenableFuture</code>, ez jelzi, hogy egy ígérettel van dolgunk.</p></li>
 <li>
 <p>
-Utána két kacsacsőr között található, hogy mire tesz ígéretet, azaz milyen típusú “gyümölcse lesz a munkának”. Ugyan ez a típus jelenik meg az <code>{1} onSuccess</code> függvény egyetlen paraméterének típusában is.
-</p>
-
-</li>
+Utána két kacsacsőr között található, hogy mire tesz ígéretet, azaz milyen típusú "gyümölcse lesz a munkának". Ugyan ez a típus jelenik meg az <code>{1} onSuccess</code> függvény egyetlen paraméterének típusában is.</p></li>
 </ol>
 <p>
-Remélem senki nem lepődik meg, ha azt állítjuk, hogy az <code>{1} onSuccess</code> függvény paramétere a letöltött üzenetek listája, hiszen ez a “munka gyümölcse”. Már csak egyetlen zavaró tényező van: Mi az a <code>MobileServiceList<Uzenet></code>? Miért nem kapunk egy jól ismert <code>ArrayList<Uzenet></code> listát? 
-</p>
+Remélem senki nem lepődik meg, ha azt állítjuk, hogy az <code>{1} onSuccess</code> függvény paramétere a letöltött üzenetek listája, hiszen ez a "munka gyümölcse". Már csak egyetlen zavaró tényező van: Mi az a <code>MobileServiceList<Uzenet></code>? Miért nem kapunk egy jól ismert <code>ArrayList<Uzenet></code> listát?</p>
 <p>
-Valójában az <code>MobileServiceList</code> is egyfajta <code>ArrayList</code>, csak az Azure fejlesztői kiegészítették kicsit. A mi szempontunkból ugyan olyan a kettő. 
-</p>
+Valójában az <code>MobileServiceList</code> is egyfajta <code>ArrayList</code>, csak az Azure fejlesztői kiegészítették kicsit. A mi szempontunkból ugyan olyan a kettő.</p>
 <ol>
 <li>
 <p>
-Sikeres eredény esetén töröljük az uzenetek lista jelenlegi tartalmát (<code>uzenetek.clear();</code>) 
-</p>
-
-</li>
+Sikeres eredény esetén töröljük az uzenetek lista jelenlegi tartalmát (<code>uzenetek.clear();</code>)</p></li>
 <li>
 <p>
-Utána pedig ögtön hozzá is adhatjuk a letöltött üzenetek összes elemét a saját listánkhoz, így:
-</p>
-
-</li>
+Utána pedig ögtön hozzá is adhatjuk a letöltött üzenetek összes elemét a saját listánkhoz, így:</p></li>
 </ol>
 <p>
-<code>adapter.addAll(result);</code>
-</p>
+<code>adapter.addAll(result);</code></p>
 <p>
-Ezek után ne felejtsük el értesíteni az adaptert a változásról, írjunk valami figyelmeztetést a <code>{2} onFailure</code> függvénybe (ami ugye akkor fut le, ha valami hiba történt) és készen is vagyunk az üzenetek letöltését végző függvényünk megírásával!
-</p>
+Ezek után ne felejtsük el értesíteni az adaptert a változásról, írjunk valami figyelmeztetést a <code>{2} onFailure</code> függvénybe (ami ugye akkor fut le, ha valami hiba történt) és készen is vagyunk az üzenetek letöltését végző függvényünk megírásával!</p>
 <p>
-Reméljük sikerült követni, de ha esetleg mégsem, vagy csak lellenőriznéd a munkádat, kattintás után láthatod egyben a letöltő függvényt.
-</p>
+Reméljük sikerült követni, de ha esetleg mégsem, vagy csak lellenőriznéd a munkádat, kattintás után láthatod egyben a letöltő függvényt.</p>
 <p>
-*** TODO gomb ***
-</p>
+*** TODO gomb ***</p>
 <p>
 <code>private void letolt() {
     ListenableFuture<MobileServiceList<Uzenet>> letoltes =
@@ -374,136 +257,80 @@ Reméljük sikerült követni, de ha esetleg mégsem, vagy csak lellenőriznéd 
             Log.e("MainActivity", "Hiba az üzenetek letöltésekor.", t);
         }
     });
-}</code>
-</p>
-<h3>
-Felesleges részek eltávolítása a programból
-</h3>
+}</code></p>
+<h3>Felesleges részek eltávolítása a programból</h3>
 <p>
-Pár felesleges részt illene eltávolítani a programunkból. Jelenleg a Küldés gombra nyomáskor létrehozunk egy új üzenetet, azt egyrészt elküldjük a szervernek (<code>kozosUzenetek.insert(uzenet);</code> ígéret), másrészt hozzáadjuk a saját helyi listánkhoz is. Ha felidézzük az imént megírt letöltő függvényünket, akkor láthatjuk, hogy ott azt írtuk, hogy amint megérkeznek a szerverről a friss üzenetek, a saját listánkat teljesen kiürítjük (<code>uzenetek.clear();</code>), tehát feleslegesen adjuk hozzá. Töröljük ki azt az utasítást, ami az uzenetek listához adja hozzá az üzenetet (uzenetek.add(uzenet);)
-</p>
+Pár felesleges részt illene eltávolítani a programunkból. Jelenleg a Küldés gombra nyomáskor létrehozunk egy új üzenetet, azt egyrészt elküldjük a szervernek (<code>kozosUzenetek.insert(uzenet);</code> ígéret), másrészt hozzáadjuk a saját helyi listánkhoz is. Ha felidézzük az imént megírt letöltő függvényünket, akkor láthatjuk, hogy ott azt írtuk, hogy amint megérkeznek a szerverről a friss üzenetek, a saját listánkat teljesen kiürítjük (<code>uzenetek.clear();</code>), tehát feleslegesen adjuk hozzá. Töröljük ki azt az utasítást, ami az uzenetek listához adja hozzá az üzenetet (uzenetek.add(uzenet);)</p>
 <p>
-Szintén felesleges az előző lecke elején az <code>onCreate</code>-be írt üdvözlő üzenet hozzáadása is, ugyanis az is ki lesz törölve.
-</p>
-<h3>
-A letöltés elindítása / függvény hívása
-</h3>
+Szintén felesleges az előző lecke elején az <code>onCreate</code>-be írt üdvözlő üzenet hozzáadása is, ugyanis az is ki lesz törölve.</p>
+<h3>A letöltés elindítása / függvény hívása</h3>
 <p>
-A lecke befejezéséhez már csak egy apró, ám annál fontosabb feladat maradt hátra: használjuk is az imént megírt függvényünket!
-</p>
+A lecke befejezéséhez már csak egy apró, ám annál fontosabb feladat maradt hátra: használjuk is az imént megírt függvényünket!</p>
 <p>
-Ehhez annyit kell tennünk, hogy ahol szeretnénk, hogy letöltődjenek az üzenetek, ott meghívjuk a saját letolt() függvényünket. Ilyen hely lehet például az <code>onResume</code> függvény (meg kell írni!), hogy mindig, amikor a felhasználó megpillantja az alkalmazásunkat letöltődjenek a legfrissebb üzenetek. Pl így:
-</p>
+Ehhez annyit kell tennünk, hogy ahol szeretnénk, hogy letöltődjenek az üzenetek, ott meghívjuk a saját letolt() függvényünket. Ilyen hely lehet például az <code>onResume</code> függvény (meg kell írni!), hogy mindig, amikor a felhasználó megpillantja az alkalmazásunkat letöltődjenek a legfrissebb üzenetek. Pl így:</p>
 <p>
 <code>@Override
 protected void onResume() {
     super.onResume();
     letolt();
-}</code>
-</p>
+}</code></p>
 <p>
-De érdemes az üzenet <strong>küldésekor </strong>(feltéve, hogy sikeres volt, tehát az <strong>ottani <code></strong>{1} onSuccess</code> függvény végén) is frissíteni a listát, hogy a felhasználó láthassa a frissen beküldött üzenetét.
-</p>
-<h2>
-Szorgalmi - 
-</h2>
-<h2>
-1* Felhasználóbarátabb üzenetküldés
-</h2>
+De érdemes az üzenet <strong>küldésekor </strong>(feltéve, hogy sikeres volt, tehát az <strong>ottani <code></strong>{1} onSuccess</code> függvény végén) is frissíteni a listát, hogy a felhasználó láthassa a frissen beküldött üzenetét.</p>
+<h2>Szorgalmi - </h2>
+<h2>1* Felhasználóbarátabb üzenetküldés</h2>
 <p>
-Jelenleg az üzenet küldésekor a következők történnek:
-</p>
+Jelenleg az üzenet küldésekor a következők történnek:</p>
 <ol>
 <li>
 <p>
-Elkészítjük az üzenet objektumot
-</p>
-
-</li>
+Elkészítjük az üzenet objektumot</p></li>
 <li>
 <p>
-Odaadjuk az Azure-nak, és kapunk cserébe egy ígéretet, ami majd egyszer később teljesül (vagy hibát jelez)
-</p>
-
-</li>
+Odaadjuk az Azure-nak, és kapunk cserébe egy ígéretet, ami majd egyszer később teljesül (vagy hibát jelez)</p></li>
 <li>
 <p>
-Töröljük az <code>EditText</code> tartalmát.
-</p>
-
-</li>
+Töröljük az <code>EditText</code> tartalmát.</p></li>
 <li>
 <p>
-Teljesül az ígéret
-</p>
-
-</li>
+Teljesül az ígéret</p></li>
 <li>
 <p>
-Sikerült: rezgés
-</p>
-
-</li>
+Sikerült: rezgés</p></li>
 <li>
 <p>
-Hiba történt: Toast
-</p>
-
-</li>
+Hiba történt: Toast</p></li>
 </ol>
 <p>
-Remélhetőleg látható ennek a folyamatnak a hibája: Ha valami probléma adódott az üzenet elküldésével, akkor mielőtt erről tudomást szerzünk egy Toast formájában, már kitöröltük az EditText tartalmát. Vagyis teljesen és visszavonhatatlanul <em>elveszett az üzenet tartalma</em>! Reméljük nem kell mondani, hogy ez milyen rossz fényt vetne az alkalmazásunkra és a programozóra… Javítsuk!
-</p>
+Remélhetőleg látható ennek a folyamatnak a hibája: Ha valami probléma adódott az üzenet elküldésével, akkor mielőtt erről tudomást szerzünk egy Toast formájában, már kitöröltük az EditText tartalmát. Vagyis teljesen és visszavonhatatlanul <em>elveszett az üzenet tartalma</em>! Reméljük nem kell mondani, hogy ez milyen rossz fényt vetne az alkalmazásunkra és a programozóra… Javítsuk!</p>
 <p>
-Több megoldás lehet a problémára, nézzük a legegyszerűbbet.
-</p>
+Több megoldás lehet a problémára, nézzük a legegyszerűbbet.</p>
 <ol>
 <li>
 <p>
-Az egész küldő függvény legelején tiltsuk le a küldés gombot (<code>setEnabled(false)</code> belső függvénye). Ez azért kell, hogy amíg meg nem bizonyosodtunk az üzenetküldés eredményéről, nem próbálja újraküldeni a felhasználó az üzenetet. (Lehet, hogy csak lassú a net, de ha a türelmetlen felhasználó többször megnyomja a gombot, akkor ugyan lassan, de több példányban lesz elküldve az üzenet.)
-</p>
-
-</li>
+Az egész küldő függvény legelején tiltsuk le a küldés gombot (<code>setEnabled(false)</code> belső függvénye). Ez azért kell, hogy amíg meg nem bizonyosodtunk az üzenetküldés eredményéről, nem próbálja újraküldeni a felhasználó az üzenetet. (Lehet, hogy csak lassú a net, de ha a türelmetlen felhasználó többször megnyomja a gombot, akkor ugyan lassan, de több példányban lesz elküldve az üzenet.)</p></li>
 <li>
 <p>
-Hozzuk létre az üzenetet, adjuk oda az Azure-nak, és írjuk meg az ígéret beváltásához szükséges kód vázát, pont, mint eddig.
-</p>
-
-</li>
+Hozzuk létre az üzenetet, adjuk oda az Azure-nak, és írjuk meg az ígéret beváltásához szükséges kód vázát, pont, mint eddig.</p></li>
 <li>
 <p>
-Töltsük ki a két függvényt:
-</p>
-
-</li>
+Töltsük ki a két függvényt:</p></li>
 <li>
 <p>
-Az <code>{1}</code>-esben (azaz siker esetén) továbbra is jelezhetjük egy rövid rezgéssel a sikert, viszont fontos, hogy itt töröljük ki az EditText tartalmát, és <em>ne felejtsük el újra engedélyezni</em> a gombot (<code>setEnabled(true)</code>)!
-</p>
-
-</li>
+Az <code>{1}</code>-esben (azaz siker esetén) továbbra is jelezhetjük egy rövid rezgéssel a sikert, viszont fontos, hogy itt töröljük ki az EditText tartalmát, és <em>ne felejtsük el újra engedélyezni</em> a gombot (<code>setEnabled(true)</code>)!</p></li>
 <li>
 <p>
-a <code>{2}</code>-esben (azaz hiba esetén) lehet mondjuk egy hosszabbat rezegni, Toast-ot megjeleníteni, viszont ami fontos, hogy itt ne töröljük ki az EditText tartalmát, viszont itt is engedélyezzük a gombot! 
-</p>
-
-</li>
+a <code>{2}</code>-esben (azaz hiba esetén) lehet mondjuk egy hosszabbat rezegni, Toast-ot megjeleníteni, viszont ami fontos, hogy itt ne töröljük ki az EditText tartalmát, viszont itt is engedélyezzük a gombot!</p></li>
 </ol>
 <p>
-Ez azért jó, mert így biztosan nem veszik el az elküldeni kívánt üzenet. Ha hiba történik (például nincs bekapcsolva a WiFi) van lehetősége korrigálni a felhasználónak (pl. bekapcsolni a WiFi-t) és újra megpróbálkozni a küldéssel, anélkül, hogy újra be kéne gépelnie az üzenetét.
-</p>
+Ez azért jó, mert így biztosan nem veszik el az elküldeni kívánt üzenet. Ha hiba történik (például nincs bekapcsolva a WiFi) van lehetősége korrigálni a felhasználónak (pl. bekapcsolni a WiFi-t) és újra megpróbálkozni a küldéssel, anélkül, hogy újra be kéne gépelnie az üzenetét.</p>
 <p>
-***TODO: empty layout szorgalmi
-</p>
+***TODO: empty layout szorgalmi</p>
 <p>
-Refresh with a timer?
-</p>
+Refresh with a timer?</p>
 <p>
-Load older messages (skip) when pressing “next 15” button
-</p>
+Load older messages (skip) when pressing "next 15" button</p>
 <p>
-Load next 15 message when the end of the list is reached (fb style)***
-</p>
+Load next 15 message when the end of the list is reached (fb style)***</p>
 
 
 
