@@ -126,7 +126,11 @@
 
     <p>
         Nem lelőve a poént a pontos viselkedésről annyit megsúghatunk, hogy se a programunk, se az
-        Android rendszer nem nézi jó szemmel ezt a tíz másodperces akadást! De várjunk csak! Hiszen
+        Android rendszer nem nézi jó szemmel ezt a tíz másodperces akadást!</p>
+
+	<img src="/static/img/l14/track1.png" class="center-block" />
+	<p>
+		De várjunk csak! Hiszen
         ebben a függvényben küldjük el az üzenetünket, ami természetesen hálózati kommunikációval
         jár! Miért nem akadozik a <code>kozosUzenetek.insert(uzenet);</code> parancs?</p>
 
@@ -136,6 +140,8 @@
         ígéretet tesz nekünk, hogy megpróbálja elküldeni az üzenetünket, és tovább engedi a program
         futását még mielőtt végezne. Az üzenet küldése ilyenkor egy másik program szálon a háttérben
         történik.</p>
+		
+	<img src="/static/img/l14/track2.png" class="center-block" />
 
     <p>
         És mindez úgy működött az előző leckében, hogy nem is tudtunk róla. Igen ám, de ha a
@@ -184,6 +190,7 @@
                 <strong>Hiba (onFailure)</strong>: valahol valami <em>hiba</em> miatt nem sikerül a
                 megígért művelet.</p></li>
     </ol>
+	<img src="/static/img/l14/track3.png" class="center-block" />
     <p>
         Most mentsük el ezt az ígéretet, hogy később számon kérhessük. Ehhez kell egy változó a
         küldés gomb lenyomását kezelő függvénybe, aminek a típusa <code>ListenableFuture&lt;Uzenet&gt;</code>.
@@ -377,8 +384,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         Nézzük meg mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek
         észrevehették, hogy hogyan épül fel az ígéret típusa.</p>
 
-    <p>
-        *** UNKNOWN NODE TYPE: INLINE_IMAGE ***</p>
+    <img src="/static/img/l14/promise3.png" class="center-block" />
     <ol>
         <li>
             <p>
