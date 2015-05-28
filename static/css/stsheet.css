@@ -169,6 +169,21 @@ li {
     margin-bottom: 10px;
 }
 
+/* Button */
+/* ############################################################################################### */
+button {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  color: #ffffff;
+  padding: 10px;
+  background: #39a4c6;
+}
+
+button:hover {
+  background: #2e839e;
+}
+
 /* Comparison table, eg. component vs. sensor */
 /* ############################################################################################### */
 table.comparison {
