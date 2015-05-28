@@ -171,7 +171,7 @@ li {
 
 /* Button */
 /* ############################################################################################### */
-input[type="button" i], input[type="submit" i], button {
+button {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
@@ -180,7 +180,7 @@ input[type="button" i], input[type="submit" i], button {
   background: #39a4c6;
 }
 
-input[type=submit]:hover, button:hover {
+button:hover {
   background: #2e839e;
 }
 
