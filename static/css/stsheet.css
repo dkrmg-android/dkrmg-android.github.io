@@ -171,7 +171,7 @@ li {
 
 /* Button */
 /* ############################################################################################### */
-input[type=submit], button {
+input[type="button" i], input[type="submit" i], button {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
