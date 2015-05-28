@@ -1,7 +1,10 @@
 @import url("prism.css");
-body {
 
-	
+html {
+	min-height: 100%
+}
+body {
+	min-height: 100%;
 	background: #a4c639;
 	background-image: -webkit-linear-gradient(-90deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png"); /* Chrome 10+, Saf5.1+ */
 	background-image: -moz-linear-gradient(180deg, rgba(218,242,171,0.75) 0, rgba(164,198,57,0.8) 100%), url("/static/img/bck.png");
