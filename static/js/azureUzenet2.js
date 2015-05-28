@@ -27,12 +27,15 @@ var uzenetClient = {
      * @param displayCallback Callback to process the fetched records.
      * @param errorHandler Optional error handler.
      */
-    fetchMessages: function (takeValue, displayCallback, errorHandler) {
+    fetchMessages: function (takeValue, skipValue, displayCallback, errorHandler) {
         errorHandler = (typeof errorHandler === "function")
             ? errorHandler
             : this._handleError;
 
         var query = this.uzenetTable.orderByDescending("__createdAt");
+		if (skipValue) {
+			query.skip(skipValue);
+		}
         if (takeValue) {
             query.take(takeValue);
         }
@@ -54,6 +57,21 @@ var uzenetClient = {
 /**
  * Various helper methods used on the site.
  */
+ 
+var skipNumber = 0;
+const listLen = 10;
+
+function nextPage() {
+	skipNumber += listLen;
+	uzenetClient.fetchMessages(listLen, skipNumber, displayMessages);
+}
+
+function prevPage() {
+	skipNumber = Math.max(0, skipNumber - listLen);
+	uzenetClient.fetchMessages(listLen, skipNumber, displayMessages);
+}
+		
+		
 
 /**
  * Variables to hold the necessary DOM elments.
@@ -99,17 +117,29 @@ function displayMessages(messages) {
         $emptyMessage.hide();
         var containers = $.map(messages, inflateMessage);
         $messageList.append(containers);
-        animateSequentially($messageList.children().eq(0), 'show', ['fast']);
-        $('#summary').html('<strong>' + messages.length + '</strong> üzenet');
+        animateSequentially($messageList.children().eq(0), 'show', [1000]);
+        $('#summary').html('Üzenetek: ' + (skipNumber + 1) + ' - ' + (skipNumber + 1 + messages.length));
+		
+		if (skipNumber > 0) {
+			$('#prev-page').show();
+		} else {
+			$('#prev-page').hide();
+		}
     } else {
         $messageList.hide();
         $messageList.empty();
         $emptyMessage.show();
     }
+	
+	if (messages.length == listLen) {
+		$('#next-page').show();
+	} else {
+		$('#next-page').hide();
+	}
 }
 
 /**
- * Sequentially calls the named function on all the siblings og the firstElem.
+ * Sequentially calls the named function on all the siblings of the firstElem.
  *
  * @param firstElem The DOM element to start the animation with.
  * @param funcName A jQuery animation method that accepts a completion callback.
