@@ -107,11 +107,11 @@
 
     <p>
         Utolsó próbatételként írjuk be az alábbi sorokat az üzenőfal programunkhoz, a küldés gomb
-        kezelő függvényébe:</p>
+        lenyomását kezelő függvényének elejére:</p>
 
 
         <pre><code>try {
-    Thread.sleep(10000); // aludjunk most itt 10 másodpercet
+    Thread.sleep(30000); // aludjunk most itt 30 másodpercet
 } catch (InterruptedException e) {
 }</code></pre>
 
@@ -361,22 +361,17 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         A letöltés ígéretének beváltása nagyon fog hasonlítani az üzenetküldés ígéretének
         beváltásához:</p>
 
-    <pre><code>Futures.addCallback(letoltes, new FutureCallback
-            &lt;MobileServiceList
-            &lt;Uzenet&gt;&gt;() {
-            @Override
-            public void onSuccess(MobileServiceList
-            &lt;Uzenet&gt; result) {
-            <strong>// {1} ez fut, ha sikerült elvégezni a munkát (letölteni az
-                üzeneteket)</strong>
-            }
+    <pre><code>Futures.addCallback(letoltes, new FutureCallback&lt;MobileServiceList&lt;Uzenet&gt;&gt;() {
+	@Override
+	public void onSuccess(MobileServiceList&lt;Uzenet&gt; result) {
+		<strong>// {1} ez fut, ha sikerült elvégezni a munkát (letölteni az üzeneteket)</strong>
+	}
 
-            @Override
-            public void onFailure(Throwable t) {
-            <strong>// {2} Ez fut, ha valami hiba történt</strong>
-            }
-            });
-        </code></pre>
+	@Override
+	public void onFailure(Throwable t) {
+		<strong>// {2} Ez fut, ha valami hiba történt</strong>
+	}
+});</code></pre>
 
     <p>
         Nézzük meg mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek
@@ -428,7 +423,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         <button data-target="help_letolt_2" class="help-link">Katt&hellip;</button>
             </p>
         <div class="help-container" id="help_letolt_2">
-            <pre><code>private void letolt() {
+            <pre><code>public void letolt() {
     ListenableFuture&lt;MobileServiceList&lt;Uzenet&gt;&gt; letoltes =
             kozosUzenetek
                 .orderBy("__createdAt", QueryOrder.Descending)
@@ -536,6 +531,7 @@ protected void onResume() {
     <ol>
         <li>
             <p>
+			*** TODO: Button needs to be either declared final, or we need to use findViewById every time ***
                 Az egész küldő függvény legelején tiltsuk le a küldés gombot (<code>setEnabled(false)</code>
                 belső függvénye). Ez azért kell, hogy amíg meg nem bizonyosodtunk az üzenetküldés
                 eredményéről, nem próbálja újraküldeni a felhasználó az üzenetet. (Lehet, hogy csak
