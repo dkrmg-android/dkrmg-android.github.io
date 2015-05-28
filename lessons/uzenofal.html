@@ -36,6 +36,11 @@
         <p>Nincs elérhető üzenet.</p>
     </div>
     <div id='uzenet-items'></div>
+	
+	<div>
+		<button  id='prev-page' onclick="prevPage();" style="display: none">Újabbak</button>
+		<button id='next-page' onclick="nextPage();" style="float: right; display: none">Régebbiek</button>
+	</div>
 
     <div id="message_template_container" style="display: none;">
         <div class="message" data-message-id="076F6538-3743-4713-B5FC-80E21CC21245">
@@ -50,6 +55,8 @@
     </div>
 
     <script type="application/javascript">
+
+	
         $(function () {
             $messageTemplate = $('#message_template_container').children().eq(0);
             $messageList = $('#uzenet-items');
@@ -61,7 +68,7 @@
                     'kZkkgmDCeseSiEjjJrwRgKKFKNjPAq13'
             );
 
-            uzenetClient.fetchMessages(10, displayMessages);
+            uzenetClient.fetchMessages(listLen, skipNumber, displayMessages);
         });
     </script>
 	
