@@ -116,12 +116,9 @@ img.featherlight-image.featherlight-inner
 
 code {
     box-sizing: border-box;
-    padding: 2px 5px;
     white-space: pre-wrap;
-
-    background-color: #eee;
-    color: black;
 }
+
 
 span.todo {
     font-style: italic;
