@@ -492,9 +492,11 @@ protected void onResume() {
     <p>A program elméletileg most már teljesen működőképes. Ellenőrizd, majd az elkészült projektet
         küldd el nekünk a <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalon keresztül!</p>
 
-    <h1>Szorgalmi feladatok</h1>
+</div>
+<div class="container szorgalmi">
+    <h2 class="szorgalmi">Szorgalmi feladatok</h2>
 
-    <h2>1* Felhasználóbarátabb üzenetküldés</h2>
+    <h3 class="task">1* Felhasználóbarátabb üzenetküldés</h3>
 
     <p>
         Jelenleg az üzenet küldésekor a következők történnek:</p>
@@ -531,7 +533,6 @@ protected void onResume() {
     <ol>
         <li>
             <p>
-			*** TODO: Button needs to be either declared final, or we need to use findViewById every time ***
                 Az egész küldő függvény legelején tiltsuk le a küldés gombot (<code>setEnabled(false)</code>
                 belső függvénye). Ez azért kell, hogy amíg meg nem bizonyosodtunk az üzenetküldés
                 eredményéről, nem próbálja újraküldeni a felhasználó az üzenetet. (Lehet, hogy csak

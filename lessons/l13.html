@@ -541,9 +541,12 @@ kozosUzenetek.insert(uzenet);
         <img src="/static/img/l13/test1.png" class="center-block" />
         <img src="/static/img/l13/test2.png" class="center-block" />
     </div>
-
+	</div>
+	
+	<div class="container szorgalmi">
+	<h2 class="szorgalmi">Szorgalmi feladatok</h2>
     <section id="extra_no_empty_messages">
-        <h2>Szorgalmi &ndash; üres üzenetet ne küldjünk el!</h2>
+        <h3 class="task">1*. Üres üzenetet ne küldjünk el!</h3>
         <p>Jelenleg a Küldés gomb megnyomására az EditText teljes tartalmát, ellenőrzés nélkül
             elküldjük a szerverre. Akkor is, ha az üres, ez pedig nem szép dolog. Javítsd!</p>
         <p><em>Használhatod a String típus length() belső függvényét, ez a string hosszát adja meg. Vagy
@@ -574,7 +577,7 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
     </section>
 
     <section id="extra_date_formatting">
-        <h2>Szorgalmi &ndash; Dátum formázása</h2>
+        <h3 class="task">2*. Dátum formázása</h3>
         <p>Ha eddig mindent jól csináltál, akkor azt tapasztalhatod, hogy még a legrövidebb üzenet
             is általában két sort foglala el, mert egy igencsak hosszú, csúnya szöveg van kiírva
             a dátum helyére. Nézzük meg hogy lehet ezen csinosítani!</p>
@@ -598,8 +601,8 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
     </section>
 
     <section id="extra_compound_layout">
-        <h2>Szorgalmi &ndash; Ismerkedés a különböző layout-gyökérelemekkel</h2>
-        <h3>RelativeLayout?</h3>
+        <h3 class="task">3*. Ismerkedés a különböző layout-gyökérelemekkel</h3>
+        <h4>RelativeLayout?</h4>
 
         <p>
             Android platformon a layout komponensek elrendezésnek több módja is létezik. Mi eddig
@@ -623,7 +626,7 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
             csinálják? Erre két módszer kínálkozik, mi a (talán) egyszerűbbet fogjuk most
             kipróbálni: az <em>összetett layout</em>-ot.</p>
 
-        <h3>LinearLayout!</h3>
+        <h4>LinearLayout!</h4>
 
         <p>
             Ehhez ismerkedjünk meg egy másik gyökérelemként használható komponenssel, a
@@ -640,7 +643,7 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
             <img src="/static/img/l13/linlay_vertical.png" class="center-block" />
         </div>
 
-        <h3>Layoutban layout?</h3>
+        <h4>Layoutban layout?</h4>
 
         <p>
             Jogos a kérdés, hogy ha egyszerre csak az egyik irányban rakhatjuk egymás után a
@@ -654,7 +657,7 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
 
         <img src="/static/img/l13/compound.png" class="center-block" />
 
-        <h3>Méretezés</h3>
+        <h4>Méretezés</h4>
 
         <p>
             Már csak egy dolog maradt hátra: mi mekkora legyen. Ránézésre azt mondanánk, hogy a

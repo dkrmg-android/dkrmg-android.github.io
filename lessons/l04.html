@@ -377,10 +377,13 @@ protected void onResume() {
         <p>A fenti kérdésekre a válaszokat küldd el nekünk emailben
             (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
     </section>
-        <section id="szorgalmi">
-        <h2>Szorgalmi feladat</h2>
+	</div>
+	
+    <div class="container szorgalmi">
+	
+        <h2 class="szorgalmi">Szorgalmi feladatok</h2>
     <section id="logging">
-        <h3>Log, avagy naplózás</h3>
+        <h3 class="task">1*. Log, avagy naplózás</h3>
         <p>A fentiek alapján nagyjából rá lehet érezni, hogy mikor melyik életciklus-függvény fut le,
             de azért ez egy kicsit bizonytalan. Jó lenne pontosan látni, hogy melyik, mikor és
             milyen sorrendben fut le, nem? A rezgés elindulása és megállítása sok mindent elárult nekünk,
@@ -395,11 +398,11 @@ protected void onResume() {
             a második pedig maga az üzenet (<code>"...ide jöhet egy tetszőleges szöveg, ami meg fog jelenni..."</code>).</p>
         <p>Próbáljuk is ki!</p>
 
-        <h3>4. feladat: Jelenlegi működés logolása, naplózása</h3>
+        <h3 class="task">2*. feladat: Jelenlegi működés logolása, naplózása</h3>
         <p><em>A már meglévő életciklus-függvényekbe helyezzünk el egy-egy logoló utasítást,
             és ellenőrizzük, hogy mikor futnak!</em></p>
 
-        <h4>4.1 feladat</h4>
+        <h4 class="task">2*.1 feladat</h4>
         <ol>
             <li>Keressük meg az onCreate függvényünk záró kapcsos zárójelét, és elé szúrjunk be egy új sort
                 <span class="todo">TODO 4.1</span>.</li>
@@ -410,7 +413,7 @@ protected void onResume() {
         </ol>
         <p>Elvileg most már szépen naplózza az alkalmazásunk a saját működését.
             De hol tudjuk mi ezt a naplót megnézni?</p>
-        <h4>4.2 feladat</h4>
+        <h4 class="task">2*.2 feladat</h4>
         <ol>
             <li>Ha még nem tettük volna meg, futtassuk az alkalmazásunkat!</li>
             <li>Figyeljük meg, hogy miután elindult a telefonon az app, az Android Studio
@@ -432,7 +435,7 @@ protected void onResume() {
         <p>A Logcat ablak emlékszik a korábbi futtatásokra is, ezeket az üzeneteket futtatás előtt érdemes az üzenetek mellett oldalt található kis kuka gombbal törölni.</p>
 
 
-        <h4 >4.3 onDestroy naplózása</h4>
+        <h4 class="task">2*.3 onDestroy naplózása</h4>
 
         <p>A MainActivity fájlban már létezik néhány életciklus függvény:
             <code>onCreate</code>, <code>onResume</code>, <code>onPause</code>.
@@ -462,7 +465,7 @@ protected void onResume() {
                 válaszokat/változtatásokat egy screenshottal együtt emailben (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)</li>
         </ol>
     </section>
-        <h3>Morzekód Program</h3>
+        <h3 class="task">3*. Morzekód Program</h3>
         <p><em>Ezen a héten a szorgalmi feladat során egy rezgő Morze készüléket készíthettek a telefonotokból.</em></p>
         <p>A Morzekódban a betűket rövid és hosszú jelekké alakítjuk. Ha nem hallottál még a Morzekódról, akkor érdemes elolvasni a <a href=http://hu.wikipedia.org/wiki/Morzek%C3%B3d target="_blank"> Wikipédia cikket</a>. </p>
         <p>A feladat: EditText mezőbe beírt szöveget gombnyomásra Morze jellé alakítunk, majd lejátsszuk 
@@ -500,7 +503,6 @@ rezgoMotor.vibrate(minta,-1);                // -1 jelzi, hogy ne ismételjük a
             A <code>MorseCode</code> osztály kódját megtalálod a MainActivity.java mellett. Nyisd meg a fájlt, tanulmányozd egy kicsit, 
             majd próbáld elmagyarázni, hogy miként is működik a MorseCode osztály.
         </p>
-    </section>
     </div>
     <footer data-include="/include/footer.html"></footer>
 
