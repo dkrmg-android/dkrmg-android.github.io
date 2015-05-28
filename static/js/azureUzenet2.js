@@ -117,7 +117,7 @@ function displayMessages(messages) {
         $emptyMessage.hide();
         var containers = $.map(messages, inflateMessage);
         $messageList.append(containers);
-        animateSequentially($messageList.children().eq(0), 'show', [1000]);
+        animateSequentially($messageList.children().eq(0), 'show', [115]);
         $('#summary').html('Üzenetek: ' + (skipNumber + 1) + ' - ' + (skipNumber + 1 + messages.length));
 		
 		if (skipNumber > 0) {
