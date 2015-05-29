@@ -581,7 +581,7 @@ protected void onResume() {
     <ol>
         <li>Először is helyezzünk el egy új gombot a layout szerkesztőben.
             Ne feledkezzünk el az <code>id</code> tulajdonságáról!</li>
-        <li>HOzzunk létre egy új kattintást kezelő függvényt, majd rendeljük hozzá az új gombhoz</li>
+        <li>Hozzunk létre egy új kattintást kezelő függvényt, majd rendeljük hozzá az új gombhoz</li>
         <li>A kattintást kezelő függvény egyszerűen hívja meg a <code>letoltes()</code> függvényünket.</li>
     </ol>
     <p>Gomb helyett használhatunk egy felugró menüt is. Ehhez segítséget <a href="/lessons/l08.html#starred_about_menu" target="_blank">itt</a> találtok.</p>
@@ -616,7 +616,7 @@ protected void onResume() {
             a megoldás igen naiv, hiszen pár másodpercenként frissíti a teljes lista tartalmát!</p>
         <p>A probléma ennél a feladatnál is ugyanaz, mint korábban: a <code>letolt();</code> függvényünket szeretnénk meghívni adott időközönként,
             ez azonban csak a programunk fő száláról történhet meg. A program fő szálát pedig nem tarthatjuk fel sokáig (emlékszel még a lecke elején a
-        <code>Sleep(30000)</code> eredményére?). Ezért az Android rendszerben a következő megoldás vált elfogadottá:</p>
+        <code>Thread.sleep(30000)</code> eredményére?). Ezért az Android rendszerben a következő megoldás vált elfogadottá:</p>
         <p><strong>Létre hozunk egy futtatható objektumot, ami a főszálon fut le, majd dolga végeztével megkéri a rendszert, hogy futtassa őt újra
         adott idő elteltével.</strong></p>
       <img src="/static/img/l14/postDelay.png" class="center-block" />
@@ -627,7 +627,7 @@ protected void onResume() {
                 <code>android.os.Handler handler;</code></li>
             <li><p>Adjunk értéket az új változónak az <code>onCreate</code> függvény végén.</p>
                 <code>handler = new android.os.Handler();</code></li>
-            <li><p>Most hozzunk létre még egy változót, ami ezúttal magát a futásra váró függvényt csomadolja be.</p>
+            <li><p>Most hozzunk létre még egy változót, ami ezúttal magát a futásra váró függvényt csomagolja be.</p>
                 <code>Runnable refreshTask;</code></li>
             <li><p>Amikor értéket adunk ennek a változónak, rögtön megadhatjuk azt a függvényt is, amit le szeretnénk majd futtatni
                 adott időközönként. A változónk <code>run</code> belső kis függvénye az, ami az objektum futtatásánál elindul.</p>
@@ -641,12 +641,12 @@ protected void onResume() {
     }
 };</code></pre></li>
             <li><p>Remélhetőleg eddig követhető volt: most már van egy <code>Handler</code> változónk, aki segít
-                futtatni a függvényünket, illetve egy <code>Runnable refreshTask;</code>, ami gyakorlatilag a frssítés
+                futtatni a függvényünket, illetve egy <code>Runnable refreshTask;</code>, ami gyakorlatilag a frissítés
                 függvényt csomagolja be. Ha egyszer elindítjuk ezt a frissítés függvényt, akkor őt onnantól kézbe veszi az
                 irányítást, és gondoskodik róla, hogy három másodpercenként újra lefusson
-                (<code>handler.postDelayed(refreshTask, 3000);)</code></p>
+                (<code>handler.postDelayed(refreshTask, 3000);</code>).</p>
                 <p>Tehát nincs más dolgunk, mint gondoskodni az első futásról. Például indíthatjuk a függvényt rögtön
-                    az <code>onResume</code> végén</p>:
+                    az <code>onResume</code> végén:</p>
                     <code>handler.post(refreshTask);</code></li>
             <li><p>Érdemes még arról is gondoskodni, hogy a program leállításakor ez az ismétlődő <code>refreshTask</code> is
                 legyen szíves megpihenni. Ehhez az <code>onPause</code> függvény végére kell odabiggyesztenünk az alábbi kódot:</p>
@@ -657,7 +657,7 @@ protected void onResume() {
 
     <h3 class="task">N*. ???</h3>
     <p>Van még ötleted? Nem kell itt megállnod. A program rengeteg irányba fejleszthető! Például a lekérés kódja lehetne kicsit okosabb  úgy, hogy csak bizonyos dátum
-        utána üzenetek iránt érdeklődjön, így elkerülve az üzenetek folyamatos újratöltését! De a lehetőségek tárháza végtelen.
+        utáni üzenetek iránt érdeklődjön, így elkerülve az üzenetek folyamatos újratöltését! De a lehetőségek tárháza végtelen.
         A <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalra bármilyen plusz munkát feltölthetsz. Illetve ha kérdésed támad az ötleteddel kapcsolatban,
     írd meg bátran, hátha tuduk segíteni!</p>
 </div>
