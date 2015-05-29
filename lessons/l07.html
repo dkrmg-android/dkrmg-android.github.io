@@ -485,10 +485,12 @@ golyoKep.setY(0); // fuggoleges
             <p>Ha végeztél és minden működik, töltsd fel a projektedet tömörített (pl zip) 
                 formátumban a <a href="http://goo.gl/UMyfuL" target="_blank">szakkör feltöltő oldalán</a> keresztül!</p>
         </section>
-
-        <h2>Szorgalmi feladatok</h2>
+	</div>
+	
+    <div class="container szorgalmi">
+        <h2 class="szorgalmi">Szorgalmi feladatok</h2>
         <section id="starred1">
-            <h3 class="task">1* Ütközés a képernyő szélén</h3>
+            <h3 class="task">1*. Ütközés a képernyő szélén</h3>
             <p>Bizonyára észrevetted, hogy amikor a golyó eléri a képernyő szélét, akkor egyszerűen tovább gurul. 
                 Mi persze azt szeretnénk, hogy a golyó soha ne kerüljön le a képernyőről. 
                 Ehhez nem kell mást tennünk, mint hogy elvégzünk néhány ellenőrzést az ujX és az ujY változóinkon, 
@@ -530,7 +532,7 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
         </section>
 
         <section id="starred2">
-            <h3 class="task">2* Karácsonyi kép</h3>
+            <h3 class="task">2*. Karácsonyi kép</h3>
 
             <p>Közeledik a karácsony (a leckék írásakor legalábbis december eleje van már). Cseréld le a golyót valami karácsonyi hangulatúra!</p>
             <p>Ehhez:</p>
@@ -543,7 +545,7 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
         </section>
         
         <section id="starred3">
-            <h3 class="task">3* Rezgés, amikor a golyó a képernyő falának ütközik</h3>
+            <h3 class="task">3*. Rezgés, amikor a golyó a képernyő falának ütközik</h3>
             <em>Szükséges az első szorgalmi elvégzése</em>
             Használjuk a negyedik leckében tanultakat, és változtassuk a jelenlegi programunkat úgy, hogy amikor nekiütközik egy falnak, akkor a telefon elindít egy rövid rezgést (pl. <code>100</code>ms)
             Ehhez az alábbiakat kell tenned:
@@ -574,7 +576,7 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
         </section>
 
         <section id="starred4">
-            <h3 class="task">4* A fizika törvényei</h3>
+            <h3 class="task">4*. A fizika törvényei</h3>
             <p>Számos fizikatanár kapna szívrohamot, ha meglátná azt a módszert, amivel a golyót egészen idáig mozgattuk. 
                 A helyes képlet természetesen azt mondja ki, hogy az elmozdulás (megtett út) egyenlő a sebesség és az eltelt idő szorzatával. 
                 A sebesség pedig egyenlő a gyorsulás és az eltelt idő szorzatával.</p>
@@ -606,13 +608,13 @@ if (ujX > root.getWidth() - golyoKep.getWidth())
         </section>
         
         <section id="starred5">
-            <h3 class="task">5* Egy kis tehetetlenség</h3>
+            <h3 class="task">5*. Egy kis tehetetlenség</h3>
             <p>Főként a fizikát kedvelőknek javasoljuk, hogy vizsgálják meg, mi történik, ha az álló telefont hirtelen megmozdítjuk. Hogyan reagál a golyó? Mi a helyzet akkor, 
                 ha az egyenletesen mozgó telefont hirtelen megállítjuk? Mit csinál ilyenkor a golyó? Milyen magyarázatot tudsz adni minderre?</p>
         </section>
 
         <section id="starred6">
-            <h3 class="task">6* Pattogás</h3>
+            <h3 class="task">6*. Pattogás</h3>
             <p>Jelenleg a golyó, amikor eléri a képernyő szélét, egyszerűen megáll. Bizonyára azonban a való életben tapasztalhattátok, 
                 hogy a falnak lökött golyók és labdák egyáltalán nem így viselkednek! Az elmozdíthatatlan fal és a kemény fémgolyó ütközésekor a golyónak legalább egy kicsit vissza kéne pattannia!</p>
             <p>Az ütközésre vonatkozó szabályok szerencsére elég egyszerűek (bár fizikailag ezek sem tökéletesek, de egy Android programnál már így is nagyon jól néznek ki</p>

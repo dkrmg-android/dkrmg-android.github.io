@@ -393,15 +393,15 @@ gondoltSzo = szolista.get(gondoltSzam);
                 bele. Szívesen átnézzük, javítjuk ha szükséges, illetve természetesen ha bármi kérdés
                 felmerül közben, írjatok (<a href="mailto:dkrmg.android@gmail.com">dkrmg.android@gmail.com</a>)!</p>
         </section>
-
-        <section id="extra">
-            <h1>Ötletek - szorgalmik</h1>
+	</div>
+	
+	<div class="container szorgalmi">       
+            <h2 class="szorgalmi">Ötletek - szorgalmik</h2>
             <em>A feladatok többnyire függetlenek egymástól,
                 de van melyik épít egy másikra, de ez egyértelmű lesz. A feladatok sorrendje igyekszik
                 a nehézségüket követni, ezért érdemes lehet sorban haladni velük, de nem kötelező.</em>
-        </section>
 
-        <h2>0. Ismétlődő kérdések megszüntetése, beírt szó előfeldolgozása</h2>
+        <h3 class="task">0. Ismétlődő kérdések megszüntetése, beírt szó előfeldolgozása</h3>
         <p>
             Egy bemelegítő feladat, azt kéne megoldani, hogy egy "játék" alatt ne kérdezze meg
             kétszer ugyan azt a szót. Ehhez használd az <code>ArrayList</code> <code>remove()</code> függvényét!</p>
@@ -415,7 +415,7 @@ gondoltSzo = szolista.get(gondoltSzam);
             <code>tipp = tipp.trim();</code><br/>
             Az igényesebbek megcsinálhatják ugyan ezt a SzavakActivityben, új szó hozzáadásakor is.</p>
 
-        <h2>1. Számláló, statisztika</h2>
+        <h3 class="task">1. Számláló, statisztika</h3>
         <p>
             Sokkal informatívabb lenne a program, ha kikérdezés közben folyamatosan visszajelzést
             adna a teljesítményről. Például számolhatnánk a helyes válaszok számát, majd kiírhatnánk
@@ -434,7 +434,7 @@ gondoltSzo = szolista.get(gondoltSzam);
             kapva végül. Pl. <code>100 * 8 / 10 = 80</code> (%). Elegánsabb megoldás ennél,
             ha valamelyik számot <code>float</code> típusúvá alakítod.</p>
 
-        <h2>2. Highscores</h2>
+        <h3 class="task">2. Highscores</h3>
         <p>
             Jó motiváció lenne, ha elmentenénk a felhasználó rekordját (hány kérdésből mennyit
             tudott, százalékosan), és miközben válaszolgat a szavakra, folyamatosan látná, hogy
@@ -443,7 +443,7 @@ gondoltSzo = szolista.get(gondoltSzam);
             Erre használhatnánk egy külön fájlt a már ismert módon, de rövidebb adatok tárolására
             az Android rendszer nyújt egy sokkal jobb lehetőséget is: <strong>SharedPreferences</strong>-t
             (így tárolódik pl. az is, hogy mi a háttérképed, rezegjen vagy ne a telefon, stb.).</p>
-        <h3>Szám mentése</h3>
+        <h4>Szám mentése</h4>
         <ol>
             <li>
                 <p>
@@ -465,7 +465,7 @@ gondoltSzo = szolista.get(gondoltSzam);
                     Végül be kell fejezni a szerkesztést: <code>editor.commit();</code></p>
             </li>
         </ol>
-        <h3>Az olvasás&hellip;</h3>
+        <h4>Az olvasás&hellip;</h4>
         <p>
             &hellip; kicsit egyszerűbb, ahhoz nem kell külön "olvasó" objektum:</p>
         <ol>
@@ -486,7 +486,7 @@ gondoltSzo = szolista.get(gondoltSzam);
             Törtszámot és szöveget is lehet benne tárolni, akkor a <code>getInt</code> és 
             <code>putInt</code> függvények helyett a <code>getFloat</code>/<code>putFloat</code>,
             Stringek esetén pedig a <code>getString</code>/<code>putString</code> használható.</p>
-        <h3>Törlés</h3>
+        <h4>Törlés</h4>
         <p>
             Ha minden statisztikát törölni szeretnél, akkor (pl. menünyomás hatására) azt így
             tudod:</p>
@@ -495,7 +495,7 @@ SharedPreferences.Editor editor = prefs.edit();
 editor.clear();
 editor.commit();</code></pre>
 
-        <h2>3. Rontott szavak kiírása a végén</h2>
+        <h3 class="task">3. Rontott szavak kiírása a végén</h3>
         <p>
             Nagyban elősegítené a tanulást, ha a kikérdezés végén megjelennének az elrontott
             szavak.</p>
@@ -520,7 +520,7 @@ editor.commit();</code></pre>
                 L08</a>) a rontott szavakat gyűjtő listánkkal és be kell állítani a <code>ListView</code>nak
             (<code>setAdapter</code>(...) belső függvény).</p>
 
-        <h2>4. Szó találati arányának mentése fájlba</h2>
+        <h3 class="task">4. Szó találati arányának mentése fájlba</h3>
         <p>
             Érdekes dolgok derülhetnek ki, ha az egyes kikérdezések között meg tudjuk őrizni,
             hogy melyik szó hányszor lett megkérdezve, és ebből hányszor sikerült eltalálnia
@@ -529,15 +529,14 @@ editor.commit();</code></pre>
             Ezt az információt talán a legkézenfekvőbb a szavakkal együtt a fájlban tárolni,
             de ez azzal jár, hogy mind a <code>Szo</code> osztályt, mind a beolvasás és (fájlba)
             kiírás kódját módosítani kell.</p>
-        <h3>
-            Szo.java:</h3>
+        <h4>Szo.java:</h4>
         <p>
             Fel kell venni két új, <code><strong>public int</strong></code> típusú belső változót,
             egyet az összes megkérdezés nyilvántartására, egy másikat pedig a helyes válaszok
             számolására (mi <code>osszes</code> és <code>helyes</code> néven fogokunk hivatkozni
             rájuk). Mást nem kell módosítani itt.</p>
-        <h3>
-            Kiírás kódja:</h3>
+        <h4>
+            Kiírás kódja:</h4>
         <p>
             Minden marad a régi, kivéve a <code>writer.println(...)</code> sor. Ide bele kell
             még venni, hogy a szó <code>osszes</code> és <code>helyes</code> belső változóinak
@@ -548,7 +547,7 @@ editor.commit();</code></pre>
             a találatokat vennénk előre, és azt találnánk, hogy 20 kérdezésből 25ször talált…).
             <em>Egyezzünk meg abban, hogy mindenki az összes kérdezést írja előre, és utána a helyes
                 válaszok számát!</em></p>
-        <h3>Beolvasás kódja:</h3>
+        <h4>Beolvasás kódja:</h4>
         <p>
             A beolvasás egy icipicit bonyolultabb lesz. Eddig így nézett ki:</p>
 <pre><code>while (reader.ready()) {
@@ -587,13 +586,13 @@ editor.commit();</code></pre>
             az új, könnyű, vagy épp a nehéz szavak közül kérdezzen!</p>
 
         <section id="extra_custom_list_item">
-            <h2>5. Statisztika megjelenítése a SzavakActivity listában</h2>
+            <h3 class="task">5. Statisztika megjelenítése a SzavakActivity listában</h3>
             <p>
                 Szuper, van statisztikánk, ami meg is marad az újraindítások között, de jó lenne,
                 ha nem csak számítógépen, a fájlt megnyitva látnánk azt. Készítsünk egy saját
                 <code>Adapter</code>-t és egy új <code>layout</code>-ot, amiben leírjuk, hogy hogyan
                 nézzen ki a <code>ListView</code> egy-egy sora.</p>
-            <h3>Kezdjük a layouttal:</h3>
+            <h4>Kezdjük a layouttal:</h4>
             <ol>
                 <li>
                     <p>
@@ -611,7 +610,7 @@ editor.commit();</code></pre>
                     <img src="/static/img/l11/list_item_szo.png" class="center-block" />
                 </li>
             </ol>
-            <h3>A saját adapter:</h3>
+            <h4>A saját adapter:</h4>
             <ol>
                 <li>
                     <p>

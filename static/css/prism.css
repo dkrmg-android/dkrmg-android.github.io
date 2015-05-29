@@ -51,17 +51,15 @@ pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #f8f8ff;
+	background: #F6F9EB;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-	padding: .1em;
+	padding: .2em;
 	border-radius: .3em;
+	border: 1px solid #DDE0D3;
+	background: #E6F0F0;
 }
 
 .token.comment,

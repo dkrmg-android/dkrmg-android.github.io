@@ -107,11 +107,11 @@
 
     <p>
         Utolsó próbatételként írjuk be az alábbi sorokat az üzenőfal programunkhoz, a küldés gomb
-        kezelő függvényébe:</p>
+        lenyomását kezelő függvényének elejére:</p>
 
 
         <pre><code>try {
-    Thread.sleep(10000); // aludjunk most itt 10 másodpercet
+    Thread.sleep(30000); // aludjunk most itt 30 másodpercet
 } catch (InterruptedException e) {
 }</code></pre>
 
@@ -154,8 +154,8 @@
         Az előző leckében már megírtuk, hogy a telefonunkról tudjunk üzenetet küldeni a közös
         üzenőfalra. Ez jó esetben működött is, de elég bizonytalan megoldás volt: ha a szerver
         valamiért nem működik például, vagy csak ki volt kapcsolva a wifi, arról mi nem szerzünk
-        tudomást, legfeljebb úgy, hogy nem találjuk az üzenetünket a <a
-            href="http://dkrmg-android.github.io/lessons/uzenofal.html" target="_blank">webes változaton</a>. Ezen
+        tudomást, legfeljebb úgy, hogy nem találjuk az üzenetünket a
+        <a href="http://dkrmg-android.github.io/lessons/uzenofal.html" target="_blank">webes változaton</a>. Ezen
         jó lenne javítani!</p>
 
     <h3>Mi az az ígéret (avagy ListenableFuture)?</h3>
@@ -361,22 +361,17 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         A letöltés ígéretének beváltása nagyon fog hasonlítani az üzenetküldés ígéretének
         beváltásához:</p>
 
-    <pre><code>Futures.addCallback(letoltes, new FutureCallback
-            &lt;MobileServiceList
-            &lt;Uzenet&gt;&gt;() {
-            @Override
-            public void onSuccess(MobileServiceList
-            &lt;Uzenet&gt; result) {
-            <strong>// {1} ez fut, ha sikerült elvégezni a munkát (letölteni az
-                üzeneteket)</strong>
-            }
+    <pre><code>Futures.addCallback(letoltes, new FutureCallback&lt;MobileServiceList&lt;Uzenet&gt;&gt;() {
+	@Override
+	public void onSuccess(MobileServiceList&lt;Uzenet&gt; result) {
+		<strong>// {1} ez fut, ha sikerült elvégezni a munkát (letölteni az üzeneteket)</strong>
+	}
 
-            @Override
-            public void onFailure(Throwable t) {
-            <strong>// {2} Ez fut, ha valami hiba történt</strong>
-            }
-            });
-        </code></pre>
+	@Override
+	public void onFailure(Throwable t) {
+		<strong>// {2} Ez fut, ha valami hiba történt</strong>
+	}
+});</code></pre>
 
     <p>
         Nézzük meg mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek
@@ -428,7 +423,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         <button data-target="help_letolt_2" class="help-link">Katt&hellip;</button>
             </p>
         <div class="help-container" id="help_letolt_2">
-            <pre><code>private void letolt() {
+            <pre><code>public void letolt() {
     ListenableFuture&lt;MobileServiceList&lt;Uzenet&gt;&gt; letoltes =
             kozosUzenetek
                 .orderBy("__createdAt", QueryOrder.Descending)
@@ -497,9 +492,11 @@ protected void onResume() {
     <p>A program elméletileg most már teljesen működőképes. Ellenőrizd, majd az elkészült projektet
         küldd el nekünk a <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalon keresztül!</p>
 
-    <h1>Szorgalmi feladatok</h1>
+</div>
+<div class="container szorgalmi">
+    <h2 class="szorgalmi">Szorgalmi feladatok</h2>
 
-    <h2>1* Felhasználóbarátabb üzenetküldés</h2>
+    <h3 class="task">1*. Felhasználóbarátabb üzenetküldés</h3>
 
     <p>
         Jelenleg az üzenet küldésekor a következők történnek:</p>
@@ -566,19 +563,103 @@ protected void onResume() {
         bekapcsolni a WiFi-t) és újra megpróbálkozni a küldéssel, anélkül, hogy újra be kéne
         gépelnie az üzenetét.</p>
 
-    <p>
-        ***TODO: empty layout szorgalmi</p>
+	<h3 class="task">2*. Frissítés gombnyomásra</h3>
+	<p>
+		Nem túlzás azt állítani, hogy az üzenőfal alkalmazásunk igen felhasználóbarát az üzenetek
+		elküldésénél. Most javítsunk egy kicsit a letöltésen is!</p>
+	<p>Az egyik legszembetűnőbb hiányosság az, hogy az üzenetek listáját csupán két esetben töltjük le:</p>
+    <ul>
+        <li>A program indulásakor (<code>onResume</code>)</li>
+        <li>Amikor a felhasználónk új üzenetet küld.</li>
+    </ul>
+    <p>Tételezzük fel egy pillanat erejéig, hogy a Aladár, a szakkör egy igen lelkes fiktív tagja
+     az üzenőfalon szeretne hosszú társalgást folytatni a hozzá hasonlóan valós Bélával.
+        Amikor Aladár feltesz egy kérdést, utána nincs más megoldás: újra kell indítania párszor
+        a programot, hogy meglássa, válaszolt-e Béla.</p>
+    <p>Ezt a problémát szeretnénk megoldani, első lépésben egy igen egyszerű "frissítés" gomb elhelyezésével,
+        aminek segítségével a felhasználó bármikor lehívhatja az üzenetek listáját!</p>
+    <ol>
+        <li>Először is helyezzünk el egy új gombot a layout szerkesztőben.
+            Ne feledkezzünk el az <code>id</code> tulajdonságáról!</li>
+        <li>Hozzunk létre egy új kattintást kezelő függvényt, majd rendeljük hozzá az új gombhoz</li>
+        <li>A kattintást kezelő függvény egyszerűen hívja meg a <code>letoltes()</code> függvényünket.</li>
+    </ol>
+    <p>Gomb helyett használhatunk egy felugró menüt is. Ehhez segítséget <a href="/lessons/l08.html#starred_about_menu" target="_blank">itt</a> találtok.</p>
+    <div class="imgstore">
+        <img src="/static/img/l14/refresh.png" class="center-block" />
+        <img src="/static/img/l14/refresh2.png" class="center-block" />
+    </div>
+    <p>A gombnyomásos megoldás nagyban megkönnyíti Aladár és Béla dolgát. Ha még ennél is jobb megoldást
+        szeretnénk, akkor érdemes lehet az üzeneteket egy időzítő segítségével pl. pár másodpercenként
+        lehívni. Ezt az 5*. szorgalmi feladatban meg is tesszük.</p>
 
-    <p>
-        Refresh with a timer?</p>
+    <h3 class="task">3*. Üres lista?!</h3>
+	<p>***TODO: empty layout szorgalmi</p>
 
-    <p>
-        Load older messages (skip) when pressing "next 15" button</p>
+    <h3 class="task">4*. Régebbi üzenetek betöltése</h3>
+        <p>Jelenleg az alkalmazásunk mindig a 15 legfrissebb üzenetet jeleníti meg. Ez így is van rendjén, hiszen az üzenőfalak sajátossága,
+            hogy többnyire csak a legújabb bejegyzések érdeklik a felhasználót. Néha azonban bizony előfordulhat, hogy
+            vissza szeretnénk keresni egy régi beszélgetést, vagy csak gyönyörködni szeretnénk a többi szakkörös felhasznló szárnypróbálgató
+            üzeneteiben. Viszont továbbra is igaz, hogy nem lenne bölcs döntés egyszerre lehívni a szolgáltatás összes korábbi üzentetét,
+            hiszen az feleslegesen terhelné mind a telefont, mind a hálózatot.</p>
+        <p>Egy egyszerű megoldás lehet a problémára, ha elhelyezünk egy újabb gombot a felhasználói felületre, amivel jelezhetjük: nekünk ennél több
+            üzenetre lesz szükségünk.</p>
+        <p>A pontos megvalósítást rátok bízzuk! Első megközelítésként érdemes lehet létrehozni egy <code>int</code> típusú változót, ami a letöltendő
+        üzenetek számát tárolja (kezdetileg <code>15</code>, de gombnyomásra/menüből növelhető). Bátrabbak kísérletezhetnek a lekérdezésnél a <code>skip</code>
+        függvénnyel is!</p>
 
-    <p>
-        Load next 15 message when the end of the list is reached (fb style)***</p>
 
+    <h3 class="task">5*. Üzenetek frissítése adott időközönként</h3>
+        <p>A második szorgalmi végén utaltunk már erre a feladatra: jó lenne, ha a programunk futás közben (<code>onResume</code>-tól kezdve
+            egészen <code>onPause</code>-ig) folyamatosan hívná az üzeneteket, mondjuk három másodpercenként.</p>
+        <p>Első megközelítésben megnézzük, hogy miként tudunk az Android rendszerben ilyen időzítőt létrehozni. Azoban még most le kell szögezni:
+            a megoldás igen naiv, hiszen pár másodpercenként frissíti a teljes lista tartalmát!</p>
+        <p>A probléma ennél a feladatnál is ugyanaz, mint korábban: a <code>letolt();</code> függvényünket szeretnénk meghívni adott időközönként,
+            ez azonban csak a programunk fő száláról történhet meg. A program fő szálát pedig nem tarthatjuk fel sokáig (emlékszel még a lecke elején a
+        <code>Thread.sleep(30000)</code> eredményére?). Ezért az Android rendszerben a következő megoldás vált elfogadottá:</p>
+        <p><strong>Létre hozunk egy futtatható objektumot, ami a főszálon fut le, majd dolga végeztével megkéri a rendszert, hogy futtassa őt újra
+        adott idő elteltével.</strong></p>
+      <img src="/static/img/l14/postDelay.png" class="center-block" />
+        <p>Nézzük ezt meg a gyakorlatban:</p>
+        <ol>
+            <li><p>Elsőként hozzunk létre egy új változót az <code>Activity</code>ben, ami segítségünkre lesz a futtatásoknál.
+                Ez a <code>Handler</code> objektum képes futtatni az objektumunkat akár rögtön, akár adott idő elteltével.</p>
+                <code>android.os.Handler handler;</code></li>
+            <li><p>Adjunk értéket az új változónak az <code>onCreate</code> függvény végén.</p>
+                <code>handler = new android.os.Handler();</code></li>
+            <li><p>Most hozzunk létre még egy változót, ami ezúttal magát a futásra váró függvényt csomagolja be.</p>
+                <code>Runnable refreshTask;</code></li>
+            <li><p>Amikor értéket adunk ennek a változónak, rögtön megadhatjuk azt a függvényt is, amit le szeretnénk majd futtatni
+                adott időközönként. A változónk <code>run</code> belső kis függvénye az, ami az objektum futtatásánál elindul.</p>
+                <pre><code>refreshTask = new Runnable() {
+    @Override
+    public void run() {
+        // TODO: hívd meg a letolt(); függvényt!
 
+        // vége a függvénynek. Most kérjük meg a rendszert, hogy futtasson minket újra 3000ms (3s) elteltével
+        handler.postDelayed(refreshTask, 3000);
+    }
+};</code></pre></li>
+            <li><p>Remélhetőleg eddig követhető volt: most már van egy <code>Handler</code> változónk, aki segít
+                futtatni a függvényünket, illetve egy <code>Runnable refreshTask;</code>, ami gyakorlatilag a frissítés
+                függvényt csomagolja be. Ha egyszer elindítjuk ezt a frissítés függvényt, akkor őt onnantól kézbe veszi az
+                irányítást, és gondoskodik róla, hogy három másodpercenként újra lefusson
+                (<code>handler.postDelayed(refreshTask, 3000);</code>).</p>
+                <p>Tehát nincs más dolgunk, mint gondoskodni az első futásról. Például indíthatjuk a függvényt rögtön
+                    az <code>onResume</code> végén:</p>
+                    <code>handler.post(refreshTask);</code></li>
+            <li><p>Érdemes még arról is gondoskodni, hogy a program leállításakor ez az ismétlődő <code>refreshTask</code> is
+                legyen szíves megpihenni. Ehhez az <code>onPause</code> függvény végére kell odabiggyesztenünk az alábbi kódot:</p>
+                <code>handler.removeCallbacks(refreshTask);</code></li>
+            <li>Érdemes megemlíteni, hogy így rögtön az <code>onResume</code> függvényünk kérvényezni fogja az első frissítést. Tehát az otttani
+            <code>letolt();</code> sort akár törölhetjük is.</li>
+        </ol>
+
+    <h3 class="task">N*. ???</h3>
+    <p>Van még ötleted? Nem kell itt megállnod. A program rengeteg irányba fejleszthető! Például a lekérés kódja lehetne kicsit okosabb  úgy, hogy csak bizonyos dátum
+        utáni üzenetek iránt érdeklődjön, így elkerülve az üzenetek folyamatos újratöltését! De a lehetőségek tárháza végtelen.
+        A <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalra bármilyen plusz munkát feltölthetsz. Illetve ha kérdésed támad az ötleteddel kapcsolatban,
+    írd meg bátran, hátha tuduk segíteni!</p>
 </div>
 <footer data-include="/include/footer.html"></footer>
 <script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
