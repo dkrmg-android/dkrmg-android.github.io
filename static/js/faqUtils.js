@@ -35,7 +35,18 @@ function createGyikItem($content) {
     $current.find('.description').html($content.children('.description').html());
     $content.remove();
     $container.append($current);
-    // TODO add to TOC!
+}
+
+function populateContents()
+{
+	var ul = $('#contents');
+	ul.empty();
+	$('h3').each(function() {
+		if ($(this).text() != null && $(this).text().length > 0)
+		{
+			ul.append($('<li/>').append($('<a/>', {text: $(this).text(), href: '#'+$(this).parent().parent().attr('id')})));
+		}
+	});
 }
 
 $('.gyik').each(function (index, element) {
@@ -43,3 +54,5 @@ $('.gyik').each(function (index, element) {
 });
 
 $('.card pre').closest('.card').addClass('hascode');
+
+populateContents();
