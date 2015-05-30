@@ -5,13 +5,17 @@
 var $template = $('#gyik-template');
 var $container = $('.container');
 var $sideBar = $('#sidebar');
+var shouldHide = true;
 
 function minimiseSidebar() {
+	if (!shouldHide) {
+		return;
+	}
+	
 	$sideBar.animate({
 		width: "28px"
 	}, 100);
-	//$sideBar.style.width = '20px';
-	$sideBar.find('#contents').hide();
+	$sideBar.find('#contentsContainer').hide();
 	$sideBar.find('.verticalLine').show();
 }
 
@@ -19,9 +23,8 @@ function maximiseSidebar() {
 	$sideBar.animate({
 		width: "200px"
 	}, 100);
-	//$sideBar.style.width = '200px';
 	$sideBar.find('.verticalLine').hide();
-	$sideBar.find('#contents').show();
+	$sideBar.find('#contentsContainer').show();
 }
 
 function createGyikItem($content) {

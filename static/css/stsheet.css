@@ -21,7 +21,6 @@ html {
 	border-top: 1px solid white;
     box-shadow: 5px 0 11px 0 rgba(50, 50, 50, 0.75);
 
-    color: #ffffff;
 	overflow:hidden; 
 	overflow-y:visible;
 }
@@ -34,9 +33,15 @@ html {
      border-left: 2px solid white;
 }
 
-.sidebar #contents {
-	margin-top: 60px;
+.sidebar #contentsContainer {
+	margin-top: 50px;
 	display: none;
+	color: black;
+}
+
+.sidebar #contents {
+	margin-top: 10px;
+	color: white;
 }
 
 .sidebar + .container {
