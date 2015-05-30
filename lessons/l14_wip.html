@@ -70,7 +70,7 @@
         Ebben a világban teljesen normális dolog lett volna írni egy olyan programot, ami az
         elindulásától kezdve a felhasználó felé se nézve elvégzi a dolgát, majd végeredményként
         visszadob valami kedves üzenetet (az eredménnyel, vagy valami barátságtalan hibakóddal). Nem
-        kellett más programokkal és a felhasználóval versenyezni, a számítógép ha a mi programunkat
+        kellett más programokkal és a felhasználóval versenyezni; a számítógép, ha a mi programunkat
         futtatta, akkor csak ránk figyelt.</p>
 
 	<img src="/static/img/l14/dos1.png" class="center-block" />
@@ -118,7 +118,7 @@
     <p>
         Futtasd a programot, és nézd meg, hogy mi történik a gomb lenyomása után! Ha nem tapasztalsz
         semmi különöset, próbáld meg többször megnyomni a gombot, szerkeszteni az EditText szövegét,
-        stb. Hogy viselkedik a program? Írd meg emailben, hogy mik a tapasztalataid!</p>
+        stb. Hogy viselkedik a program? Írd meg e-mailben, hogy mik a tapasztalataid!</p>
 
     <p>
         <strong>Ha kipróbáltad, utána gyorsan töröld ki a fenti kódot! Nem szeretjük az alvó, lusta
@@ -138,7 +138,7 @@
         Az Azure API tudja, hogy a program futását nem szabad megakasztani, ezért a hálózati
         kommunikációt a háttérben végzi. Az <code>insert</code> utasításunk valójában csak egy
         ígéretet tesz nekünk, hogy megpróbálja elküldeni az üzenetünket, és tovább engedi a program
-        futását még mielőtt végezne. Az üzenet küldése ilyenkor egy másik program szálon a háttérben
+        futását. Az üzenet küldése ilyenkor egy másik program szálon a háttérben
         történik.</p>
 		
 	<img src="/static/img/l14/track2.png" class="center-block" />
@@ -169,7 +169,7 @@
     <p>
         Ennek az eredményével nem foglalkoztunk. Pedig érdemes, ugyanis ez az <code>insert</code>
         függvény egy <em>ígéretet</em> ad vissza (a változó típusa <code>ListenableFuture&lt;valami&gt;</code>).
-        Az ígéretet pedig később számonkérhetjük! De mi is ez az ígéret? Egy sokáig tartó
+        Az ígéretet pedig később számon kérhetjük! De mi is ez az ígéret? Egy sokáig tartó
         művelet eredményét nem várhatjuk meg, hiszen fentebb megbeszéltük, hogy akkor lefagyna az
         alkalmazás. Ez az ígéret megoldást nyújt erre, ugyanis rá lehet akasztani<strong> két
         speciális függvényt</strong>, amik majd <strong>csak akkor fognak lefutni, ha a munka
@@ -184,7 +184,7 @@
                 <strong>Siker (onSuccess)</strong>: a telefon elküldte az üzenetet a szervernek, az
                 megkapta, feldolgozta, hozzáadta a többihez, és <em>ezt vissza is mondja a
                 telefonnak</em>. Vagyis a munka akkor ért véget, ha a telefon megbizonyosodott róla,
-                hogy az üzenet célbaért.</p></li>
+                hogy az üzenet célba ért.</p></li>
         <li>
             <p>
                 <strong>Hiba (onFailure)</strong>: valahol valami <em>hiba</em> miatt nem sikerül a
@@ -374,7 +374,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
 });</code></pre>
 
     <p>
-        Nézzük meg mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek
+        Nézzük meg, mit tudunk csinálni az <code>{1} onSuccess</code> függvényben: Szemfülesebbek
         észrevehették, hogy hogyan épül fel az ígéret típusa.</p>
 
     <img src="/static/img/l14/promise3.png" class="center-block" />
@@ -401,7 +401,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
     <ol>
         <li>
             <p>
-                Sikeres eredény esetén töröljük az uzenetek lista jelenlegi tartalmát (<code>uzenetek.clear();</code>)
+                Sikeres eredmény esetén töröljük az uzenetek lista jelenlegi tartalmát (<code>uzenetek.clear();</code>)
             </p></li>
         <li>
             <p>
@@ -416,7 +416,7 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         hiba történt) és készen is vagyunk az üzenetek letöltését végző függvényünk megírásával!</p>
 
     <p>
-        Reméljük sikerült követni, de ha esetleg mégsem, vagy csak lellenőriznéd a munkádat,
+        Reméljük, sikerült követni, de ha esetleg mégsem, vagy csak leellenőriznéd a munkádat,
         kattintás után láthatod egyben a letöltő függvényt.</p>
 
     <p>
@@ -526,7 +526,7 @@ protected void onResume() {
             Remélhetőleg látható ennek a folyamatnak a hibája: Ha valami probléma adódott az üzenet
             elküldésével, akkor mielőtt erről tudomást szerzünk egy Toast formájában, már kitöröltük az
             EditText tartalmát. Vagyis teljesen és visszavonhatatlanul <em>elveszett az üzenet
-            tartalma</em>! Reméljük nem kell mondani, hogy ez milyen rossz fényt vetne az
+            tartalma</em>! Reméljük, nem kell mondani, hogy ez milyen rossz fényt vetne az
             alkalmazásunkra és a programozóra… Javítsuk!</p>
 
         <p>
@@ -618,7 +618,7 @@ protected void onResume() {
                 <ol>
                     <li>Ehhez először is ideiglenesen rejtsük el a listánkat a layout szerkesztőben:
                         állítsuk a <code>visibility</code> tulajdonságát <code>gone</code>-ra, így nem fog bezavarni. Később
-                        ne felejtsük el visszállítani <code>visible</code>-re!</li>
+                        ne felejtsük el visszaállítani <code>visible</code>-re!</li>
                     <li>Húzzunk be fent középre egy újabb <strong><code>RelativeLayout</code></strong>
                         komponenst. Érdemes beállítani az <code>layout:alignComponent</code> tulajdonságon belül
                         a <code>bottom:top</code> sort mondjuk az alsó EditText-re, vagy a küdés gombra.<br/>
@@ -639,7 +639,7 @@ protected void onResume() {
                 <pre><code>list.setEmptyView(ures);</code></pre>
                 Figyelj oda, hogy a ListView típusú változódat használd, ne az adaptert, és ne is az <code>ArrayList</code>-et!</li>
             <li>Próbáld ki, hogy kikapcsolt internet mellett megjelenik-e az új komponens!</li>
-            <li>Már csak annyi maradt hátra, hogy az új gombnak csinálj egy onClick függvényt, rendeld hozá a layout szerkesztőben,
+            <li>Már csak annyi maradt hátra, hogy az új gombnak csinálj egy onClick függvényt, rendeld hozzá a layout szerkesztőben,
                 és a függvényben hívd meg a <code>letoltes()</code> függvényedet. </li>
         </ol>
     </section>
@@ -648,7 +648,7 @@ protected void onResume() {
         <h3 class="task">4*. Régebbi üzenetek betöltése</h3>
         <p>Jelenleg az alkalmazásunk mindig a 15 legfrissebb üzenetet jeleníti meg. Ez így is van rendjén, hiszen az üzenőfalak sajátossága,
             hogy többnyire csak a legújabb bejegyzések érdeklik a felhasználót. Néha azonban bizony előfordulhat, hogy
-            vissza szeretnénk keresni egy régi beszélgetést, vagy csak gyönyörködni szeretnénk a többi szakkörös felhasznló szárnypróbálgató
+            vissza szeretnénk keresni egy régi beszélgetést, vagy csak gyönyörködni szeretnénk a többi szakkörös felhasználó szárnypróbálgató
             üzeneteiben. Viszont továbbra is igaz, hogy nem lenne bölcs döntés egyszerre lehívni a szolgáltatás összes korábbi üzentetét,
             hiszen az feleslegesen terhelné mind a telefont, mind a hálózatot.</p>
         <p>Egy egyszerű megoldás lehet a problémára, ha elhelyezünk egy újabb gombot a felhasználói felületre, amivel jelezhetjük: nekünk ennél több
@@ -662,7 +662,7 @@ protected void onResume() {
         <h3 class="task">5*. Üzenetek frissítése adott időközönként</h3>
         <p>A második szorgalmi végén utaltunk már erre a feladatra: jó lenne, ha a programunk futás közben (<code>onResume</code>-tól kezdve
             egészen <code>onPause</code>-ig) folyamatosan hívná az üzeneteket, mondjuk három másodpercenként.</p>
-        <p>Első megközelítésben megnézzük, hogy miként tudunk az Android rendszerben ilyen időzítőt létrehozni. Azoban még most le kell szögezni:
+        <p>Első megközelítésben megnézzük, hogy miként tudunk az Android rendszerben ilyen időzítőt létrehozni. Azonban még most le kell szögezni:
             a megoldás igen naiv, hiszen pár másodpercenként frissíti a teljes lista tartalmát!</p>
         <p>A probléma ennél a feladatnál is ugyanaz, mint korábban: a <code>letolt();</code> függvényünket szeretnénk meghívni adott időközönként,
             ez azonban csak a programunk fő száláról történhet meg. A program fő szálát pedig nem tarthatjuk fel sokáig (emlékszel még a lecke elején a
@@ -701,7 +701,7 @@ protected void onResume() {
             <li><p>Érdemes még arról is gondoskodni, hogy a program leállításakor ez az ismétlődő <code>refreshTask</code> is
                 legyen szíves megpihenni. Ehhez az <code>onPause</code> függvény végére kell odabiggyesztenünk az alábbi kódot:</p>
                 <code>handler.removeCallbacks(refreshTask);</code></li>
-            <li>Érdemes megemlíteni, hogy így rögtön az <code>onResume</code> függvényünk kérvényezni fogja az első frissítést. Tehát az otttani
+            <li>Érdemes megemlíteni, hogy így rögtön az <code>onResume</code> függvényünk kérvényezni fogja az első frissítést. Tehát az ottani
             <code>letolt();</code> sort akár törölhetjük is.</li>
         </ol>
     </section>
@@ -711,7 +711,7 @@ protected void onResume() {
         <p>Van még ötleted? Nem kell itt megállnod. A program rengeteg irányba fejleszthető! Például a lekérés kódja lehetne kicsit okosabb  úgy, hogy csak bizonyos dátum
             utáni üzenetek iránt érdeklődjön, így elkerülve az üzenetek folyamatos újratöltését! De a lehetőségek tárháza végtelen.
             A <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalra bármilyen plusz munkát feltölthetsz. Illetve ha kérdésed támad az ötleteddel kapcsolatban,
-        írd meg bátran, hátha tuduk segíteni!</p>
+        írd meg bátran, hátha tudunk segíteni!</p>
     </section>
 </div>
 <footer data-include="/include/footer.html"></footer>
