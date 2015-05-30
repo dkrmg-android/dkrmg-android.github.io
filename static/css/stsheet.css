@@ -293,12 +293,9 @@ table.comparison td {
 }
 
 .gyik-inner {
-    /*border: 1px solid #99cc00;*/
-    border: 1px solid #a4c639;
+    border: 5px solid #a4c639;
     border-radius: 10px;
-
-    /*background-color: #99cc00;*/
-    background-color: #a4c639;
+    background-color: #b6d161;
 }
 
 .gyik-cards {
@@ -323,7 +320,7 @@ table.comparison td {
     max-width: 100%;
     margin: 0;
 
-    border-top-left-radius: 20px;
+    border-top-left-radius: 0;
     border-top-right-radius: 20px;
 
     border: 5px solid white;
@@ -331,6 +328,15 @@ table.comparison td {
 
 .card img:not([src]) {
     display: none;
+}
+
+.card .index {
+	width: 30px;
+	padding: 5px;
+	color: white;
+    background-color: #39a4c6;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
 }
 
 .card .caption {
@@ -342,7 +348,8 @@ table.comparison td {
 }
 
 .card img:not([src]) + .caption {
-    border-top-left-radius: 20px;
+    margin-top: 0;
+    border-top-left-radius: 0;
     border-top-right-radius: 20px;
 }
 

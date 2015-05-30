@@ -19,6 +19,9 @@ function createGyikItem($content) {
     var $gyikCards = $current.find('.gyik-cards');
     $content.children('img').each(function (idx, element) {
         var $origImage = $(element);
+        var $header = $('<div/>')
+            .addClass('index')
+            .text((idx + 1)+'.');
         var $img = $('<img>')
             .attr('src', $origImage.attr('src'));
         var $caption = $('<div>')
@@ -27,6 +30,7 @@ function createGyikItem($content) {
 
         $('<div>')
             .addClass('card')
+            .append($header)
             .append($img)
             .append($caption)
             .appendTo($gyikCards);
