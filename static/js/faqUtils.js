@@ -41,16 +41,20 @@ function createGyikItem($content) {
     $container.append($current);
 }
 
-function populateContents()
-{
-	var ul = $('#contents');
-	ul.empty();
-	$('h3').each(function() {
-		if ($(this).text() != null && $(this).text().length > 0)
-		{
-			ul.append($('<li/>').append($('<a/>', {text: $(this).text(), href: '#'+$(this).parent().parent().attr('id')})));
-		}
-	});
+function populateContents() {
+    var ul = $('#contents');
+    ul.empty();
+    $('h3', '.gyik').each(function () {
+        var $title = $(this);
+        if ($title.text() != null && $title.text().length > 0) {
+            ul.append(
+                $('<li>').append(
+                    $('<a>', {href: '#' + $title.parent().parent().attr('id')})
+                        .text($title.text())
+                )
+            );
+        }
+    });
 }
 
 $('.gyik').each(function (index, element) {
