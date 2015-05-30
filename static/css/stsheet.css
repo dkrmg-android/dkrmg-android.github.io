@@ -8,7 +8,7 @@ html {
 /* ############################################################################################### */
 .sidebar {
 	position:fixed;
-	top: 60px;
+	top: 0px;
 
 	width:10%;
 	height: 100%;
@@ -22,6 +22,10 @@ html {
     box-shadow: 5px 0 11px 0 rgba(50, 50, 50, 0.75);
 
     color: #ffffff;
+}
+
+.sidebar #contents {
+	margin-top: 60px;
 }
 
 .sidebar + .container {
