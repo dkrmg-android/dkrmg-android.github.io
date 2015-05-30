@@ -18,178 +18,173 @@
     <header data-include="/include/header.html"></header>
 	
 		<!-- Sidebar -->
-        <div class="sidebar">			
-            <ul id="contents" class="sidebar-nav">
+    <div class="sidebar">
+        <ul id="contents" class="sidebar-nav"></ul>
+    </div>
 
-            </ul>
-        </div>
+	<div class="rootDiv">
+        <div class="container">
+            <h1>Gyakran ismételt kérdések
+            <small>Online Android szakkör (DKRMG)</small></h1>
 
-	
-    <div class="container">
-        <h1>Gyakran ismételt kérdések
-            <small>Online Android szakkör (DKRMG)</small>
-        </h1>
+            <section id="gyik-template">
+                <div class="gyik-outer">
+                    <h3></h3>
+                    <img src="/static/img/kukucs.png" class="noZoom" />
+                    <div class="clearfix"></div>
+                    <div class="gyik-inner">
+                        <div class="gyik-cards"></div><!-- .div.gyik-cards -->
+                        <div class="description"></div><!-- .div.description -->
+                    </div><!-- .div.gyik.inner -->
+                </div><!-- .div.gyik-outer -->
+            </section>
 
-        <section id="gyik-template">
-            <div class="gyik-outer">
-                <h3></h3>
-                <img src="/static/img/kukucs.png" class="noZoom" />
-                <div class="clearfix"></div>
-                <div class="gyik-inner">
-                    <div class="gyik-cards"></div><!-- .div.gyik-cards -->
-                    <div class="description"></div><!-- .div.description -->
-                </div><!-- .div.gyik.inner -->
-            </div><!-- .div.gyik-outer -->
-        </section>
+            <section class="gyik" id="buttonOnClick">
+                <h3>Gomb és kattintás</h3>
+                <img src="/static/img/gyik/Button1.png"/>
+                <div class="caption">
+                    Layout szerkesztővel helyezd el a gombot a kívánt helyre
+                </div>
+                <img/>
+                <div class="caption">
+                    Java kódban készíts egy új függvényt a kattintás kezelésére
+                    <pre data-include="/include/gyik/onClick.java"></pre>
+                </div>
+                <img src="/static/img/gyik/Button3.png"/>
+                <div class="caption">
+                    Layout szerkesztőben a gombot kijelölve állítsd be a gombod onClick tulajdonságát az új függvényre.
+                </div>
+            </section>
 
-        <section class="gyik" id="buttonOnClick">
-            <h3>Gomb és kattintás</h3>
-            <img src="/static/img/gyik/Button1.png"/>
-            <div class="caption">
-                Layout szerkesztővel helyezd el a gombot a kívánt helyre
-            </div>
-            <img/>
-            <div class="caption">
-                Java kódban készíts egy új függvényt a kattintás kezelésére  
-                <pre data-include="/include/gyik/onClick.java"></pre>
-            </div>
-            <img src="/static/img/gyik/Button3.png"/>
-            <div class="caption">
-                Layout szerkesztőben a gombot kijelölve állítsd be a gombod onClick tulajdonságát az új függvényre.
-            </div>
-		</section>
+            <section class="gyik" id="CompRef">
+                <h3>Button Java kódból</h3>
+                <img />
+                <div class="caption">
+                    Hozzál létre egy változót az Activity elején. Például ha egy gombra akarsz hivatkozni:
+                    <pre><code>Button gomb1;</code></pre>
+                </div>
+                <img />
+                <div class="caption">
+                    Keresd meg a komponensedet az <strong>id</strong> tulajdonsága alapján, majd rendeld hozzá a változódhoz.
+                    Például ha a gombunk <strong>id</strong> tulajdonsága <em>button1</em>:
+                    <pre><code>gomb1 = findViewByID(R.id.<strong>button1</strong>);</code></pre>
+                </div>
+                <img />
+                <div class="caption">
+                    Innentől nyugodtan használhatod a változód összes belső függvényét. Például megváltoztathatod a szövegét:
+                    <pre><code>gomb1.setText("Az új szöveg");</code></pre>
+                </div>
+            </section>
 
-        <section class="gyik" id="CompRef">
-            <h3>Button Java kódból</h3>
-            <img />
-            <div class="caption">
-                Hozzál létre egy változót az Activity elején. Például ha egy gombra akarsz hivatkozni:
-                <pre><code>Button gomb1;</code></pre>
-            </div>
-            <img />
-            <div class="caption">
-                Keresd meg a komponensedet az <strong>id</strong> tulajdonsága alapján, majd rendeld hozzá a változódhoz.
-                Például ha a gombunk <strong>id</strong> tulajdonsága <em>button1</em>:
-                <pre><code>gomb1 = findViewByID(R.id.<strong>button1</strong>);</code></pre>
-            </div>
-            <img />
-            <div class="caption">
-                Innentől nyugodtan használhatod a változód összes belső függvényét. Például megváltoztathatod a szövegét:
-                <pre><code>gomb1.setText("Az új szöveg");</code></pre>
-            </div>
-		</section>
+            <section class="gyik" id="javaTypes">
+                <h3>Java típusok</h3>
+                <div class="description">
+                    <table  class="table table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>típus</th>
+                                        <th>mi is ez...</th>
+                                        <th>érték pl.</th>
+                                        <th>megjegyzés</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                    <tr>
+                                        <td>int</td>
+                                        <td>leggyakoribb egész szám</td>
+                                        <td>-42</td>
+                                        <td>minimum -2147483648, maximum 2147483647 </td>
+                                    </tr>
+                                    <tr>
+                                        <td>byte</td>
+                                        <td>kicsi egész szám</td>
+                                        <td>36</td>
+                                        <td>minimum -128, maximum 127</td>
+                                    </tr>
+                                    <tr>
+                                        <td>long</td>
+                                        <td>nagyon nagy egész szám</td>
+                                        <td>3000000000L</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>float</td>
+                                        <td>tört/lebegőpontos szám</td>
+                                        <td>0.12345f</td>
+                                        <td>Például az érzékelők float tömbökat használnak</td>
+                                    </tr>
+                                    <tr>
+                                        <td>double</td>
+                                        <td>tört/lebegőpontos számok, pontosabb</td>
+                                        <td>0.111222333444</td>
+                                    </tr>
 
-        <section class="gyik" id="javaTypes">
-            <h3>Java típusok</h3>
-            <div class="description">
-                <table  class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>típus</th>
-                                    <th>mi is ez...</th>
-                                    <th>érték pl.</th>
-                                    <th>megjegyzés</th>
-                                </tr>
-                            </thead>
-                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
-                                <tr>
-                                    <td>int</td>
-                                    <td>leggyakoribb egész szám</td>
-                                    <td>-42</td>
-                                    <td>minimum -2147483648, maximum 2147483647 </td>
-                                </tr>   
-                                <tr>
-                                    <td>byte</td>
-                                    <td>kicsi egész szám</td>
-                                    <td>36</td>
-                                    <td>minimum -128, maximum 127</td>
-                                </tr>   
-                                <tr>
-                                    <td>long</td>
-                                    <td>nagyon nagy egész szám</td>
-                                    <td>3000000000L</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>float</td>
-                                    <td>tört/lebegőpontos szám</td>
-                                    <td>0.12345f</td>
-                                    <td>Például az érzékelők float tömbökat használnak</td>
-                                </tr>
-                                <tr>
-                                    <td>double</td>
-                                    <td>tört/lebegőpontos számok, pontosabb</td>
-                                    <td>0.111222333444</td>
-                                </tr>
+                                    <tr>
+                                        <td>char</td>
+                                        <td>egy karakter</td>
+                                        <td>'G'</td>
+                                    </tr>
+                                    <tr>
+                                        <td>boolean</td>
+                                        <td>igaz/hamis változók</td>
+                                        <td>true <em>vagy</em> false</td>
+                                        <td>Például a feltételek is ilyen típusúak</td>
+                                    </tr>
+                                 </tbody>
+                            </table>
+                            Ez a lista nem teljes. Körülnézhetsz  <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">itt is</a>  egy kicsit:
+                        </div><!-- .div.description -->
+            </section>
 
-                                <tr>
-                                    <td>char</td>
-                                    <td>egy karakter</td>
-                                    <td>'G'</td>
-                                </tr>
-                                <tr>
-                                    <td>boolean</td>
-                                    <td>igaz/hamis változók</td>
-                                    <td>true <em>vagy</em> false</td>
-                                    <td>Például a feltételek is ilyen típusúak</td>
-                                </tr>         
-                             </tbody>
-                        </table>
-                        Ez a lista nem teljes. Körülnézhetsz  <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">itt is</a>  egy kicsit:
-                    </div><!-- .div.description -->
-		</section>
+            <section class="gyik" id="Toast">
+                <h3>Toast (üzenet)</h3>
+                <div class="description">
+                    <pre><code>Toast.makeText(this, "Ez a szöveg fog megjelenni", Toast.LENGTH_LONG).show();</code></pre>
+                </div>
+            </section>
 
-        <section class="gyik" id="Toast">
-            <h3>Toast (üzenet)</h3>
-            <div class="description">
-                <pre><code>Toast.makeText(this, "Ez a szöveg fog megjelenni", Toast.LENGTH_LONG).show();</code></pre>
-            </div>
-		</section>
+            <section class="gyik" id="Vibrator">
+                <h3>Rezgő motor</h3>
+                <img src="/static/img/gyik/VibratorManifest.png">
+                <div class="caption">
+                    <p>A manifeszt fájlban engedélyt kell kérnünk a rendszertől a rezgő motor használatához</p>
+                    <pre><code class="language-markup">&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;</code></pre>
+                </div>
 
-        <section class="gyik" id="Vibrator">
-            <h3>Rezgő motor</h3>
-            <img src="/static/img/gyik/VibratorManifest.png">
-            <div class="caption"> 
-                <p>A manifeszt fájlban engedélyt kell kérnünk a rendszertől a rezgő motor használatához</p>
-                <pre><code class="language-markup">&lt;uses-permission android:name="android.permission.VIBRATE" /&gt;</code></pre>
-            </div>
-            
-            <img />
-            <div class="caption">
-                <p>Hozzunk létre egy <code>Vibrator</code> típusú, <code>rezgoMotor</code> nevű változót.</p>
-                <pre><code>Vibrator rezgoMotor;</code></pre>
-            </div>
+                <img />
+                <div class="caption">
+                    <p>Hozzunk létre egy <code>Vibrator</code> típusú, <code>rezgoMotor</code> nevű változót.</p>
+                    <pre><code>Vibrator rezgoMotor;</code></pre>
+                </div>
 
-            <img />
-            <div class="caption">
-                <p>Adjunk értéket a <code>rezgoMotor</code> változónak (pl. az <code>onCreate</code> függvényben)</p>
-                <pre><code>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</code></pre>
-            </div>
+                <img />
+                <div class="caption">
+                    <p>Adjunk értéket a <code>rezgoMotor</code> változónak (pl. az <code>onCreate</code> függvényben)</p>
+                    <pre><code>rezgoMotor = (Vibrator) getSystemService(VIBRATOR_SERVICE);</code></pre>
+                </div>
 
-            <img />
-            <div class="caption">
-                <p>rezegtessük a telefont tetszőleges ideig (az időt ezredmásodpercekben adhatjuk meg)</p>
-                <pre><code>rezgoMotor.vibrate(1000);</code></pre>
-            </div>
-		</section>
+                <img />
+                <div class="caption">
+                    <p>rezegtessük a telefont tetszőleges ideig (az időt ezredmásodpercekben adhatjuk meg)</p>
+                    <pre><code>rezgoMotor.vibrate(1000);</code></pre>
+                </div>
+            </section>
 
+            <section class="gyik" id="LifeCycle">
+                <h3>Activity életciklus</h3>
+                <img src="/static/img/l04/lifecycleSimplified.png">
+                <div class="caption"> </div>
 
+                <div class="description">
+                    <pre class="language-java" data-include="/include/gyik/lifeCycle.java"></pre>
+                </div>
+            </section>
 
-        <section class="gyik" id="LifeCycle">
-            <h3>Activity életciklus</h3>
-            <img src="/static/img/l04/lifecycleSimplified.png">
-            <div class="caption"> </div>
-
-            <div class="description">
-                <pre class="language-java" data-include="/include/gyik/lifeCycle.java"></pre>
-            </div>
-		</section>
-
-        <section class="gyik" id="ifConditional">
-            <h3>Elágazások (if)</h3>
-            <img/>
-            <div class="caption">
-                <pre><code>
+            <section class="gyik" id="ifConditional">
+                <h3>Elágazások (if)</h3>
+                <img/>
+                <div class="caption">
+                    <pre><code>
 if (<em>feltétel</em>) {
 
   // csinálj valamit ha igaz
@@ -208,90 +203,87 @@ if (<em>feltétel</em>) {
 
   // egyébként csináld ezt
 
-}
-                </code></pre>
+}</code></pre>
             </div>
 
-        </section>
-        <section class="gyik" id="ImageTransforms">
-            <h3>Képek mozgatása</h3>
-            <img src="/static/img/l06/06_rot.png" class="center-block">
-            <div class="caption"> 
-                <p>A <code>kep</code> változó elforgatásához (ha annak típusa <code>ImageView</code></p>
-                <pre><code>kep.setRotation(30); // forgatás 30 fokkal</code></pre>
-            </div>
+            </section>
+            <section class="gyik" id="ImageTransforms">
+                <h3>Képek mozgatása</h3>
+                <img src="/static/img/l06/06_rot.png" class="center-block">
+                <div class="caption">
+                    <p>A <code>kep</code> változó elforgatásához (ha annak típusa <code>ImageView</code></p>
+                    <pre><code>kep.setRotation(30); // forgatás 30 fokkal</code></pre>
+                </div>
 
-            <img/>
-            <div class="caption"> 
-            <p>A <code>kep</code> változó áthelyezéséhez (ha annak típusa <code>ImageView</code></p>
-            <pre><code>
-kep.setX(0); // vizszintes
-kep.setY(0); // fuggoleges            
-            </code></pre>
-            </div>
-
-            <div class="description">
-                <p>Ezek a függvények csak az Android API 11-es és annál magasabb verziójában található. A leckék során
-                    öregebb telefonokhoz javasoltuk <a href="/static/files/ImageViewHelper.java" target="_blank">ennek segéd segédosztálynak</a> a használatát. 
-                    Töltsd le a fájlt, és használd az <code>ImageViewHelper.setImageViewPosition</code> és <code>ImageViewHelper.setImageViewRotation</code>
-                    függvényeket.</p>
-            </div>
-		</section>
-
-        <section class="gyik" id="OpenActivity">
-            <h3>Activity megnyitása</h3>
-            <img/>
-            <div class="caption"> 
-                <p>Az <code>AboutActivity</code> megnyitásához hozzunk létre egy <code>Intent</code> típusú változót, majd indítsuk el a <code>startActivity</code> függvénnyel.</p>
+                <img/>
+                <div class="caption">
+                <p>A <code>kep</code> változó áthelyezéséhez (ha annak típusa <code>ImageView</code></p>
                 <pre><code>
+kep.setX(0); // vizszintes
+kep.setY(0); // fuggoleges</code></pre>
+                </div>
+
+                <div class="description">
+                    <p>Ezek a függvények csak az Android API 11-es és annál magasabb verziójában található. A leckék során
+                        öregebb telefonokhoz javasoltuk <a href="/static/files/ImageViewHelper.java" target="_blank">ennek segéd segédosztálynak</a> a használatát.
+                        Töltsd le a fájlt, és használd az <code>ImageViewHelper.setImageViewPosition</code> és <code>ImageViewHelper.setImageViewRotation</code>
+                        függvényeket.</p>
+                </div>
+            </section>
+
+            <section class="gyik" id="OpenActivity">
+                <h3>Activity megnyitása</h3>
+                <img/>
+                <div class="caption">
+                    <p>Az <code>AboutActivity</code> megnyitásához hozzunk létre egy <code>Intent</code> típusú változót, majd indítsuk el a <code>startActivity</code> függvénnyel.</p>
+                    <pre><code>
 Intent intent = new Intent(this, AboutActivity.class);
 startActivity(intent);</code></pre>
-            </div>
-		</section>
+                </div>
+            </section>
 
-        <section class="gyik" id="List">
-            <h3>Listák használata</h3>
-            <img src="/static/img/l08/listview1.png">
-            <div class="caption"> 
-                <p>Helyezz el egy <code>ListView</code> elemet a layout szerkesztővel</p>
-            </div>
+            <section class="gyik" id="List">
+                <h3>Listák használata</h3>
+                <img src="/static/img/l08/listview1.png">
+                <div class="caption">
+                    <p>Helyezz el egy <code>ListView</code> elemet a layout szerkesztővel</p>
+                </div>
 
-            <img />
-            <div class="caption">
-                Hozz létre egy <code>ListView</code> típusú változót, és adj neki értéket az <strong>id</strong> tulajdonsága alapján.
-                <pre><code>lista = findViewByID(R.id.<strong>lista</strong>);</code></pre>
-            </div>
+                <img />
+                <div class="caption">
+                    Hozz létre egy <code>ListView</code> típusú változót, és adj neki értéket az <strong>id</strong> tulajdonsága alapján.
+                    <pre><code>lista = findViewByID(R.id.<strong>lista</strong>);</code></pre>
+                </div>
 
-            <img src="/static/img/l08/adapter2.png" >
-            <div class="caption">
-                <p>Jelenítsük meg egy <code>String</code> tömb (<code>String[]</code>) vagy lista (<code>ArrayList&lt;String&gt;</code>) elemeit
-                    egy adapter segítségével.</p>
-                <pre><code>
+                <img src="/static/img/l08/adapter2.png" >
+                <div class="caption">
+                    <p>Jelenítsük meg egy <code>String</code> tömb (<code>String[]</code>) vagy lista (<code>ArrayList&lt;String&gt;</code>) elemeit
+                        egy adapter segítségével.</p>
+                    <pre><code>
 ArrayAdapter&lt;String&gt; adapter = new ArrayAdapter&lt;String&gt;(this, android.R.layout.simple_list_item_1, szavak);
 lista.setAdapter(adapter);</code></pre>
-            </div>
+                </div>
+            </section>
 
-		</section>
+            <section class="gyik" id="listener">
+                <h3>Érzékelők használata</h3>
+                <img/>
+                <div class="caption">
+                    Szenzor manager változó deklarálása az osztály elején
+                    <pre><code>SensorManager sensorManager;</code></pre>
+                </div>
+                <img/>
+                <div class="caption">
+                    Szenzor manager megkeresése és hozzárendelése a változóhoz (onCreate függvényben)
+                    <pre><code>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</code></pre>
+                </div>
 
-        <section class="gyik" id="listener">
-            <h3>Érzékelők használata</h3>
-            <img/>
-            <div class="caption"> 
-                Szenzor manager változó deklarálása az osztály elején
-                <pre><code>SensorManager sensorManager;</code></pre>
-            </div>
-            <img/>
-            <div class="caption"> 
-                Szenzor manager megkeresése és hozzárendelése a változóhoz (onCreate függvényben)
-                <pre><code>sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);</code></pre>
-            </div>
-
-            <img src="/static/img/gyik/listener1.png"/>
-            <div class="caption">
-                Felkészülés az üzenetek fogadására az Activity kódban:
-                <pre><code>implements SensorEventListener</code></pre>
-                új függvények:
-                <pre><code>
+                <img src="/static/img/gyik/listener1.png"/>
+                <div class="caption">
+                    Felkészülés az üzenetek fogadására az Activity kódban:
+                    <pre><code>implements SensorEventListener</code></pre>
+                    új függvények:
+                    <pre><code>
 @Override
 public void onSensorChanged(SensorEvent sensorEvent) {
 
@@ -300,158 +292,154 @@ public void onSensorChanged(SensorEvent sensorEvent) {
 @Override
 public void onAccuracyChanged(Sensor sensor, int i) {
 
-}
-                </code></pre>
-            </div>
+}</code></pre>
+                </div>
 
-            <img/>
-            <div class="caption"> 
-                Fel- és leiratkozás. Pl. közelségérzékelő
-                <pre><code>
+                <img/>
+                <div class="caption">
+                    Fel- és leiratkozás. Pl. közelségérzékelő
+                    <pre><code>
 @Override
 protected void onResume() {
   super.onResume();
   Sensor kozelseg = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
   sensorManager.registerListener(this, or, SensorManager.SENSOR_DELAY_UI);
-}
-                </code></pre>
-                <pre><code>
+} </code></pre>
+                    <pre><code>
 @Override
 protected void onPause() {
   super.onPause();
   manager.unregisterListener(this);
-}
-                </code></pre>
-            </div>
-		</section>
+}</code></pre>
+                </div>
+		    </section>
+
+            <section class="gyik" id="sensorList">
+                    <h3>Érzékelő típusok</h3>
+                    <div class="description">
+                        <table  class="table table-bordered table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th>Érzékelő</th>
+                                            <th>Sensor.<em>KONSTANS</em></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                        <tr>
+                                            <td>Közelségérzékelő (5. lecke)</td>
+                                            <td>TYPE_PROXIMITY</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Telefon helyzetének érzékelése (6. lecke)</td>
+                                            <td>TYPE_ORIENTATION</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gyorsulásmérő</td>
+                                            <td>TYPE_ACCELEROMETER</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hőmérséklet</td>
+                                            <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gravitációs erő</td>
+                                            <td>TYPE_GRAVITY</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Giroszkóp</td>
+                                            <td>TYPE_GYROSCOPE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mágneses erőtér </td>
+                                            <td>TYPE_MAGNETIC_FIELD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mágneses erőtér </td>
+                                            <td>TYPE_MAGNETIC_FIELD</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Légnyomás (hPa)</td>
+                                            <td>TYPE_PRESSURE</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Relatív páratartalom</td>
+                                            <td>TYPE_RELATIVE_HUMIDITY</td>
+                                        </tr>
+                                     </tbody>
+                                </table>
+                                Nem biztos, hogy a te telefonodban ezek az érzékelők valóban elérhetőek!
+                               Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
+                            </div><!-- .div.description -->
+            </section>
+
+            <section class="gyik" id="newProj">
+                <h3>Új projekt</h3>
+                <img src="/static/img/gyik/newProj1.png"/>
+                <div class="caption">
+                    Először zárjuk be a meglévő projektünket. Majd az indulóképernyőn válasszuk a
+                    <code>Start a new Android Studio project</code> lehetőséget.
+                </div>
+                <img src="/static/img/gyik/newProj2.png"/>
+                <div class="caption">
+                    A programnak adjunk valami ékezetes betűket nem tartalmazó nevet (pl. <code>Uzenofal</code>.
+                    A Domain mezőnél pedig használjunk egy egyedi azonosítót. Pl. <code>dgy.a02.android.dkrmg.hu</code>
+                </div>
+
+                <img src="/static/img/gyik/newProj3.png"/>
+                <div class="caption">
+                    A minimum SDK mezőnél a 19-es verzió legyen kijelölve attól függetlenül, hogy milyen telefonra fejlesztünk.
+                </div>
+
+                <img src="/static/img/gyik/newProj4.png"/>
+
+                <img src="/static/img/gyik/newProj5.png"/>
+                <div class="caption">
+                    Adjunk a fő Activitynek valami nevet. Pl. <code>MainActivity</code>.
+                </div>
+
+                <img src="/static/img/l07/newProj7.png">
+                <div class="caption">
+                    Nyissuk meg a <code>build.gradle (app)</code> fájlt!
+                </div>
+
+                <img src="/static/img/l07/newProj8.png">
+                <div class="caption">
+                    keressük meg a <code>minSdkVersion 21</code> sort és írjuk át a számot a telefonunktól függően. Pl.
+                    <code>Android 2.3.3</code>-nál <code>10</code>-re.
+                </div>
+
+            </section>
+
+            <section class="gyik" id="newImg">
+                <h3>Saját képek</h3>
+                <img src="/static/img/gyik/newImg1.png"/>
+                <div class="caption">
+                    Keresd meg a Windows fájlkezelővel az <code>app\src\main\res</code> mappát a projekteden belül.
+                    <em>(Ezt úgy is megteheted, hogy az Android Studioban a res mappára rákattintasz jobb gombbal, majd kiválasztod a <code>Show in Explorer</code> menüpontot)</em>
+                </div>
+                <img/>
+                <div class="caption">
+                    Ha még nincsen, akkor készíts a <code>res</code> mappában egy új mappát <code>drawable</code> néven
+                </div>
+
+                <img src="/static/img/gyik/newImg2.png"/>
+                <div class="caption">
+                    Helyezd el a képet a drawable mappába
+                </div>
+
+                <img/>
+                <div class="caption">
+                    Mostantól kezdve a fájl nevével pl. <code>R.drawable.ball</code> tudsz hivatkozni rá (pl. megjeleníteni)
+                </div>
+
+                <div class="description">
+                    Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az angol abc kisbetűit és a <code>_</code>
+                    karaktert tartalmazhatja. Nagybetűk és ékezetek nem megengedettek!
+                </div>
+            </section>
+        </div>
     </div>
-
-    <section class="gyik" id="sensorList">
-            <h3>Érzékelő típusok</h3>
-            <div class="description">
-                <table  class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Érzékelő</th>
-                                    <th>Sensor.<em>KONSTANS</em></th>
-                                </tr>
-                            </thead>
-                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
-                                <tr>
-                                    <td>Közelségérzékelő (5. lecke)</td>
-                                    <td>TYPE_PROXIMITY</td>
-                                </tr>   
-                                <tr>
-                                    <td>Telefon helyzetének érzékelése (6. lecke)</td>
-                                    <td>TYPE_ORIENTATION</td>
-                                </tr>   
-                                <tr>
-                                    <td>Gyorsulásmérő</td>
-                                    <td>TYPE_ACCELEROMETER</td>
-                                </tr>
-                                <tr>
-                                    <td>Hőmérséklet</td>
-                                    <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
-                                </tr> 
-                                <tr>
-                                    <td>Gravitációs erő</td>
-                                    <td>TYPE_GRAVITY</td>
-                                </tr> 
-                                <tr>
-                                    <td>Giroszkóp</td>
-                                    <td>TYPE_GYROSCOPE</td>
-                                </tr>   
-                                <tr>
-                                    <td>Mágneses erőtér </td>
-                                    <td>TYPE_MAGNETIC_FIELD</td>
-                                </tr>  
-                                <tr>
-                                    <td>Mágneses erőtér </td>
-                                    <td>TYPE_MAGNETIC_FIELD</td>
-                                </tr> 
-                                <tr>
-                                    <td>Légnyomás (hPa)</td>
-                                    <td>TYPE_PRESSURE</td>
-                                </tr>           
-                                <tr>
-                                    <td>Relatív páratartalom</td>
-                                    <td>TYPE_RELATIVE_HUMIDITY</td>
-                                </tr>                   
-                             </tbody>
-                        </table>
-                        Nem biztos, hogy a te telefonodban ezek az érzékelők valóban elérhetőek!
-                       Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
-                    </div><!-- .div.description -->
-		</section>
-
-    <section class="gyik" id="newProj">
-        <h3>Új projekt</h3>
-        <img src="/static/img/gyik/newProj1.png"/>
-        <div class="caption">
-            Először zárjuk be a meglévő projektünket. Majd az indulóképernyőn válasszuk a
-            <code>Start a new Android Studio project</code> lehetőséget.
-        </div>
-        <img src="/static/img/gyik/newProj2.png"/>
-        <div class="caption">
-            A programnak adjunk valami ékezetes betűket nem tartalmazó nevet (pl. <code>Uzenofal</code>.
-            A Domain mezőnél pedig használjunk egy egyedi azonosítót. Pl. <code>dgy.a02.android.dkrmg.hu</code>
-        </div>
-
-        <img src="/static/img/gyik/newProj3.png"/>
-        <div class="caption">
-            A minimum SDK mezőnél a 19-es verzió legyen kijelölve attól függetlenül, hogy milyen telefonra fejlesztünk.
-        </div>
-
-        <img src="/static/img/gyik/newProj4.png"/>
-
-        <img src="/static/img/gyik/newProj5.png"/>
-        <div class="caption">
-            Adjunk a fő Activitynek valami nevet. Pl. <code>MainActivity</code>.
-        </div>
-
-        <img src="/static/img/l07/newProj7.png">
-        <div class="caption">
-            Nyissuk meg a <code>build.gradle (app)</code> fájlt!
-        </div>
-
-        <img src="/static/img/l07/newProj8.png">
-        <div class="caption">
-            keressük meg a <code>minSdkVersion 21</code> sort és írjuk át a számot a telefonunktól függően. Pl.
-            <code>Android 2.3.3</code>-nál <code>10</code>-re.
-        </div>
-
-    </section>
-    </div>
-
-    <section class="gyik" id="newImg">
-        <h3>Saját képek</h3>
-        <img src="/static/img/gyik/newImg1.png"/>
-        <div class="caption">
-            Keresd meg a Windows fájlkezelővel az <code>app\src\main\res</code> mappát a projekteden belül.
-            <em>(Ezt úgy is megteheted, hogy az Android Studioban a res mappára rákattintasz jobb gombbal, majd kiválasztod a <code>Show in Explorer</code> menüpontot)</em>
-        </div>
-        <img/>
-        <div class="caption">
-            Ha még nincsen, akkor készíts a <code>res</code> mappában egy új mappát <code>drawable</code> néven
-        </div>
-
-        <img src="/static/img/gyik/newImg2.png"/>
-        <div class="caption">
-            Helyezd el a képet a drawable mappába
-        </div>
-
-        <img/>
-        <div class="caption">
-            Mostantól kezdve a fájl nevével pl. <code>R.drawable.ball</code> tudsz hivatkozni rá (pl. megjeleníteni)
-        </div>
-
-        <div class="description">
-            Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az angol abc kisbetűit és a <code>_</code>
-            karaktert tartalmazhatja. Nagybetűk és ékezetek nem megengedettek!
-        </div>
-    </section>
-    </div>
-
+	
     <footer data-include="/include/footer.html"></footer>
     <script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
 

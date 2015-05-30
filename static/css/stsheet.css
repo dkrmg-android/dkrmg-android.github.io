@@ -6,6 +6,12 @@ html {
 
 /* Sidebar */
 /* ############################################################################################### */
+
+.rootDiv {
+	width: 90%;
+	float: right;
+}
+
 .sidebar {
 	position:fixed;
 	top: 0px;
@@ -23,7 +29,7 @@ html {
 
     color: #ffffff;
 	overflow:hidden; 
-	overflow-y:visible;
+	overflow-y:scroll;
 }
 
 .sidebar #contents {
