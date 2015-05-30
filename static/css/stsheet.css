@@ -10,7 +10,7 @@ html {
 	position:fixed;
 	top: 0px;
 
-	width:10%;
+	width:28px;
 	height: 100%;
 
 	margin: 10px auto;
@@ -26,8 +26,17 @@ html {
 	overflow-y:visible;
 }
 
+.sidebar .verticalLine {
+	position: fixed;
+	top: 25%;
+	height: 50%;
+	left: 12px;
+     border-left: 2px solid white;
+}
+
 .sidebar #contents {
 	margin-top: 60px;
+	display: none;
 }
 
 .sidebar + .container {
@@ -486,4 +495,5 @@ padding-top: 10px;
     background-color: #ffffff;
   }
 }
+
 

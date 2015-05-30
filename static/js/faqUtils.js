@@ -4,6 +4,25 @@
 
 var $template = $('#gyik-template');
 var $container = $('.container');
+var $sideBar = $('#sidebar');
+
+function minimiseSidebar() {
+	$sideBar.animate({
+		width: "28px"
+	}, 100);
+	//$sideBar.style.width = '20px';
+	$sideBar.find('#contents').hide();
+	$sideBar.find('.verticalLine').show();
+}
+
+function maximiseSidebar() {
+	$sideBar.animate({
+		width: "200px"
+	}, 100);
+	//$sideBar.style.width = '200px';
+	$sideBar.find('.verticalLine').hide();
+	$sideBar.find('#contents').show();
+}
 
 function createGyikItem($content) {
     var $current = $template.clone();
@@ -61,6 +80,10 @@ $('.gyik').each(function (index, element) {
     createGyikItem($(element));
 });
 
+
 $('.card pre').closest('.card').addClass('hascode');
+
+$sideBar.mouseenter(maximiseSidebar);
+$sideBar.mouseleave(minimiseSidebar);
 
 populateContents();
