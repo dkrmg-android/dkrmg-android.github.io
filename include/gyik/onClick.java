@@ -1,6 +1,5 @@
 <code>
-public void buttonOnClick(View v)
-{
+public void buttonOnClick(View v) {
 
 }  
 </code>
