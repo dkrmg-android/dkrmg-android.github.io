@@ -21,7 +21,7 @@ function minimiseSidebar() {
 
 function maximiseSidebar() {
 	$sideBar.animate({
-		width: "200px"
+		width: "250px"
 	}, 100);
 	$sideBar.find('.verticalLine').hide();
 	$sideBar.find('#contentsContainer').show();
