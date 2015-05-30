@@ -232,8 +232,8 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
         Nézzük meg részletesebben a két függvényt. Az <code>{1} onSuccess</code> akkor fut le, ha a
         szerver feldolgozta az üzenetünket, minden rendben volt, nem történt hiba, és ez a válasz
         vissza is jutott hozzánk. Ide érdemes írni azokat a sorokat, amik pl. értesítik a
-        felhasználót, hogy sikerült elküldeni az üzenetet. Pl. egy kis rezgés (bővebben: szorgalmi
-        ***TODO link***)</p>
+        felhasználót, hogy sikerült elküldeni az üzenetet. Pl. egy kis rezgés
+        (bővebben: <a href="#extra_send_message_UX">szorgalmi</a>)</p>
 
     <p>
         A <code>{2} onFailure</code> akkor fut, ha a szerver valami miatt nem fogadta el az
@@ -405,10 +405,10 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
             </p></li>
         <li>
             <p>
-                Utána pedig ögtön hozzá is adhatjuk a letöltött üzenetek összes elemét a saját
+                Utána pedig rögtön hozzá is adhatjuk a letöltött üzenetek összes elemét a saját
                 listánkhoz, így:</p></li>
     </ol>
-    <pre><code>adapter.addAll(result);</code></pre>
+    <pre><code>uzenetek.addAll(result);</code></pre>
 
     <p>
         Ezek után ne felejtsük el értesíteni az adaptert a változásról, írjunk valami
@@ -433,8 +433,8 @@ Futures.addCallback(kuldes, new FutureCallback&lt;Uzenet&gt;() {
     Futures.addCallback(letoltes, new FutureCallback&lt;MobileServiceList&lt;Uzenet&gt;&gt;() {
         @Override
         public void onSuccess(MobileServiceList&lt;Uzenet&gt; result) {
-            adapter.clear();
-            adapter.addAll(result);
+            uzenetek.clear();
+            uzenetek.addAll(result);
             adapter.notifyDataSetChanged();
         }
 
