@@ -106,7 +106,7 @@
                     Indítsuk el a programot, és ellenőrizzük a munkánkat!</p></li>
         </ul>
         <p>
-            A fenti felhaszálói felület természetesen csupán egy egyszerű vázlat. A korábbi leckékhez
+            A fenti felhasználói felület természetesen csupán egy egyszerű vázlat. A korábbi leckékhez
             hasonlóan javasolnánk, hogy csinosítsátok és színesítsétek ki!</p>
 		
     </section>
@@ -119,7 +119,7 @@
             ábrázolnunk egy egyszerű számnál vagy szövegnél, akkor gyakran saját osztályokra kell
             hagyatkoznunk. Ha egy egész számot akarunk tárolni, arra ott az <code>int</code> típus.
             Szövegekhez használhatunk <code>String</code>eket. Azonban a Java nyelv ahogy magától azt
-            sem tudja, hogy a két nyelven jegyzett Szo osztályt hogyan kezelje, úgy az üzenetek
+            sem tudja, hogy a két nyelven jegyzett <code>Szo</code> osztályt hogyan kezelje, úgy az üzenetek
             tárolásához is egy kis segítséget kell neki adnunk.</p>
 
         <p>
@@ -348,7 +348,7 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
                 az elkészült program használatához) szükség lesz a telefonon internetelérésre. A program
                 működik mobilneten keresztül is, de nagyon változó, hogy éppen mennyi adatot szeretne
                 letölteni, ami lehet sok, így drága is. Ezért azt javasoljuk, hogy mindenképp az <strong>otthoni
-                WiFi</strong>-re legyetek felcsatlakozva, miközben használjátok a programot! Reméljük ez nem okoz
+                WiFi</strong>-re legyetek felcsatlakozva, miközben használjátok a programot! Reméljük, ez nem okoz
                 gondot senkinek.</p>
         </div>
 
@@ -437,7 +437,7 @@ uzenetek.add(udv);              // végül hozzáadjuk a listához
             lehívásához csatlakoznunk kell az internetre.</p>
 
         <p>
-            Az alkalmazásunk a szükséges engedélyek listját az <code>AndroidManifest.xml</code> fájlban
+            Az alkalmazásunk a szükséges engedélyek listáját az <code>AndroidManifest.xml</code> fájlban
             tárolja.</p>
         <ol>
             <li>
@@ -579,7 +579,7 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
     <section id="extra_date_formatting">
         <h3 class="task">2*. Dátum formázása</h3>
         <p>Ha eddig mindent jól csináltál, akkor azt tapasztalhatod, hogy még a legrövidebb üzenet
-            is általában két sort foglala el, mert egy igencsak hosszú, csúnya szöveg van kiírva
+            is általában két sort foglal el, mert egy igencsak hosszú, csúnya szöveg van kiírva
             a dátum helyére. Nézzük meg hogy lehet ezen csinosítani!</p>
 
         <p><em>Jelenleg vagy az <code>Uzenet</code> osztály <code>toString</code> metódusában, vagy
@@ -648,7 +648,7 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
         <p>
             Jogos a kérdés, hogy ha egyszerre csak az egyik irányban rakhatjuk egymás után a
             komponenseket, hogy tudjuk előállítani a leckében használt kinézetet? Szerencsére nagyon
-            egyszerűen, ugyanis a LinearLayout is csak egy komponens, pont mint egy gomb, vagy
+            egyszerűen, ugyanis a LinearLayout is csak egy komponens; pont, mint egy gomb, vagy
             TextView. azzal a különbséggel, hogy tartalmazhat más komponenseket is. Vagyis semmi nem
             akadályoz meg minket abban, hogy mondjuk egy <strong>függőleges</strong> LinearLayoutba (zölddel)
             belerakjuk a ListView-t felülre, <strong>alá</strong> pedig egy <em>másik</em>
