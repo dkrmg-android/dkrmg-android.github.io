@@ -496,107 +496,156 @@ protected void onResume() {
 <div class="container szorgalmi">
     <h2 class="szorgalmi">Szorgalmi feladatok</h2>
 
-    <h3 class="task">1*. Felhasználóbarátabb üzenetküldés</h3>
+    <section id="extra_send_message_UX">
+        <h3 class="task">1*. Felhasználóbarátabb üzenetküldés</h3>
 
-    <p>
-        Jelenleg az üzenet küldésekor a következők történnek:</p>
-    <ol>
-        <li>
-            <p>
-                Elkészítjük az üzenet objektumot</p></li>
-        <li>
-            <p>
-                Odaadjuk az Azure-nak, és kapunk cserébe egy ígéretet, ami majd egyszer később
-                teljesül (vagy hibát jelez)</p></li>
-        <li>
-            <p>
-                Töröljük az <code>EditText</code> tartalmát.</p></li>
-        <li>
-            <p>
-                Teljesül az ígéret</p></li>
-        <li>
-            <p>
-                Sikerült: rezgés</p></li>
-        <li>
-            <p>
-                Hiba történt: Toast</p></li>
-    </ol>
-    <p>
-        Remélhetőleg látható ennek a folyamatnak a hibája: Ha valami probléma adódott az üzenet
-        elküldésével, akkor mielőtt erről tudomást szerzünk egy Toast formájában, már kitöröltük az
-        EditText tartalmát. Vagyis teljesen és visszavonhatatlanul <em>elveszett az üzenet
-        tartalma</em>! Reméljük nem kell mondani, hogy ez milyen rossz fényt vetne az
-        alkalmazásunkra és a programozóra… Javítsuk!</p>
+        <p>
+            Jelenleg az üzenet küldésekor a következők történnek:</p>
+        <ol>
+            <li>
+                <p>
+                    Elkészítjük az üzenet objektumot</p></li>
+            <li>
+                <p>
+                    Odaadjuk az Azure-nak, és kapunk cserébe egy ígéretet, ami majd egyszer később
+                    teljesül (vagy hibát jelez)</p></li>
+            <li>
+                <p>
+                    Töröljük az <code>EditText</code> tartalmát.</p></li>
+            <li>
+                <p>
+                    Teljesül az ígéret</p></li>
+            <li>
+                <p>
+                    Sikerült: rezgés</p></li>
+            <li>
+                <p>
+                    Hiba történt: Toast</p></li>
+        </ol>
+        <p>
+            Remélhetőleg látható ennek a folyamatnak a hibája: Ha valami probléma adódott az üzenet
+            elküldésével, akkor mielőtt erről tudomást szerzünk egy Toast formájában, már kitöröltük az
+            EditText tartalmát. Vagyis teljesen és visszavonhatatlanul <em>elveszett az üzenet
+            tartalma</em>! Reméljük nem kell mondani, hogy ez milyen rossz fényt vetne az
+            alkalmazásunkra és a programozóra… Javítsuk!</p>
 
-    <p>
-        Több megoldás lehet a problémára, nézzük a legegyszerűbbet.</p>
-    <ol>
-        <li>
-            <p>
-                Az egész küldő függvény legelején tiltsuk le a küldés gombot (<code>setEnabled(false)</code>
-                belső függvénye). Ez azért kell, hogy amíg meg nem bizonyosodtunk az üzenetküldés
-                eredményéről, nem próbálja újraküldeni a felhasználó az üzenetet. (Lehet, hogy csak
-                lassú a net, de ha a türelmetlen felhasználó többször megnyomja a gombot, akkor
-                ugyan lassan, de több példányban lesz elküldve az üzenet.)</p></li>
-        <li>
-            <p>
-                Hozzuk létre az üzenetet, adjuk oda az Azure-nak, és írjuk meg az ígéret
-                beváltásához szükséges kód vázát, pont, mint eddig.</p></li>
-        <li>
-            <p>
-                Töltsük ki a két függvényt:</p></li>
-        <li>
-            <p>
-                Az <code>{1}</code>-esben (azaz siker esetén) továbbra is jelezhetjük egy rövid
-                rezgéssel a sikert, viszont fontos, hogy itt töröljük ki az EditText tartalmát, és
-                <em>ne felejtsük el újra engedélyezni</em> a gombot (<code>setEnabled(true)</code>)!
-            </p></li>
-        <li>
-            <p>
-                a <code>{2}</code>-esben (azaz hiba esetén) lehet mondjuk egy hosszabbat rezegni,
-                Toast-ot megjeleníteni, viszont ami fontos, hogy itt ne töröljük ki az EditText
-                tartalmát, viszont itt is engedélyezzük a gombot!</p></li>
-    </ol>
-    <p>
-        Ez azért jó, mert így biztosan nem veszik el az elküldeni kívánt üzenet. Ha hiba történik
-        (például nincs bekapcsolva a WiFi) van lehetősége korrigálni a felhasználónak (pl.
-        bekapcsolni a WiFi-t) és újra megpróbálkozni a küldéssel, anélkül, hogy újra be kéne
-        gépelnie az üzenetét.</p>
+        <p>
+            Több megoldás lehet a problémára, nézzük a legegyszerűbbet.</p>
+        <ol>
+            <li>
+                <p>
+                    Az egész küldő függvény legelején tiltsuk le a küldés gombot (<code>setEnabled(false)</code>
+                    belső függvénye). Ez azért kell, hogy amíg meg nem bizonyosodtunk az üzenetküldés
+                    eredményéről, nem próbálja újraküldeni a felhasználó az üzenetet. (Lehet, hogy csak
+                    lassú a net, de ha a türelmetlen felhasználó többször megnyomja a gombot, akkor
+                    ugyan lassan, de több példányban lesz elküldve az üzenet.)</p></li>
+            <li>
+                <p>
+                    Hozzuk létre az üzenetet, adjuk oda az Azure-nak, és írjuk meg az ígéret
+                    beváltásához szükséges kód vázát, pont, mint eddig.</p></li>
+            <li>
+                <p>
+                    Töltsük ki a két függvényt:</p></li>
+            <li>
+                <p>
+                    Az <code>{1}</code>-esben (azaz siker esetén) továbbra is jelezhetjük egy rövid
+                    rezgéssel a sikert, viszont fontos, hogy itt töröljük ki az EditText tartalmát, és
+                    <em>ne felejtsük el újra engedélyezni</em> a gombot (<code>setEnabled(true)</code>)!
+                </p></li>
+            <li>
+                <p>
+                    a <code>{2}</code>-esben (azaz hiba esetén) lehet mondjuk egy hosszabbat rezegni,
+                    Toast-ot megjeleníteni, viszont ami fontos, hogy itt ne töröljük ki az EditText
+                    tartalmát, viszont itt is engedélyezzük a gombot!</p></li>
+        </ol>
+        <p>
+            Ez azért jó, mert így biztosan nem veszik el az elküldeni kívánt üzenet. Ha hiba történik
+            (például nincs bekapcsolva a WiFi) van lehetősége korrigálni a felhasználónak (pl.
+            bekapcsolni a WiFi-t) és újra megpróbálkozni a küldéssel, anélkül, hogy újra be kéne
+            gépelnie az üzenetét.</p>
+    </section>
 
-	<h3 class="task">2*. Frissítés gombnyomásra</h3>
-	<p>
-		Nem túlzás azt állítani, hogy az üzenőfal alkalmazásunk igen felhasználóbarát az üzenetek
-		elküldésénél. Most javítsunk egy kicsit a letöltésen is!</p>
-	<p>Az egyik legszembetűnőbb hiányosság az, hogy az üzenetek listáját csupán két esetben töltjük le:</p>
-    <ul>
-        <li>A program indulásakor (<code>onResume</code>)</li>
-        <li>Amikor a felhasználónk új üzenetet küld.</li>
-    </ul>
-    <p>Tételezzük fel egy pillanat erejéig, hogy a Aladár, a szakkör egy igen lelkes fiktív tagja
-     az üzenőfalon szeretne hosszú társalgást folytatni a hozzá hasonlóan valós Bélával.
-        Amikor Aladár feltesz egy kérdést, utána nincs más megoldás: újra kell indítania párszor
-        a programot, hogy meglássa, válaszolt-e Béla.</p>
-    <p>Ezt a problémát szeretnénk megoldani, első lépésben egy igen egyszerű "frissítés" gomb elhelyezésével,
-        aminek segítségével a felhasználó bármikor lehívhatja az üzenetek listáját!</p>
-    <ol>
-        <li>Először is helyezzünk el egy új gombot a layout szerkesztőben.
-            Ne feledkezzünk el az <code>id</code> tulajdonságáról!</li>
-        <li>Hozzunk létre egy új kattintást kezelő függvényt, majd rendeljük hozzá az új gombhoz</li>
-        <li>A kattintást kezelő függvény egyszerűen hívja meg a <code>letoltes()</code> függvényünket.</li>
-    </ol>
-    <p>Gomb helyett használhatunk egy felugró menüt is. Ehhez segítséget <a href="/lessons/l08.html#starred_about_menu" target="_blank">itt</a> találtok.</p>
-    <div class="imgstore">
-        <img src="/static/img/l14/refresh.png" class="center-block" />
-        <img src="/static/img/l14/refresh2.png" class="center-block" />
-    </div>
-    <p>A gombnyomásos megoldás nagyban megkönnyíti Aladár és Béla dolgát. Ha még ennél is jobb megoldást
-        szeretnénk, akkor érdemes lehet az üzeneteket egy időzítő segítségével pl. pár másodpercenként
-        lehívni. Ezt az 5*. szorgalmi feladatban meg is tesszük.</p>
+    <section id="extra_refresh_on_click">
+        <h3 class="task">2*. Frissítés gombnyomásra</h3>
+        <p>
+            Nem túlzás azt állítani, hogy az üzenőfal alkalmazásunk igen felhasználóbarát az üzenetek
+            elküldésénél. Most javítsunk egy kicsit a letöltésen is!</p>
+        <p>Az egyik legszembetűnőbb hiányosság az, hogy az üzenetek listáját csupán két esetben töltjük le:</p>
+        <ul>
+            <li>A program indulásakor (<code>onResume</code>)</li>
+            <li>Amikor a felhasználónk új üzenetet küld.</li>
+        </ul>
+        <p>Tételezzük fel egy pillanat erejéig, hogy a Aladár, a szakkör egy igen lelkes fiktív tagja
+         az üzenőfalon szeretne hosszú társalgást folytatni a hozzá hasonlóan valós Bélával.
+            Amikor Aladár feltesz egy kérdést, utána nincs más megoldás: újra kell indítania párszor
+            a programot, hogy meglássa, válaszolt-e Béla.</p>
+        <p>Ezt a problémát szeretnénk megoldani, első lépésben egy igen egyszerű "frissítés" gomb elhelyezésével,
+            aminek segítségével a felhasználó bármikor lehívhatja az üzenetek listáját!</p>
+        <ol>
+            <li>Először is helyezzünk el egy új gombot a layout szerkesztőben.
+                Ne feledkezzünk el az <code>id</code> tulajdonságáról!</li>
+            <li>Hozzunk létre egy új kattintást kezelő függvényt, majd rendeljük hozzá az új gombhoz</li>
+            <li>A kattintást kezelő függvény egyszerűen hívja meg a <code>letoltes()</code> függvényünket.</li>
+        </ol>
+        <p>Gomb helyett használhatunk egy felugró menüt is. Ehhez segítséget <a href="/lessons/l08.html#starred_about_menu" target="_blank">itt</a> találtok.</p>
+        <div class="imgstore">
+            <img src="/static/img/l14/refresh.png" class="center-block" />
+            <img src="/static/img/l14/refresh2.png" class="center-block" />
+        </div>
+        <p>A gombnyomásos megoldás nagyban megkönnyíti Aladár és Béla dolgát. Ha még ennél is jobb megoldást
+            szeretnénk, akkor érdemes lehet az üzeneteket egy időzítő segítségével pl. pár másodpercenként
+            lehívni. Ezt az 5*. szorgalmi feladatban meg is tesszük.</p>
+    </section>
 
-    <h3 class="task">3*. Üres lista?!</h3>
-	<p>***TODO: empty layout szorgalmi</p>
+    <section id="extra_empty_layout">
+        <h3 class="task">3*. Üres lista?!</h3>
+        <p>Ha alaposan letesztelted a hibakezelést is, akkor észrevehetted, hogy amikor pl. nincs internet,
+            akkor a listában nem jelenik meg egy elem sem. Ez nem túl informatív. Sokkal jobb
+            felhasználói élményt nyújtana, ha ilyenkor valami szöveg látszódna, mutatva, hogy
+            itt elvileg egy lista van, csak most épp üres.</p>
+        <p>Ez meg lehet oldani egy macerásabb, és egy egyszerűbb módon is, az előbbi kitalálását rátok bízzuk,
+            de utóbbit megmutatjuk, mert egy hasznos kis funkció.</p>
 
-    <h3 class="task">4*. Régebbi üzenetek betöltése</h3>
+        <ol>
+            <li>Először is ki kell találni, hogy mit szeretnénk megjeleníteni, amikor üres a lista.<br/>
+                Ez lehet <em>bármi</em>, amit amúgy meg tudnánk jeleníteni a képernyőn. Lehet egy gomb,
+                egy kép, egy szöveg, stb. Sőt, aki megcsinálta az
+                <a href="/lessons/l13.html#extra_compound_layout" target="_blank">előző lecke 3. szorgalmiját</a>,
+                az már tudhatja, hogy akár bonyolultabb layoutokat is be lehet ide rakni. <br/>
+                Itt példaként egy szöveget és egy frissítés gombot fogunk megjeleníteni, de aki biztos a dolgában,
+                nyugodtan eltérhet ettől.</li>
+            <li>Rakjuk össze a layoutot! <br/>
+                <ol>
+                    <li>Ehhez először is ideiglenesen rejtsük el a listánkat a layout szerkesztőben:
+                        állítsuk a <code>visibility</code> tulajdonságát <code>gone</code>-ra, így nem fog bezavarni. Később
+                        ne felejtsük el visszállítani <code>visible</code>-re!</li>
+                    <li>Húzzunk be fent középre egy újabb <strong><code>RelativeLayout</code></strong>
+                        komponenst. Érdemes beállítani az <code>layout:alignComponent</code> tulajdonságon belül
+                        a <code>bottom:top</code> sort mondjuk az alsó EditText-re, vagy a küdés gombra.<br/>
+                        Ez mondja meg, hogy az aktuális komponens alja (<code>bottom</code>) melyik
+                        másik komponens tetejéhez (<code>top</code>) igazodjon.</li>
+                    <li>Ebbe pakoljuk bele, amit szeretnénk megjeleníteni, például egy-két szöveget
+                        és egy gombot, tetszőlegesen elrendezve, színezve, stb.
+                        <img src="/static/img/l14/extra_empty_layout.png" class="center-block" /></li>
+                    <li>Az új RealtiveLayout komponensnek adjunk egy azonosítót (id), pl.: <code>ures</code></li>
+                    <li>Ha mindennel készen vagyunk, rejtsük el az új RelativeLayoutot (visibility tulajdonság: gone)
+                        és jelenítsük meg újra a listát (visibility tulajdonság: visible).</li>
+                </ol>
+            </li>
+            <li>Menjünk át a Java kódba, és csináljunk egy új változót az új RelativeLayoutnak (típusa
+                <code>RelativeLayout</code>, neve lehet pl.: <code>ures</code>), majd az <code>onCreate</code>-ben
+                rendeljük is hozzá a <code>findViewById</code> függvénnyel.</li>
+            <li>Végül mondjuk meg (szintén az <code>onCreate</code>-ben) a ListView-nak, hogy ez jelenjen meg, ha nincsen egy üzenet sem:
+                <pre><code>list.setEmptyView(ures);</code></pre>
+                Figyelj oda, hogy a ListView típusú változódat használd, ne az adaptert, és ne is az <code>ArrayList</code>-et!</li>
+            <li>Próbáld ki, hogy kikapcsolt internet mellett megjelenik-e az új komponens!</li>
+            <li>Már csak annyi maradt hátra, hogy az új gombnak csinálj egy onClick függvényt, rendeld hozá a layout szerkesztőben,
+                és a függvényben hívd meg a <code>letoltes()</code> függvényedet. </li>
+        </ol>
+    </section>
+
+    <section id="extra_paging">
+        <h3 class="task">4*. Régebbi üzenetek betöltése</h3>
         <p>Jelenleg az alkalmazásunk mindig a 15 legfrissebb üzenetet jeleníti meg. Ez így is van rendjén, hiszen az üzenőfalak sajátossága,
             hogy többnyire csak a legújabb bejegyzések érdeklik a felhasználót. Néha azonban bizony előfordulhat, hogy
             vissza szeretnénk keresni egy régi beszélgetést, vagy csak gyönyörködni szeretnénk a többi szakkörös felhasznló szárnypróbálgató
@@ -607,9 +656,10 @@ protected void onResume() {
         <p>A pontos megvalósítást rátok bízzuk! Első megközelítésként érdemes lehet létrehozni egy <code>int</code> típusú változót, ami a letöltendő
         üzenetek számát tárolja (kezdetileg <code>15</code>, de gombnyomásra/menüből növelhető). Bátrabbak kísérletezhetnek a lekérdezésnél a <code>skip</code>
         függvénnyel is!</p>
+    </section>
 
-
-    <h3 class="task">5*. Üzenetek frissítése adott időközönként</h3>
+    <section id="extra_refresh_timer">
+        <h3 class="task">5*. Üzenetek frissítése adott időközönként</h3>
         <p>A második szorgalmi végén utaltunk már erre a feladatra: jó lenne, ha a programunk futás közben (<code>onResume</code>-tól kezdve
             egészen <code>onPause</code>-ig) folyamatosan hívná az üzeneteket, mondjuk három másodpercenként.</p>
         <p>Első megközelítésben megnézzük, hogy miként tudunk az Android rendszerben ilyen időzítőt létrehozni. Azoban még most le kell szögezni:
@@ -631,7 +681,7 @@ protected void onResume() {
                 <code>Runnable refreshTask;</code></li>
             <li><p>Amikor értéket adunk ennek a változónak, rögtön megadhatjuk azt a függvényt is, amit le szeretnénk majd futtatni
                 adott időközönként. A változónk <code>run</code> belső kis függvénye az, ami az objektum futtatásánál elindul.</p>
-                <pre><code>refreshTask = new Runnable() {
+<pre><code>refreshTask = new Runnable() {
     @Override
     public void run() {
         // TODO: hívd meg a letolt(); függvényt!
@@ -654,12 +704,15 @@ protected void onResume() {
             <li>Érdemes megemlíteni, hogy így rögtön az <code>onResume</code> függvényünk kérvényezni fogja az első frissítést. Tehát az otttani
             <code>letolt();</code> sort akár törölhetjük is.</li>
         </ol>
+    </section>
 
-    <h3 class="task">N*. ???</h3>
-    <p>Van még ötleted? Nem kell itt megállnod. A program rengeteg irányba fejleszthető! Például a lekérés kódja lehetne kicsit okosabb  úgy, hogy csak bizonyos dátum
-        utáni üzenetek iránt érdeklődjön, így elkerülve az üzenetek folyamatos újratöltését! De a lehetőségek tárháza végtelen.
-        A <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalra bármilyen plusz munkát feltölthetsz. Illetve ha kérdésed támad az ötleteddel kapcsolatban,
-    írd meg bátran, hátha tuduk segíteni!</p>
+    <section id="extra_others">
+        <h3 class="task">N*. ???</h3>
+        <p>Van még ötleted? Nem kell itt megállnod. A program rengeteg irányba fejleszthető! Például a lekérés kódja lehetne kicsit okosabb  úgy, hogy csak bizonyos dátum
+            utáni üzenetek iránt érdeklődjön, így elkerülve az üzenetek folyamatos újratöltését! De a lehetőségek tárháza végtelen.
+            A <a target="_blank" href="http://goo.gl/UMyfuL">feltöltő</a> oldalra bármilyen plusz munkát feltölthetsz. Illetve ha kérdésed támad az ötleteddel kapcsolatban,
+        írd meg bátran, hátha tuduk segíteni!</p>
+    </section>
 </div>
 <footer data-include="/include/footer.html"></footer>
 <script src="/static/js/lessonBottomStuff.js" type="text/javascript" charset="utf-8"></script>
