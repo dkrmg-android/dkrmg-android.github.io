@@ -16,6 +16,17 @@
 </head>
 <body class="language-java">
     <header data-include="/include/header.html"></header>
+	
+		<!-- Sidebar -->
+        <div class="sidebar" id="sidebar">	
+			<div id="contentsContainer"">
+				<label>&nbsp;<input type="checkbox" id="noanimate" onchange="shouldHide = !this.checked;">Ne tűnj el!</label><br/>
+				<ul id="contents" class="sidebar-nav"></ul>
+			</div>
+			<div class="verticalLine"></div>		
+        </div>
+
+	
     <div class="container">
         <h1>Gyakran ismételt kérdések
             <small>Online Android szakkör (DKRMG)</small>
@@ -33,7 +44,7 @@
             </div><!-- .div.gyik-outer -->
         </section>
 
-        <section class="gyik" id="buttonNClick">
+        <section class="gyik" id="buttonOnClick">
             <h3>Gomb és kattintás</h3>
             <img src="/static/img/gyik/Button1.png"/>
             <div class="caption">
@@ -315,132 +326,128 @@ protected void onPause() {
                 </code></pre>
             </div>
 		</section>
-    </div>
+        <section class="gyik" id="sensorList">
+                <h3>Érzékelő típusok</h3>
+                <div class="description">
+                    <table  class="table table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Érzékelő</th>
+                                        <th>Sensor.<em>KONSTANS</em></th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
+                                    <tr>
+                                        <td>Közelségérzékelő (5. lecke)</td>
+                                        <td>TYPE_PROXIMITY</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telefon helyzetének érzékelése (6. lecke)</td>
+                                        <td>TYPE_ORIENTATION</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gyorsulásmérő</td>
+                                        <td>TYPE_ACCELEROMETER</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hőmérséklet</td>
+                                        <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gravitációs erő</td>
+                                        <td>TYPE_GRAVITY</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giroszkóp</td>
+                                        <td>TYPE_GYROSCOPE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mágneses erőtér </td>
+                                        <td>TYPE_MAGNETIC_FIELD</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mágneses erőtér </td>
+                                        <td>TYPE_MAGNETIC_FIELD</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Légnyomás (hPa)</td>
+                                        <td>TYPE_PRESSURE</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Relatív páratartalom</td>
+                                        <td>TYPE_RELATIVE_HUMIDITY</td>
+                                    </tr>
+                                 </tbody>
+                            </table>
+                            Nem biztos, hogy a te telefonodban ezek az érzékelők valóban elérhetőek!
+                           Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
+                        </div><!-- .div.description -->
+            </section>
 
-    <section class="gyik" id="sensorList">
-            <h3>Érzékelő típusok</h3>
+        <section class="gyik" id="newProj">
+            <h3>Új projekt</h3>
+            <img src="/static/img/gyik/newProj1.png"/>
+            <div class="caption">
+                Először zárjuk be a meglévő projektünket. Majd az indulóképernyőn válasszuk a
+                <code>Start a new Android Studio project</code> lehetőséget.
+            </div>
+            <img src="/static/img/gyik/newProj2.png"/>
+            <div class="caption">
+                A programnak adjunk valami ékezetes betűket nem tartalmazó nevet (pl. <code>Uzenofal</code>.
+                A Domain mezőnél pedig használjunk egy egyedi azonosítót. Pl. <code>dgy.a02.android.dkrmg.hu</code>
+            </div>
+
+            <img src="/static/img/gyik/newProj3.png"/>
+            <div class="caption">
+                A minimum SDK mezőnél a 19-es verzió legyen kijelölve attól függetlenül, hogy milyen telefonra fejlesztünk.
+            </div>
+
+            <img src="/static/img/gyik/newProj4.png"/>
+
+            <img src="/static/img/gyik/newProj5.png"/>
+            <div class="caption">
+                Adjunk a fő Activitynek valami nevet. Pl. <code>MainActivity</code>.
+            </div>
+
+            <img src="/static/img/l07/newProj7.png">
+            <div class="caption">
+                Nyissuk meg a <code>build.gradle (app)</code> fájlt!
+            </div>
+
+            <img src="/static/img/l07/newProj8.png">
+            <div class="caption">
+                keressük meg a <code>minSdkVersion 21</code> sort és írjuk át a számot a telefonunktól függően. Pl.
+                <code>Android 2.3.3</code>-nál <code>10</code>-re.
+            </div>
+
+        </section>
+        <section class="gyik" id="newImg">
+            <h3>Saját képek</h3>
+            <img src="/static/img/gyik/newImg1.png"/>
+            <div class="caption">
+                Keresd meg a Windows fájlkezelővel az <code>app\src\main\res</code> mappát a projekteden belül.
+                <em>(Ezt úgy is megteheted, hogy az Android Studioban a res mappára rákattintasz jobb gombbal, majd kiválasztod a <code>Show in Explorer</code> menüpontot)</em>
+            </div>
+            <img/>
+            <div class="caption">
+                Ha még nincsen, akkor készíts a <code>res</code> mappában egy új mappát <code>drawable</code> néven
+            </div>
+
+            <img src="/static/img/gyik/newImg2.png"/>
+            <div class="caption">
+                Helyezd el a képet a drawable mappába
+            </div>
+
+            <img/>
+            <div class="caption">
+                Mostantól kezdve a fájl nevével pl. <code>R.drawable.ball</code> tudsz hivatkozni rá (pl. megjeleníteni)
+            </div>
+
             <div class="description">
-                <table  class="table table-bordered table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Érzékelő</th>
-                                    <th>Sensor.<em>KONSTANS</em></th>
-                                </tr>
-                            </thead>
-                            <tbody style="font-family: 'Consolas', 'Deja Vu Sans Mono', 'Bitstream Vera Sans Mono', monospace;">
-                                <tr>
-                                    <td>Közelségérzékelő (5. lecke)</td>
-                                    <td>TYPE_PROXIMITY</td>
-                                </tr>   
-                                <tr>
-                                    <td>Telefon helyzetének érzékelése (6. lecke)</td>
-                                    <td>TYPE_ORIENTATION</td>
-                                </tr>   
-                                <tr>
-                                    <td>Gyorsulásmérő</td>
-                                    <td>TYPE_ACCELEROMETER</td>
-                                </tr>
-                                <tr>
-                                    <td>Hőmérséklet</td>
-                                    <td>TYPE_TEMPERATURE vagy TYPE_AMBIENT_TEMPERATURE</td>
-                                </tr> 
-                                <tr>
-                                    <td>Gravitációs erő</td>
-                                    <td>TYPE_GRAVITY</td>
-                                </tr> 
-                                <tr>
-                                    <td>Giroszkóp</td>
-                                    <td>TYPE_GYROSCOPE</td>
-                                </tr>   
-                                <tr>
-                                    <td>Mágneses erőtér </td>
-                                    <td>TYPE_MAGNETIC_FIELD</td>
-                                </tr>  
-                                <tr>
-                                    <td>Mágneses erőtér </td>
-                                    <td>TYPE_MAGNETIC_FIELD</td>
-                                </tr> 
-                                <tr>
-                                    <td>Légnyomás (hPa)</td>
-                                    <td>TYPE_PRESSURE</td>
-                                </tr>           
-                                <tr>
-                                    <td>Relatív páratartalom</td>
-                                    <td>TYPE_RELATIVE_HUMIDITY</td>
-                                </tr>                   
-                             </tbody>
-                        </table>
-                        Nem biztos, hogy a te telefonodban ezek az érzékelők valóban elérhetőek!
-                       Ráadásul ez a lista nem is teljes. Körülnézhetsz  <a href="http://developer.android.com/guide/topics/sensors/sensors_overview.html">itt is</a>  egy kicsit:
-                    </div><!-- .div.description -->
-		</section>
-
-    <section class="gyik" id="newProj">
-        <h3>Új projekt</h3>
-        <img src="/static/img/gyik/newProj1.png"/>
-        <div class="caption">
-            Először zárjuk be a meglévő projektünket. Majd az indulóképernyőn válasszuk a
-            <code>Start a new Android Studio project</code> lehetőséget.
-        </div>
-        <img src="/static/img/gyik/newProj2.png"/>
-        <div class="caption">
-            A programnak adjunk valami ékezetes betűket nem tartalmazó nevet (pl. <code>Uzenofal</code>.
-            A Domain mezőnél pedig használjunk egy egyedi azonosítót. Pl. <code>dgy.a02.android.dkrmg.hu</code>
-        </div>
-
-        <img src="/static/img/gyik/newProj3.png"/>
-        <div class="caption">
-            A minimum SDK mezőnél a 19-es verzió legyen kijelölve attól függetlenül, hogy milyen telefonra fejlesztünk.
-        </div>
-
-        <img src="/static/img/gyik/newProj4.png"/>
-
-        <img src="/static/img/gyik/newProj5.png"/>
-        <div class="caption">
-            Adjunk a fő Activitynek valami nevet. Pl. <code>MainActivity</code>.
-        </div>
-
-        <img src="/static/img/l07/newProj7.png">
-        <div class="caption">
-            Nyissuk meg a <code>build.gradle (app)</code> fájlt!
-        </div>
-
-        <img src="/static/img/l07/newProj8.png">
-        <div class="caption">
-            keressük meg a <code>minSdkVersion 21</code> sort és írjuk át a számot a telefonunktól függően. Pl.
-            <code>Android 2.3.3</code>-nál <code>10</code>-re.
-        </div>
-
-    </section>
-    </div>
-
-    <section class="gyik" id="newImg">
-        <h3>Saját képek</h3>
-        <img src="/static/img/gyik/newImg1.png"/>
-        <div class="caption">
-            Keresd meg a Windows fájlkezelővel az <code>app\src\main\res</code> mappát a projekteden belül.
-            <em>(Ezt úgy is megteheted, hogy az Android Studioban a res mappára rákattintasz jobb gombbal, majd kiválasztod a <code>Show in Explorer</code> menüpontot)</em>
-        </div>
-        <img/>
-        <div class="caption">
-            Ha még nincsen, akkor készíts a <code>res</code> mappában egy új mappát <code>drawable</code> néven
-        </div>
-
-        <img src="/static/img/gyik/newImg2.png"/>
-        <div class="caption">
-            Helyezd el a képet a drawable mappába
-        </div>
-
-        <img/>
-        <div class="caption">
-            Mostantól kezdve a fájl nevével pl. <code>R.drawable.ball</code> tudsz hivatkozni rá (pl. megjeleníteni)
-        </div>
-
-        <div class="description">
-            Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az angol abc kisbetűit és a <code>_</code>
-            karaktert tartalmazhatja. Nagybetűk és ékezetek nem megengedettek!
-        </div>
-    </section>
+                Amikor saját képet másolsz be a projektbe, vigyázz, hogy a fájl neve csak az angol abc kisbetűit és a <code>_</code>
+                karaktert tartalmazhatja. Nagybetűk és ékezetek nem megengedettek!
+            </div>
+        </section>
     </div>
 
     <footer data-include="/include/footer.html"></footer>

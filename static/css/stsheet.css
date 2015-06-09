@@ -3,6 +3,83 @@
 html {
 	min-height: 100%
 }
+
+/* Sidebar */
+/* ############################################################################################### */
+.sidebar {
+	position:fixed;
+	top: 0px;
+
+	width:28px;
+	height: 100%;
+
+	margin: 10px auto;
+	padding-top: 10px;
+	padding-left: 0;
+
+	background-color: #39a4c6;
+	border-top: 1px solid white;
+    box-shadow: 5px 0 11px 0 rgba(50, 50, 50, 0.75);
+
+	overflow:hidden; 
+	overflow-y:visible;
+}
+
+.sidebar .verticalLine {
+	position: fixed;
+	top: 25%;
+	height: 50%;
+	left: 12px;
+     border-left: 2px solid white;
+}
+
+.sidebar #contentsContainer {
+	margin-top: 50px;
+	display: none;
+	color: black;
+}
+
+.sidebar #contents {
+	margin-top: 10px;
+	color: white;
+}
+
+.sidebar + .container {
+    padding-left: 8%;
+}
+
+.sidebar-nav {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 15px;
+    line-height: 30px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+	color: #ffffff;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: black;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+
 body {
 	min-height: 100%;
 	background: #a4c639;
@@ -423,4 +500,5 @@ padding-top: 10px;
     background-color: #ffffff;
   }
 }
+
 

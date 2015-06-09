@@ -4,6 +4,28 @@
 
 var $template = $('#gyik-template');
 var $container = $('.container');
+var $sideBar = $('#sidebar');
+var shouldHide = true;
+
+function minimiseSidebar() {
+	if (!shouldHide) {
+		return;
+	}
+	
+	$sideBar.animate({
+		width: "28px"
+	}, 100);
+	$sideBar.find('#contentsContainer').hide();
+	$sideBar.find('.verticalLine').show();
+}
+
+function maximiseSidebar() {
+	$sideBar.animate({
+		width: "250px"
+	}, 100);
+	$sideBar.find('.verticalLine').hide();
+	$sideBar.find('#contentsContainer').show();
+}
 
 function createGyikItem($content) {
     var $current = $template.clone();
@@ -39,11 +61,32 @@ function createGyikItem($content) {
     $current.find('.description').html($content.children('.description').html());
     $content.remove();
     $container.append($current);
-    // TODO add to TOC!
+}
+
+function populateContents() {
+    var ul = $('#contents');
+    ul.empty();
+    $('h3', '.gyik').each(function () {
+        var $title = $(this);
+        if ($title.text() != null && $title.text().length > 0) {
+            ul.append(
+                $('<li>').append(
+                    $('<a>', {href: '#' + $title.parent().parent().attr('id')})
+                        .text($title.text())
+                )
+            );
+        }
+    });
 }
 
 $('.gyik').each(function (index, element) {
     createGyikItem($(element));
 });
 
+
 $('.card pre').closest('.card').addClass('hascode');
+
+$sideBar.mouseenter(maximiseSidebar);
+$sideBar.mouseleave(minimiseSidebar);
+
+populateContents();
