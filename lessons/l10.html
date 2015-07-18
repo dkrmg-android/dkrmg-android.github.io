@@ -600,7 +600,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         Collections.sort(szavak, new Comparator&lt;Szo&gt;() {
             @Override
             public int compare(Szo a, Szo b) {
-                return a.getMagyar().compareTo(b.getMagyar());
+                return a.magyar.compareTo(b.magyar);
             }
         });
         return true;
@@ -610,7 +610,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         Collections.sort(szavak, new Comparator&lt;Szo&gt;() {
             @Override
             public int compare(Szo a, Szo b) {
-                return a.getAngol().compareTo(b.getAngol());
+                return a.angol.compareTo(b.angol);
             }
         });
         return true;
