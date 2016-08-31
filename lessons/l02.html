@@ -31,7 +31,7 @@
     <h2>Új projekt létrehozása</h2>
     <ol>
         <li>Indítsuk el az Android Studio-t</li>
-        <li>Kattintsunk a "New Project…" menüpontra
+        <li>Kattintsunk a "Start a new Android Studio project" menüpontra
             <img src="/static/img/l02/01_createProject.png" class="center-block" />
         </li>
         <li>A megnyíló ablakban adjuk meg az app alap adatait:
@@ -58,17 +58,17 @@
         </li>
         <li>A következő oldalon azt kell eldöntenünk, hogy milyen kiinduló nézetet generáljon nekünk a
             fejlesztőkörnyezet. Ettől később természetesen el lehet térni, de egyszerűbb a fejlesztés,
-            ha már az elején ki tudjuk választani az alapot. Itt is maradhat az
-            alapbeállítás (<code>Blank Activity</code>).
+            ha már az elején ki tudjuk választani az alapot. Itt maradjunk az (<code>Empty Activity</code>) opciónál.
             <img src="/static/img/l02/04_addActivity.png" class="center-block" />
         </li>
         <li>Az utolsó oldalon megadhatjuk az alkalmazásunk nyitó nézetének adatait:
             <ul>
                 <li><em>Activity Name:</em> A létrehozandó fájl (és osztály) neve. Legyen <code>MainActivity</code>.</li>
+                <li><em>Generate Layout File:</em> Legyen kipipálva, hogy könnyen szerkeszthető legyen az Activity 
+				kinézete a grafikus layout editorral (későbbi leckék folyamán látjuk majd ennek az igazi előnyét).</li>
                 <li><em>Layout Name:</em> A nézet szerkezetét (hol milyen gomb, szöveg, stb. legyen)
                     leíró fájl neve. Ha az Activity Name mezőt átírtuk, akkor ez is már a
                     megfelelő értéket vette fel (<code>activity_main</code>).</li>
-                <li><em>Title:</em> Az ide írt szöveg jelenik meg a képernyő tetején. Maradhat <code>MainActivity</code>.</li>
             </ul>
             <img src="/static/img/l02/05_activityName.png" class="center-block" />
         </li>
@@ -104,7 +104,7 @@
     <p>Ez így nagyon üres, pedig egy csomó minden készen van már, csak elő kell csalogatni:</p>
 
     <ol>
-        <li>Kapcsoljuk be a View menü -> Tool buttons beállítást
+        <li>Győződjünk meg arról, hogy a View menü -> Tool buttons beállítás ki van pipálva.
             <img src="/static/img/l02/10_toolButtons.png" class="center-block" />
         </li>
         <li>Baloldalt nyissuk meg a „Project” panelt és ennek tetején állítsuk át a nézetet „Android”-ra

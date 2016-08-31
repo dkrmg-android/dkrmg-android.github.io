@@ -25,11 +25,6 @@
 		</h1>
 		<hr/>
 
-        <div class="possible-error">
-            <p>Figyelem! 2014. december 18. előtt pár dolog máshogy működött! A régi leírást
-                <a href="/lessons/l01_old.html">itt</a> éred el, ha mégis szükséged lenne rá.</p>
-        </div>
-
         <p>
             Mielőtt látványos és hasznos Android programokat írhatnánk, első lépésként fel kell telepítenünk az
             Android programozáshoz szükséges programokat a számítógépre. A feladat elég egyszerű, ennek
@@ -100,20 +95,7 @@
                     <img src="/static/img/l01/install/andStud5.png" />
                 </div>
             </li>
-			<li><p>Ha a fő program feltelepült, akkor még egy gyors konfigurálás következik.</p>
-				<p>Az újabb verzióknál ilyenkor kiválaszthatjuk például, hogy a szerkesztő ablaka dominánsan világos vagy sötét legyen.
-					Ez végsősoron mindegy. A honlapon látható képek a világos (IntelliJ) témával készütek</p>
-				<img src="/static/img/l01/install/theme.png" class="center-block" />
-			
-			</li>
-            <li>
-                <p>Ezt követően az Androdi Studio feltelepíti az Android SDK-t. Amint befejezte, a <em>Finish</em> gombra kattintva be lehet zárni az ablakot.</p>
-                <div class="imgstore">
-                    <img src="/static/img/l01/install/andStud_firstStart.png" class="center-block" />
-                    <img src="/static/img/l01/install/andStud_firstStart2.png" class="center-block" />
-                </div>
-            </li>
-            <li>
+			<li>
                 <p>Telepítés után az Android Studio üdvözöl minket a következő képernyővel</p>
                 <img src="/static/img/l01/install/andStud_import.png" class="center-block" />
                 <ol>
@@ -128,45 +110,44 @@
                     <p>Sajnos ez egy gyakori hiba, amire megoldást <a href="/lessons/l01-envvar.html" target="_blank">itt találsz</a>. Utána gyere ide vissza&nbsp;:)</p>
                 </div>
             </li>
+			<li><p>Ha a fő program feltelepült, akkor még egy gyors konfigurálás következik.</p>
+				<p>Az alapbeállítások (Standard) nekünk többnyire megfelelnek</p>
+				<div class="imgstore">
+                    <img src="/static/img/l01/install/setup1.png" class="center-block" />
+                    <img src="/static/img/l01/install/setup2.png" class="center-block" />
+                </div>
+			
+			</li>
+            <li>
+                <p>Ezt követően az Androdi Studio feltelepíti az alapértelmezett Android SDK-t. Amint befejezte, a <em>Finish</em> gombra kattintva be lehet zárni az ablakot.</p>
+                <div class="imgstore">
+                    <img src="/static/img/l01/install/andStud_firstStart.png" class="center-block" />
+                    <img src="/static/img/l01/install/andStud_firstStart2.png" class="center-block" />
+                </div>
+            </li>
             <li>
                 <p>Végre elindult az Android Studio, ahol a jövőben kiváló "app"-okat írhatunk okostelefonjainkra. Már
                     csak néhány apró lépés, és tényleg készen állunk.</p>
                 <ol>
                     <li>
                        <p>Kattints a Configure -> SDK Manager menüpontra</p>
-                       <div class="imgstore">
-                           <img src="/static/img/l01/install/sdk_manager1.png" />
-                           <img src="/static/img/l01/install/sdk_manager2.png" />
-                       </div>
+                       <img src="/static/img/l01/install/sdk_manager0.png" class="center-block"/>
                     </li>
                     <li>
-                        <p>A listában győződj meg arról, hogy semmi nincs kipipálva, csak az alábbi dolgok
-                            (alul a <em>Deselect all</em> linkkel tudod törölni a pipákat):</p>
-                        <ul>
-                            <li>Android 4.4.2 (API 19)
-                                <ul>
-                                    <li>SDK Platform</li>
-                                    <li>Intelx86 Atom System Image</li>
-                                    <li>Sources for Android</li>
-                                </ul>
-                            </li>
-                            <li>Extras
-                                <ul>
-                                    <li>Android Support repository</li>
-                                    <li>Android Support Library</li>
-                                    <li>Google Repository</li>
-                                    <li>Google USB Driver</li>
-                                    <li>Intel x86 Emulator Accelerator</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <p>Keresd meg az <code>Android 4.4 (KitKat), API level 19</code> sort. 
+                            Pipáld ki a sor elejét (ha nem volt kipipáva).
+                        <img src="/static/img/l01/install/sdk_manager6.png" class="center-block"/>
                     </li>
                     <li>
-                        <p>Kattints az "Install <em>X</em> packages..." gombra, és fogadd el a licensz feltételeket.
-                            Ezt a lista mindhárom fő pontján meg kell tenned (amíg az összes pipa zöld nem
+                        <p>Az <code>SDK Tools</code> fül alatt keresd meg a <code>Google USB Driver</code> sort. 
+                            Pipáld ki ezt is.
+                        <img src="/static/img/l01/install/sdk_manager7.png" class="center-block"/>
+                    </li>
+                    <li>
+                        <p>Kattints az Apply gombra, és fogadd el a licensz feltételeket.
+                            Verziótól függően lehet, hogy ezt a lista mindhárom fő pontján meg kell tenned (amíg az összes pipa zöld nem
                             lesz, mint a képernyőn). Utána "Install"</p>
                         <div class="imgstore">
-                            <img src="/static/img/l01/install/sdk_manager3.png" />
                             <img src="/static/img/l01/install/sdk_manager4.png" />
                         </div>
                     </li>

@@ -120,7 +120,7 @@
                             <li>Állítsuk be az ImageView méretét (layout:width és layout:height). 
                                 Mondjuk legyen 100dp magas és 100dp széles. Vagy bármilyen más értéket is választhatsz, ami jól néz ki.</li>
                             <li>Válasszuk ki, hogy az <code>ImageView</code> az iránytű képét mutassa. Ehhez az <strong>src</strong> (source)
-                                tulajdonságnál kattints a [&hellip;] gombra, és válaszd ki a compass képet.
+                                tulajdonságnál kattints a [&hellip;] gombra, és válaszd ki a "Drawable" listából a compass képet (kereső mező segít).
                                 <div class="imgstore">
                                     <img src="/static/img/l06/03_src.png" class="center-block" />
                                     <img src="/static/img/l06/04_res.png" class="center-block" />
@@ -313,12 +313,13 @@ sensorManager.registerListener(this, orientation, SensorManager.SENSOR_DELAY_UI)
                 <li>Jobb gombbal kattints az app pontra a projektedben
                     <img src="/static/img/l06/act0.png" class="center-block" />
                 </li>
-                <li>Válaszd ki a <code>New -> Activity -> Blank Activiy</code> pontot.
+                <li>Válaszd ki a <code>New -> Activity -> Empty Activiy</code> pontot.
                     Ezzel annyit mondtunk, hogy egy üres Activityt szeretnénk létrehozni.
                     <img src="/static/img/l06/act1.png" class="center-block" />
                 </li>
                 <li>
-                    Az Activity dialógusban adjuk meg az Activity nevét. Ez legyen mondjuk <code>AboutActivity</code>.
+                    Az Activity dialógusban adjuk meg az Activity nevét. Ez legyen mondjuk <code>AboutActivity</code>. Generate Layout File mellett maradjon a pipa,
+					hogy megkapjuk a könnyen szerkeszthető layout fájlunkat az új Actvitity-hez is.
                     <img src="/static/img/l06/act2.png" class="center-block" />
                 </li>
                 <li>Láthatjuk, hogy a projektünkben született egy új layout fájl (<code>activity_about</code>) 
