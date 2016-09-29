@@ -127,7 +127,6 @@
                 nagybetűvel is elkezdheted majd írni a metódus és objektumneveket, a fejlesztőkörnyezet mindenképp tud
                 majd segíteni.</li>
             <li><strong>Az <code>Editor -> General-> Auto import</code> oldalon az <code>Optimize imports on the fly</code> és az <code>Add unambigous imports on the fly</code> is legyen kipipálva.</strong></li>
-            <li>A <em>Keymap</em> oldalon fent érdemes lehet a Keymaps: Default helyett az Eclipse-t kiválasztani.</li>
         </ul>
         <p>A végén a beállításokat az OK gomb megnyomásával mentsd el!</p>
         <img src="/static/img/l03/09_settings.png" class="center-block" />
@@ -157,6 +156,10 @@
             </li>
             <li>Győződjünk meg arról, hogy a <code>Design</code> fül van az ablak alján kiválasztva. Ilyekor mefjelenik a layout szerkesztő
 				összetett, ám igen hasznos ablaka.</li>
+			<li>Kezdő fejlesztőként érdemes egy keveset legalább könnyíteni a dolgunkon. Tüntessük el az egyelőre kevéssé hasznos jobb oldali (kék) 
+			ábrát a bal felső sarokban található <em>Show design</em> gombocska kiválasztásával.
+                <img src="/static/img/l03/12_1_openLayoutEditor.png" class="center-block" />
+            </li>
         </ol>
         <p>Miért van egy szinte üres projektben ennyi
             mappa és fájl? Ezt a kérdést most nem is fogjuk megválaszolni, nem akarunk senkit oldalakon keresztül az Android
@@ -194,18 +197,19 @@
                 felugrik, zárd nyugodtan be.
                 <img src="/static/img/l03/15_componentProperties.png" class="center-block" />
             </li>
-            <li>Most következzen a <code>textSize</code> (szöveg méret). Itt megadhatod, hogy a felirat milyen méretben jelenjen meg a
+            <li>Most következzen a <code>textAppearance/textSize</code> (szöveg méret). Itt megadhatod, hogy a felirat milyen méretben jelenjen meg a
                 kijelzőn. Próbának írd be az <code>50sp</code> értéket. Természetesen minél nagyobb számot adsz meg, a szöveg annál
                 nagyobb lesz, nyugodtan kísérletezhetsz kedvedre! Az <strong>sp</strong> utótagot (mértékegységet) azért kell beírnunk,
                 hogy különböző telefonokon is nagyjából hasonló látványt nyújtson az alkalmazásunk.
                 <img src="/static/img/l03/16_textSizeProperty.png" class="center-block" />
             </li>
-            <li>Érdemes még megtekinteni a <code>textColor</code> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
+            <li>Érdemes még megtekinteni a <code>textAppearance/textColor</code> tulajdonságot is, ahol a megjelenített szöveg színét tudjuk
                 meghatározni. A mezőbe beírhatjuk közvetlenül az általunk választott szín kódját (<code>#RRGGBB</code>) kettőskereszt
                 után tizenhatos számrendszerben (pl. <code>#ff0000</code> piros, <code>#00ff00</code> zöld, <code>#0000ff</code> kék, <code>#00ffff</code> türkiz stb.)
                 Nem igazodsz ki a színkódokon? Ne aggódj, az Android Studio nem is várja el ezt tőled. Ha a sor végén
                 található [...] gombra kattintasz <img src="/static/img/l03/17_textColor_inline.png" />, akkor felbukkan a
-                Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és keverj ki bármilyen tetszőleges színt.
+                Resources dialógus. Itt válaszd ki a <em>Color</em> fület, és válassz a széles palettáról, vagy az <em>Add new resource</em> segítségével
+				keverj ki bármilyen tetszőleges színt.
                 <img src="/static/img/l03/18_colorChooser.png" class="center-block" />
             </li>
             <li>Végül fontos még megemlíteni az <code>id</code> tulajdonságot. Ez az érték segít a komponensünk megtalálásában, ez a
@@ -213,7 +217,8 @@
                 <img src="/static/img/l03/19_id_inline.png" class="center-block" />
             </li>
         </ul>
-        <p>Ezen kívül kipróbálhatod még óvatosan a <code>background</code>, <code>textStyle</code> tulajdonságokat is.</p>
+        <p>Ezen kívül kipróbálhatod még óvatosan a <code>textStyle</code> tulajdonságot is.</p>
+		<p><em>A bátrabbak megnézhetik a View all properties nyilak lenyomása után a Background tulajdonságot is</em></p>
     </section>
 	<section id="new-component">
 		<h3>Új komponens hozzáadása</h2>
