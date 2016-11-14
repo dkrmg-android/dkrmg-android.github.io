@@ -100,12 +100,6 @@
         <section id="layout">
                 <h3>Felhasználói felület (layout)</h3>
                 <p><em>layout szerkesztő</em></p>
-                <div class="possible-error">
-                    <p>Ellenőrizd, hogy az ablak tetején az API 19 van-e kiválasztva. Ha nem, akkor a legördülő listából válaszd ki a 19-es
-                        verziót, és vedd ki a pipát az „Automatically Pick Best” mellől. Az API 20-s sajnos még nem stabil, tartalmaz néhány
-                        apróbb hibát és előfordulhat, hogy nem jeleníti meg rendesen.</p>
-                    <img src="/static/img/l03/14_bugLayoutApiVer.png" class="center-block" />
-                </div>
                 <p>A felhasználói felületünk igen egyszerű, és nagyban hasonlít az előző leckében használtakhoz. 
                     A következőket kell tenned (ha bizonytalan vagy, ott a <a href="/gyik.html#buttonNClick" target="_blank">gyorssegély</a>, 
                     vagy vissza is olvashatsz egy kicsit a <a href="/lessons/l03.html" target="_blank">harmadik</a>,
@@ -135,6 +129,23 @@
                             <li>Adjunk meg valami kezdeti szöveget is (text). Mondjuk ez lehet "<code>fok</code>". Vagy "<code>majd ide jön a fok</code>".</li>
                         </ul>
                     </li>
+                    <li><em>Futtasd a programot!
+					<div class="possible-error">
+                    <p>Az Android Studio újabb verzióiban előfordulhat, hogy az alábbi hibaüzenettel találkozol</p>
+					<p><strong>Error:(13) No resource identifier found for attribute 'srcCompat' in package 'hu.dkrmg.android.iranytu'</strong></p>
+					<p>A hiba áthidalásához sajnos egy kicsit bele kell másznunk a layout fájl szöveges verziójába.</p>
+					<ol>
+						<li>Nyisd meg a layout fájlt</li>
+						<li>Az ablak alján válaszd ki a <code>Text</code> nézetet.</li>
+						<li>Ezen a ponton láthatod a layoutot leíró XML dokumentumot. Ha nem találkoztál még XML dokumentumokkal, akkor
+							sem kell megijedni. </li>
+						<li>Keresd meg az <code>ImageView</code> pont alá tartozó <code>app:srcCompat="@drawable/compass"</code> sort, és írd át 
+						erre: <code>app:src="@drawable/compass"</code>
+					</ol>
+                    <img src="/static/img/l06/err1.png" class="center-block" />
+                </div>
+					
+					</li>
                 </ol>
             </section>
         <section id="variables">
