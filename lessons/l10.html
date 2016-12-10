@@ -157,6 +157,14 @@ macska,cat
         </ul>
     </section>
 
+	<div class="possible-error">
+	<p>Android 6.0 rendszertől kezdve az engedélyek kezelése kicsit megváltozik a <a target="_blank" href="https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-runtime-permissions">Runtime Permission</a> rendszerrel. Ez annyit jelent, hogy nem telepítéskor kérdezzük meg, 
+	hogy mihez férhet hozzá az applikáció, hanem ideális esetben egyesével, amikor épp először használni akarjuk az adott engedélyt. </p>
+	<p>Ebben a leckében most egy egyszerű (ám nem feltétlenül elegáns) megoldást fogunk alkalmazni: mikor először futtatod az Android Studioból az appod, rögtön lépj ki belőle, 
+	majd a <code>Beállítások > Alkalmazások > Szotar > Endedélyek</code> menüben engedélyezd amit kér. 
+	A következő futtatásnál már nem kell megismételni. </p>
+	
+	</div>
     <section id="writeFile">
         <h2>Írás a fájlba</h2>
 
