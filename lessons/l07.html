@@ -261,6 +261,20 @@
             
             </section>     
         </section>
+		<div class="possible-error">
+			<p>Az Android Studio újabb verzióiban előfordulhat, hogy hiába futtatod a programot, a kép valamiért nem jelenik meg a képernyőn.
+			Esetlegesen még egy hibaüzenet is fogadhat:</p>
+					<p><strong>Error:(13) No resource identifier found for attribute 'srcCompat' in package 'hu.dkrmg.android.rollingball'</strong></p>
+					<p>A hiba áthidalásához sajnos egy kicsit bele kell másznunk a layout fájl szöveges verziójába.</p>
+					<ol>
+						<li>Nyisd meg a layout fájlt</li>
+						<li>Az ablak alján válaszd ki a <code>Text</code> nézetet.</li>
+						<li>Ezen a ponton láthatod a layoutot leíró XML dokumentumot. Ha nem találkoztál még XML dokumentumokkal, akkor
+							sem kell megijedni. </li>
+						<li>Keresd meg az <code>ImageView</code> pont alá tartozó <code>app:srcCompat="@drawable/ball"</code> sort, és írd át 
+						erre: <code>app:src="@drawable/ball"</code>
+					</ol>
+                </div>
 
         <section id="variables">
             <h3>Java változók</h3>
