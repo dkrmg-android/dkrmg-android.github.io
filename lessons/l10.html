@@ -330,7 +330,7 @@ Ez a második sorba fog kerülni</code></pre>
             <button data-target="help_serialize_word" class="help-link">Megoldás. Gondolkozz mielőtt megnézed!</button></p>
         <div class="help-container" id="help_serialize_word">
             <pre><code>for (int i = 0; i < szavak.size(); i++) {
-    writer.println(szavak.get(i).magyar + szavak.get(i).angol);
+    writer.println(szavak.get(i).magyar + "," + szavak.get(i).angol);
 }</code></pre>
         </div>
 
