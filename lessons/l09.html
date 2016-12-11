@@ -80,7 +80,7 @@
 
     <p>Biztos nektek is feltűnt, hogy jelenleg ahhoz, hogy új szópárokat adhassunk hozzá az
         alkalmazáshoz, közvetlenül a Java <strong>forráskódot kell szerkesztgetni</strong>, és
-        mindig újra el kell készíteni (fordítani) az alkalmazást a zöld "Futtatás” gombra kattintva.
+        mindig újra el kell készíteni (fordítani) az alkalmazást a zöld "Futtatás" gombra kattintva.
         Ez egy se nem túl kellemes sem nem gyors, és hosszú távon gyakorlatilag használhatatlan megoldás.
         <br/>
         Sokkal jobb lenne, ha az alkalmazás <strong>futása közben</strong> lehetne beírni új
@@ -268,7 +268,7 @@
                 </table>
             </li>
             <li><strong>Hozzáadás:</strong><br/>
-<pre><code>Szo szo1 = new Szo("kutya”, "dog”);
+<pre><code>Szo szo1 = new Szo("kutya", "dog");
 szavak.add(szo1); // hozzáadás egyetlen paranccsal!</code></pre>
             </li>
             <li><strong>Kiolvasás:</strong><br/>
@@ -296,8 +296,8 @@ szavak.remove(index); // kiválasztott elem törlése egy paranccsal!</code></pr
                 elemeket belepakolni, mint a tömbbe. Ezt a részt a következő leckében, korábbi ígéretünknek
                 megfelelően, átalakítjuk majd, hogy egy csinos kis fájlból olvassa be a szavakat.
                 Addig viszont írd át a kódot, hogy az alábbi mintát kövesse:
-<pre><code>szavak.add(new Szo("kutya”, "dog”));
-szavak.add(new Szo("macska”, "cat”));
+<pre><code>szavak.add(new Szo("kutya", "dog"));
+szavak.add(new Szo("macska", "cat"));
 // stb…</code></pre>
             </li>
             <li>Az adapter létrehozását nem kell módosítani. Hurrá!</li>
@@ -328,7 +328,7 @@ szavak.add(new Szo("macska”, "cat”));
                     <li>Az onCreate függvényben keressük meg ezt a sort:
                         <pre><code>ArrayAdapter&lt;Szo&gt; adapter = new ArrayAdapter&lt;Szo&gt;(this, android.R.layout.simple_list_item_1, szavak);</code></pre>
                         és töröljük ki az elejéről az <code>ArrayAdapter&lt;Szo&gt;</code> részt.
-                        Figyeld meg, hogy megváltozott az "adapter” változó színe! Ez azért van,
+                        Figyeld meg, hogy megváltozott az "adapter" változó színe! Ez azért van,
                         mert eddig úgynevezett <strong>lokális változó</strong> volt, azaz csak a
                         függvényen belül létezett, mostantól pedig az Activity
                         <strong>globális változó</strong>ját jelenti (amit az előbb fent deklaráltunk). Az adapterünk mostantól az osztály összes függvényében elérhető.</li>
