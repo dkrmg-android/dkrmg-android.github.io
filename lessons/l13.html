@@ -590,9 +590,11 @@ if (TextUtils.isEmpty(messageText)) { // ha üres
 
         <p>A <code>Date</code> típus egyedül nem tudja magát szépen megformázni, segíteni kell neki. Erre van a
             <strong><code>SimpleDateFormat</code></strong> típus. Az osztályod elején (de a kapcsos zárójelei között!)
-            hozz létre egy <code>SimpleDateFormat</code> változót modjuk <strong><code>format</code></strong> névvel. A konstruktorában add meg,
-            hogy milyen formátumban írja ki a dátumot: <code>"yyyy-MM-dd HH:mm"</code>. Azaz:</p>
-        <pre><code>SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");</code></pre>
+            hozz létre egy <code>static SimpleDateFormat</code> változót modjuk <strong><code>format</code></strong> névvel. A <code>static</code>
+			kulcsszó azt biztosítja, hogy az összes üzenet egyetlen <code>format</code> objektumra hivatkozzon; elleknező esetben az Azure felhő megzavarodhat,
+			amikor megpróbálod elküldeni az üzenetedet. </p>
+			<p>A konstruktorában add meg, hogy milyen formátumban írja ki a dátumot: <code>"yyyy-MM-dd HH:mm"</code>. Azaz:</p>
+        <pre><code>format = new SimpleDateFormat("yyyy-MM-dd HH:mm");</code></pre>
 
         <p>Ezután ahol eddig <code>__createdAt.toString()</code>-et használtál írd át erre:</p>
         <pre><code>format.format(__createdAt)</code></pre>
